@@ -121,8 +121,9 @@
             $_SESSION['user_role'] = $user->role;
 
             //redirect to the user's(owners) home
-            die("logged successfully");
-            redirect('owners/home');
+            // die("logged successfully");
+            $this->view('owners/ownerLandPage');
+            // redirect('owners/home');
         }
 
     }
