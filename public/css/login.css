@@ -1,0 +1,159 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+/* get local font to the webpage */
+@font-face {
+    font-family: 'sfmy-regular';
+    src:url('../fonts/SF-Pro-Rounded-Regular.otf');
+}
+
+:root{
+    --clr-dark : #303030;
+    --clr-light : #fff;
+
+    --fs-h1 : 3rem;
+    --fs-h2 : 2.25rem;
+    --fs-h3 : 1.25rem;
+    --fs-body : 1rem;
+
+    --fw-reg : 300;
+    --fw-bold : 900;
+
+    --ff-family :  'sfmy-regular',sans-serif;
+}
+
+@media (min-width : 800px){
+    :root{
+        --fs-h1 : 4rem;
+        --fs-h2 : 3.75rem;
+        --fs-h3 : 1.5rem;
+        --fs-body : 1.2rem;
+    }
+}
+
+body{
+    margin: 0;
+    background: var(--clr-light);
+    font-family: var(--ff-family);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+}
+
+/*control images*/
+img{
+    display: block;
+    max-width: 100%;
+}
+
+h1 { font-size: var(--fs-h1);}
+h2 {font-size: var(--fs-h2);}
+h3 {font-size: var(--fs-h3);}
+
+/*login grid */
+.loginView{
+    margin-top: 8em;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+        "dataSide logoSide"
+    ;
+}
+
+.loginView__dataSide{
+    grid-area: dataSide;
+    margin-left: 20%;
+    /*margin-right: 10%; */
+}
+
+.loginView__logoSide{
+    grid-area: logoSide;
+    margin-right: 40%;
+}
+
+/*loginView title setup*/
+.loginView__title{
+    font-size: var(--fs-h2);
+}
+
+/*loginView subtitle setup*/
+@media (min-width : 800px){
+    .loginView__subtitle{
+        margin-top: -20px;
+    }
+}
+
+/*loginView Detail setup*/
+.loginView__Detail{
+    margin-top: 4%;
+}
+
+.loginDetailbox{
+    border-color: black;
+    outline: none;
+    border-radius: 8px;
+    font-size: 100%;
+    /* font-family: inherit; */
+    /* color: white; */
+    /* background-color: #7c7c7c7c; */
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 70%;
+    margin-bottom: 4%;
+}
+
+/*active area framework setup*/
+@media (min-width : 800px){
+    .activeArea{
+        display: grid;
+        grid-template-columns: 1fr 6fr;
+        grid-template-areas: 
+            "button signup"
+        ;
+    }
+
+    .submitButton{
+        grid-area: button;
+    }
+    .signupText{
+        grid-area: signup;
+    }
+}
+
+/*button decoration*/
+.btn{
+    border: none;
+    /* margin-left: 0%; */
+    width: 90px;
+    height: 35px;
+    color: white;
+    background: black;
+    border-radius: 13px;
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+
+    transition: 500ms;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+/*forget text*/
+.forgetText{
+    margin-top: 2%;
+}
+
+
+/*image decoration*/
+.imglogo{
+    transition: 800ms;
+}
+.imglogo:hover{
+    transform: scale(1.5);
+}
+
+
+/* If we get and invalid input then need to indicate error decoration
+*/
