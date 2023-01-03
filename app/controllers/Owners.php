@@ -4,7 +4,8 @@
         private $ownerModel;
 
         public function __construct(){
-            $this->ownerModel = $this->model('Owner');
+            // connect to the database
+            // $this->ownerModel = $this->model('Owner');
         }
 
         public function ownerLandPage(){
