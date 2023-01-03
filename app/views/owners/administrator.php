@@ -13,7 +13,7 @@
         <div class="viewData">
             <div class="sidebar--logo">
                 <div class="sidebar--logo--img">
-                    <img src="images/bikableLogo/logo.PNG" alt="">
+                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
                 </div>
             </div>
             <div class="sidebar__detail">
@@ -90,30 +90,31 @@
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <section class="dashboard--header">
-            <!-- <div class="dashboard__header--title"><strong> Dashboard</strong></div>
-             -->
-            <div class="dashboard__header--search">
-                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
-                <div class="dashboard__header--searchicon">
-                    <img src="images/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
-                </div>
+    <section class="dashboard--header">
+        <div class="dashboard__header--title"><strong> Dashboard</strong></div>
+        
+        <div class="dashboard__header--search">
+            <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
+            <div class="dashboard__header--searchicon">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
             </div>
-    
-            <div class="dashboard__header--helpsetting">
-                <div class="helpsetting__help">
-                    <img src="images/dashboardIcons/question.png" alt="help" class="dashboard__icon">
-                </div>
-                <div class="helpsetting__setting">
-                    <img src="images/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
-                </div>
+        </div>
+
+        <div class="dashboard__header--helpsetting">
+            <div class="helpsetting__help">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon">
             </div>
-    
-            <div class="dashboard__user__detail">
-                <div class="user__address">Hello, Shehaan</div>
-                <img src="images/avatar.png" alt="dashboard profile picture" class="imgProperty">
-            </div>      
-        </section>
+            <div class="helpsetting__setting">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
+            </div>
+        </div>
+
+        <div class="dashboard__user__detail">
+            <div class="user__address">Hello, Shehaan</div>
+            <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty">
+        </div>      
+    </section>
+
 
         <!-- REAL DATA AREA -->
 
