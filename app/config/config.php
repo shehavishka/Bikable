@@ -1,6 +1,6 @@
 <?php
     //APPROOT
-    define('APPROOT',dirname(dirname(dirname(__FILE__))));
+    define('APPROOT',(dirname(dirname(__FILE__))));
 
     // Database parameters
     define('DB_HOST', 'localhost');
