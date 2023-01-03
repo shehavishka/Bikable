@@ -39,7 +39,7 @@
         <div class="upper__section--buttons cardd">
             <!-- button class and put button into that classes -->
             <div class="admin--button">
-                <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/administrator'">
             </div>
             <div class="admin--button">
                 <input type="button" value="MECHANIC" class="btn">
