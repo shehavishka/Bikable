@@ -21,4 +21,24 @@
             //view details
             $this->view('owners/ownerLandPage');
         }
+
+        /////////////////////////////////////////////////
+        // OWNER LANDPAGE ADMIN/ MECHANIC/ BICYCLE/ OWNER RIDERS, BUTTONS IMPLEMENT
+        /////////////////////////////////////////////////
+
+        // owner controll administrator
+        public function administrator(){
+            /**
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+
+            // load owner's administrator control
+            //code will implement here
+
+            //view details
+            $this->view('owners/administrator');
+        }
+
     }
