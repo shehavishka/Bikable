@@ -42,4 +42,16 @@
             $this->view('owners/administrator');
         }
 
+        // owner controll repair log
+        public function repairlog(){
+            /**
+             *  Tasks 
+             *        1.) add repair log to the system
+             * 
+            */
+
+            // this is not load data from the database
+            $this->view('');
+        }
+
     }
