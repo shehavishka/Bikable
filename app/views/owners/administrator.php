@@ -43,7 +43,7 @@
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
-                        Repair Log
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/addNewRepairLog">Repair Log</a></div>
                     </div>
                 </div>
                 <hr>
