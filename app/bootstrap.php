@@ -14,6 +14,11 @@
     //this url_helper file helps to redirect through the application.
     require_once('helper/url_helper.php');
 
+    //php mailer files import to send email to the users
+    spl_autoload_register(function($className){
+        require_once('helper/phpMailer/' . $className . '.php');
+    });
+
     /**
      *  In the MVC stands for,
      *      M -> Model
