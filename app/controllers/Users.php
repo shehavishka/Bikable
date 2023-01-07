@@ -73,14 +73,13 @@
 
                     if($loggedInUser){
                         /////////////////
-                        // CHECK USER ROLE AND CREATE A SESSION
-                        /////////////////
-                        $this->createUserSession($loggedInUser);
-
-                        /////////////////
                         // IF USER SUCCESSFULLY LOGGED IN THEN SEND EMAIL TO HIM/HER
                         ////////////////
                         $this->sendEmailToUser($data['email']);
+                        /////////////////
+                        // CHECK USER ROLE AND CREATE A SESSION
+                        /////////////////
+                        $this->createUserSession($loggedInUser);
                        
                     }else{
                         $data['password_err'] = '*incorrect password';
@@ -135,19 +134,7 @@
         // SEND EMAIL TO THE USER
         ////////////////////////////
         public function sendEmailToUser($useremail){
-            $to = $useremail;
-            $email_subject = "Logged In to the Bikable.";
-            $email_body = "You have successfully logged in to the system.";
-
-            $header = "From: {$useremail}\r\nContent-type: text/html;";
-            
-            $send_email_result = mail($to,$email_subject,$email_body,$header);
-
-            if($send_email_result){
-                // print alert message on the landing page
-            }else{
-                // print alert message on the landing page
-            }
+            //code will be implement here
 
         }
 
