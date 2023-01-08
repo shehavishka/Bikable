@@ -7,6 +7,15 @@
      *      ii.) RESET PASSWORD
      *        
     */
+
+    /**
+     *  If Authentication is succesfull then need to send an email to the user
+     *  to do that have to USE some files from the  helper/PHPMailer directory
+    */
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
     class Users extends Controller{
         /////////////////
         // CREATE VARIABLE TO CONNECT TO THE DATABASE
@@ -73,10 +82,6 @@
 
                     if($loggedInUser){
                         /////////////////
-                        // IF USER SUCCESSFULLY LOGGED IN THEN SEND EMAIL TO HIM/HER
-                        ////////////////
-                        $this->sendEmailToUser($data['email']);
-                        /////////////////
                         // CHECK USER ROLE AND CREATE A SESSION
                         /////////////////
                         $this->createUserSession($loggedInUser);
@@ -133,7 +138,7 @@
         ////////////////////////////
         // SEND EMAIL TO THE USER
         ////////////////////////////
-        public function sendEmailToUser($useremail){
+        public function sendEmailToUser($email){
             //code will be implement here
 
         }
