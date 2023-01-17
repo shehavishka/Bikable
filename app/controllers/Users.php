@@ -81,6 +81,12 @@
                     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
                     if($loggedInUser){
+                        /////////////////////
+                        //SEND EMAIL
+                        ////////////////////
+                        // $this->sendEmailToUser($data['email']);
+
+                        
                         /////////////////
                         // CHECK USER ROLE AND CREATE A SESSION
                         /////////////////
@@ -139,7 +145,7 @@
         // SEND EMAIL TO THE USER
         ////////////////////////////
         public function sendEmailToUser($email){
-            //code will be implement here
+            //code will be implement heref
 
         }
 
