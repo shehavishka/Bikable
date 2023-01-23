@@ -61,8 +61,19 @@
              *      1.) add docking area to the system
              */
 
-            //this is not load data from the system
+            //this is not load data from the database
             $this->view('owners/dockingareas');
+        }
+
+        // owner controll bicycle details
+        public function bicyclesControl(){
+            /**
+             * Task 
+             *      1.) handle bicycles in the system.
+             */
+
+            //this is not load data from the database
+            $this->view('owners/bicycles');
         }
 
 
