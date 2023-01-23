@@ -42,13 +42,13 @@
                 <hr>
                 <div class="detail detail__dockingAreas">
                     <div class="detail__dockingAreas--title">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/dockingAreas">Docking Areas</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/dockingAreas">Docking Areas</a></div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__bicycles">
                     <div class="detail__bicycles--title">
-                        Bicycles
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/bicyclesControl">Bicycles</a></div>
                     </div>
                 </div>
                 <hr>
