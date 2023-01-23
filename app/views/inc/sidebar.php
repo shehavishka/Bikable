@@ -1,4 +1,7 @@
     <!-- finalized side bar -->
+    <head>
+        <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/sidebar.css"> 
+    </head>
     <section class="sidebar">
         <div class="viewData">
             <div class="sidebar--logo">
