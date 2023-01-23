@@ -13,7 +13,7 @@
         <div class="viewData">
             <div class="sidebar--logo">
                 <div class="sidebar--logo--img">
-                    <img src="images/bikableLogo/logo.PNG" alt="">
+                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
                 </div>
             </div>
             <div class="sidebar__detail">
