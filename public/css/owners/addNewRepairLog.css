@@ -98,6 +98,21 @@ img{
     color: grey;
 }
 
+/* side bar TO DASHBOARD word add decoration */
+.detail__dashboard--name{
+    transition: 500ms;
+}
+
+a{
+    text-decoration: none;
+    color: var(--clr-blackDark);
+}
+
+.detail__dashboard--name:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 
 /* ******************************************************************************************************* */
 /*///////////////////////////////// BUTTON DECORATION //////////////////////////////////////////////////// */
