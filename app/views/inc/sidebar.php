@@ -42,7 +42,7 @@
                 <hr>
                 <div class="detail detail__dockingAreas">
                     <div class="detail__dockingAreas--title">
-                        Docking Areas
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/dockingAreas">Docking Areas</a></div>
                     </div>
                 </div>
                 <hr>

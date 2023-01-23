@@ -54,4 +54,17 @@
             $this->view('owners/addNewRepairLog');
         }
 
+        // owner controll docking areas
+        public function dockingAreas(){
+            /**
+             * Task
+             *      1.) add docking area to the system
+             */
+
+            //this is not load data from the system
+            $this->view('owners/dockingareas');
+        }
+
+
+
     }
