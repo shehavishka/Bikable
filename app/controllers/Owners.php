@@ -76,7 +76,7 @@
             $this->view('owners/bicycles');
         }
 
-        // owner views the the rides
+        // owner views the the rides and controll
         public function ridesControl(){
             /**
              *  Task
@@ -85,6 +85,17 @@
 
              //this is not load data from the database
             $this->view('owners/rides');
+        }
+
+        // owner vies the reports and controll
+        public function reportsControl(){
+            /**
+             * Task 
+             *      1.) handle reports in the system
+             */
+
+            //this is not load data from the data
+            $this->view('owners/reports');
         }
 
 
