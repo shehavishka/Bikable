@@ -16,30 +16,7 @@
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <section class="dashboard--header">
-            <!-- <div class="dashboard__header--title"><strong> Dashboard</strong></div>
-             -->
-            <div class="dashboard__header--search">
-                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
-                <div class="dashboard__header--searchicon">
-                    <img src="images/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
-                </div>
-            </div>
-    
-            <div class="dashboard__header--helpsetting">
-                <div class="helpsetting__help">
-                    <img src="images/dashboardIcons/question.png" alt="help" class="dashboard__icon">
-                </div>
-                <div class="helpsetting__setting">
-                    <img src="images/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
-                </div>
-            </div>
-    
-            <div class="dashboard__user__detail">
-                <div class="user__address">Hello, Shehaan</div>
-                <img src="images/avatar.png" alt="dashboard profile picture" class="imgProperty">
-            </div>      
-        </section>
+        <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
 
