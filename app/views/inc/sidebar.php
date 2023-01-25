@@ -60,7 +60,7 @@
                 <hr>
                 <div class="detail detail__reports">
                     <div class="detail__reports--title">
-                        Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/reportsControl">Reports</a></div>
                     </div>
                     <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
