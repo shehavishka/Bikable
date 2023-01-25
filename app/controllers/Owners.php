@@ -76,6 +76,17 @@
             $this->view('owners/bicycles');
         }
 
+        // owner views the the rides
+        public function ridesControl(){
+            /**
+             *  Task
+             *      1.) handle rides in the system
+             */
+
+             //this is not load data from the database
+            $this->view('owners/rides');
+        }
+
 
 
     }

@@ -54,7 +54,7 @@
                 <hr>
                 <div class="detail detail__rides">
                     <div class="detail__rides--title">
-                        Rides
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/ridesControl">Rides</a></div>
                     </div>
                 </div>
                 <hr>
