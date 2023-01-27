@@ -128,9 +128,16 @@
         ///////////////////////
         public function createUserSession($user){
             //store session data
-            $_SESSION['user_first_name'] = $user->first_name;
-            $_SESSION['user_last_name'] = $user->last_name;
+            $_SESSION['user_ID'] = $user->UserID;
+            $_SESSION['user_picture'] = $user->userPicture;
+            $_SESSION['user_NIC'] = $user->NIC;
+            $_SESSION['user_fName'] = $user->firstName;
+            $_SESSION['user_lName'] = $user->lastName;
+            $_SESSION['user_pNumber'] = $user->phoneNumber;
             $_SESSION['user_role'] = $user->role;
+            $_SESSION['user_ID'] = $user->UserID;
+            $_SESSION['user_status'] = $user->status;
+            $_SESSION['user_email'] = $user->emailAdd;
 
             //redirect to the user's(owners) home
             // die("logged successfully");
