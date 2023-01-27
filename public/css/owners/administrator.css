@@ -6,7 +6,7 @@
 
 /* get local font to the webpage */
 @font-face {
-    font-family: 'sfy-regular';
+    font-family: 'sfmy-regular';
     src: url('../../fonts/SF-Pro-Rounded-Regular.otf');
 }
 
@@ -26,7 +26,7 @@
     --fw-bold : 900;
     --fw-lightBold : 500;
 
-    --ff-family : 'sfy-regular', sans-serif;
+    --ff-family : 'sfmy-regular', sans-serif;
 }
 
 @media (min-width : 800px){
