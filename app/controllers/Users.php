@@ -12,9 +12,6 @@
      *  If Authentication is succesfull then need to send an email to the user
      *  to do that have to USE some files from the  helper/PHPMailer directory
     */
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
 
     class Users extends Controller{
         /////////////////
