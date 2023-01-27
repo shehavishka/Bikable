@@ -29,8 +29,9 @@
 
         <div class="dashboard__user__detail">
             <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
-            <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty">
+            <!-- <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
             <!-- <img src="data:image/jpeg;base64,<?php echo $_SESSION['user_picture']; ?>" alt="dashboard profile picture" class="imgProperty"> -->
+            <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
         </div>
     </section>
 
