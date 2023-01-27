@@ -7,7 +7,7 @@
 /* get local font to the webpage */
 @font-face {
     font-family: 'sfmy-regular';
-    src: url('fonts/SF-Pro-Rounded-Regular.otf');
+    src: url('../../fonts/SF-Pro-Rounded-Regular.otf');
 }
 
 /* import font */
