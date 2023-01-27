@@ -145,13 +145,13 @@
                 <table>
                     <tr>
                         <th>Bicycle ID</th>
-                        <th></th>
+                        <th>Frame</th>
                         <th>Status</th>
                     </tr>
 
                     <tr>
                         <td>34156D</td>
-                        <td></td>
+                        <td>L</td>
                         <td>Active</td>
                     </tr>
 
