@@ -1,5 +1,5 @@
 <head>
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css"> 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css"> 
 </head>
 <section class="dashboard--header">
             <div class="dashboard__header--search">
@@ -21,6 +21,13 @@
             <div class="dashboard__user__detail">
                 <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
                 <!-- <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
-                <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
+                <div class="dropdown_area">
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
+                </div>
+                <div class="dashboard__user__dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Logout</a>
+                </div>
             </div>      
 </section>
