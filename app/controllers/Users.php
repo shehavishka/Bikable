@@ -135,7 +135,6 @@
             $_SESSION['user_lName'] = $user->lastName;
             $_SESSION['user_pNumber'] = $user->phoneNumber;
             $_SESSION['user_role'] = $user->role;
-            $_SESSION['user_ID'] = $user->UserID;
             $_SESSION['user_status'] = $user->status;
             $_SESSION['user_email'] = $user->emailAdd;
 
@@ -143,6 +142,25 @@
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
             redirect('owners/ownerLandPage');
+        }
+
+        ///////////////////////////////////
+        // LOG OUT 
+        //////////////////////////////////
+        public function logout(){
+            // DESTROY USER DETAILS
+            unset($_SESSION['user_ID']);
+            unset($_SESSION['user_picture']);
+            unset($_SESSION['user_NIC']);
+            unset($_SESSION['user_fName']);
+            unset($_SESSION['user_lName']);
+            unset($_SESSION['user_pNumber']);
+            unset($_SESSION['user_role']);
+            unset($_SESSION['user_status']);
+            unset($_SESSION['user_email']);
+
+            session_destroy();
+            redirect('users/login');
         }
 
         ////////////////////////////
