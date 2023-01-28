@@ -95,8 +95,11 @@ img{
 /* Change color of dropdown links on hover */
 .dashboard__user__dropdown-content a:hover {background-color: #f1f1f1}
 
+.dropdown_area{
+    cursor: pointer;
+}
 /* Show the dropdown menu on hover */
 .dropdown_area:hover .dashboard__user__dropdown-content {
-
     display: block;
+    transition-duration: 2s;
 }
