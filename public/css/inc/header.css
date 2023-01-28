@@ -1,0 +1,74 @@
+/* *********************************************************************************************************** */
+/* ///////////////////////////////////  DASHBOARD  //////////////////////////////////////////////////////////// */
+
+/* control imag behaviour */
+img{
+    display: block;
+    max-width: 100%;
+}
+
+
+.dashboard--header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .7%;
+    margin-top: .5%;
+    margin-right: 2%;
+}
+
+.dashboard__header--title{
+    margin-left: 4%;
+    font-size: 1.5rem;
+}
+
+.dashboard__header--search{
+    margin-left: 20%;
+    width: 30%;
+}
+
+.dashboard__header--searchbox{
+    border-color: black;
+    outline: none;
+    border-radius: 8px;
+    font-size: 70%;
+    /* font-family: inherit; */
+    /* color: white; */
+    /* background-color: #7c7c7c7c; */
+    padding: 0.5em 1em 0.3em 1.5em;
+    width: 80%;
+    margin-bottom: 1%;
+
+    background-color: var(--clr-dark);
+}
+
+.dashboard__header--search,
+.dashboard__header--helpsetting,
+.dashboard__user__detail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    right: 3rem;
+    gap: 1rem;
+    margin-right: 2%;
+}
+
+.imgProperty{
+    max-width: 40px;
+    border-radius: 50%;
+}
+
+.dashboard__icon{
+    max-width: 30px;
+    transition: 500ms;
+    
+}
+
+.searchicon{
+    max-width: 20px;
+}
+
+.dashboard__icon:hover{
+    transform: scale(1.1);
+}

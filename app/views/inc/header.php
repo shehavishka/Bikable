@@ -1,3 +1,6 @@
+<head>
+        <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css"> 
+</head>
 <section class="dashboard--header">
             <div class="dashboard__header--search">
                 <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
