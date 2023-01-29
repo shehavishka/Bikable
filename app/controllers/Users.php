@@ -4,7 +4,7 @@
      *   
      *   TASKS:
      *      i.) LOGIN
-     *      ii.) RESET PASSWORD
+     *      ii.)RESET PASSWORD
      *        
     */
 
