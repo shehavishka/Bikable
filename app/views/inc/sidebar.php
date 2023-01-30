@@ -23,7 +23,7 @@
                             <a href="<?php echo URLROOT ?>/owners/mechanic">Mechanic</a>
                         </div>
                         <div class="submenu users__submenu--riders">
-                            <a href="<?php echo URLROOT ?>/owners/mechanic">Riders</a>
+                            <a href="<?php echo URLROOT ?>/owners/riders">Riders</a>
                         </div>
                         <div class="submenu users__submenu--bicycleOwners">
                             Bicycle Owners
