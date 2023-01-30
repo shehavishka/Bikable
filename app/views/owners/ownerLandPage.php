@@ -44,7 +44,7 @@
                 <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/administrator'">
             </div>
             <div class="admin--button">
-                <input type="button" value="MECHANIC" class="btn">
+                <input type="button" value="MECHANIC" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/mechanic'>
             </div>
             <div class="admin--button">
                 <input type="button" value="BICYCLE OWNER" class="btn">
