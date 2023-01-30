@@ -45,6 +45,14 @@ img{
     color: grey;
 }
 
+.users__submenu--mechanic{
+    transition: 500ms;
+}
+
+.users__submenu--mechanic:hover{
+    transform: scale(1.1);
+}
+
 /* side bar TO DASHBOARD word add decoration */
 .detail__dashboard--name{
     transition: 500ms;
