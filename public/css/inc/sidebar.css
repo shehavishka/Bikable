@@ -43,13 +43,11 @@ img{
     padding-left: 8%;
     line-height: 1.5rem;
     color: grey;
-}
 
-.users__submenu--mechanic{
     transition: 500ms;
 }
 
-.users__submenu--mechanic:hover{
+.submenu:hover{
     transform: scale(1.1);
 }
 
