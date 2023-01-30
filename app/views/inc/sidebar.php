@@ -23,13 +23,13 @@
                             <a href="<?php echo URLROOT ?>/owners/mechanic">Mechanic</a>
                         </div>
                         <div class="submenu users__submenu--riders">
-                            <a href="<?php echo URLROOT ?>/owners/riders">Riders</a>
+                            <a href="<?php echo URLROOT ?>/owners/">Riders</a>
                         </div>
                         <div class="submenu users__submenu--bicycleOwners">
-                            Bicycle Owners
+                            <a href="<?php echo URLROOT ?>/owners/bicycleOwner">Bicycle Owner</a>
                         </div>
                         <div class="submenu users__submenu--administrators">
-                            <a href="<?php echo URLROOT ?>/owners/bicycleOwner">Bicycle Owner</a>    
+                            Administrators
                         </div>
                     </div>
                 </div>
