@@ -22,7 +22,7 @@
 
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Mechanic</div>
+            <div class="admin__data__area__top--title">Riders</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add User" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
