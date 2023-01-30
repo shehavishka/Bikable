@@ -29,7 +29,7 @@
                             Bicycle Owners
                         </div>
                         <div class="submenu users__submenu--administrators">
-                            Administrators
+                            <a href="<?php echo URLROOT ?>/owners/bicycleOwner">Bicycle Owner</a>    
                         </div>
                     </div>
                 </div>
