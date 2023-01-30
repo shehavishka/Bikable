@@ -72,6 +72,20 @@
             $this->view('owners/riders');
         }
 
+        public function bicycleOwner(){
+            /**
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+
+            // load owner's mechanic control
+            //code will implement here
+
+            //view details
+            $this->view('owners/bicycleOwner');
+        }
+
         // owner controll repair log
         public function addNewRepairLog(){
             /**
