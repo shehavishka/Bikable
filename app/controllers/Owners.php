@@ -42,6 +42,21 @@
             $this->view('owners/administrator');
         }
 
+        // owner controll Mechanic data view
+        public function mechanic(){
+            /**
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+
+            // load owner's mechanic control
+            //code will implement here
+
+            //view details
+            $this->view('owners/mechanic');
+        }
+
         // owner controll repair log
         public function addNewRepairLog(){
             /**
