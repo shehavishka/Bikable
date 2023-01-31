@@ -136,7 +136,7 @@
                     //in future this password should send to the email address.
 
                     // register user
-                    if($this->ownerModel->userRegister($data)){
+                    if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         redirect('owners/ownerLandPage');
                     }else{
