@@ -25,6 +25,7 @@
             }
         }
 
+        //find NIC number in the database
         public function findNicNumber($userNIC){
             $this->db->prepareQuery("SELECT * FROM users where NIC = '$userNIC'");
 

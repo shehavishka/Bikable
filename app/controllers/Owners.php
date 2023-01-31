@@ -103,7 +103,13 @@
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
                 }else{
-                    //check weather nic isi avilable in database *********************************************
+                    //check weather nic is availble in database
+                    if($this->ownerModel->findNicNumber($data['nic'])){
+                        // true means that email is already taken.
+                        $data['nic_err'] = "*NIC is already taken";
+                    }else{
+                        //pass
+                    }
                 }
 
                 //validate phone number
