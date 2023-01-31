@@ -53,6 +53,7 @@
             }          
         }
 
+        //add user into the system
         public function addUserIntoTheSystem($data){
 
             $unic = $data['nic'];
