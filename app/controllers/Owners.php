@@ -116,7 +116,13 @@
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
                 }else{
-                    //check data base weather it is availble.***************************************************
+                    //check weather phone number is availble in database
+                    if($this->ownerModel->findPhoneNumber($data['pNumber'])){
+                        // true means that email is already taken.
+                        $data['pNumber_err'] = "*Phone Number is already taken";
+                    }else{
+                        //pass
+                    }
                 }
 
 
