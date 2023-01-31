@@ -59,11 +59,20 @@
                 <div class="data--name--lebal">Status</div>
                 <div class="data__status">
                     <div class="data__status--active">
-                        <input type="radio"><label for="active">Active</label>
+                        <!-- <input type="radio"><label for="active">Active</label> -->
+                        <input type="radio" id="active" name="status" value="1" onclick="toggleRadioButton('active', 'inactive')" checked> Active
                     </div>
                     <div class="data__status--inactive">
-                        <input type="radio"><label for="inactive">Inactive</label>
+                        <!-- <input type="radio"><label for="inactive">Inactive</label> -->
+                        <input type="radio" id="inactive" name="status" value="0" onclick="toggleRadioButton('inactive', 'active')"> Inactive
                     </div>
+                    <script>
+                        function toggleRadioButton(selected, unselected) {
+                            document.getElementById(selected).disabled = false;
+                            document.getElementById(unselected).disabled = false;
+                            document.getElementById(selected).checked = true;
+                        }
+                    </script>
                 </div>
             </div>
 
