@@ -133,6 +133,7 @@
                     // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                     $data['userPassword'] = $this->generatePassword();
+                    //in future this password should send to the email address.
 
                     // register user
                     if($this->ownerModel->userRegister($data)){
