@@ -39,5 +39,19 @@
             }
         }
 
+        //find phone number in the database
+        public function findPhoneNumber($userPNumber){
+            $this->db->prepareQuery("SELECT * FROM users where phoneNumber = '$userPNumber'");
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }          
+        }
+
 
     }
