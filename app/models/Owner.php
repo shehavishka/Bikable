@@ -53,5 +53,24 @@
             }          
         }
 
+        public function addUserIntoTheSystem($data){
 
+            $unic = $data['nic'];
+            $fName = $data['fName'];
+            $lName = $data['lName'];
+            $upNumber = $data['pNumber'];
+            $urole = $data['userRole'];
+            $ustatus = $data['status'];
+            $uPassword = $data['userPassword'];
+            $uemail = $data['email'];
+
+
+            $this->db->prepareQuery("INSERT INTO users ( NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')");
+            
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
