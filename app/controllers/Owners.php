@@ -59,6 +59,8 @@
                     'pNumber' => trim($_POST['contact_number']),
                     'userRole' => trim($_POST['user_role']),
 
+                    'userPassword' => '', // this generate after confirmed entered details are ready.
+
                     'fName_err' => '',
                     'lName_err' => '',
                     'email_err' => '',
@@ -101,15 +103,52 @@
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
                 }else{
-                    //check weather nic isi avilable in database
+                    //check weather nic isi avilable in database *********************************************
                 }
 
                 //validate phone number
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
                 }else{
-                    //check data base weather it is availble.
+                    //check data base weather it is availble.***************************************************
                 }
+
+
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
+                    //every things up to ready 
+
+                    // hash password
+                    $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                    // register admin
+                    if($this->ownerModel->adminRegister($data)){
+                        redirect('owners/adminOp');
+                    }else{
+                        die('something went wrong');
+                    }
+                }else{
+                    $this->view('owners/addAdmin', $data);
+                }
+
+            }else{
+                //init data
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    'pNumber' => '',
+                    'email' => '',
+                    'password' => '',
+                    'nic' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'pNumber_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'nic_err' => '',
+
+                ];
+                $this->view('owners/addAdmin', $data);
             }
         }
 
@@ -229,6 +268,16 @@
             $this->view('owners/reports');
         }
 
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private function generatePassword() {
+            $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            $pass = array();
+            $alphaLength = strlen($alphabet) - 1;
+            for ($i = 0; $i < 8; $i++) {
+                $n = rand(0, $alphaLength);
+                $pass[] = $alphabet[$n];
+            }
+            return implode($pass);
+        }
 
     }
