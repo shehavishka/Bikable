@@ -67,8 +67,50 @@
                     'pNumber_err' => '',
                     'userRole_err' => ''
                 ];
-            }
 
+                //validate submitted data
+                //validate first_name
+                if(empty($data['fName'])){
+                    $data['fName_err'] = '*enter first name';
+                } 
+
+                //validate last name
+                if(empty($data['lName'])){
+                    $data['lName_err'] = '*enter last name';
+                }
+
+                //validate email
+                if(empty($data['email'])){
+                    $data['email_err'] = '*enter email Number';
+                }else{
+                    //check weather email is availble in database
+                    if($this->ownerModel->findUserByEmail($data['email'])){
+                        // true means that email is already taken.
+                        $data['email_err'] = "*email is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+                //validate status
+                if(empty($data['status'])){
+                    $data['status_err'] = '*select user status';
+                }
+
+                //validate NIC
+                if(empty($data['nic'])){
+                    $data['nic_err'] = '*enter NIC number';
+                }else{
+                    //check weather nic isi avilable in database
+                }
+
+                //validate phone number
+                if(empty($data['pNumber'])){
+                    $data['pNumber_err'] = '*enter phone Number';
+                }else{
+                    //check data base weather it is availble.
+                }
+            }
         }
 
 
