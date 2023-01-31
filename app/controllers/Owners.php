@@ -40,6 +40,37 @@
             $this->view('owners/addUser');
         }
 
+        // after addUser form filled if they are valid then insert data into the system
+        public function addUserToTheSystemFormSubmitButton(){
+            /**
+             *  Task
+             *      This function task is validate data from the addUser form and,
+             *          generate the password and send it the user 
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'fName' => trim($_POST['first_name']),
+                    'lName' => trim($_POST['last_name']),
+                    'email' => trim($_POST['email']),
+                    'status' => trim($_POST['status']),
+                    'nic' => trim($_POST['nic_number']),
+                    'pNumber' => trim($_POST['contact_number']),
+                    'userRole' => trim($_POST['user_role']),
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'status_err' => '',
+                    'nic_err' => '',
+                    'pNumber_err' => '',
+                    'userRole_err' => ''
+                ];
+            }
+
+        }
+
 
         // owner controll administrator
         public function administrator(){
