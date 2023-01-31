@@ -118,16 +118,19 @@
                     //every things up to ready 
 
                     // hash password
-                    $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-                    // register admin
-                    if($this->ownerModel->adminRegister($data)){
-                        redirect('owners/adminOp');
+                    $data['userPassword'] = $this->generatePassword();
+
+                    // register user
+                    if($this->ownerModel->userRegister($data)){
+                        // next implementation should be land into the right position according to the role
+                        redirect('owners/ownerLandPage');
                     }else{
                         die('something went wrong');
                     }
                 }else{
-                    $this->view('owners/addAdmin', $data);
+                    $this->view('owners/addUser', $data);
                 }
 
             }else{
@@ -148,7 +151,7 @@
                     'nic_err' => '',
 
                 ];
-                $this->view('owners/addAdmin', $data);
+                $this->view('owners/addUser', $data);
             }
         }
 
