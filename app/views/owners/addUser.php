@@ -89,7 +89,7 @@
 
             <div class="data__area__detail--role">
                 <div class="data--name--lebal">Role</div>
-                <input type="text" class="detailbox_userrole detailbox" name="contact_number" placeholder="Role" id="contact_number" list="roles">
+                <input type="text" class="detailbox_userrole detailbox" name="user_role" placeholder="Role" id="userRole" list="roles">
                 <datalist id="roles">
                     <option value="Administrator">
                     <option value="Mechanic">
