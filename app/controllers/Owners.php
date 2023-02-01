@@ -125,7 +125,6 @@
                     }
                 }
 
-
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
                     //every things up to ready 
 

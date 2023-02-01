@@ -59,15 +59,15 @@
             $unic = $data['nic'];
             $fName = $data['fName'];
             $lName = $data['lName'];
-            $upNumber = $data['pNumber'];
+            $upNumber = intval($data['pNumber']); //should be int
             $urole = $data['userRole'];
-            $ustatus = $data['status'];
+            $ustatus = intval($data['status']); // should be int
             $uPassword = $data['userPassword'];
             $uemail = $data['email'];
 
+            $temp = "INSERT INTO users (NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')";
+            $this->db->prepareQuery($temp);
 
-            $this->db->prepareQuery("INSERT INTO users ( NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')");
-            
             if($this->db->executeStmt()){
                 return true;
             }else{
