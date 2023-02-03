@@ -103,4 +103,12 @@
             return $this->db->resultSet();
         }
 
+        public function getbikeOwnersDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'bikeOwner'");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
     }
