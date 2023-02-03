@@ -87,4 +87,12 @@
             return $this->db->resultSet();
         }
 
+        public function getMechanicDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'mechanic'");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
     }
