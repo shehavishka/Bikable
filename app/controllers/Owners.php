@@ -210,9 +210,13 @@
 
             // load owner's mechanic control
             //code will implement here
+            $mechanicDetails = $this->ownerModel->getRiderDetails();
+            $data = [
+                'rider_details' => $mechanicDetails
+            ];
 
             //view details
-            $this->view('owners/riders');
+            $this->view('owners/riders', $data);
         }
 
         public function bicycleOwner(){
