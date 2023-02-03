@@ -228,7 +228,7 @@
 
             // load owner's mechanic control
             //code will implement here
-            $bikeOwnerDetails = $this->ownerModel->getbikeOwnersDetails();
+            $bikeOwnerDetails = $this->ownerModel->getbikeOwnerDetails();
             $data = [
                 'bikeOwner_details' => $bikeOwnerDetails
             ];
