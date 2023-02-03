@@ -94,10 +94,6 @@
                     }
                 }
 
-                //validate status
-                if(empty($data['status'])){
-                    $data['status_err'] = '*select user status';
-                }
 
                 //validate NIC
                 if(empty($data['nic'])){
@@ -133,11 +129,10 @@
 
                     $data['userPassword'] = $this->generatePassword();
                     //in future this password should send to the email address.
-
                     // register user
                     if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
-                        redirect('owners/ownerLandPage');
+                        $this->view('owners/addUser');
                     }else{
                         die('something went wrong');
                     }
