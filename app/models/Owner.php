@@ -95,4 +95,12 @@
             return $this->db->resultSet();
         }
 
+        public function getRiderDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'rider'");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
     }
