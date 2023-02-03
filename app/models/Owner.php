@@ -103,7 +103,7 @@
             return $this->db->resultSet();
         }
 
-        public function getbikeOwnersDetails(){
+        public function getbikeOwnerDetails(){
 
             $this->db->prepareQuery("SELECT * FROM users where role = 'bikeOwner'");
 

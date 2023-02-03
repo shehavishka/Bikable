@@ -228,9 +228,13 @@
 
             // load owner's mechanic control
             //code will implement here
+            $bikeOwnerDetails = $this->ownerModel->getbikeOwnersDetails();
+            $data = [
+                'bikeOwner_details' => $bikeOwnerDetails
+            ];
 
             //view details
-            $this->view('owners/bicycleOwner');
+            $this->view('owners/bicycleOwner', $data);
         }
 
         // owner controll repair log
