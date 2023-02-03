@@ -125,6 +125,12 @@ body{
 }
 
 /* lower section map card */
+#map-layer {
+	/* margin: 20px 0px;
+	max-width: 600px;
+	min-height: 400; */
+    border-radius: 10px;
+}
 
 
 
