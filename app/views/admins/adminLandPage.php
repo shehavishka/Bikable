@@ -1,3 +1,38 @@
+<?php 
+class DBController {
+	private $host = "localhost";
+	private $user = "root";
+	private $password = "";
+	private $database = "bikable_db";
+	private $conn;
+	
+	function __construct() {
+		$this->conn = $this->connectDB();
+	}
+	
+	function connectDB() {
+		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+		return $conn;
+	}
+	
+	function runQuery($query) {
+		$result = mysqli_query($this->conn,$query);
+		while($row=mysqli_fetch_array($result)) {
+			$resultset[] = $row;
+		}
+		if(!empty($resultset))
+			return $resultset;
+	}
+}
+
+//define("API_KEY","AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM");
+
+$dbController = new DBController();
+
+$query = "SELECT * FROM dockingareas";
+$DAResult = $dbController->runQuery($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +64,6 @@
 
         <div class="dashboard__user__detail">
             <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
-            <!-- <img src="<?php echo URLROOT;?>/public/images/admins/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
-            <!-- <img src="data:image/jpeg;base64,<?php echo $_SESSION['user_picture']; ?>" alt="dashboard profile picture" class="imgProperty"> -->
             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
         </div>
     </section>
@@ -185,9 +218,48 @@
 
     <!-- ***************************************************************************************************************** -->
     <section class="lower__section">
-        <div class="lower_section--map">
-            <!-- <h1>MAP IS HERE</h1> -->
-        </div>
+        <!-- lower section map -->
+        <!-- <div class="lower_section--map"> -->
+        <div id="map-layer"></div>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM&callback=initMap"
+                async defer>
+            </script>
+        
+            <script type="text/javascript">
+                var map;
+
+                function initMap() {
+                    var mapLayer = document.getElementById("map-layer");
+                    var centerCoordinates = new google.maps.LatLng(6.9100, 79.8800);
+                    var defaultOptions = { center: centerCoordinates, zoom: 13.5, mapId: "f58d941242b91036"}
+
+                    map = new google.maps.Map(mapLayer, defaultOptions);
+                    
+                    <?php 
+                        if(!empty($DAResult)) 
+                        {
+                            foreach($DAResult as $k=>$v)
+                            {   
+                    ?>  
+                                var latitude = <?php echo $DAResult[$k]["locationLat"]; ?>;
+                                var longitude = <?php echo $DAResult[$k]["locationLong"]; ?>
+
+                                new google.maps.Marker({
+                                    position: new google.maps.LatLng(latitude, longitude),
+                                    map: map,
+                                    icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
+                                    label: {text: '<?php echo $DAResult[$k]["currentNoOfBikes"]; ?>', color: "white", fontFamily:"SF Pro Rounded"},
+                                    labelClass: "marker-position",
+                                    title: '<?php echo $DAResult[$k]["areaName"]; ?>'
+                                });
+                    <?php
+                            }
+                        }
+                    ?>	
+                        
+                }
+            </script>
 
         <div class="lower_section--statistics">
             <div class="lower__section__card--title">

@@ -126,19 +126,7 @@ body{
 
 /* lower section map card */
 
-.lower_section--map{
-    grid-area: lefter;
-    /* background-color: lightgreen; */
-    border-radius: 10px;
-    height: 45vh;
-    background-image: url('http://localhost/Bikable/images/owners/landPageImages/kk.png');
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: multiply;
 
-    margin-bottom: 2em;
-
-}
 
 .lower_section--statistics{
     background-color: #D9D9D9;
