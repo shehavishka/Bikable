@@ -81,8 +81,10 @@
 
         public function getAdminDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM users where role = 'admin'");
+            $this->db->prepareQuery("SELECT * FROM users where role = 'administrator'");
 
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
         }
 
     }
