@@ -74,4 +74,15 @@
                 return false;
             }
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////   GET MECHANIC / ADMINISTRATORS / RIDERS / BICYCLE OWNERS /////////////////////////
+        ////////////////////////        data from the database /////////////////////////////////////////////////////
+
+        public function getAdminDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'admin'");
+
+        }
+
     }

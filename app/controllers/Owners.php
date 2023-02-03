@@ -57,7 +57,7 @@
                     'status' => trim($_POST['status']),
                     'nic' => trim($_POST['nic_number']),
                     'pNumber' => trim($_POST['contact_number']),
-                    'userRole' => trim($_POST['user_role']),
+                    'userRole' => strtolower(trim($_POST['user_role'])),
 
                     'userPassword' => '', // this generate after confirmed entered details are ready.
 
