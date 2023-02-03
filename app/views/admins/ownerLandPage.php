@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/adminLandPage.css">
-    <title>Administrator Landpage</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/ownerLandPage.css">
+    <title>Owner Landpage</title>
 </head>
 <body>
     <section class="dashboard--header">
@@ -14,42 +14,43 @@
         <div class="dashboard__header--search">
             <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
             <div class="dashboard__header--searchicon">
-                <img src="<?php echo URLROOT;?>/public/images/admins/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
             </div>
         </div>
 
         <div class="dashboard__header--helpsetting">
             <div class="helpsetting__help">
-                <img src="<?php echo URLROOT;?>/public/images/admins/dashboardIcons/question.png" alt="help" class="dashboard__icon">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon">
             </div>
             <div class="helpsetting__setting">
-                <img src="<?php echo URLROOT;?>/public/images/admins/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
+                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
             </div>
         </div>
 
         <div class="dashboard__user__detail">
             <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
-            <!-- <img src="<?php echo URLROOT;?>/public/images/admins/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
+            <!-- <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
             <!-- <img src="data:image/jpeg;base64,<?php echo $_SESSION['user_picture']; ?>" alt="dashboard profile picture" class="imgProperty"> -->
             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
         </div>
     </section>
+
 
     <section class="upper__section">
 
         <div class="upper__section--buttons cardd">
             <!-- button class and put button into that classes -->
             <div class="admin--button">
-                <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/administrator'">
+                <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/administrator'">
             </div>
             <div class="admin--button">
-                <input type="button" value="MECHANIC" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/mechanic'">
+                <input type="button" value="MECHANIC" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/mechanic'">
             </div>
             <div class="admin--button">
-                <input type="button" value="BICYCLE OWNER" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/bicycleOwner'">
+                <input type="button" value="BICYCLE OWNER" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/bicycleOwner'">
             </div>
             <div class="admin--button">
-                <input type="button" value="RIDERS" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/riders'">
+                <input type="button" value="RIDERS" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/riders'">
             </div> 
         </div>
 
