@@ -39,7 +39,7 @@
                 <tr>
                     <th style="width: 3%;"></th>
                     <th style="width: 13%;">Username</th>
-                    <th style="width: 10%;">UserID</th>
+                    <th style="width: 8%;">UserID</th>
                     <th style="width: 10%;">Status</th>
                     <th style="width: 20%;">Email</th>
                     <th style="width: 15%;">NIC</th>
