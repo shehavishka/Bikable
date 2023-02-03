@@ -172,10 +172,13 @@
             *  */ 
 
             // load owner's administrator control
-            //code will implement here
+            $administratorsDetails = $this->ownerModel->getAdminDetails();
+            $data = [
+                'admin_details' => $administratorsDetails
+            ];
 
             //view details
-            $this->view('owners/administrator');
+            $this->view('owners/administrator',$data);
         }
 
         // owner controll Mechanic data view
