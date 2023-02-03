@@ -191,9 +191,13 @@
 
             // load owner's mechanic control
             //code will implement here
+            $mechanicDetails = $this->ownerModel->getMechanicDetails();
+            $data = [
+                'mechanic_details' => $mechanicDetails
+            ];
 
             //view details
-            $this->view('owners/mechanic');
+            $this->view('owners/mechanic', $data);
         }
 
         // owner controll Mechanic data view
