@@ -111,4 +111,16 @@
             return $this->db->resultSet();
         }
 
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function ownerLandPageMapDetails(){
+            $this->db->prepareQuery("SELECT * FROM dockingareas");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
     }

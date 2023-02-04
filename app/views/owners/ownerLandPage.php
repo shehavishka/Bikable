@@ -188,6 +188,39 @@
     <section class="lower__section">
         <div class="lower_section--map">
             <!-- <h1>MAP IS HERE</h1> -->
+            <div id="map-layer"></div>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM&callback=initMap" async defer>
+            </script>
+        
+            <script type="text/javascript">
+                var map;
+
+                function initMap(){
+                    var mapLayer = document.getElementById("map-layer");
+                    var centerCoordinates = new google.maps.LatLng(6.9100, 79.8800);
+                    var defaultOptions = { center: centerCoordinates, zoom: 13.5, mapId: "f58d941242b91036"}
+
+                    map = new google.maps.Map(mapLayer, defaultOptions);
+                    
+                    <?php foreach($data['docking_areas_details'] as $oneObject) : ?>
+
+                                var latitude = <?php echo $oneObject->locationLat; ?>;
+                                var longitude = <?php echo $oneObject->locationLong; ?>
+
+                                new google.maps.Marker({
+                                    position: new google.maps.LatLng(latitude, longitude),
+                                    map: map,
+                                    icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
+                                    label: {text: '<?php echo $DAResult[$k]["currentNoOfBikes"]; ?>', color: "white", fontFamily:"SF Pro Rounded"},
+                                    labelClass: "marker-position",
+                                    title: '<?php echo $DAResult[$k]["areaName"]; ?>'
+                                });
+
+                    <?php endforeach; ?>
+                        
+                }
+            </script>
         </div>
 
         <div class="lower_section--statistics">

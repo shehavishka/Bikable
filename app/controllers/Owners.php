@@ -20,9 +20,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 
             // load owner's landpage
             //code will implement here
+            // 1. Load Map details
+            $dockingAreasDeatails = $this->ownerModel->ownerLandPageMapDetails();
+            $data = [
+                'docking_areas_details' => $dockingAreasDeatails
+            ];
 
             //view details
-            $this->view('owners/ownerLandPage');
+            $this->view('owners/ownerLandPage', $data);
         }
 
         /////////////////////////////////////////////////

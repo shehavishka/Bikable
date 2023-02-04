@@ -13,3 +13,7 @@
 
     define('APPEMAIL', 'Bikable2023@gmail.com');
     define('PASSWD', 'pzuwawwbyoflimrt');
+
+
+    //google map details
+    define('API_KEY','AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM');
