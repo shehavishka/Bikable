@@ -131,8 +131,9 @@ use PHPMailer\PHPMailer\PHPMailer;
                     // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                     $data['userPassword'] = $this->generatePassword();
-                    //in future this password should send to the email address.
-                    $this->sendEmailToTheUser();
+                    
+                    //After authentication is done send new Password to the user to his/her email.
+                    $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
                     // register user
                     if($this->ownerModel->addUserIntoTheSystem($data)){
@@ -312,7 +313,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
-        private function sendEmailToTheUser(){
+        private function sendEmailToTheUser($userName, $userEmail , $userPassword){
 
             $mail = new PHPMailer(true);
 
@@ -325,12 +326,31 @@ use PHPMailer\PHPMailer\PHPMailer;
             $mail->Port = 465;
 
             $mail->setFrom(APPEMAIL);
-            $mail->addAddress('2020cs018@stu.ucsc.cmb.ac.lk');
+            $mail->addAddress($userEmail);
 
             $mail->isHTML(true);
 
-            $mail->Subject = 'this is my subject';
-            $mail->Body = 'yoolo this is real registration';
+            
+            $mail->Subject = 'Access to ' . APPLICATION_NAME;
+            $mail->Body = '
+                Dear ' . $userName . ',
+
+                Greetings!
+
+                We are pleased to inform you that you have been added to '. APPLICATION_NAME .'. 
+                Your account has been created and you can now access our platform by logging in with the following credentials:
+
+                Email: '. $userEmail .'
+                Password: '. $userPassword .'
+
+                Please note that for security purposes, we strongly advise you to change your password after your first login.
+
+                Thank you for choosing '. APPLICATION_NAME .'. If you have any questions or need assistance, please don\'t hesitate to contact us.
+
+                Best regards,
+                '. APPLICATION_NAME .'
+                
+                ';
 
             $mail->send();
 
