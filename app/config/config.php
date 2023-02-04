@@ -9,3 +9,6 @@
     define('DB_NAME', 'Bikable');
 
     define('URLROOT', 'http://localhost/Bikable_23.1.1');
+
+    define('APPEMAIL', 'bikable2023@gmail.com');
+    define('PASSWD', 'pzuwawwbyoflimrt');
