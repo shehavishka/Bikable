@@ -12,7 +12,7 @@
     define('URLROOT', 'http://localhost/Bikable_23.1.1');
 
     define('APPEMAIL', 'Bikable2023@gmail.com');
-    define('PASSWD', 'pzuwawwbyoflimrt');
+    define('PASSWD', 'kigzlxzauidblxfx');
 
 
     //google map details
