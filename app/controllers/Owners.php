@@ -330,27 +330,50 @@ use PHPMailer\PHPMailer\PHPMailer;
 
             $mail->isHTML(true);
 
-            
+
             $mail->Subject = 'Access to ' . APPLICATION_NAME;
             $mail->Body = '
-                Dear ' . $userName . ',
-
-                Greetings!
-
-                We are pleased to inform you that you have been added to '. APPLICATION_NAME .'. 
-                Your account has been created and you can now access our platform by logging in with the following credentials:
-
-                Email: '. $userEmail .'
-                Password: '. $userPassword .'
-
-                Please note that for security purposes, we strongly advise you to change your password after your first login.
-
-                Thank you for choosing '. APPLICATION_NAME .'. If you have any questions or need assistance, please don\'t hesitate to contact us.
-
-                Best regards,
-                '. APPLICATION_NAME .'
-                
-                ';
+            <html>
+            <head>
+              <title>Access to '. APPLICATION_NAME .'</title>
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  font-size: 14px;
+                }
+                h1 {
+                  font-size: 18px;
+                  color: #444;
+                  margin-bottom: 20px;
+                }
+                ul {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+                }
+                li {
+                  margin-bottom: 10px;
+                }
+              </style>
+            </head>
+            <body>
+              <h1>Access to '.APPLICATION_NAME.'</h1>
+              <p>Dear ' . $userName . ',</p>
+              <p>Greetings!</p>
+              <p>We are pleased to inform you that you have been added to <b>'.APPLICATION_NAME.'</b>.</p>
+              <p>Your account has been created and you can now access our platform by logging in with the following credentials:</p>
+              <ul>
+                <li><b>Email:</b> ' . $userEmail . '</li>
+                <li><b>Password:</b> ' . $userPassword . '</li>
+              </ul>
+              <p>Please note that for security purposes, we strongly advise you to change your password after your first login.</p>
+              <p>Thank you for choosing <b>'.APPLICATION_NAME.'</b>. If you have any questions or need assistance, please don\'t hesitate to contact us.</p>
+              <p>Best regards,<br>
+              '.APPLICATION_NAME.'</p>
+            </body>
+            </html>
+            '
+            ;
 
             $mail->send();
 
