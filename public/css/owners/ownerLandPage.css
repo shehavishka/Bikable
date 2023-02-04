@@ -128,10 +128,10 @@ body{
 
 .lower_section--map{
     grid-area: lefter;
-    /* background-color: lightgreen; */
+    background-color: lightgreen;
     border-radius: 10px;
     height: 45vh;
-    background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/kk.png');
+    /* background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/kk.png'); */
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
