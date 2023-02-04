@@ -15,5 +15,5 @@
     define('PASSWD', 'kigzlxzauidblxfx');
 
 
-    //google map details
+    //google API details
     define('API_KEY','AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM');
