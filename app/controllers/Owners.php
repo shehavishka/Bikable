@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+
     class Owners extends Controller{
         // owner connect to the database
         private $ownerModel;
@@ -129,6 +132,8 @@
 
                     $data['userPassword'] = $this->generatePassword();
                     //in future this password should send to the email address.
+                    $this->sendEmailToTheUser();
+
                     // register user
                     if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
@@ -303,6 +308,32 @@
                 $pass[] = $alphabet[$n];
             }
             return implode($pass);
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        private function sendEmailToTheUser(){
+
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = 'true';
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress('2020cs018@stu.ucsc.cmb.ac.lk');
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'this is my subject';
+            $mail->Body = 'yoolo this is real registration';
+
+            $mail->send();
+
         }
 
     }

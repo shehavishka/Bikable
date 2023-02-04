@@ -1,4 +1,5 @@
 <?php
+    define('APPLICATION_NAME', 'BIKABLE');
     //APPROOT
     define('APPROOT',(dirname(dirname(__FILE__))));
 
@@ -10,5 +11,5 @@
 
     define('URLROOT', 'http://localhost/Bikable_23.1.1');
 
-    define('APPEMAIL', 'bikable2023@gmail.com');
+    define('APPEMAIL', 'Bikable2023@gmail.com');
     define('PASSWD', 'pzuwawwbyoflimrt');
