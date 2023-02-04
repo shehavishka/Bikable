@@ -130,13 +130,13 @@ body{
     grid-area: lefter;
     background-color: lightgreen;
     border-radius: 10px;
-    height: 45vh;
+    height: 47vh;
     /* background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/kk.png'); */
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
 
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
 
 }
 

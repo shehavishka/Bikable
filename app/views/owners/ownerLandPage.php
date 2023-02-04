@@ -186,9 +186,8 @@
 
     <!-- ***************************************************************************************************************** -->
     <section class="lower__section">
-        <div class="lower_section--map">
+        <div class="lower_section--map" id="map-layer">
             <!-- <h1>MAP IS HERE</h1> -->
-            <div id="map-layer"></div>
             <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM&callback=initMap" async defer>
             </script>
@@ -211,12 +210,11 @@
                                 new google.maps.Marker({
                                     position: new google.maps.LatLng(latitude, longitude),
                                     map: map,
-                                    icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
-                                    label: {text: '<?php echo $DAResult[$k]["currentNoOfBikes"]; ?>', color: "white", fontFamily:"SF Pro Rounded"},
+                                    icon: {url:"<?php echo URLROOT; ?>/public/images/owners/landPageImages/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
+                                    label: {text: '<?php echo $oneObject->currentNoOfBikes; ?>', color: "white", fontFamily:"SF Pro Rounded"},
                                     labelClass: "marker-position",
-                                    title: '<?php echo $DAResult[$k]["areaName"]; ?>'
+                                    title: '<?php echo $oneObject->areaName; ?>'
                                 });
-
                     <?php endforeach; ?>
                         
                 }
