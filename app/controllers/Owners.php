@@ -1,6 +1,6 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\PHPMailer;
 
     class Owners extends Controller{
         // owner connect to the database
