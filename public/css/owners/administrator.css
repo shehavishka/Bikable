@@ -308,8 +308,13 @@ tr{
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 input[type="submit"]{
-    border: 3px solid black;
-    border-radius: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: 500ms;
+}
 
+input[type="submit"]:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
