@@ -68,7 +68,7 @@
         
 
                 <?php foreach($data['admin_details'] as $oneAdmin) : ?>
-                    <tr>
+                    <tr style="height: 2.5rem;">
                         <td><input type="checkbox"></td>
                         <td><?php echo $oneAdmin->firstName . " " . $oneAdmin->lastName ?></td>
                         <td><?php echo $oneAdmin->userID ?></td>
