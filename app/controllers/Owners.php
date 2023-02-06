@@ -404,4 +404,21 @@
             }            
         }
 
+        //suspend process of the user by owner
+        public function suspendUser(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'userIdentity' => intval(trim($_POST['userIdentity']))
+                ];
+                
+                $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
+                if($isUserSuspend){
+                    $this->view('owners/ownerLandPage');
+                }
+            }else{
+                die("some thing went wrong at the suspend process");
+            }   
+        }
+
     }
