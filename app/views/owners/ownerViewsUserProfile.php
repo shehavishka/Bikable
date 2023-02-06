@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="button__area">
-                <form action="<?php echo URLROOT;?>/owners/viewUserPersonallyPenButton" method="post">
+                <form action="<?php echo URLROOT;?>/owners/suspendUser" method="post">
                     <input type="hidden" name="userIdentity" value="<?php echo $oneAdmin->userID;?>">
                     <input type="submit" value="Suspend" class="btn">
                 </form>
