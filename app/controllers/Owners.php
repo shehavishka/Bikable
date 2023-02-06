@@ -393,21 +393,15 @@
              *  Task one load the user detail button
             */
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
                 $data = [
                     'userID' => intval(trim($_POST['userID'])),
                     'userDetailObject' => ''
                 ];
-
                 $data['userDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findUserByUserID($data['userID']);
-
                 $this->view('owners/ownerViewsUserProfile', $data);
-
             }else{
                 die("button didn't work correctly.");
-            }
-
-            
+            }            
         }
 
     }
