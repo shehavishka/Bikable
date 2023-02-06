@@ -123,4 +123,23 @@
             return $this->db->resultSet();
         }
 
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////// FIND USER BY ID //////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function findUserByUserID($userID){
+
+            $this->db->prepareQuery("SELECT * FROM users where userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
     }
