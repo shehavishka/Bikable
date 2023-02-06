@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/bicycles.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/bicycles.css">
     <title>Bicycles</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <?php require APPROOT . '/views/inc/header.php'; ?>
+        <?php require APPROOT . '/views/inc/header-admin.php'; ?>
 
         <!-- REAL DATA AREA -->
 
@@ -25,10 +25,10 @@
             <div class="admin__data__area__top--title">Bicycles</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
                 </div>
             </div>
 

@@ -25,10 +25,7 @@ class DBController {
 	}
 }
 
-//define("API_KEY","AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM");
-
 $dbController = new DBController();
-
 $query = "SELECT * FROM dockingareas";
 $DAResult = $dbController->runQuery($query);
 ?>
@@ -72,9 +69,9 @@ $DAResult = $dbController->runQuery($query);
 
         <div class="upper__section--buttons cardd">
             <!-- button class and put button into that classes -->
-            <div class="admin--button">
+            <!-- <div class="admin--button">
                 <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/administrator'">
-            </div>
+            </div> -->
             <div class="admin--button">
                 <input type="button" value="MECHANIC" class="btn" onclick="location.href='<?php echo URLROOT;?>/admins/mechanic'">
             </div>
