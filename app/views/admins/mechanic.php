@@ -28,7 +28,7 @@
                     <input type="button" class="btn btn_add" value="Add User" onclick="location.href='<?php echo URLROOT;?>/admins/addUserToTheSystemButton'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addMechanic'">
                 </div>
             </div>
 

@@ -11,7 +11,7 @@
             </div>
             <div class="sidebar__detail">
                 <div class="detail detail__dashboard">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/ownerLandPage">Dashboard</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admin/adminLandPage">Dashboard</a></div>
                 </div>
                 <hr>
                 <div class="detail detail__users">
@@ -20,44 +20,44 @@
                     </div>
                     <div class="detail__users--submenu">
                         <div class="submenu users__submenu--mechanic">
-                            <a href="<?php echo URLROOT ?>/owners/mechanic">Mechanic</a>
+                            <a href="<?php echo URLROOT ?>/admins/mechanic">Mechanic</a>
                         </div>
                         <div class="submenu users__submenu--riders">
-                            <a href="<?php echo URLROOT ?>/owners/riders">Riders</a>
+                            <a href="<?php echo URLROOT ?>/admins/riders">Riders</a>
                         </div>
                         <div class="submenu users__submenu--bicycleOwners">
-                            <a href="<?php echo URLROOT ?>/owners/bicycleOwner">Bicycle Owner</a>
+                            <a href="<?php echo URLROOT ?>/admins/bicycleOwner">Bicycle Owner</a>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/addNewRepairLog">Repair Log</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/addNewRepairLog">Repair Log</a></div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__dockingAreas">
                     <div class="detail__dockingAreas--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/dockingAreas">Docking Areas</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/dockingAreas">Docking Areas</a></div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__bicycles">
                     <div class="detail__bicycles--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/bicyclesControl">Bicycles</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/bicyclesControl">Bicycles</a></div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__rides">
                     <div class="detail__rides--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/ridesControl">Rides</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/ridesControl">Rides</a></div>
                     </div>
                 </div>
                 <hr>
                 <div class="detail detail__reports">
                     <div class="detail__reports--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/reportsControl">Reports</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/reportsControl">Reports</a></div>
                     </div>
                     <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
