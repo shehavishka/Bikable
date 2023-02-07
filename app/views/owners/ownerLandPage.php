@@ -35,7 +35,7 @@
                         if($_SESSION['user_picture'] != null){
                             echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
                         }else{
-                            echo "<img src='". URLROOT. "/public/images/z_bikableLogo/logo.PNG>'";
+                            echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                         }
                     ?>);">
                     <div class="dashboard__user__dropdown-content">
@@ -44,7 +44,7 @@
                         <a href="<?php echo URLROOT ?>/users/logout">Logout</a>
                     </div>
             </div>
-            
+
         </div>
     </section>
 
