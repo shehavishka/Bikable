@@ -92,8 +92,20 @@ body{
 }
 
 .profile__picture--card{
-    height: 50px; /* set the height of the container */
-    margin-left: 20%;
+    /* height: 50px; */
+    margin-left: 25%;
+}
+
+.dropdown_area{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    margin-left: 10%;
 }
 
 .detail__view--card{
@@ -155,12 +167,13 @@ body{
 
 /* ***************************************************************************************************** */
 /* control imag behaviour */
+
 img{
     display: block;
-    max-width: 8rem;
-    border-radius: 50%;
+    max-width: 100%;
     box-shadow: 0px 2px 60px rgba(0,0,0,0.5); /* add a shadow */
 }
+
 
 
 .dashboard--header{

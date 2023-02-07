@@ -11,13 +11,14 @@
     <section class="data__area">
         <div class="left--side">
             <div class="profile__picture--card">
-                <div class="image_part">
-                    <?php
-                                if($data['userDetailObject']->userPicture != null){ ?>
-                                    <img src="<?php echo URLROOT;?>/public/images/profile_pictures/<?php echo $data['userDetailObject']->userPicture; ?>.jpg" alt="">
-                    <?php       }else{          ?>
-                                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
-                    <?php        }              ?>
+                <div class="dropdown_area" style="background-image: url(
+                        <?php 
+                            if($_SESSION['user_picture'] != null){
+                                echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
+                            }else{
+                                echo "<img src='". URLROOT. "/public/images/z_bikableLogo/logo.PNG>'";
+                            }
+                        ?>);">
                 </div>
                 <div class="user_history">
                     <table>
