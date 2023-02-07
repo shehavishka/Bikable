@@ -54,10 +54,10 @@ img{
     margin-right: 2%;
 }
 
-.imgProperty{
+/* .imgProperty{
     max-width: 40px;
     border-radius: 50%;
-}
+} */
 
 .dashboard__icon{
     max-width: 30px;
@@ -77,12 +77,18 @@ img{
 /* ///////////////////////////////////// DROP DOWN FEATURE ///////////////////////////////////////////////////////// */
 /* The container <div> - needed to position the dropdown content */
 .dashboard__user__dropdown-content{
-    display: none;
-    position:absolute;
-    background-color: #f9f9f9;
-    min-width: 50px;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    /* padding: 16px; */
+    border-radius: 10px;
+    transition: opacity 0.5s, visibility 0.5s;
+    margin-top: 7rem;
 }
 
 .dashboard__user__dropdown-content a{
@@ -96,10 +102,18 @@ img{
 .dashboard__user__dropdown-content a:hover {background-color: #f1f1f1}
 
 .dropdown_area{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
     cursor: pointer;
 }
+
 /* Show the dropdown menu on hover */
 .dropdown_area:hover .dashboard__user__dropdown-content {
-    display: block;
-    transition-duration: 2s;
+    opacity: 1;
+    visibility: visible;
 }
