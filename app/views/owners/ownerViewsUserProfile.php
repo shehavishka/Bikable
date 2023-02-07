@@ -11,12 +11,13 @@
     <section class="data__area">
         <div class="left--side">
             <div class="profile__picture--card">
-                <!-- <div class="dropdown_area">
-                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['user_picture']).'" alt="dashboard profile picture" class="imgProperty"'; ?>
-                </div>                 -->
-
                 <div class="image_part">
-                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
+                    <?php
+                                if($data['userDetailObject']->userPicture != null){ ?>
+                                    <img src="<?php echo URLROOT;?>/public/images/profile_pictures/<?php echo $data['userDetailObject']->userPicture; ?>.jpg" alt="">
+                    <?php       }else{          ?>
+                                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
+                    <?php        }              ?>
                 </div>
                 <div class="user_history">
                     <table>
