@@ -33,7 +33,7 @@
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/addNewRepairLog">Repair Log</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/repairLogControl">Repair Log</a></div>
                     </div>
                 </div>
                 <hr>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
-                            Accident Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/AccidentReportsControl">Accident Reports</a></div>
                         </div>
                         <div class="submenu users__submenu--bikeComplaintReport">
                             Bike Reports

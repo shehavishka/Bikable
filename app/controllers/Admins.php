@@ -301,11 +301,56 @@
         public function reportsControl(){
             /**
              * Task 
-             *      1.) handle reports in the system
-             */
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
 
             //this is not load data from the data
-            $this->view('admins/reports');
+            $this->view('admins/reports', $data);
+        }
+
+        public function AccidentReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsAccident', $data);
+        }
+
+        // admin views the repair and controll
+        public function repairLogControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $repairLogDetails = $this->adminModel->getRepairLogDetails();
+            $data = [
+                'repairLog_details' => $repairLogDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/repairLog', $data);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////

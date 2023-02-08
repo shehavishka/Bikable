@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/reports.css">
-    <title>Reports</title>
+    <title>Accident Reports</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -22,21 +22,7 @@
 
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Reports</div>
-            <div class="admin__data_area__top--twobuttons">
-                <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
-                <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
-            </div>
-
-        </div>
-
-        <!-- admin real data top -->
-        <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Reports</div>
+            <div class="admin__data__area__top--title">Accident Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
@@ -66,7 +52,7 @@
                     <th style="width: 5%;">Area ID</th>
                     <th style="width: 5%;"></th>
 
-                    <?php foreach($data['report_details'] as $oneObject) : ?>
+                    <?php foreach($data['report_details'] as $oneObject) : if($oneObject->reportType == "Accident"){?>
                     <tr>
                         <td><input type="checkbox"></td>
                         <td><?php echo $oneObject->reportID ?></td>
@@ -98,7 +84,7 @@
                         </svg>
 
                     </tr>
-                <?php endforeach; ?>
+                <?php } endforeach; ?>
     </section>
 
 

@@ -106,4 +106,20 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+
+        public function getRepairLogDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM repairLog");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getReportDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM reports");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
     }

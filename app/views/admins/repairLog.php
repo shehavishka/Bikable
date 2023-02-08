@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/bicycles.css">
-    <title>Bicycles</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/repairLog.css">
+    <title>Repair Log</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -19,12 +19,13 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
+
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Bicycles</div>
+            <div class="admin__data__area__top--title">Repair Log</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
                 </div>
                 <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
@@ -33,39 +34,37 @@
 
         </div>
 
-
         <div class="admin__table__area">
             <table>
                 <tr>
                     <th style="width: 3%;"></th>
-                    <th style="width: 10%;">Bicycle ID</th>
-                    <th style="width: 10%;">Bicycle Owner ID</th>
-                    <th style="width: 10%;">Status</th>
-                    <th style="width: 10%;">Frame Size</th>
-                    <th style="width: 10%;">Date Acquired</th>
-                    <th style="width: 10%;">Date put into use</th>
-                    <th style="width: 10%;">Current Location</th>
+                    <th style="width: 5%;">Log ID</th>
+                    <th style="width: 6%;">Mechanic ID</th>
+                    <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 10%;">Problem Title</th>
+                    <th style="width: 15%;">Problem Description</th>
+                    <th style="width: 8%;">Estimated Cost</th>
+                    <th style="width: 5%;">Final Cost</th>
+                    <th style="width: 7%;">Date In</th>
+                    <th style="width: 7%;">Date Out</th>
+                    <th style="width: 20%;">Repair Notes</th>
+                    <th style="width: 7%;">Report ID</th>
                     <th style="width: 5%;"></th>
 
-                <?php foreach($data['bike_details'] as $oneObject) : ?>
+                    <?php foreach($data['repairLog_details'] as $oneObject) : ?>
                     <tr>
                         <td><input type="checkbox"></td>
+                        <td><?php echo $oneObject->logID ?></td>
+                        <td><?php echo $oneObject->mechanicID ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
-                        <td><?php echo $oneObject->bikeOwnerID ?></td>
-                        <td>
-                            <?php 
-                                if($oneObject->status == 0){
-                                    echo "Active";
-                                }else{
-                                    echo "Inactive";
-                                }
-                            
-                            ?>
-                        </td>
-                        <td><?php echo $oneObject->frameSize ?></td>
-                        <td><?php echo $oneObject->dateAcquired ?></td>
-                        <td><?php echo $oneObject->	datePutInUse ?></td>
-                        <td><?php echo $oneObject->	currentDA ?></td>
+                        <td><?php echo $oneObject->problemTitle ?></td>
+                        <td><?php echo $oneObject->problemDescription ?></td>
+                        <td><?php echo $oneObject->	estCost ?></td>
+                        <td><?php echo $oneObject->	finalCost ?></td>
+                        <td><?php echo $oneObject->	dateIn ?></td>
+                        <td><?php echo $oneObject->	dateOut ?></td>
+                        <td><?php echo $oneObject->	repairNotes ?></td>
+                        <td><?php echo $oneObject->	reportID ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
