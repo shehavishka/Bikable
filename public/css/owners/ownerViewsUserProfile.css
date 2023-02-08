@@ -59,7 +59,7 @@ body{
     font-family: var(--ff-family);
     font-size: var(--fs-body);
     line-height: 1.4;
-    background: linear-gradient(to left, #6c6c6c, #ebe9e9, #FFFFFF);
+    background: linear-gradient(to right, #908f8f, #FFFFFF);
 }
 
 /* DATA AREA */
