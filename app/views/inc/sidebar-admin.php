@@ -57,14 +57,15 @@
                 <hr>
                 <div class="detail detail__reports">
                     <div class="detail__reports--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/reportsControl">Reports</a></div>
+                    Reports
+                    <!-- <div class="detail__dashboard--name" ><a href="<php echo URLROOT ?>/admins/reportsControl">Reports</a></div> -->
                     </div>
                     <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
                             Accident Reports
                         </div>
                         <div class="submenu users__submenu--bikeComplaintReport">
-                            Bike Complaint Reports
+                            Bike Reports
                         </div>
                         <div class="submenu users__submenu--dockingAreaReport">
                             Docking Area Reports

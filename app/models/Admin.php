@@ -93,7 +93,15 @@
 
         public function getDADetails(){
 
-            $this->db->prepareQuery("SELECT * FROM dockingareas where status = 0");
+            $this->db->prepareQuery("SELECT * FROM dockingareas where status != 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getBikeDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM bicycles where status != 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();

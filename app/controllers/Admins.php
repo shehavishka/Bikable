@@ -270,12 +270,20 @@
         // admin controll bicycle details
         public function bicyclesControl(){
             /**
-             * Task 
-             *      1.) handle bicycles in the system.
-             */
-
-            //this is not load data from the database
-            $this->view('admins/bicycles');
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+        
+            // load admin's DA control
+            //code will implement here
+            $bikeDetails = $this->adminModel->getBikeDetails();
+            $data = [
+                'bike_details' => $bikeDetails
+            ];
+        
+            //view details
+            $this->view('admins/bicycles', $data);
         }
 
         // admin views the the rides and controll
