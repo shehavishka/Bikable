@@ -56,7 +56,7 @@
             $this->view('admins/addUser', $data);
         }
 
-        // after addUser form filled if they are valid then insert data into the system
+        // after addbikeOwner form filled if they are valid then insert data into the system
         public function addUserToTheSystemFormSubmitButton(){
             /**
              *  Task
@@ -182,6 +182,140 @@
             }
         }
 
+        public function addBikeOwnerToTheSystemButton(){
+            /**
+             *  Two tasks 1
+             *      1.) Load the form      
+            */
+            $data = [
+                'fName' => '',
+                'lName' => '',
+                'pNumber' => '',
+                'email' => '',
+                'nic' => '',
+
+                'fName_err' => '',
+                'lName_err' => '',
+                'pNumber_err' => '',
+                'email_err' => '',
+                'nic_err' => '',
+
+            ];
+            // load the data form UI
+            $this->view('admins/addBicycleOwner', $data);
+        }
+
+        // after addbikeOwner form filled if they are valid then insert data into the system
+        public function addBikeOwnerToTheSystemFormSubmitButton(){
+            /**
+             *  Task
+             *      This function task is validate data from the addBikeOwner form and,
+             *         1.) if data is valid then send data to insert into the system
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'fName' => trim($_POST['first_name']),
+                    'lName' => trim($_POST['last_name']),
+                    'email' => trim($_POST['email']),
+                    'nic' => trim($_POST['nic_number']),
+                    'pNumber' => trim($_POST['contact_number']),
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    'pNumber_err' => '',
+                ];
+
+                //validate submitted data
+                //validate first_name
+                if(empty($data['fName'])){
+                    $data['fName_err'] = '*enter first name';
+                } 
+
+                //validate last name
+                if(empty($data['lName'])){
+                    $data['lName_err'] = '*enter last name';
+                }
+
+                //validate email
+                if(empty($data['email'])){
+                    $data['email_err'] = '*enter email Number';
+                }else{
+                    //check weather email is availble in database
+                    if($this->adminModel->findBOByEmail($data['email'])){
+                        // true means that email is already taken.
+                        $data['email_err'] = "*email is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+
+                //validate NIC
+                if(empty($data['nic'])){
+                    $data['nic_err'] = '*enter NIC number';
+                }else{
+                    //check weather nic is availble in database
+                    if($this->adminModel->findBONicNumber($data['nic'])){
+                        // true means that email is already taken.
+                        $data['nic_err'] = "*NIC is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+                //validate phone number
+                if(empty($data['pNumber'])){
+                    $data['pNumber_err'] = '*enter phone Number';
+                }else{
+                    //check weather phone number is availble in database
+                    if($this->adminModel->findBOPhoneNumber($data['pNumber'])){
+                        // true means that email is already taken.
+                        $data['pNumber_err'] = "*Phone Number is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
+                    //every things up to ready 
+
+                    // add bike owner
+                    if($this->adminModel->addBikeOwnerIntoTheSystem($data)){
+                        // next implementation should be land into the right position according to the role
+                        $this->bicycleOwner();
+                    }else{
+                        die('something went wrong');
+                    }
+                }
+                else{
+                    $this->view('admins/addBicycleOwner', $data);
+                }
+
+            }else{
+                //init data
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    'pNumber' => '',
+                    'email' => '',
+                    'password' => '',
+                    'nic' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'pNumber_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'nic_err' => '',
+
+                ];
+                $this->view('admins/addBicycleOwner', $data);
+            }
+        }
 
         // admin controll administrator
         public function administrator(){

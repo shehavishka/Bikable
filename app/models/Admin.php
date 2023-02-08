@@ -53,6 +53,49 @@
             }          
         }
 
+        //find bike owner email in the database
+        public function findBOByEmail($userEmail){
+            $this->db->prepareQuery("SELECT * FROM bikeowners where emailAdd = '$userEmail'");
+            // $this->db->bind(':email', $userEmail);
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //find bike owner NIC number in the database
+        public function findBONicNumber($userNIC){
+            $this->db->prepareQuery("SELECT * FROM bikeowners where NIC = '$userNIC'");
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //find bike owner phone number in the database
+        public function findBOPhoneNumber($userPNumber){
+            $this->db->prepareQuery("SELECT * FROM bikeowners where phoneNumber = '$userPNumber'");
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }          
+        }
+
         //add user into the system
         public function addUserIntoTheSystem($data){
 
@@ -66,6 +109,24 @@
             $uemail = $data['email'];
 
             $temp = "INSERT INTO users (NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function addBikeOwnerIntoTheSystem($data){
+
+            $unic = $data['nic'];
+            $fName = $data['fName'];
+            $lName = $data['lName'];
+            $upNumber = intval($data['pNumber']); //should be int
+            $uemail = $data['email'];
+
+            $temp = "INSERT INTO bikeowners (NIC, firstName, lastName, phoneNumber, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$uemail')";
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
@@ -93,7 +154,7 @@
 
         public function getbikeOwnerDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM bikeowner");
+            $this->db->prepareQuery("SELECT * FROM bikeowners");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
