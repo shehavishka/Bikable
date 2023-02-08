@@ -20,7 +20,7 @@
                     </div>
                     <div class="detail__users--submenu">
                         <div class="submenu users__submenu--mechanic">
-                            <a href="<?php echo URLROOT ?>/admins/mechanic">Mechanic</a>
+                            <a href="<?php echo URLROOT ?>/admins/mechanic">Mechanics</a>
                         </div>
                         <div class="submenu users__submenu--riders">
                             <a href="<?php echo URLROOT ?>/admins/riders">Riders</a>

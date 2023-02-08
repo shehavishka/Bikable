@@ -74,4 +74,28 @@
                 return false;
             }
         }
+
+        public function getMechanicDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'Mechanic'");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getRiderDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM users where role = 'Rider'");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getDADetails(){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas where status = 0");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
     }

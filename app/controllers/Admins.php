@@ -191,12 +191,16 @@
              *          1.) Load the data 
              *          2.) View the data
             *  */ 
-
+        
             // load admin's mechanic control
             //code will implement here
-
+            $mechanicDetails = $this->adminModel->getMechanicDetails();
+            $data = [
+                'mechanic_details' => $mechanicDetails
+            ];
+        
             //view details
-            $this->view('admins/mechanic');
+            $this->view('admins/mechanic', $data);
         }
 
         // admin controll Mechanic data view
@@ -206,12 +210,16 @@
              *          1.) Load the data 
              *          2.) View the data
             *  */ 
-
-            // load admin's mechanic control
+        
+            // load admin's rider control
             //code will implement here
-
+            $riderDetails = $this->adminModel->getRiderDetails();
+            $data = [
+                'rider_details' => $riderDetails
+            ];
+        
             //view details
-            $this->view('admins/riders');
+            $this->view('admins/riders', $data);
         }
 
         public function bicycleAdmin(){
@@ -243,12 +251,20 @@
         // admin controll docking areas
         public function dockingAreas(){
             /**
-             * Task
-             *      1.) add docking area to the system
-             */
-
-            //this is not load data from the database
-            $this->view('admins/dockingareas');
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+        
+            // load admin's DA control
+            //code will implement here
+            $DADetails = $this->adminModel->getDADetails();
+            $data = [
+                'DA_details' => $DADetails
+            ];
+        
+            //view details
+            $this->view('admins/dockingareas', $data);
         }
 
         // admin controll bicycle details
