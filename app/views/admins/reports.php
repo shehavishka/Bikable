@@ -19,21 +19,6 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
-
-        <!-- admin real data top -->
-        <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Reports</div>
-            <div class="admin__data_area__top--twobuttons">
-                <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
-                <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
-            </div>
-
-        </div>
-
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Reports</div>
@@ -61,7 +46,7 @@
                     <th style="width: 5%;">Assigned Mechanic</th>
                     <th style="width: 5%;">Type</th>
                     <th style="width: 7%;">Accident Location</th>
-                    <th style="width: 5%;">Accident Times</th>
+                    <th style="width: 5%;">Accident Time</th>
                     <th style="width: 5%;">Bicycle ID</th>
                     <th style="width: 5%;">Area ID</th>
                     <th style="width: 5%;"></th>

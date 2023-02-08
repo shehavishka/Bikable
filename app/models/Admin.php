@@ -91,6 +91,14 @@
             return $this->db->resultSet();
         }
 
+        public function getbikeOwnerDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM bikeowner");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
         public function getDADetails(){
 
             $this->db->prepareQuery("SELECT * FROM dockingareas where status != 3");

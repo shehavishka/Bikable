@@ -222,18 +222,22 @@
             $this->view('admins/riders', $data);
         }
 
-        public function bicycleAdmin(){
+        public function bicycleOwner(){
             /**
              *     Tasks
              *          1.) Load the data 
              *          2.) View the data
             *  */ 
-
-            // load admin's mechanic control
+        
+            // load admin's bikeOwner control
             //code will implement here
+            $bikeOwnerDetails = $this->adminModel->getbikeOwnerDetails();
+            $data = [
+                'bikeOwner_details' => $bikeOwnerDetails
+            ];
 
             //view details
-            $this->view('admins/bicycleAdmin');
+            $this->view('admins/bicycleOwner', $data);
         }
 
         // admin controll repair log
@@ -332,6 +336,42 @@
 
             //this is not load data from the data
             $this->view('admins/reportsAccident', $data);
+        }
+
+        public function BicycleReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsBike', $data);
+        }
+
+        public function DAReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsDA', $data);
         }
 
         // admin views the repair and controll

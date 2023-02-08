@@ -44,12 +44,10 @@
                     <th style="width: 10%;">Problem Title</th>
                     <th style="width: 20%;">Problem Description</th>
                     <th style="width: 8%;">Logged Time</th>
-                    <th style="width: 5%;">Assigned Mechanic</th>
-                    <th style="width: 5%;">Type</th>
+                    <th style="width: 7%;">Assigned Mechanic</th>
                     <th style="width: 7%;">Accident Location</th>
-                    <th style="width: 5%;">Accident Times</th>
+                    <th style="width: 5%;">Accident Time</th>
                     <th style="width: 5%;">Bicycle ID</th>
-                    <th style="width: 5%;">Area ID</th>
                     <th style="width: 5%;"></th>
 
                     <?php foreach($data['report_details'] as $oneObject) : if($oneObject->reportType == "Accident"){?>
@@ -71,11 +69,9 @@
                         <td><?php echo $oneObject->problemDescription ?></td>
                         <td><?php echo $oneObject->loggedTimestamp ?></td>
                         <td><?php echo $oneObject->assignedMechanic ?></td>
-                        <td><?php echo $oneObject->reportType ?></td>
                         <td><?php echo $oneObject->accidentLat  . " " . $oneObject->accidentLong ?></td>
                         <td><?php echo $oneObject->accidentTimeApprox ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
-                        <td><?php echo $oneObject->areaID ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -57,18 +57,18 @@
                 <hr>
                 <div class="detail detail__reports">
                     <div class="detail__reports--title">
-                    Reports
-                    <!-- <div class="detail__dashboard--name" ><a href="<php echo URLROOT ?>/admins/reportsControl">Reports</a></div> -->
+                    <!-- Reports -->
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/reportsControl">Reports</a></div>
                     </div>
                     <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
                         <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/AccidentReportsControl">Accident Reports</a></div>
                         </div>
                         <div class="submenu users__submenu--bikeComplaintReport">
-                            Bike Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/BicycleReportsControl">Bike Reports</a></div>
                         </div>
                         <div class="submenu users__submenu--dockingAreaReport">
-                            Docking Area Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/DAReportsControl">Docking Area Reports</a></div>
                         </div>
                     </div>
                 </div>
