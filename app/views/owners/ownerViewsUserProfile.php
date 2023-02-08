@@ -13,7 +13,7 @@
             <div class="profile__picture--card">
                 <div class="dropdown_area" style="background-image: url(
                         <?php 
-                            if($_SESSION['user_picture'] != null){
+                            if($data['userDetailObject']->userPicture != null){
                                 echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
                             }else{
                                 echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";

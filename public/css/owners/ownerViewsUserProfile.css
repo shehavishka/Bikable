@@ -106,6 +106,7 @@ body{
     position: relative;
     cursor: pointer;
     margin-left: 10%;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.3); /* add a shadow */
 }
 
 .detail__view--card{
