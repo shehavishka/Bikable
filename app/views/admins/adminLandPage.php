@@ -233,27 +233,46 @@ $DAResult = $dbController->runQuery($query);
 
                     map = new google.maps.Map(mapLayer, defaultOptions);
                     
+                    const dockAs = [
                     <?php 
                         if(!empty($DAResult)) 
                         {
                             foreach($DAResult as $k=>$v)
                             {   
                     ?>  
-                                var latitude = <?php echo $DAResult[$k]["locationLat"]; ?>;
-                                var longitude = <?php echo $DAResult[$k]["locationLong"]; ?>
-
-                                new google.maps.Marker({
-                                    position: new google.maps.LatLng(latitude, longitude),
-                                    map: map,
-                                    icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
-                                    label: {text: '<?php echo $DAResult[$k]["currentNoOfBikes"]; ?>', color: "white", fontFamily:"SF Pro Rounded"},
-                                    labelClass: "marker-position",
-                                    title: '<?php echo $DAResult[$k]["areaName"]; ?>'
-                                });
+                            {
+                                position: new google.maps.LatLng(<?php echo $DAResult[$k]["locationLat"]; ?>, <?php echo $DAResult[$k]["locationLong"]; ?>),
+                                icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
+                                label: {text: '<?php echo $DAResult[$k]["currentNoOfBikes"]; ?>', color: "white", fontFamily:"SF Pro Rounded"},
+                                labelClass: "marker-position",
+                                title: '<?php echo $DAResult[$k]["areaName"]; ?>',
+                                clikable: true,
+                                //url: '<php echo URLROOT; ?>/admins/areaDetails/<php echo $DAResult[$k]["areaID"]; ?>',
+                                url: '<?php echo URLROOT; ?>/admins/dockingareas',
+                            },      
                     <?php
                             }
                         }
-                    ?>	
+                    ?>
+                    ];
+
+                    dockAs.forEach(({position, icon, label, labelClass, title, clickable, url}, i) => {
+                        // const pinView = new google.maps.Marker({
+                        //     glyph: `${i + 1}`,
+                        // });
+
+                        const marker = new google.maps.Marker({
+                            position,
+                            map,
+                            icon, label, labelClass, title, clickable
+                            //content: pinView.element,
+                        });
+
+                        // Add a click listener for each marker
+                        marker.addListener('click', function() {
+                            window.location = url;
+                        });
+                    });
                         
                 }
             </script>
