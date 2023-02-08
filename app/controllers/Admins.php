@@ -35,9 +35,25 @@
              *  Two tasks 1
              *      1.) Load the form      
             */
+            $data = [
+                'fName' => '',
+                'lName' => '',
+                'pNumber' => '',
+                'email' => '',
+                'password' => '',
+                'nic' => '',
 
+                'fName_err' => '',
+                'lName_err' => '',
+                'pNumber_err' => '',
+                'email_err' => '',
+                'password_err' => '',
+                'nic_err' => '',
+                'userRole_err' => '',
+
+            ];
             // load the data form UI
-            $this->view('admins/addUser');
+            $this->view('admins/addUser', $data);
         }
 
         // after addUser form filled if they are valid then insert data into the system
@@ -57,7 +73,7 @@
                     'status' => trim($_POST['status']),
                     'nic' => trim($_POST['nic_number']),
                     'pNumber' => trim($_POST['contact_number']),
-                    'userRole' => trim($_POST['user_role']),
+                    'userRole' => strtolower(trim($_POST['user_role'])),
 
                     'userPassword' => '', // this generate after confirmed entered details are ready.
 
@@ -94,10 +110,6 @@
                     }
                 }
 
-                //validate status
-                if(empty($data['status'])){
-                    $data['status_err'] = '*select user status';
-                }
 
                 //validate NIC
                 if(empty($data['nic'])){
@@ -125,7 +137,6 @@
                     }
                 }
 
-
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
                     //every things up to ready 
 
@@ -133,16 +144,19 @@
                     // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                     $data['userPassword'] = $this->generatePassword();
-                    //in future this password should send to the email address.
+                    
+                    //After authentication is done send new Password to the user to his/her email.
+                    //$this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
                     // register user
                     if($this->adminModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
-                        redirect('admins/adminLandPage');
+                        $this->mechanic();
                     }else{
                         die('something went wrong');
                     }
-                }else{
+                }
+                else{
                     $this->view('admins/addUser', $data);
                 }
 
@@ -403,6 +417,111 @@
                 $pass[] = $alphabet[$n];
             }
             return implode($pass);
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        private function sendEmailToTheUser($userName, $userEmail , $userPassword){
+
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = 'true';
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+
+            $mail->Subject = 'Access to ' . APPLICATION_NAME;
+            $mail->Body = '
+            <html>
+            <head>
+              <title>Access to '. APPLICATION_NAME .'</title>
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  font-size: 14px;
+                }
+                h1 {
+                  font-size: 18px;
+                  color: #444;
+                  margin-bottom: 20px;
+                }
+                ul {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+                }
+                li {
+                  margin-bottom: 10px;
+                }
+              </style>
+            </head>
+            <body>
+              <h1>Access to '.APPLICATION_NAME.'</h1>
+              <p>Dear ' . $userName . ',</p>
+              <p>Greetings!</p>
+              <p>We are pleased to inform you that you have been added to <b>'.APPLICATION_NAME.'</b>.</p>
+              <p>Your account has been created and you can now access our platform by logging in with the following credentials:</p>
+              <ul>
+                <li><b>Email:</b> ' . $userEmail . '</li>
+                <li><b>Password:</b> ' . $userPassword . '</li>
+              </ul>
+              <p>Please note that for security purposes, we strongly advise you to change your password after your first login.</p>
+              <p>Thank you for choosing <b>'.APPLICATION_NAME.'</b>. If you have any questions or need assistance, please don\'t hesitate to contact us.</p>
+              <p>Best regards,<br>
+              '.APPLICATION_NAME.'</p>
+            </body>
+            </html>
+            '
+            ;
+
+            $mail->send();
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////// UPDATE BUTTON (SUSPEND) ///////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function viewUserPersonallyPenButton(){
+            /**
+             *  Task one load the user detail button
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'userID' => intval(trim($_POST['userID'])),
+                    'userDetailObject' => ''
+                ];
+                $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findUserByUserID($data['userID']);
+                $this->view('admins/adminViewsUserProfile', $data);
+            }else{
+                die("button didn't work correctly.");
+            }            
+        }
+
+        //suspend process of the user by admin
+        public function suspendUser(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'userIdentity' => intval(trim($_POST['userIdentity']))
+                ];
+                
+                $isUserSuspend = $this->adminModel->suspendUserByUserID($data['userIdentity']);
+                if($isUserSuspend){
+                    $this->view('admins/adminLandPage');
+                }
+            }else{
+                die("some thing went wrong at the suspend process");
+            }   
         }
 
     }
