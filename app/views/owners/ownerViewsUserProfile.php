@@ -16,7 +16,7 @@
                             if($_SESSION['user_picture'] != null){
                                 echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
                             }else{
-                                echo URLROOT. "public/images/z_bikableLogo/logo.PNG";
+                                echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                             }
                         ?>);">
                 </div>
