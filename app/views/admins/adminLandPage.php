@@ -279,16 +279,69 @@ $DAResult = $dbController->runQuery($query);
 
         <div class="lower_section--statistics">
             <div class="lower__section__card--title">
-                Statistics
+                Rides
             </div>
 
-            <div class="lower__section__statistics--body">
-                <div class="static__image">
-                    <!-- <h2>Image here</h2> -->
-                </div>
-                <div class="static__graph">
-                    <!-- <h2>Static graph here</h2> -->
-                </div>
+            <div class="upper_section__reports--body">
+                <!-- take reports data from the database and display on this table -->
+                <table>
+                    <tr>
+                        <th>Rider ID</th>
+                        <th>Ride ID</th>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                    <tr>
+                        <td>2902012</td>
+                        <td>200002403065</td>
+                    </tr>
+                </table>
             </div>
         </div>
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/addUser.css">
-    <title>Document</title>
+    <title>Add Bicycle Owner</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -25,7 +25,7 @@
                 <div class="data__area__top--title">Add Bike Owner</div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/admins/mechanic'">
+                        <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/admins/bicycleOwner'">
                     </div>
                     <div class="delete_user_button">
                         <input type="submit" class="btn btn_delete" value="Submit" >

@@ -24,9 +24,9 @@
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Repair Log</div>
             <div class="admin__data_area__top--twobuttons">
-                <div class="add_user_button">
+                <!-- <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
+                </div> -->
                 <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
                 </div>
