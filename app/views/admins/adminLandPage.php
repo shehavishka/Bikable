@@ -41,7 +41,7 @@ $DAResult = $dbController->runQuery($query);
 </head>
 <body>
     <section class="dashboard--header">
-        <div class="dashboard__header--title"><strong> Dashboard</strong></div>
+        <div class="dashboard__header--title"><strong>Administrator Dashboard</strong></div>
         
         <div class="dashboard__header--search">
             <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">

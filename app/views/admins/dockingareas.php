@@ -38,12 +38,12 @@
             <table>
                 <tr>
                     <th style="width: 3%;"></th>
-                    <th style="width: 13%;">Area ID</th>
-                    <th style="width: 10%;">Area Name</th>
+                    <th style="width: 7%;">Area ID</th>
+                    <th style="width: 12%;">Area Name</th>
                     <th style="width: 10%;">Status</th>
                     <th style="width: 20%;">Address</th>
-                    <th style="width: 15%;">Radius</th>
-                    <th style="width: 10%;">Current Bikes</th>
+                    <th style="width: 7%;">Radius</th>
+                    <th style="width: 7%;">Current Bikes</th>
                     <th style="width: 5%;"></th>
 
                 </tr>
