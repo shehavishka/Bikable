@@ -141,15 +141,15 @@
             //redirect to the user's(owners) home
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
-            if($user->role == 'Owner')
+            if(ucwords($_SESSION['user_role']) == 'Owner')
             {
                 redirect('owners/ownerLandPage');
             }
-            else if($user->role == 'Administrator')
+            else if(ucwords($_SESSION['user_role']) == 'Administrator')
             {
                 redirect('admins/adminLandPage');
             }
-            else if($user->role == 'Mechanic')
+            else if(ucwords($_SESSION['user_role']) == 'Mechanic')
             {
                 redirect('mechanics/mechanicLandPage');
             }
