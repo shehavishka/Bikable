@@ -1,4 +1,6 @@
 <?php 
+
+    use PHPMailer\PHPMailer\PHPMailer;
     class Admins extends Controller{
         // admin connect to the database
         private $adminModel;
