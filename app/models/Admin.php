@@ -162,12 +162,6 @@
 
         public function addDAIntoTheSystem($data){
 
-            // $unic = $data['nic'];
-            // $fName = $data['fName'];
-            // $lName = $data['lName'];
-            // $upNumber = intval($data['pNumber']); //should be int
-            // $uemail = $data['email'];
-
             $areaName = $data['areaName'];
             $locationRadius = $data['locationRadius'];
             $status = intval($data['status']); //should be int
@@ -184,15 +178,6 @@
             }else{
                 return false;
             }
-
-            // $temp = "INSERT INTO bikeowners (NIC, firstName, lastName, phoneNumber, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$uemail')";
-            // $this->db->prepareQuery($temp);
-
-            // if($this->db->executeStmt()){
-            //     return true;
-            // }else{
-            //     return false;
-            // }
         }
 
         public function getDADetails(){
@@ -201,6 +186,26 @@
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
+        }
+
+        public function addBicycleIntoTheSystem($data){
+
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+
+
+            $temp = "INSERT INTO bicycles (bikeOwnerID, frameSize, dateAcquired, datePutInUse, status, currentDA ) VALUES ('$bikeOwnerID', '$frameSize', '$dateAcquired', '$datePutInUse', '$status', '$currentDA')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
         }
 
         public function getBikeDetails(){

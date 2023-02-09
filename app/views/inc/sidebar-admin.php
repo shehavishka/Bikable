@@ -11,7 +11,7 @@
             </div>
             <div class="sidebar__detail">
                 <div class="detail detail__dashboard">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admin/adminLandPage">Dashboard</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/admins/adminLandPage">Dashboard</a></div>
                 </div>
                 <hr>
                 <div class="detail detail__users">
