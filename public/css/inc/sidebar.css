@@ -1,0 +1,67 @@
+/* image logo handle */
+img{
+    display: block;
+    max-width: 100%;
+}
+
+/* side bar column property */
+.sidebar{
+    background-color: var(--clr-dark);
+    width: 250px;
+    height: 100vh;
+    border-top-right-radius: 4%;
+    border-bottom-right-radius: 4%;
+
+}
+
+.sidebar--logo{
+    border-top-right-radius: 5%;
+    background-color: var(--clr-dark);
+}
+
+/* sidebar--logo div has image and set that image property */
+.sidebar--logo--img{
+    width: 110px;
+    margin-left: 18%;
+}
+
+.detail{
+    margin: 8%;
+    margin-top: 0%;
+
+}
+
+.sidebar__detail{
+    font-size: var(--fs-h3);
+    padding: 10%;
+    padding-top: 0%;
+}
+
+.submenu{
+    font-size: var(--fs-ele);
+    font-weight: var(--fw-reg);
+    padding-left: 8%;
+    line-height: 1.5rem;
+    color: grey;
+
+    transition: 500ms;
+}
+
+.submenu:hover{
+    transform: scale(1.1);
+}
+
+/* side bar TO DASHBOARD word add decoration */
+.detail__dashboard--name{
+    transition: 500ms;
+}
+
+a{
+    text-decoration: none;
+    color: var(--clr-blackDark);
+}
+
+.detail__dashboard--name:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
