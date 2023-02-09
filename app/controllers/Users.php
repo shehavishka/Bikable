@@ -141,7 +141,19 @@
             //redirect to the user's(owners) home
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
-            redirect('owners/ownerLandPage');
+            if($user->role == 'Owner')
+            {
+                redirect('owners/ownerLandPage');
+            }
+            else if($user->role == 'Administrator')
+            {
+                redirect('admins/adminLandPage');
+            }
+            else if($user->role == 'Mechanic')
+            {
+                redirect('mechanics/mechanicLandPage');
+            }
+            //redirect('owners/ownerLandPage');
         }
 
         ///////////////////////////////////

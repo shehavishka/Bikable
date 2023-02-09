@@ -21,7 +21,7 @@
             <div class="dashboard__user__detail">
                 <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
                 <!-- <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
-                
+   
                 <div class="dropdown_area" style="background-image: url(
                     <?php 
                         if($_SESSION['user_picture'] != null){

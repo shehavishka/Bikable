@@ -54,10 +54,6 @@ img{
     margin-right: 2%;
 }
 
-/* .imgProperty{
-    max-width: 40px;
-    border-radius: 50%;
-} */
 
 .dashboard__icon{
     max-width: 30px;
@@ -102,6 +98,7 @@ img{
 .dashboard__user__dropdown-content a:hover {background-color: #f1f1f1}
 
 .dropdown_area{
+
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -117,3 +114,4 @@ img{
     opacity: 1;
     visibility: visible;
 }
+
