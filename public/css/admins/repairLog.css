@@ -277,12 +277,12 @@ table{
     padding: 1%;
     width: 100%;
     /* border-spacing: 12px */
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #d9d9d9;
-  }
+} */
 
 
 th{

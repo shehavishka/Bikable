@@ -96,6 +96,19 @@
             }          
         }
 
+        ////////////////////DASHBOARD////////////////////
+
+        //get first 
+        // public function getMechanicDetails(){
+
+        //     $this->db->prepareQuery("SELECT * FROM users where role = 'Mechanic'");
+
+        //     // take data from the database as the objects and send them into the controller.
+        //     return $this->db->resultSet();
+        // }
+
+        ////////////////////QUERIES FOR VIEW////////////////////
+
         //add user into the system
         public function addUserIntoTheSystem($data){
 
@@ -227,6 +240,14 @@
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getRideDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM ridelog");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();

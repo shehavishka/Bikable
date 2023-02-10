@@ -662,15 +662,19 @@
             $this->view('admins/bicycles', $data);
         }
 
-        // admin views the the rides and controll
+        //admin views the the rides and controll
         public function ridesControl(){
             /**
              *  Task
              *      1.) handle rides in the system
              */
+            $rideDetails = $this->adminModel->getRideDetails();
+            $data = [
+                'ride_details' => $rideDetails
+            ];
 
              //this is not load data from the database
-            $this->view('admins/rides');
+            $this->view('admins/rides', $data);
         }
 
         // admin vies the reports and controll
