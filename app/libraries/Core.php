@@ -46,9 +46,11 @@
             /**
              *      CHECK METHOD IN THE URL
              */
-            if(method_exists($this->currentController, $url[1])){
-                $this->currentMethod = $url[1];
-                unset($url[1]);
+            if(isset($url[0])){
+                if(method_exists($this->currentController, $url[1])){
+                    $this->currentMethod = $url[1];
+                    unset($url[1]);
+                }
             }
 
             //get the parameters in the url
