@@ -86,11 +86,27 @@ $DAResult = $dbController->runQuery($query);
         <!-- report card on the upper section of the display -->
         <div class="upper__section--reports cardd">
             <div class="upper__section__card--title">
-                Reports
+                <!-- Reports -->
+                <a class = "title" href="<?php echo URLROOT ?>/admins/reportsControl">Reports</a>
             </div>
             <div class="upper_section__reports--body">
                 <!-- take reports data from the database and display on this table -->
                 <table>
+                    <tr>
+                    <th style="width: 5%;">Report ID</th>
+                    <th style="width: 6%;">Problem Title</th>
+                    <th style="width: 6%;">Time Logged</th>
+                    </tr>
+
+                    <?php foreach($data['dashboard_reports'] as $oneObject) : ?>
+                    <tr>
+                        <td><?php echo $oneObject->reportID ?></td>
+                        <td><?php echo $oneObject->problemTitle ?></td>
+                        <td><?php echo $oneObject->loggedTimestamp ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+                <!-- <table>
                     <tr>
                         <th>Report ID</th>
                         <th>Mechanic ID</th>
@@ -115,18 +131,33 @@ $DAResult = $dbController->runQuery($query);
                         <td>2902012</td>
                         <td>200002403065</td>
                     </tr>
-                </table>
+                </table> -->
             </div>
         </div>
 
         <!-- upper section reapir log card -->
         <div class="upper__section--repairlog cardd">
             <div class="upper__section__card--title">
-                Repair Log(Active)
+                <a class = "title" href="<?php echo URLROOT ?>/admins/repairLogControl">Active Repair Log</a>
             </div>
 
             <div class="upper__section__repairlog--body">
                 <table>
+                    <tr>
+                    <th style="width: 5%;">Repair Log ID</th>
+                    <th style="width: 6%;">Mechanic ID</th>
+                    <th style="width: 6%;">Date In</th>
+                    </tr>
+
+                    <?php foreach($data['dashboard_repairlog'] as $oneObject) : ?>
+                    <tr>
+                        <td><?php echo $oneObject->logID ?></td>
+                        <td><?php echo $oneObject->mechanicID ?></td>
+                        <td><?php echo $oneObject->dateIn ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+                <!-- <table>
                     <tr>
                         <th>Log ID</th>
                         <th>Bicyle ID</th>
@@ -162,16 +193,29 @@ $DAResult = $dbController->runQuery($query);
                         <td>26134F</td>
                         <td>2022.11.11</td>
                     </tr>
-                </table>
+                </table> -->
             </div>
         </div>
 
         <div class="upper__section--bicycles cardd">
             <div class="upper__section__card--title">
-                Bicycles
+                <a class = "title" href="<?php echo URLROOT ?>/admins/bicyclesControl">Bicycles</a>
             </div>
             <div class="upper__section__bicycles--body">
-                <table>
+            <table>
+                    <tr>
+                    <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 6%;">Date Put Into Use</th>
+                    </tr>
+
+                    <?php foreach($data['dashboard_bicycles'] as $oneObject) : ?>
+                    <tr>
+                        <td><?php echo $oneObject->bicycleID ?></td>
+                        <td><?php echo $oneObject->datePutInUse ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+                <!-- <table>
                     <tr>
                         <th>Bicycle ID</th>
                         <th>Frame</th>
@@ -208,7 +252,7 @@ $DAResult = $dbController->runQuery($query);
                         <td>Inactive</td>
                     </tr>
 
-                </table>
+                </table> -->
             </div>
         </div>
     </section>
@@ -279,12 +323,25 @@ $DAResult = $dbController->runQuery($query);
 
         <div class="lower_section--statistics">
             <div class="lower__section__card--title">
-                Rides
+                <a class = "title" href="<?php echo URLROOT ?>/admins/ridesControl">Active Rides</a>
             </div>
 
             <div class="upper_section__reports--body">
                 <!-- take reports data from the database and display on this table -->
                 <table>
+                    <tr>
+                    <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 6%;">Date Put Into Use</th>
+                    </tr>
+
+                    <?php foreach($data['dashboard_bicycles'] as $oneObject) : ?>
+                    <tr>
+                        <td><?php echo $oneObject->bicycleID ?></td>
+                        <td><?php echo $oneObject->datePutInUse ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+                <!-- <table>
                     <tr>
                         <th>Rider ID</th>
                         <th>Ride ID</th>
@@ -341,7 +398,7 @@ $DAResult = $dbController->runQuery($query);
                         <td>2902012</td>
                         <td>200002403065</td>
                     </tr>
-                </table>
+                </table> -->
             </div>
         </div>
 

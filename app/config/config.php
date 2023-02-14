@@ -8,4 +8,4 @@
     define('DB_PASS', '');
     define('DB_NAME', 'bikable_db');
 
-    define('URLROOT', 'http://localhost/Bikable');
+    define('URLROOT', '/Bikable');

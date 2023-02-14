@@ -10,16 +10,26 @@
 
         public function adminLandPage(){
             /**
-             *  Two tasks
-             *      1.) Load the data
-             *      2.) View the data 
-            */
-
-            // load admin's landpage
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+            *  */ 
+        
+            // load admin's mechanic control
             //code will implement here
+            $reportDetails = $this->adminModel->getDashboardReports();
+            $repairlogDetails = $this->adminModel->getDashboardRepairLog();
+            $bicyclesDetails = $this->adminModel->getDashboardBicycles();
+            $ridesDetails = $this->adminModel->getDashboardRides();
+            $data = [
+                'dashboard_reports' => $reportDetails,
+                'dashboard_repairlog' => $repairlogDetails,
+                'dashboard_bicycles' => $bicyclesDetails,
+                'dashboard_rides' => $ridesDetails
+            ];
 
             //view details
-            $this->view('admins/adminLandPage');
+            $this->view('admins/adminLandPage', $data);
         }
 
         /////////////////////////////////////////////////

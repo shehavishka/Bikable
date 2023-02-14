@@ -98,14 +98,38 @@
 
         ////////////////////DASHBOARD////////////////////
 
-        //get first 
-        // public function getMechanicDetails(){
+        //get first 5 table records of reports
+        public function getDashboardReports(){
 
-        //     $this->db->prepareQuery("SELECT * FROM users where role = 'Mechanic'");
+            $this->db->prepareQuery("SELECT * FROM reports where status = 0 order by loggedTimestamp desc limit 6");
 
-        //     // take data from the database as the objects and send them into the controller.
-        //     return $this->db->resultSet();
-        // }
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getDashboardRepairLog(){
+
+            $this->db->prepareQuery("SELECT * FROM repairlog order by dateIn desc limit 6");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getDashboardBicycles(){
+
+            $this->db->prepareQuery("SELECT * FROM bicycles where status = 0 order by datePutInUse desc limit 6");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getDashboardRides(){
+
+            $this->db->prepareQuery("SELECT * FROM ridelog where status = 0 order by rideStartTimeStamp desc limit 6");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
 
         ////////////////////QUERIES FOR VIEW////////////////////
 
