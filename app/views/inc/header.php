@@ -20,16 +20,18 @@
 
             <div class="dashboard__user__detail">
                 <div class="user__address">Hello, <?php echo $_SESSION['user_fName'];?></div>
-                <!-- <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
-   
-                <div class="dropdown_area" style="background-image: url(
-                    <?php 
+                
+                <!-- <img src="<php echo URLROOT;?>/public/images/owners/dashboardIcons/avatar.png" alt="dashboard profile picture" class="imgProperty"> -->
+                <img src= <?php echo URLROOT. "/public/images/z_bikableLogo/logo.PNG"; ?> alt="dashboard profile picture" class="imgProperty">
+                <!-- <div class="dropdown_area" style="background-image: url(
+                    <php 
                         if($_SESSION['user_picture'] != null){
                             echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
                         }else{
                             echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                         }
-                    ?>);">
+                    ?>);"> -->
+
                     <div class="dashboard__user__dropdown-content">
                         <a href="<?php echo URLROOT ?>/owners/ownerViewHisOwnProfile">Profile</a>
                         <a href="#">Settings</a>

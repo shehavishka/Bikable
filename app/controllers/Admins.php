@@ -400,8 +400,46 @@
             $this->view('admins/bicycleOwner', $data);
         }
 
-        // admin controll repair log
-        //put the update and delete functions here
+        public function viewUserProfile(){
+            /**
+             *  Task one load the user detail button
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'userID' => intval(trim($_POST['userID'])),
+                    'userDetailObject' => ''
+                ];
+                $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findUserByUserID($data['userID']);
+                $this->view('admins/viewUserProfile', $data);
+            }else{
+                die("button didn't work correctly.");
+            }            
+        }
+
+        //suspend process of the user by owner
+        public function suspendUser(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'userIdentity' => intval(trim($_POST['userIdentity'])),
+                    'userStatus' => intval(trim($_POST['userStatus']))
+                ];
+                
+                if($data['userStatus'] == 1){
+                    $isUserSuspend = $this->adminModel->suspendUserByUserID($data['userIdentity']);
+                    if($isUserSuspend){
+                        header('Location:'.URLROOT.'/admins/mechanic');
+                    }
+                }else{
+                    $isUserActive = $this->adminModel->activateUserByUserID($data['userIdentity']);
+                    if($isUserActive){
+                        header('Location:'.URLROOT.'/admins/mechanic');
+                    }
+                }
+            }else{
+                die("some thing went wrong at the suspend process");
+            }   
+        }
 
         ///////////////DOCKING AREA/////////////////////
         public function addDAToTheSystemButton(){
@@ -863,37 +901,37 @@
         //////////////////////////////////////// UPDATE BUTTON (SUSPEND) ///////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function viewUserPersonallyPenButton(){
-            /**
-             *  Task one load the user detail button
-            */
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $data = [
-                    'userID' => intval(trim($_POST['userID'])),
-                    'userDetailObject' => ''
-                ];
-                $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findUserByUserID($data['userID']);
-                $this->view('admins/adminViewsUserProfile', $data);
-            }else{
-                die("button didn't work correctly.");
-            }            
-        }
+    //     public function viewUserPersonallyPenButton(){
+    //         /**
+    //          *  Task one load the user detail button
+    //         */
+    //         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    //             $data = [
+    //                 'userID' => intval(trim($_POST['userID'])),
+    //                 'userDetailObject' => ''
+    //             ];
+    //             $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findUserByUserID($data['userID']);
+    //             $this->view('admins/adminViewsUserProfile', $data);
+    //         }else{
+    //             die("button didn't work correctly.");
+    //         }            
+    //     }
 
-        //suspend process of the user by admin
-        public function suspendUser(){
+    //     //suspend process of the user by admin
+    //     public function suspendUser(){
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $data = [
-                    'userIdentity' => intval(trim($_POST['userIdentity']))
-                ];
+    //         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    //             $data = [
+    //                 'userIdentity' => intval(trim($_POST['userIdentity']))
+    //             ];
                 
-                $isUserSuspend = $this->adminModel->suspendUserByUserID($data['userIdentity']);
-                if($isUserSuspend){
-                    $this->view('admins/adminLandPage');
-                }
-            }else{
-                die("some thing went wrong at the suspend process");
-            }   
-        }
+    //             $isUserSuspend = $this->adminModel->suspendUserByUserID($data['userIdentity']);
+    //             if($isUserSuspend){
+    //                 $this->view('admins/adminLandPage');
+    //             }
+    //         }else{
+    //             die("some thing went wrong at the suspend process");
+    //         }   
+    //     }
 
     }

@@ -276,4 +276,50 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+
+
+        ////////////////////QUERIES FOR UPDATE////////////////////
+
+        public function findUserByUserID($userID){
+
+            $this->db->prepareQuery("SELECT * FROM users where userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function suspendUserByUserID($userID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function activateUserByUserID($userID){
+            $status = 1;
+            $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     }
