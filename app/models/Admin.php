@@ -189,6 +189,30 @@
             }
         }
 
+        public function updateBikeOwner($data){
+            
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $unic = $data['nic'];
+            $fName = $data['fName'];
+            $lName = $data['lName'];
+            $upNumber = intval($data['pNumber']); //should be int
+            $uemail = $data['email'];
+            
+            $temp = "UPDATE bikeowners SET NIC = '$unic', firstName = '$fName', lastName = '$lName', phoneNumber = '$upNumber', emailAdd = '$uemail' WHERE bikeOwnerID = '$bikeOwnerID'";
+            //$temp = "UPDATE bikeowners SET (NIC, firstName, lastName, phoneNumber, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$uemail') WHERE bikeOwnerID = '$bikeOwnerID'";
+            //"UPDATE users SET status = '$status' WHERE userID = '$userID'"
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getbikeOwnerDetails(){
             
             $this->db->prepareQuery("SELECT * FROM bikeowners");
@@ -283,6 +307,20 @@
         public function findUserByUserID($userID){
 
             $this->db->prepareQuery("SELECT * FROM users where userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function findBikeOwnerByID($bikeOwnerID){
+
+            $this->db->prepareQuery("SELECT * FROM bikeowners where bikeOwnerID = '$bikeOwnerID'");
 
             $row = $this->db->single();
 
