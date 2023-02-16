@@ -89,6 +89,7 @@
                         <!-- update icon svg format -->
                         <form action="<?php echo URLROOT;?>/admins/viewUserProfile" method="post">
                                 <input type="hidden" name="userID" value="<?php echo $oneObject->userID;?>">
+                                <input type="hidden" name="userStatus" value="<?php echo $oneObject->status;?>">
                                 <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" name="edit" value="edit" >
                         </form>
                     </tr>

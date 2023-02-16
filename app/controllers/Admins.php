@@ -8,6 +8,12 @@
             $this->adminModel = $this->model('Admin');
         }
 
+        public function Login(){
+            if(SESSION)
+
+            header('location: ' . URLROOT . '/users/login');
+        }
+
         public function adminLandPage(){
             /**
              *     Tasks
@@ -437,7 +443,7 @@
                     }
                 }
             }else{
-                die("some thing went wrong at the suspend process");
+                die("some thing went wrong with the process"); //need a 404 page here
             }   
         }
 
