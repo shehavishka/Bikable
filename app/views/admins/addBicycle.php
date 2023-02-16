@@ -19,7 +19,7 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
-        <form action="<?php echo URLROOT;?>/admins/addBicycleToTheSystemFormSubmitButton" method="POST" id="userInterface">
+        <form action="<?php echo URLROOT;?>/admins/addBicycle" method="POST" id="userInterface">
             <!-- admin real data top -->
             <div class="data__area--top">
                 <div class="data__area__top--title">Add Bicycle</div>
