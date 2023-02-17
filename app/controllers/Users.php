@@ -22,6 +22,16 @@
         }
 
 
+        public function signup(){
+            // two tasks
+            // 1. load the form
+            // 2. process the form
+
+            /**
+             *  SIGN UP FORM
+             */
+            $this->view('users/signup');
+        }
         //////////////
         // USER'S LOGIN AUTHENTICATION
         /////////////

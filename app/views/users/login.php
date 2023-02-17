@@ -38,7 +38,7 @@
                         </div>
                         <div class="signupText">
                             <!-- sign up button should be add here -->
-                            Don't have an account? <a href="<?php echo URLROOT;?>/users/register" style="color: blue;"></a> 
+                            Don't have an account? <a href="<?php echo URLROOT;?>/users/signup" style="color: blue;">Register</a> 
                         </div>
                     </div>
                     <div class="forgetText">
