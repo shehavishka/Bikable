@@ -361,3 +361,8 @@ img{
 .detailbox_userrole{
     width: 50%;
 }
+
+.error_text{
+    color: red; 
+    font-size:16px;
+}

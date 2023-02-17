@@ -361,3 +361,8 @@ textarea,
 .data--finalCost{
     grid-area: finalcost;
 }
+
+.error_text{
+    color: red; 
+    font-size:16px;
+}

@@ -107,6 +107,10 @@
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
+                }else if(!is_numeric($data['nic'])){
+                    $data['nic_err'] = '*NIC should be a number';
+                }else if($data['nic'] < 0){
+                    $data['nic_err'] = '*NIC should be a positive number';
                 }else{
                     //check weather nic is availble in database
                     if($this->adminModel->findNicNumber($data['nic'])){
@@ -119,7 +123,11 @@
 
                 //validate phone number
                 if(empty($data['pNumber'])){
-                    $data['pNumber_err'] = '*enter phone Number';
+                    $data['pNumber_err'] = '*enter Phone Number';
+                }else if(!is_numeric($data['pNumber'])){
+                    $data['pNumber_err'] = '*Phone Number should be a number';
+                }else if($data['pNumber'] < 0){
+                    $data['pNumber_err'] = '*Phone Number should be a positive number';
                 }else{
                     //check weather phone number is availble in database
                     if($this->adminModel->findPhoneNumber($data['pNumber'])){
@@ -323,6 +331,10 @@
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
+                }else if(!is_numeric($data['nic'])){
+                    $data['nic_err'] = '*NIC should be a number';
+                }else if($data['nic'] < 0){
+                    $data['nic_err'] = '*NIC should be a positive number';
                 }else{
                     //check weather nic is availble in database
                     if($this->adminModel->findBONicNumber($data['nic'])){
@@ -335,7 +347,11 @@
 
                 //validate phone number
                 if(empty($data['pNumber'])){
-                    $data['pNumber_err'] = '*enter phone Number';
+                    $data['pNumber_err'] = '*enter Phone Number';
+                }else if(!is_numeric($data['pNumber'])){
+                    $data['pNumber_err'] = '*Phone Number should be a number';
+                }else if($data['pNumber'] < 0){
+                    $data['pNumber_err'] = '*Phone Number should be a positive number';
                 }else{
                     //check weather phone number is availble in database
                     if($this->adminModel->findBOPhoneNumber($data['pNumber'])){
@@ -475,14 +491,16 @@
 
                     //validate NIC
                     if(empty($data['nic'])){
-                        $data['nic_err'] = '*NIC number is required';
+                        $data['nic_err'] = '*enter NIC number';
+                    }else if(!is_numeric($data['nic'])){
+                        $data['nic_err'] = '*NIC should be a number';
+                    }else if($data['nic'] < 0){
+                        $data['nic_err'] = '*NIC should be a positive number';
                     }else{
                         //check weather nic is availble in database
                         if($this->adminModel->findBONicNumber($data['nic'])){
                             // true means that email is already taken.
-                            if($data['nic'] != $data['userDetailObject']->NIC){
-                                $data['nic_err'] = "*NIC is already taken";
-                            }
+                            $data['nic_err'] = "*NIC is already taken";
                         }else{
                             //pass
                         }
@@ -490,14 +508,16 @@
 
                     //validate phone number
                     if(empty($data['pNumber'])){
-                        $data['pNumber_err'] = '*Phone Number is required';
+                        $data['pNumber_err'] = '*enter Phone Number';
+                    }else if(!is_numeric($data['pNumber'])){
+                        $data['pNumber_err'] = '*Phone Number should be a number';
+                    }else if($data['pNumber'] < 0){
+                        $data['pNumber_err'] = '*Phone Number should be a positive number';
                     }else{
                         //check weather phone number is availble in database
                         if($this->adminModel->findBOPhoneNumber($data['pNumber'])){
                             // true means that email is already taken.
-                            if($data['pNumber'] != $data['userDetailObject']->phoneNumber){
-                                $data['pNumber_err'] = "*Phone Number is already taken";
-                            }
+                            $data['pNumber_err'] = "*Phone Number is already taken";
                         }else{
                             //pass
                         }
@@ -924,6 +944,8 @@
                     //validate frame size
                     if(empty($data['frameSize'])){
                         $data['frameSize_err'] = '*Frame Size is required';
+                    }else if(!is_numeric($data['frameSize'])){
+                        $data['frameSize_err'] = '*Frame Size must be a number';
                     }
 
                     //validate date acquired
@@ -934,6 +956,8 @@
                     //validate DA
                     if(empty($data['currentDA'])){
                         $data['currentDA_err'] = '*Current Docking Area is required';
+                    }else if(!is_numeric($data['currentDA'])){
+                        $data['currentDA_err'] = '*Current Docking Area must be a number';
                     }
                 //
                 
