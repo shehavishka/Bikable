@@ -239,6 +239,31 @@
             }
         }
 
+        public function updateDA($data){
+            
+            $areaID = intval($data['areaID']); //should be int
+
+            $areaName = $data['areaName'];
+            $locationRadius = $data['locationRadius'];
+            $status = intval($data['status']); //should be int
+            $locationLat = $data['locationLat']; //should be double
+            $locationLong = $data['locationLong']; //should be double
+            $traditionalAdd = $data['traditionalAdd'];
+            $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            
+            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes' WHERE areaID = '$areaID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getDADetails(){
 
             $this->db->prepareQuery("SELECT * FROM dockingareas where status != 3");
@@ -357,6 +382,20 @@
         public function findBicycleByID($bicycleID){
 
             $this->db->prepareQuery("SELECT * FROM bicycles where bicycleID = '$bicycleID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function findAreaByID($areaID){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
 
             $row = $this->db->single();
 
