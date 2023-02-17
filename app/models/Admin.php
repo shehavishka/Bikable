@@ -340,6 +340,25 @@
             return $this->db->resultSet();
         }
 
+        public function assignReportMechanic($data){
+            
+            // $bicycleID = $data['bicycleDetailObject']->bicycleID;
+            $reportID = $data['reportID'];
+            $mechanicID = $data['mechanicID'];
+            
+            $temp = "UPDATE reports SET assignedMechanic = '$mechanicID' WHERE reportID = '$reportID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getRideDetails(){
 
             $this->db->prepareQuery("SELECT * FROM ridelog");
@@ -396,6 +415,34 @@
         public function findAreaByID($areaID){
 
             $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function findLogbyID($logID){
+
+            $this->db->prepareQuery("SELECT * FROM repairlog where logID = '$logID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function findReportbyID($reportID){
+
+            $this->db->prepareQuery("SELECT * FROM reports where reportID = '$reportID'");
 
             $row = $this->db->single();
 

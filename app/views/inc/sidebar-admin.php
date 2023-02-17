@@ -1,12 +1,12 @@
     <!-- finalized side bar -->
     <head>
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/sidebar.css"> 
+        <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/sidebar-admin.css"> 
     </head>
     <section class="sidebar">
         <div class="viewData">
             <div class="sidebar--logo">
                 <div class="sidebar--logo--img">
-                    <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.PNG" alt="">
+                    <img class="img-logo" src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo1.PNG" alt="">
                 </div>
             </div>
             <div class="sidebar__detail">

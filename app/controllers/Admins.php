@@ -1076,6 +1076,65 @@
             $this->view('admins/reportsDA', $data);
         }
 
+        public function editReportDetails(){
+            /**
+             *  Task one load the user detail button
+            */
+            //die("halp");
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'reportID' => intval(trim($_GET['reportID'])),
+                    'reportDetailObject' => '',
+
+                    'mechanicID' => '',
+                    'mechanicID_err' => '',
+                ];
+                $data['reportDetailObject'] = $prespectiveUserDetail = $this->adminModel->findReportByID($data['reportID']);
+                $this->view('admins/viewReport', $data);
+
+            }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'reportDetailObject' => '',
+                    
+                    'reportID' => intval(trim($_POST['reportID'])),
+                    'mechanicID' => trim($_POST['mechanicID']),
+                    'mechanicID_err' => '',
+                ];
+                $data['reportDetailObject'] = $prespectiveUserDetail = $this->adminModel->findReportByID($data['reportID']);
+                
+                //validate submitted data
+                    //validate mechanic ID
+                    if(empty($data['mechanicID'])){
+                        $data['mechanicID_err'] = '*Mechanic ID is Required';
+                    }else if(!is_numeric($data['mechanicID'])){
+                        $data['mechanicID_err'] = '*Mechanic ID must be a number';
+                    }else if($data['mechanicID'] < 0){
+                        $data['mechanicID_err'] = '*Mechanic ID must be a positive number';
+                    }
+                //
+
+                if(empty($data['mechanicID_err'])){
+                    //every things up to ready 
+
+                    // update bike
+                    if($this->adminModel->assignReportMechanic($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/admins/reportsControl');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/admins/reportsControl');
+                        //die('something went wrong!');
+                    }
+                }
+                else{
+                    $this->view('admins/viewReport', $data);
+                }
+
+            }else{
+                die("button didn't work correctly.");
+            }       
+        }
+
         ///////////////REPAIR LOG/////////////////////
 
         // admin views the repair and controll
@@ -1095,6 +1154,19 @@
 
             //this is not load data from the data
             $this->view('admins/repairLog', $data);
+        }
+
+        public function viewRepairLog(){
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'logID' => intval(trim($_GET['logID'])),
+                    'logDetailObject' => ''
+                ];
+                $data['logDetailObject'] = $prespectiveUserDetail = $this->adminModel->findLogbyID($data['logID']);
+                $this->view('admins/viewRepairLog', $data);
+            }else{
+                die("button didn't work correctly.");
+            }            
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////

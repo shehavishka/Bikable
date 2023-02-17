@@ -54,8 +54,8 @@
                     <?php foreach($data['report_details'] as $oneObject) : ?>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td><?php echo $oneObject->reportID ?></td>
-                        <td><?php echo $oneObject->reporterID ?></td>
+                        <td><?php echo printValue($oneObject, 'reportID') ?></td>
+                        <td><?php echo printValue($oneObject, 'reporterID') ?></td>
                         <td>
                             <?php 
                                 if($oneObject->status == 1){
@@ -66,24 +66,32 @@
                             
                             ?>
                         </td>
-                        <td><?php echo $oneObject->problemTitle ?></td>
-                        <td><?php echo $oneObject->problemDescription ?></td>
-                        <td><?php echo $oneObject->loggedTimestamp ?></td>
-                        <td><?php echo $oneObject->assignedMechanic ?></td>
-                        <td><?php echo $oneObject->reportType ?></td>
-                        <td><?php echo $oneObject->accidentLat  . " " . $oneObject->accidentLong ?></td>
-                        <td><?php echo $oneObject->accidentTimeApprox ?></td>
-                        <td><?php echo $oneObject->bicycleID ?></td>
-                        <td><?php echo $oneObject->areaID ?></td>
+                        <td><?php echo printValue($oneObject, 'problemTitle')?></td>
+                        <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
+                        <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
+                        <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
+                        <td><?php echo printValue($oneObject, 'reportType') ?></td>
+                        <td><?php echo printValue($oneObject, 'accidentLat') ?><br><?php echo printValue($oneObject, 'accidentLong') ?></td>
+                        <td><?php echo printValue($oneObject, 'accidentTimeApprox') ?></td>
+                        <td><?php echo printValue($oneObject, 'bicycleID') ?></td>
+                        <td><?php echo printValue($oneObject, 'areaID') ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="17" cy="17" r="17" fill="black"/>
-                            <path d="M19.06 14L20 14.94L10.92 24H10V23.08L19.06 14ZM22.66 8C22.41 8 22.15 8.1 21.96 8.29L20.13 10.12L23.88 13.87L25.71 12.04C26.1 11.65 26.1 11 25.71 10.63L23.37 8.29C23.17 8.09 22.92 8 22.66 8ZM19.06 11.19L8 22.25V26H11.75L22.81 14.94L19.06 11.19Z" fill="white"/>
-                        </svg>
+                        <form action="<?php echo URLROOT;?>/admins/editReportDetails" method="get">
+                                <input type="hidden" name="reportID" value="<?php echo $oneObject->reportID;?>">
+                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
+                        </form>
 
                     </tr>
-                <?php endforeach; ?>
+                <?php endforeach; 
+                    function printValue($oneObject, $column_name){
+                        if($oneObject->$column_name != null){
+                            echo $oneObject->$column_name;
+                        }else{
+                            echo "-";
+                        }
+                    }
+                ?>
     </section>
 
 
