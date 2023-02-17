@@ -41,13 +41,13 @@
                     <div class="data__area__div data--firstname">
                         <div class="data--name--lebal">First Name</div>
                         <input type="text" class="detailbox" name="first_name" placeholder="First name" id="fName">
-                        <span style="color: red;"><?php echo $data['fName_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['fName_err'];?></span>
                     </div>
 
                     <div class="data__area__div data--lastname">
                         <div class="data--name--lebal">Last Name</div>
                         <input type="text" class="detailbox" name="last_name" placeholder="Last name" id="lName">
-                        <span style="color: red;"><?php echo $data['lName_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['lName_err'];?></span>
                     </div>
 
                 </div>
@@ -55,19 +55,19 @@
                 <div class="data__area__detail--email">
                     <div class="data--email--lebal">Email Address</div>
                     <input type="email" class="detailbox detailbox--email" name="email" placeholder="Email" id="email">
-                    <span style="color: red;"><?php echo $data['email_err'];?></span>
+                    <br><span class="error_text"><?php echo $data['email_err'];?></span>
                 </div>
 
                 <div class="data__area__detail--number">
                     <div class="data__area__detail--nic_number">
                         <div class="data--name--lebal">NIC Number</div>
                         <input type="text" class="detailbox" name="nic_number" placeholder="NIC Number" id="fName">
-                        <span style="color: red;"><?php echo $data['nic_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['nic_err'];?></span>
                     </div>
                     <div class="data__area__detai--contact_number">
                         <div class="data--name--lebal">Contact Number</div>
                         <input type="text" class="detailbox" name="contact_number" placeholder="Contact Number" id="contact_number">
-                        <span style="color: red;"><?php echo $data['pNumber_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['pNumber_err'];?></span>
                     </div>
                 </div>
 

@@ -41,13 +41,13 @@
                     <div class="data__area__div data--bikeOwnerID">
                         <div class="data--name--lebal">Bicycle Owner ID</div>
                         <input type="number" class="detailbox" name="bikeOwnerID" placeholder="Bicycle Owner ID" id="bikeOwnerID">
-                        <span style="color: red;"><?php echo $data['bikeOwnerID_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['bikeOwnerID_err'];?></span>
                     </div>
 
                     <div class="data__area__div data--frameSize">
                         <div class="data--name--lebal">Frame Size</div>
                         <input type="number" class="detailbox" name="frameSize" placeholder="Frame Size" id="frameSize">
-                        <span style="color: red;"><?php echo $data['frameSize_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['frameSize_err'];?></span>
                     </div>
 
                 </div>
@@ -70,12 +70,12 @@
                     <div class="data__area__detail--dateAcquired">
                         <div class="data--name--lebal">Date Acquired</div>
                         <input type="date" class="detailbox" name="dateAcquired" placeholder="Date Acquired" id="dateAcquired">
-                        <span style="color: red;"><?php echo $data['dateAcquired_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['dateAcquired_err'];?></span>
                     </div>
                     <div class="data__area__detail--datePutInUse">
                         <div class="data--name--lebal">Date Put Into Use</div>
                         <input type="date" class="detailbox" name="datePutInUse" placeholder="Date Put Into Use" id="datePutInUse">
-                        <span style="color: red;"><?php echo $data['datePutInUse_err'];?></span>
+                        <br><span class="error_text"><?php echo $data['datePutInUse_err'];?></span>
                     </div>
                 </div>
 
