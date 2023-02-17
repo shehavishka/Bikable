@@ -544,6 +544,20 @@
                 die("button didn't work correctly.");
             }       
         }
+
+        public function deleteBikeOwners(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeBikeOwner($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/bicycleOwner');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
         
         ///////////////DOCKING AREA/////////////////////
 

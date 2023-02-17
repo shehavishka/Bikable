@@ -27,8 +27,10 @@
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Bike Owner" onclick="location.href='<?php echo URLROOT;?>/admins/addBikeOwner'">
                 </div>
+
+                <form action="<?php echo URLROOT;?>/admins/deleteBikeOwners" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="submit" class="btn btn_delete" value="Delete Selected">
                 </div>
             </div>
 
@@ -49,7 +51,7 @@
 
                 <?php foreach($data['bikeOwner_details'] as $oneObject) : ?>
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->bikeOwnerID ?>"></td>
                         <td><?php echo $oneObject->firstName . " " . $oneObject->lastName ?></td>
                         <td><?php echo $oneObject->bikeOwnerID ?></td>
                         <td><?php echo $oneObject->NIC ?></td>
@@ -64,12 +66,37 @@
 
                     </tr>
                 <?php endforeach; ?>
-
-
             </table>
+            </form>
         </div>
     </section>
 
+    <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the form from submitting
+
+        // get all the checkboxes in the table
+        const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
+
+        // collect the values of the checked checkboxes
+        const selectedRows = [];
+        checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            selectedRows.push(checkbox.value);
+        }
+        });
+
+        // add the selected rows to a hidden input field in the form
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'selectedRows');
+        input.setAttribute('value', JSON.stringify(selectedRows));
+        this.appendChild(input);
+
+        // submit the form
+        this.submit();
+    });
+    </script>
 
 
 </body>

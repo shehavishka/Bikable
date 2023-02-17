@@ -213,7 +213,7 @@
 
         public function getbikeOwnerDetails(){
             
-            $this->db->prepareQuery("SELECT * FROM bikeowners");
+            $this->db->prepareQuery("SELECT * FROM bikeowners WHERE status != 3");
             
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -482,4 +482,20 @@
             }
         }
 
+
+        ////////////////////QUERIES FOR UPDATE////////////////////
+
+        public function removeBikeOwner($bikeOwnerID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE bikeowners SET status='$status' WHERE bikeOwnerID = '$bikeOwnerID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
