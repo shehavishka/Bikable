@@ -291,8 +291,8 @@ $DAResult = $dbController->runQuery($query);
                                 labelClass: "marker-position",
                                 title: '<?php echo $DAResult[$k]["areaName"]; ?>',
                                 clikable: true,
-                                //url: '<php echo URLROOT; ?>/admins/areaDetails/<php echo $DAResult[$k]["areaID"]; ?>',
-                                url: '<?php echo URLROOT; ?>/admins/dockingareas',
+                                url: '<?php echo URLROOT; ?>/admins/editDADetails?areaID=<?php echo $DAResult[$k]["areaID"]; ?>',
+                                //url: '<php echo URLROOT; ?>/admins/dockingareas',
                             },      
                     <?php
                             }
