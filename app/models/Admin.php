@@ -199,8 +199,6 @@
             $uemail = $data['email'];
             
             $temp = "UPDATE bikeowners SET NIC = '$unic', firstName = '$fName', lastName = '$lName', phoneNumber = '$upNumber', emailAdd = '$uemail' WHERE bikeOwnerID = '$bikeOwnerID'";
-            //$temp = "UPDATE bikeowners SET (NIC, firstName, lastName, phoneNumber, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$uemail') WHERE bikeOwnerID = '$bikeOwnerID'";
-            //"UPDATE users SET status = '$status' WHERE userID = '$userID'"
             $this->db->prepareQuery($temp);
 
             $row = $this->db->single();
@@ -269,6 +267,30 @@
             }
         }
 
+        public function updateBicycle($data){
+            
+            // $bicycleID = $data['bicycleDetailObject']->bicycleID;
+            $bicycleID = $data['bicycleID'];
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+            
+            $temp = "UPDATE bicycles SET bikeOwnerID = '$bikeOwnerID', frameSize = '$frameSize', dateAcquired = '$dateAcquired', datePutInUse = '$datePutInUse', status = '$status', currentDA = '$currentDA' WHERE bicycleID = '$bicycleID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getBikeDetails(){
 
             $this->db->prepareQuery("SELECT * FROM bicycles where status != 3");
@@ -321,6 +343,20 @@
         public function findBikeOwnerByID($bikeOwnerID){
 
             $this->db->prepareQuery("SELECT * FROM bikeowners where bikeOwnerID = '$bikeOwnerID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function findBicycleByID($bicycleID){
+
+            $this->db->prepareQuery("SELECT * FROM bicycles where bicycleID = '$bicycleID'");
 
             $row = $this->db->single();
 

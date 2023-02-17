@@ -42,9 +42,8 @@
         }
 
         /////////////////////////////////////////////////
-        // OWNER LANDPAGE ADMIN/ MECHANIC/ BICYCLE/ OWNER RIDERS, BUTTONS IMPLEMENT
+        // ADMIN LANDPAGE MECHANIC/ BICYCLE OWNER/ RIDERS, BUTTONS IMPLEMENT
         /////////////////////////////////////////////////
-        // test comment
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////// ADD USER INTO THE SYSTEM /////////////////////////////////////////////////////
@@ -406,6 +405,8 @@
 
             }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $data = [
+                    'userDetailObject' => '',
+
                     'bikeOwnerID' => trim($_POST['bikeOwner_id']),
                     'fName' => trim($_POST['first_name']),
                     'lName' => trim($_POST['last_name']),
@@ -419,57 +420,64 @@
                     'nic_err' => '',
                     'pNumber_err' => '',
                 ];
+                $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findBikeOwnerByID($data['bikeOwnerID']);
 
                 //validate submitted data
                     //validate first_name
                     if(empty($data['fName'])){
-                        $data['fName_err'] = '*enter first name';
+                        $data['fName_err'] = '*First Name is required';
                     } 
 
                     //validate last name
                     if(empty($data['lName'])){
-                        $data['lName_err'] = '*enter last name';
+                        $data['lName_err'] = '*Last Name is required';
                     }
 
                     //validate email
-                    // if(empty($data['email'])){
-                    //     $data['email_err'] = '*enter email Number';
-                    // }else{
-                    //     //check weather email is availble in database
-                    //     if($this->adminModel->findBOByEmail($data['email'])){
-                    //         // true means that email is already taken.
-                    //         $data['email_err'] = "*email is already taken";
-                    //     }else{
-                    //         //pass
-                    //     }
-                    // }
+                    if(empty($data['email'])){
+                        $data['email_err'] = '*Email is required';
+                    }else{
+                        //check weather email is availble in database
+                        if($this->adminModel->findBOByEmail($data['email'])){
+                            // true means that email is already taken.
+                            if($data['email'] != $data['userDetailObject']->emailAdd){
+                                $data['email_err'] = "*Email is already taken";
+                            }
+                        }else{
+                            //pass
+                        }
+                    }
 
 
-                    // //validate NIC
-                    // if(empty($data['nic'])){
-                    //     $data['nic_err'] = '*enter NIC number';
-                    // }else{
-                    //     //check weather nic is availble in database
-                    //     if($this->adminModel->findBONicNumber($data['nic'])){
-                    //         // true means that email is already taken.
-                    //         $data['nic_err'] = "*NIC is already taken";
-                    //     }else{
-                    //         //pass
-                    //     }
-                    // }
+                    //validate NIC
+                    if(empty($data['nic'])){
+                        $data['nic_err'] = '*NIC number is required';
+                    }else{
+                        //check weather nic is availble in database
+                        if($this->adminModel->findBONicNumber($data['nic'])){
+                            // true means that email is already taken.
+                            if($data['nic'] != $data['userDetailObject']->NIC){
+                                $data['nic_err'] = "*NIC is already taken";
+                            }
+                        }else{
+                            //pass
+                        }
+                    }
 
-                    // //validate phone number
-                    // if(empty($data['pNumber'])){
-                    //     $data['pNumber_err'] = '*enter phone Number';
-                    // }else{
-                    //     //check weather phone number is availble in database
-                    //     if($this->adminModel->findBOPhoneNumber($data['pNumber'])){
-                    //         // true means that email is already taken.
-                    //         $data['pNumber_err'] = "*Phone Number is already taken";
-                    //     }else{
-                    //         //pass
-                    //     }
-                    // }
+                    //validate phone number
+                    if(empty($data['pNumber'])){
+                        $data['pNumber_err'] = '*Phone Number is required';
+                    }else{
+                        //check weather phone number is availble in database
+                        if($this->adminModel->findBOPhoneNumber($data['pNumber'])){
+                            // true means that email is already taken.
+                            if($data['pNumber'] != $data['userDetailObject']->phoneNumber){
+                                $data['pNumber_err'] = "*Phone Number is already taken";
+                            }
+                        }else{
+                            //pass
+                        }
+                    }
                 //
 
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
@@ -480,7 +488,9 @@
                         // next implementation should be land into the right position according to the role
                         header('Location:'.URLROOT.'/admins/bicycleOwner');
                     }else{
-                        die('something went wrong');
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/admins/bicycleOwner');
+                        //die('something went wrong!');
                     }
                 }else{
                     $this->view('admins/viewBikeOwnerProfile', $data);
@@ -689,7 +699,8 @@
                     // add bike
                     if($this->adminModel->addBicycleIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
-                        $this->bicyclesControl();
+                        // $this->bicyclesControl();
+                        header('Location:'.URLROOT.'/admins/bicyclesControl');
                     }else{
                         die('something went wrong');
                     }
@@ -737,6 +748,98 @@
         
             //view details
             $this->view('admins/bicycles', $data);
+        }
+
+        public function editBicycleDetails(){
+            /**
+             *  Task one load the user detail button
+            */
+            //die("halp");
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'bicycleID' => intval(trim($_GET['bicycleID'])),
+                    'bicycleDetailObject' => '',
+
+                    'bikeOwnerID' => '',
+                    'frameSize' => '',
+                    'dateAcquired' => '',
+                    'datePutInUse' => '',
+                    'status' => '',
+                    'currentDA' => '',
+
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+                ];
+                $data['bicycleDetailObject'] = $prespectiveUserDetail = $this->adminModel->findBicycleByID($data['bicycleID']);
+                $this->view('admins/viewBicycleDetails', $data);
+
+            }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'bicycleDetailObject' => '',
+                    
+                    'bicycleID' => intval(trim($_POST['bicycleID'])),
+                    'bikeOwnerID' => trim($_POST['bikeOwnerID']),
+                    'frameSize' => trim($_POST['frameSize']),
+                    'dateAcquired' => trim($_POST['dateAcquired']),
+                    'datePutInUse' => trim($_POST['datePutInUse']),
+                    'status' => trim($_POST['status']),
+                    'currentDA' => trim($_POST['currentDA']),
+
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+                ];
+                $data['bicycleDetailObject'] = $prespectiveUserDetail = $this->adminModel->findBicycleByID($data['bicycleID']);
+                //validate submitted data
+                    //validate bicycle owner ID
+                    if(empty($data['bikeOwnerID'])){
+                        $data['bikeOwnerID_err'] = '*Bike Owner ID is Required';
+                    } 
+
+                    //validate frame size
+                    if(empty($data['frameSize'])){
+                        $data['frameSize_err'] = '*Frame Size is required';
+                    }
+
+                    //validate date acquired
+                    if(empty($data['dateAcquired'])){
+                        $data['dateAcquired_err'] = '*Date Acquired is required';
+                    }
+
+                    //validate DA
+                    if(empty($data['currentDA'])){
+                        $data['currentDA_err'] = '*Current Docking Area is required';
+                    }
+                //
+                
+
+                if(empty($data['bikeOwnerID_err']) && empty($data['frameSize_err']) && empty($data['dateAcquired_err']) && empty($data['datePutInUse_err']) && empty($data['status_err']) && empty($data['currentDA_err'])){
+                    //every things up to ready 
+
+                    // update bike
+                    if($this->adminModel->updateBicycle($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/admins/bicyclesControl');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/admins/bicyclesControl');
+                        //die('something went wrong!');
+                    }
+                }
+                else{
+                    $this->view('admins/viewBicycleDetails', $data);
+                }
+
+            }else{
+                die("button didn't work correctly.");
+            }       
         }
 
         //admin views the the rides and controll
