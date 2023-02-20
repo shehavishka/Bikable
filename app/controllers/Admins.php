@@ -92,7 +92,7 @@
 
                 //validate email
                 if(empty($data['email'])){
-                    $data['email_err'] = '*enter email Number';
+                    $data['email_err'] = '*enter email address';
                 }else{
                     //check weather email is availble in database
                     if($this->adminModel->findUserByEmail($data['email'])){
@@ -123,7 +123,7 @@
 
                 //validate phone number
                 if(empty($data['pNumber'])){
-                    $data['pNumber_err'] = '*enter Phone Number';
+                    $data['pNumber_err'] = '*enter phone number';
                 }else if(!is_numeric($data['pNumber'])){
                     $data['pNumber_err'] = '*Phone Number should be a number';
                 }else if($data['pNumber'] < 0){
@@ -181,22 +181,6 @@
                 ];
                 $this->view('admins/addUser', $data);
             }
-        }
-
-        
-        // admin controll administrator
-        public function administrator(){
-            /**
-             *     Tasks
-             *          1.) Load the data 
-             *          2.) View the data
-             *  */ 
-
-            // load admin's administrator control
-            //code will implement here
-
-            //view details
-            $this->view('admins/administrator');
         }
 
         // admin controll Mechanic data view
@@ -277,6 +261,20 @@
             }   
         }
 
+        public function deleteUsers(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeUser($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/mechanic');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
         ///////////////BIKE OWNER/////////////////////
 
         // after addbikeOwner form filled if they are valid then insert data into the system
@@ -316,7 +314,7 @@
 
                 //validate email
                 if(empty($data['email'])){
-                    $data['email_err'] = '*enter email Number';
+                    $data['email_err'] = '*enter email address';
                 }else{
                     //check weather email is availble in database
                     if($this->adminModel->findBOByEmail($data['email'])){
@@ -347,7 +345,7 @@
 
                 //validate phone number
                 if(empty($data['pNumber'])){
-                    $data['pNumber_err'] = '*enter Phone Number';
+                    $data['pNumber_err'] = '*enter phone number';
                 }else if(!is_numeric($data['pNumber'])){
                     $data['pNumber_err'] = '*Phone Number should be a number';
                 }else if($data['pNumber'] < 0){
@@ -634,7 +632,7 @@
                 }
                 else{
 
-                    $this->view('admins/viewAreaProfile', $data);
+                    $this->view('admins/addDockingArea', $data);
                 }
             }else{
                 //init data
@@ -800,6 +798,20 @@
             }else{
                 die("button didn't work correctly.");
             }       
+        }
+
+        public function deleteDAs(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeDA($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/dockingAreas');
+            }else{
+                die("button didn't work correctly.");
+            }
         }
         
         ///////////////BICYCLE/////////////////////
@@ -998,6 +1010,20 @@
             }       
         }
 
+        public function deleteBicycles(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeBicycle($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/bicyclesControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
         ///////////////RIDES/////////////////////
 
         //admin views the the rides and controll
@@ -1034,6 +1060,16 @@
 
             //this is not load data from the data
             $this->view('admins/reports', $data);
+        }
+
+        public function archivedReportsControl(){
+            $reportDetails = $this->adminModel->getArchivedReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/archivedReports', $data);
         }
 
         public function AccidentReportsControl(){
@@ -1149,6 +1185,34 @@
             }       
         }
 
+        public function archiveReports(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeReport($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/reportsControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
+        public function unarchiveReports(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->unarchiveReport($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/archivedReportsControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
         ///////////////REPAIR LOG/////////////////////
 
         // admin views the repair and controll
@@ -1183,6 +1247,44 @@
             }            
         }
 
+        public function archivedRepairLogControl(){
+            $repairLogDetails = $this->adminModel->getArchivedRepairLogDetails();
+            $data = [
+                'repairLog_details' => $repairLogDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/archivedRepairLog', $data);
+        }
+
+        public function archiveRepairLogs(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->removeRepairLog($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/repairLogControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
+        public function unarchiveRepairLogs(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->unarchiveRepairLog($selectedRow);
+                }
+                header('Location:'.URLROOT.'/admins/archivedRepairLogControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         private function generatePassword() {
             $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -1194,7 +1296,6 @@
             }
             return implode($pass);
         }
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
         private function sendEmailToTheUser($userName, $userEmail , $userPassword){

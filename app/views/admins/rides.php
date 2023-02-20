@@ -24,9 +24,9 @@
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Rides</div>
             <div class="admin__data_area__top--twobuttons">
-                <div class="delete_user_button">
+                <!-- <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
-                </div>
+                </div> -->
             </div>
 
         </div>

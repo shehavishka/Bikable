@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/repairLog.css">
-    <title>Repair Log</title>
+    <title>Archived Repair Log</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -22,15 +22,15 @@
 
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Repair Log</div>
+            <div class="admin__data__area__top--title">Archived Repair Log</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/admins/archivedRepairLogControl'">
+                    <input type="button" class="btn btn_add" value="View Active" onclick="location.href='<?php echo URLROOT;?>/admins/repairLogControl'">
                 </div>
                 
-                <form action="<?php echo URLROOT;?>/admins/archiveRepairLogs" method="POST" id="userInterface">
+                <form action="<?php echo URLROOT;?>/admins/unarchiveRepairLogs" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="submit" class="btn btn_delete" value="Archive Selected">
+                    <input type="submit" class="btn btn_delete" value="Unarchive Selected">
                 </div>
             </div>
 

@@ -131,7 +131,7 @@
             return $this->db->resultSet();
         }
 
-        ////////////////////QUERIES FOR VIEW////////////////////
+        ////////////////////QUERIES FOR VIEW ADD UPDATE////////////////////
 
         //add user into the system
         public function addUserIntoTheSystem($data){
@@ -157,7 +157,7 @@
         
         public function getMechanicDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM users where role = 'Mechanic'");
+            $this->db->prepareQuery("SELECT * FROM users WHERE role = 'Mechanic' AND status != 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -165,7 +165,7 @@
 
         public function getRiderDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM users where role = 'Rider'");
+            $this->db->prepareQuery("SELECT * FROM users WHERE role = 'Rider' AND status != 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -326,7 +326,7 @@
 
         public function getRepairLogDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM repairLog");
+            $this->db->prepareQuery("SELECT * FROM repairLog WHERE status != 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -334,7 +334,23 @@
 
         public function getReportDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM reports");
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status != 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getArchivedRepairLogDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM repairLog WHERE status = 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getArchivedReportDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status = 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -368,7 +384,7 @@
         }
 
 
-        ////////////////////QUERIES FOR UPDATE////////////////////
+        ////////////////////QUERIES FOR VIEW BY ID////////////////////
 
         public function findUserByUserID($userID){
 
@@ -454,6 +470,9 @@
             } 
         }
 
+
+        ////////////////////QUERIES FOR SUSPEND/ACTIVATE (UPDATE)////////////////////
+
         public function suspendUserByUserID($userID){
             $status = 0;
             $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
@@ -481,13 +500,111 @@
                 return false;
             }
         }
+        
+        
+        ////////////////////QUERIES FOR REMOVE ARCHIVE UNARCHIVE (TECHNICALLY UPDATE)////////////////////
+        
+        public function removeUser($userID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE users SET status='$status' WHERE userID = '$userID'");
 
+            $row = $this->db->single();
 
-        ////////////////////QUERIES FOR UPDATE////////////////////
-
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
         public function removeBikeOwner($bikeOwnerID){
             $status = 3;
             $this->db->prepareQuery("UPDATE bikeowners SET status='$status' WHERE bikeOwnerID = '$bikeOwnerID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function removeDA($areaID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE dockingareas SET status='$status' WHERE areaID = '$areaID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function removeBicycle($bicycleID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE bicycles SET status='$status' WHERE bicycleID = '$bicycleID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function removeReport($reportID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function removeRepairLog($logID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE repairlog SET status='$status' WHERE logID = '$logID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function unarchiveReport($reportID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function unarchiveRepairLog($logID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE repairlog SET status='$status' WHERE logID = '$logID'");
 
             $row = $this->db->single();
 

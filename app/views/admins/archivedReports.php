@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/reports.css">
-    <title>Accident Reports</title>
+    <title>Archived Reports</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -19,18 +19,17 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
-
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Accident Reports</div>
+            <div class="admin__data__area__top--title">Archived Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="View Active" onclick="location.href='<?php echo URLROOT;?>/admins/reportsControl'">
                 </div>
                 
-                <form action="<?php echo URLROOT;?>/admins/deleteReports" method="POST" id="userInterface">
+                <form action="<?php echo URLROOT;?>/admins/unarchiveReports" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="submit" class="btn btn_delete" value="Archive Selected">
+                    <input type="submit" class="btn btn_delete" value="Unarchive Selected">
                 </div>
             </div>
 
@@ -46,17 +45,19 @@
                     <th style="width: 10%;">Problem Title</th>
                     <th style="width: 20%;">Problem Description</th>
                     <th style="width: 8%;">Logged Time</th>
-                    <th style="width: 7%;">Assigned Mechanic</th>
+                    <th style="width: 5%;">Assigned Mechanic</th>
+                    <th style="width: 5%;">Type</th>
                     <th style="width: 7%;">Accident Location</th>
                     <th style="width: 5%;">Accident Time</th>
                     <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 5%;">Area ID</th>
                     <th style="width: 5%;"></th>
 
-                    <?php foreach($data['report_details'] as $oneObject) : if($oneObject->reportType == "Accident"){?>
+                    <?php foreach($data['report_details'] as $oneObject) : ?>
                     <tr>
                         <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->reportID ?>"></td>
-                        <td><?php echo $oneObject->reportID ?></td>
-                        <td><?php echo $oneObject->reporterID ?></td>
+                        <td><?php echo printValue($oneObject, 'reportID') ?></td>
+                        <td><?php echo printValue($oneObject, 'reporterID') ?></td>
                         <td>
                             <?php 
                                 if($oneObject->status == 1){
@@ -71,17 +72,20 @@
                         <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
                         <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
                         <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
+                        <td><?php echo printValue($oneObject, 'reportType') ?></td>
                         <td><?php echo printValue($oneObject, 'accidentLat') ?><br><?php echo printValue($oneObject, 'accidentLong') ?></td>
                         <td><?php echo printValue($oneObject, 'accidentTimeApprox') ?></td>
                         <td><?php echo printValue($oneObject, 'bicycleID') ?></td>
+                        <td><?php echo printValue($oneObject, 'areaID') ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <form action="<?php echo URLROOT;?>/admins/editReportDetails" method="get">
                                 <input type="hidden" name="reportID" value="<?php echo $oneObject->reportID;?>">
                                 <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
                         </form>
+
                     </tr>
-                <?php } endforeach; 
+                <?php endforeach; 
                     function printValue($oneObject, $column_name){
                         if($oneObject->$column_name != null){
                             echo $oneObject->$column_name;
