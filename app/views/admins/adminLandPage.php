@@ -26,7 +26,7 @@ class DBController {
 }
 
 $dbController = new DBController();
-$query = "SELECT * FROM dockingareas";
+$query = "SELECT * FROM dockingareas WHERE status != 3";
 $DAResult = $dbController->runQuery($query);
 ?>
 

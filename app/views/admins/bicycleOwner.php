@@ -59,7 +59,7 @@
                         <td><?php echo $oneObject->emailAdd ?></td>
                         <td>
                         <!-- update icon svg format -->
-                                <a href="<?php echo URLROOT;?>/admins/editBikeOwnerProfile?bikeOwnerID=<?php echo $oneObject->bikeOwnerID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
+                            <a href="<?php echo URLROOT;?>/admins/editBikeOwnerProfile?bikeOwnerID=<?php echo $oneObject->bikeOwnerID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
             </table>

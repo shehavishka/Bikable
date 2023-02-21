@@ -70,11 +70,7 @@
                         <td><?php echo $oneObject->	currentDA ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/editBicycleDetails" method="get">
-                                <input type="hidden" name="bicycleID" value="<?php echo $oneObject->bicycleID;?>">
-                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
-                        </form>
-
+                        <a href="<?php echo URLROOT;?>/admins/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

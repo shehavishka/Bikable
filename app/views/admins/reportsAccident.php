@@ -28,7 +28,7 @@
                     <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
                 </div>
                 
-                <form action="<?php echo URLROOT;?>/admins/deleteReports" method="POST" id="userInterface">
+                <form action="<?php echo URLROOT;?>/admins/archiveReports" method="POST" id="userInterface">
                 <div class="delete_user_button">
                     <input type="submit" class="btn btn_delete" value="Archive Selected">
                 </div>
@@ -76,10 +76,7 @@
                         <td><?php echo printValue($oneObject, 'bicycleID') ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/editReportDetails" method="get">
-                                <input type="hidden" name="reportID" value="<?php echo $oneObject->reportID;?>">
-                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
-                        </form>
+                        <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php } endforeach; 
                     function printValue($oneObject, $column_name){

@@ -105,11 +105,7 @@
                         </td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/viewRepairLog" method="get">
-                                <input type="hidden" name="logID" value="<?php echo $oneObject->logID;?>">
-                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/viewIcon1.png">
-                        </form>
-
+                        <a href="<?php echo URLROOT;?>/admins/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/viewIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

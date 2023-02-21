@@ -83,11 +83,7 @@
                         <td><?php echo printValue($oneObject, 'areaID') ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/editReportDetails" method="get">
-                                <input type="hidden" name="reportID" value="<?php echo $oneObject->reportID;?>">
-                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
-                        </form>
-
+                        <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; 
                     function printValue($oneObject, $column_name){
