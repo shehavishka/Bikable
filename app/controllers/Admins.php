@@ -225,9 +225,9 @@
             /**
              *  Task one load the user detail button
             */
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $data = [
-                    'userID' => intval(trim($_POST['userID'])),
+                    'userID' => intval(trim($_GET['userID'])),
                     'userDetailObject' => ''
                 ];
                 $data['userDetailObject'] = $prespectiveUserDetail = $this->adminModel->findUserByUserID($data['userID']);
@@ -242,18 +242,29 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $data = [
                     'userIdentity' => intval(trim($_POST['userIdentity'])),
-                    'userStatus' => intval(trim($_POST['userStatus']))
+                    'userStatus' => intval(trim($_POST['userStatus'])),
+                    'userRole' => trim($_POST['userRole'])
                 ];
                 
-                if($data['userStatus'] == 1){
+                if($data['userStatus'] == 0){
                     $isUserSuspend = $this->adminModel->suspendUserByUserID($data['userIdentity']);
                     if($isUserSuspend){
-                        header('Location:'.URLROOT.'/admins/mechanic');
+                        if($data['userRole'] == 'Mechanic' || $data['userRole'] == 'mechanic'){
+                            header('Location:'.URLROOT.'/admins/mechanic');
+                        }else{
+                            header('Location:'.URLROOT.'/admins/riders');
+                        }
+                        // header('Location:'.URLROOT.'/admins/mechanic');
                     }
                 }else{
                     $isUserActive = $this->adminModel->activateUserByUserID($data['userIdentity']);
                     if($isUserActive){
-                        header('Location:'.URLROOT.'/admins/mechanic');
+                        if($data['userRole'] == 'Mechanic' || $data['userRole'] == 'mechanic'){
+                            header('Location:'.URLROOT.'/admins/mechanic');
+                        }else{
+                            header('Location:'.URLROOT.'/admins/riders');
+                        }
+                        // header('Location:'.URLROOT.'/admins/mechanic');
                     }
                 }
             }else{

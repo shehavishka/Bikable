@@ -57,7 +57,7 @@
                         <td><?php echo $oneObject->userID ?></td>
                         <td>
                             <?php 
-                                if($oneObject->status == 1){
+                                if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
                                     echo "Inactive";
@@ -70,11 +70,12 @@
                         <td><?php echo $oneObject->role ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/viewUserProfile" method="post">
+                        <!-- <form action="<?php echo URLROOT;?>/admins/viewUserProfile" method="post">
                                 <input type="hidden" name="userID" value="<?php echo $oneObject->userID;?>">
                                 <input type="hidden" name="userStatus" value="<?php echo $oneObject->status;?>">
                                 <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" name="edit" value="edit" >
-                        </form>
+                        </form> -->
+                        <a href="<?php echo URLROOT;?>/admins/viewUserProfile?userID=<?php echo $oneObject->userID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

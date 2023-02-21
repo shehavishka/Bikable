@@ -474,7 +474,7 @@
         ////////////////////QUERIES FOR SUSPEND/ACTIVATE (UPDATE)////////////////////
 
         public function suspendUserByUserID($userID){
-            $status = 0;
+            $status = 1;
             $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
 
             $row = $this->db->single();
@@ -488,7 +488,7 @@
         }
 
         public function activateUserByUserID($userID){
-            $status = 1;
+            $status = 0;
             $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
 
             $row = $this->db->single();

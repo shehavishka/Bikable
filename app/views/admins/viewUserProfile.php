@@ -4,98 +4,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/viewUserProfile.css">
-    <title>User Profile</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/viewReport.css">
+    <title>User</title>
 </head>
 <body>
-    <section class="data__area">
-        <div class="left--side">
-            <div class="profile__picture--card">
-                <div class="dropdown_area" style="background-image: url(
-                        <?php 
-                            if($data['userDetailObject']->userPicture != null){
-                                echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
-                            }else{
-                                echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
-                            }
-                        ?>);">
+    <!-- finalized side bar -->
+    <?php require APPROOT . '/views/inc/sidebar-admin.php'; ?>
+
+
+    <!-- In the framework right side of the web page view -->
+    <section class="data_area">
+
+        <!-- dashboard section -->
+        <?php require APPROOT . '/views/inc/header.php'; ?>
+
+        <!-- REAL DATA AREA -->
+        <form action="<?php echo URLROOT;?>/admins/suspendUser" method="POST" id="userInterface">
+            <input type="hidden" name="userIdentity" value="<?php echo $data['userDetailObject']->userID;?>" id="userID">
+            <input type="hidden" name="userStatus" value="<?php echo $data['userDetailObject']->status;?>">
+            <input type="hidden" name="userRole" value="<?php echo $data['userDetailObject']->role;?>">
+            <!-- admin real data top -->
+            <div class="data__area--top">
+                <div class="data__area__top--title">View 
+                    <?php 
+                        if($data['userDetailObject']->role == 'Mechanic' || $data['userDetailObject']->role == 'mechanic'){
+                            echo 'Mechanic';
+                        }else{
+                            echo 'Rider';
+                        }
+                    ?>
                 </div>
-                <div class="user_history">
-                    <table>
-                        <tr>
-                            <th style="width: 3%;"></th>
-                            <th style="width: 5%;"></th>
-        
-                        </tr>
-                        <tr>
-                            <td>User ID</td>
-                            <td><?php echo $data['userDetailObject']->userID; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Last Logged in  :</td>
-                            <td>2023/02/5</td>
-                        </tr>
-                        <tr>
-                            <td>Registered date : </td>
-                            <td>2022/12/28</td>
-                        </tr>
-                    </table>
+                <div class="data_area__top--twobuttons">
+                    <div class="add_user_button">
+                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/admins/ 
+                            <?php 
+                                if($data['userDetailObject']->role == 'Mechanic' || $data['userDetailObject']->role == 'mechanic'){
+                                    header('Location:'.URLROOT.'/admins/mechanic');
+                                }else{
+                                    header('Location:'.URLROOT.'/admins/riders');
+                                }
+                            ?>
+                        '">
+                    </div>
+                    <div class="delete_user_button">
+                        <input type="submit" class="btn btn_delete" value="<?php if($data['userDetailObject']->status == 0){echo "Suspend";}else{echo "Activate";} ?>">
+                    </div>
                 </div>
 
             </div>
 
-        </div>
-        <div class="right--side">
-            <div class="detail__view--card">
-                <div class="generalInformation"><strong><h2>General Information</h2></strong></div>
-                <div class="user__detail">
-                    <table>
-                        <tr>
-                            <td>Name</td>
-                            <td><?php echo $data['userDetailObject']->firstName . ' ' . $data['userDetailObject']->lastName; ?></td>
-                        </tr>
-                        <tr>
-                            <td>NIC</td>
-                            <td><?php echo $data['userDetailObject']->NIC; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Role</td>
-                            <td><?php echo $data['userDetailObject']->role; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Mobile Number</td>
-                            <td><?php echo $data['userDetailObject']->phoneNumber; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><?php echo $data['userDetailObject']->emailAdd; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>
-                                <?php
-                                    if($data['userDetailObject']->status == 1){
-                                        echo "Active";
-                                    }else{
-                                        echo "Inactive";
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-
-                    </table>
+            <div class="data__area--detail">
+                
+                <div class="data__area__detail--reportID">
+                        <div class="data--name--label">User ID: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->userID; ?></div>
                 </div>
-            </div>
-            <div class="button__area">
-                <form action="<?php echo URLROOT;?>/admins/suspendUser" method="post">
-                    <input type="hidden" name="userIdentity" value="<?php echo $data['userDetailObject']->userID;?>">
-                    <input type="hidden" name="userStatus" value="<?php echo $data['userDetailObject']->status;?>">
-                    <input type="submit" value=<?php if($data['userDetailObject']->status == 1){echo "Suspend";}else{echo "Activate";} ?> class="btn">
-                </form>
-            </div>
-        </div>
-    </section>
 
+                <div class="data__area__detail--reporterID">
+                        <div class="data--name--label">Last logged in: </div>
+                        <div class="data--name--content">2023-02-12</div>
+                        <!-- <div class="data--name--content"><?php echo $data['userDetailObject']->lastLogged;?></div> -->
+                </div>
 
-</body>
-</html>
+                <div class="data__area__detail--reportID">
+                        <div class="data--name--label">Registered date: </div>
+                        <div class="data--name--content">2023-02-12</div>
+                        <!-- <div class="data--name--content"><?php echo $data['userDetailObject']->regDate; ?></div> -->
+                </div>
+
+                <div class="data__area__detail--reporterID">
+                        <div class="data--name--label">Name: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->firstName . ' ' . $data['userDetailObject']->lastName; ?></div>
+                </div>
+
+                <div class="data__area__detail--reporterID">
+                        <div class="data--name--label">Status: </div>
+                        <div class="data--name--content">
+                            <?php 
+                                if($data['userDetailObject']->status == 0){
+                                    echo "Active";
+                                }else{
+                                    echo "Inactive";
+                                } 
+                            ?>
+                        </div>
+                </div>
+
+                <div class="data__area__detail--reporterID">
+                        <div class="data--name--label">NIC: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->NIC;?></div>
+                </div>
+                
+                <div class="data__area__detail--problemTitle">
+                        <div class="data--name--label">Role: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->role;?></div>
+                </div>
+
+                <div class="data__area__detail--loggedTimestamp">
+                        <div class="data--name--label">Phone Number: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->phoneNumber;?></div>
+                </div>
+
+                <div class="data__area__detail--loggedTimestamp">
+                        <div class="data--name--label">Email Address: </div>
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->emailAdd;?></div>
+                </div>
+                
+            </div>
+
+        </form>
