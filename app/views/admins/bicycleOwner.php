@@ -30,7 +30,7 @@
 
                 <form action="<?php echo URLROOT;?>/admins/deleteBikeOwners" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="submit" class="btn btn_delete" value="Delete Selected">
+                    <input type="submit" name="delete" class="btn btn_delete" value="Delete Selected">
                 </div>
             </div>
 
@@ -59,11 +59,7 @@
                         <td><?php echo $oneObject->emailAdd ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <form action="<?php echo URLROOT;?>/admins/editBikeOwnerProfile" method="get">
-                                <input type="hidden" name="bikeOwnerID" value="<?php echo $oneObject->bikeOwnerID;?>">
-                                <input type="image" src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png">
-                        </form>
-
+                                <a href="<?php echo URLROOT;?>/admins/editBikeOwnerProfile?bikeOwnerID=<?php echo $oneObject->bikeOwnerID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
             </table>

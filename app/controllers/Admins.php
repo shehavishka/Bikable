@@ -813,7 +813,6 @@
                 die("button didn't work correctly.");
             }
         }
-        
         ///////////////BICYCLE/////////////////////
 
         // after addbike form filled if they are valid then insert data into the system
