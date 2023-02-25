@@ -14,7 +14,7 @@
             <div class="loginView__dataSide">
                 <!-- Header and subtitle -->
                 <div class="loginView__title">Welcome to Bikable</div>
-                <div class="loginView__subtitle">please login to use the platform</div>
+                <div class="loginView__subtitle">Please login to use the platform</div>
 
                 <!-- email and password form -->
                 <div class="loginView__Detail">

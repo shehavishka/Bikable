@@ -5,41 +5,51 @@ class Mechanics extends Controller
 
 
     public function __construct()
-    {
+    {   
+        //connects to the database
         $this->mechanicModel = $this->model('Mechanic');
     }
-
-    public function mechanicLandPage()
-    {
-        /**
-         *  Two tasks
-         *      1.) Load the data
-         *      2.) View the data 
-         */
-
-        //load mechanic's land page
-        //code will implement here
-        // 1. Load Map details
-        // $dockingAreasDetails = $this->mechanicModel->mechanicLandPageMapDetails();
-        // $data = [
-        //     'docking_areas_details' => $dockingAreasDetails
-        // ];
-
-        //view details
-        // $this->view('mechanics/mechanicLandPage', $data);
-        $this->view('mechanics/mechanicLandPage');
+    
+    public function login(){
+        //if (session)
+        header('location:' . URLROOT . '/users/login');
     }
 
-    public function mechanicOp()
-    {
-        //load Report details
-        $mechanic_details = $this->mechanicModel->getReport();
+    public function mechanicLandPage(){
+        /**
+         *     Tasks
+         *          1.) Load the data 
+         *          2.) View the data
+        *  */ 
+    
+        //code will implement here
+        $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
+        //$reportDetails = $this->mechanicModel->getDashboardReports();
         $data = [
-            'mechanic_details' => $mechanic_details
+            'dashboard_repairLog' => $repairLogDetails,
+            'dashboard_reports' => $reportDetails
         ];
 
-        // view details
-        $this->view('mechanics/mechanicsV', $data);
+    //  view details
+        $this->view('mechanics/mechanicLandPage', $data);
+    }
+
+    public function repairLogs(){
+        /**
+         * Task 
+         *      1.) handle repair in the system
+         *      2.) View the data
+        **/ 
+    
+        // load mechanic's repairLog control
+        //code will implement here
+        $repairLogDetails = $this->mechanicModel->getRepairLogDetails();
+        $data = [
+            'report_details' => $repairLogDetails
+        ];
+
+        //this is not load data from the data
+        $this->view('mechanics/repairLog', $data);
     }
 
     public function addLog()
@@ -70,10 +80,12 @@ class Mechanics extends Controller
                 'Dout_err' => '',
                 'FinCost' => '',
             ];
+
             $this->mechanicModel->addLog($data);
-            redirect('mechanics/mechanicOp');
+            redirect('mechanics/mechanicLandPage');
+
         } else
-            $this->view('mechanics/addLog', [
+            $this->view('mechanics/addLog',[
                 'RLid_err' => '',
                 'Bid_err' => '',
                 'Ptitle_err' => '',
@@ -85,10 +97,10 @@ class Mechanics extends Controller
                 'EstCost_err' => '',
                 'Dout_err' => '',
                 'FinCost' => '',
-            ]);
+        ]);
     }
 
-    public function addLogToThesystem()
+    public function addLogToTheSystem()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
@@ -214,7 +226,7 @@ class Mechanics extends Controller
     }
 
 
-    public function addReportToThesystem()
+    public function addReportToTheSystem()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // process form

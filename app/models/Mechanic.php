@@ -28,12 +28,6 @@
 
         }
 
-        // get mechanic details
-        public function getReports(){
-            $this->db->prepareQuery("SELECT * FROM reports");
-
-            return $this->db->resultSet();
-        }
 
         public function mechanicLandPageMapDetails(){
             $this->db->prepareQuery("SELECT * FROM dockingareas");
@@ -64,6 +58,16 @@
                 return false;
             }
         }
+
+
+        public function getDashboardRepairLog(){
+
+            $this->db->prepareQuery("SELECT * FROM repairlog order by dateIn desc limit 6");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
         // public function findUserByEmail($userEmail){
         //     $this->db->prepareQuery("SELECT * FROM repairlog where email = '$userEmail'");
         //     // $this->db->bind(':email', $userEmail);
