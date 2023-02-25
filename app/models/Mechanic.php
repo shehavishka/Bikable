@@ -28,7 +28,6 @@
 
         }
 
-
         public function mechanicLandPageMapDetails(){
             $this->db->prepareQuery("SELECT * FROM dockingareas");
 
