@@ -137,13 +137,11 @@ body{
 /* ***************************************************************************************************** */
 
 #container{
-    /* display: flex; */
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 5%;
 }
 
 /* #floating-panel {
@@ -192,16 +190,12 @@ body{
 }
 
 .middle_section{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* position: absolute; */
     height: 35em;
-    width: 20em;
-    margin-top: 0em;
+    margin-top: 3em;
     margin-right: 4%;
     margin-left: 4%;
-    /* margin-bottom: 3em; */
+    margin-bottom: 3em;
     background: #000000;
     border-radius: 60px;
 }
@@ -239,7 +233,6 @@ body{
     /* max-width: 400px; */
     clip-path: inset(0px 0px 0px 0px);
     z-index: 10;
-    background-color: #000000;
 }
 
 #qr-canvas{
@@ -249,40 +242,12 @@ body{
 }
 
 .b{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* height: 35em;
-    font-size: 1.2em; */
-    /* margin: 20px auto;
-    padding: 20px; */
+    font-size: 1.2em;
+    margin: 20px auto;
+    padding: 20px;
     max-width: 700px;
-    background-color: black;
-}
-
-#qr-result{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* font-size: 2.2em; */
-    /* background-color: white; */
-    color: #D9D9D9;
-    flex-direction: column;
-}
-
-#lower_section{
-    position: absolute;
-    display: flex;
-    width: 100%;
-    height: 15%;
-    bottom: 0px;
-    align-items: center;
-}
-
-#paymentM_button{
-    padding-left: 13px;
-    padding-right: 13px;
-}
+    background-color: white;
+  }
 
 
 /* ***************************************************************************************************** */

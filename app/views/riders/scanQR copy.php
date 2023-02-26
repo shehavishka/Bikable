@@ -14,7 +14,6 @@
             <div id="cancel_button">
                 <a href="<?php echo URLROOT;?>/riders/riderLandPage"><img src="<?php echo URLROOT;?>/public/images/general/crossIcon1.png" alt="cancel"></a>
             </div>
-
             <div id="main_text">
                 <h1>Scan to ride</h1>
                 <div id="sub_text">
@@ -37,59 +36,36 @@
             <div id="qr-result" hidden="">
                 <b>Data:</b> <span id="outputData"></span>
             </div> -->
-            
-        </div>
+            <div class="middle_section a">
+                <canvas hidden="" id="qr-canvas"></canvas>
+            </div>
 
-        <div class="middle_section a" id="a" hidden="true">
-            <canvas hidden="" id="qr-canvas"></canvas>
-        </div>
-
-        <div class="middle_section b" id="b" hidden="true">
-            <div id="qr-result" hidden="">
-                <!-- <b>Data:</b> <span id="outputData"></span> -->
-                <div id="main_text2">
-                    <h1>Start Ride</h1>
+            <div class="middle_section b">
+                <div id="qr-result" hidden="">
+                    <b>Data:</b> <span id="outputData"></span>
                 </div>
-                <!-- <a href="<?php echo URLROOT;?>/riders/riderLandPage" onclick="location.href=res;return false;"><img src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start"></a> -->
-                <a id="outputData2">
-                    <img src="<?php echo URLROOT;?>/public/images/general/startIcon.png">
-                </a>
-            </div>
-        </div>
-        
-        <div id="lower_section">
-            <div id="paymentM_button">
-                <a href="<?php echo URLROOT;?>/riders/riderLandPage"><img src="<?php echo URLROOT;?>/public/images/general/payIcon.png" alt="payM"></a>
             </div>
 
-            <div id="sub_text">
-                Change your payment method
-            </div>
-        </div> 
+        </div>
 
     </div>
 
     <script>
         //var qrcode = window.qrcode;
-        const a = document.getElementById("a")
-        const b = document.getElementById("b")
-        a.style.visibility = "hidden";
-        b.style.visibility = "hidden";
-        
+
         const video = document.createElement("video");
         const canvasElement = document.getElementById("qr-canvas");
         const canvas = canvasElement.getContext("2d");
 
         const qrResult = document.getElementById("qr-result");
-        //const outputData = document.getElementById("outputData");
+        const outputData = document.getElementById("outputData");
         const btnScanQR = document.getElementById("btn-scan-qr");
 
         let scanning = false;
 
         qrcode.callback = res => {
         if (res) {
-            //outputData.innerText = res;
-            outputData2.href = res;
+            outputData.innerText = res;
             scanning = false;
 
             video.srcObject.getTracks().forEach(track => {
@@ -99,9 +75,6 @@
             qrResult.hidden = false;
             canvasElement.hidden = true;
             btnScanQR.hidden = false;
-            a.style.visibility = "hidden";
-            b.style.visibility = "visible";
-            
         }
         };
 
@@ -113,7 +86,6 @@
             qrResult.hidden = true;
             btnScanQR.hidden = true;
             canvasElement.hidden = false;
-            a.style.visibility = "visible";
             video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
             video.srcObject = stream;
             video.play();
