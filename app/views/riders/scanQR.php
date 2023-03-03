@@ -51,9 +51,14 @@
                     <h1>Start Ride</h1>
                 </div>
                 <!-- <a href="<?php echo URLROOT;?>/riders/riderLandPage" onclick="location.href=res;return false;"><img src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start"></a> -->
-                <a id="outputData2">
-                    <img src="<?php echo URLROOT;?>/public/images/general/startIcon.png">
-                </a>
+                <form action="<?php echo URLROOT;?>/riders/activeRide" id="start_form">
+                    <!-- <a id="outputData2">
+                        <img src="<?php echo URLROOT;?>/public/images/general/startIcon.png">
+                    </a> -->
+                    <input type="hidden" name="userID" value="<?php echo $_SESSION['user_ID'];?>">
+                    <input type="hidden" name="bicycleID" value="0" id="bicycle_ID">
+                    <input type="image" src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start">
+                <form>
             </div>
         </div>
         
@@ -71,10 +76,13 @@
 
     <script>
         //var qrcode = window.qrcode;
-        const a = document.getElementById("a")
-        const b = document.getElementById("b")
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
         a.style.visibility = "hidden";
         b.style.visibility = "hidden";
+
+        const start_form = document.getElementById("start_form");
+        const bicycle_ID = document.getElementById("bicycle_ID");
         
         const video = document.createElement("video");
         const canvasElement = document.getElementById("qr-canvas");
@@ -89,7 +97,9 @@
         qrcode.callback = res => {
         if (res) {
             //outputData.innerText = res;
-            outputData2.href = res;
+            //outputData2.href = res;
+            // start_form.action = start_form.action+'/'+res;
+            bicycle_ID.value = res;
             scanning = false;
 
             video.srcObject.getTracks().forEach(track => {

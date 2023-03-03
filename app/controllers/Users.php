@@ -128,7 +128,7 @@
         ///////////////////////
         public function createUserSession($user){
             //store session data
-            $_SESSION['user_ID'] = $user->UserID;
+            $_SESSION['user_ID'] = $user->userID;
             $_SESSION['user_picture'] = $user->userPicture;
             $_SESSION['user_NIC'] = $user->NIC;
             $_SESSION['user_fName'] = $user->firstName;
@@ -141,17 +141,24 @@
             //redirect to the user's(owners) home
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
-            if($user->role == 'Owner')
+            if(ucwords($user->role) == 'Owner')
             {
                 redirect('owners/ownerLandPage');
             }
-            else if($user->role == 'Administrator')
+            else if(ucwords($user->role) == 'Administrator')
             {
                 redirect('admins/adminLandPage');
             }
-            else if($user->role == 'Mechanic')
+            else if(ucwords($user->role) == 'Mechanic')
             {
                 redirect('mechanics/mechanicLandPage');
+            }
+            else if(ucwords($user->role) == 'Rider')
+            {
+                if($user->status == 6){
+                    redirect('riders/activeRide?userID='.$user->UserID);
+                }
+                redirect('riders/riderLandPage');
             }
             //redirect('owners/ownerLandPage');
         }
