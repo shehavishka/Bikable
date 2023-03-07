@@ -139,7 +139,7 @@
 
             //redirect to the user's(owners) home
             // die("logged successfully");
-            $this->view('mechanics/mechanicLandPage');
+            // $this->view('mechanics/mechanicLandPage');
             if(ucwords($_SESSION['user_role']) == 'Owner')
             {
                 // redirect('owners/ownerLandPage');

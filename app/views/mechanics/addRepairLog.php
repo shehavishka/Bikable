@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- finalized side bar -->
-    <?php require APPROOT . '/views/inc/sidebar.php'; ?>
+    <?php require APPROOT . '/views/inc/sidebar-mechanic.php'; ?>
 
 
     <!-- In the framework right side of the web page view -->

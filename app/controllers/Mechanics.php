@@ -1,6 +1,7 @@
 <?php
 class Mechanics extends Controller
-{
+{   
+    // mechanic connects to the database
     private $mechanicModel;
 
 
@@ -10,10 +11,10 @@ class Mechanics extends Controller
         $this->mechanicModel = $this->model('Mechanic');
     }
     
-    // public function login(){
-    //     //if (session)
-    //     header('location:' . URLROOT . '/users/login');
-    // }
+    public function login(){
+        //if (session)
+        header('location:' . URLROOT . '/users/login');
+    }
 
     public function mechanicLandPage(){
         /**
@@ -181,6 +182,19 @@ class Mechanics extends Controller
             }
         }
     }
+
+    public function reportsControl(){
+        // 1)Handle report data in the system
+        // 2)View data
+        $reportDetails = $this->mechanicModel->getReportDetails();
+        $data = [
+            'report_details'=> $reportDetails
+        ];
+
+        //this is not load data from the data
+        $this->view('mechanics/reports', $data);
+    }
+
 
 
     public function addReport()

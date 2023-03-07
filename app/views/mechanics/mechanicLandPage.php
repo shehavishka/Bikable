@@ -14,16 +14,16 @@
         <div class="dashboard__header--search">
             <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
             <div class="dashboard__header--searchicon">
-                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                <img src="<?php echo URLROOT;?>/public/images/mechanics/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
             </div>
         </div>
 
         <div class="dashboard__header--helpsetting">
             <div class="helpsetting__help">
-                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon">
+                <img src="<?php echo URLROOT;?>/public/images/mechanics/dashboardIcons/question.png" alt="help" class="dashboard__icon">
             </div>
             <div class="helpsetting__setting">
-                <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
+                <img src="<?php echo URLROOT;?>/public/images/mechanics/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
 <!-- 
     <section class="upper__section">
         <!-- report card on the upper section of the display -->
-            <a href="<?php echo URLROOT ?>/owners/reportsControl" style="text-decoration:none;color:black" class="anchor--card">
+            <a href="<?php echo URLROOT ?>/mechanics/reportsControl" style="text-decoration:none;color:black" class="anchor--card">
                 <div class="upper__section--reports cardd">
                         <div class="upper__section__card--title" style="text-decoration:none">
                             Reports
@@ -137,7 +137,7 @@
             </div>
         </a>
 
-        <a href="<?php echo URLROOT ?>/owners/bicyclesControl" style="text-decoration:none;color:black">
+        <a href="<?php echo URLROOT ?>/mechanics/bicyclesControl" style="text-decoration:none;color:black">
             <div class="upper__section--bicycles cardd">
                 <div class="upper__section__card--title">
                     Bicycles
@@ -211,7 +211,7 @@
                                 new google.maps.Marker({
                                     position: new google.maps.LatLng(latitude, longitude),
                                     map: map,
-                                    icon: {url:"<?php echo URLROOT; ?>/public/images/owners/landPageImages/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
+                                    icon: {url:"<?php echo URLROOT; ?>/public/images/mechanics/landPageImages/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
                                     label: {text: '<?php echo $oneObject->currentNoOfBikes; ?>', color: "white", fontFamily:"SF Pro Rounded"},
                                     labelClass: "marker-position",
                                     title: '<?php echo $oneObject->areaName; ?>'

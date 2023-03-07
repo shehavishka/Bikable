@@ -18,7 +18,7 @@
             $SolnDesc = $data['SolnDesc'];
             $Tag = $data['Tag'];
 
-            $this->db -> prepareQuery("INSERT INTO reports (Report_ID, Repair_Log_ID, Bicycle_ID, Problem_Title, Date_IN, Mechanic_ID, Solution_Description, Tag) VALUES ('$Rid', '$RLid', '$Bid', '$Ptitle', '$Din',  '$Mid', '$SolnDesc', '$Tag')");
+            $this->db->prepareQuery("INSERT INTO reports(Report_ID, Repair_Log_ID, Bicycle_ID, Problem_Title, Date_IN, Mechanic_ID, Solution_Description, Tag) VALUES ('$Rid', '$RLid', '$Bid', '$Ptitle', '$Din',  '$Mid', '$SolnDesc', '$Tag')");
 
             if($this->db->executeStmt()){
                 return true;
@@ -67,6 +67,31 @@
             return $this->db->resultSet();
         }
 
+        public function getRepairLogDetails(){
+            $this->db->prepareQuery("SELECT * FROM repairlog WHERE status != 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getDashboardReports(){
+
+            $this->db->prepareQuery("SELECT * FROM reports where status = 0 order by loggedTimestamp desc limit 6");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getReportDetails(){
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status != 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+
+
+        
         // public function findUserByEmail($userEmail){
         //     $this->db->prepareQuery("SELECT * FROM repairlog where email = '$userEmail'");
         //     // $this->db->bind(':email', $userEmail);
