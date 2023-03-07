@@ -50,9 +50,9 @@
 
 
     <section class="upper__section">
-
+<!-- 
         <div class="upper__section--buttons cardd">
-            <!-- button class and put button into that classes -->
+            button class and put button into that classes
             <div class="admin--button">
                 <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/administrator'">
             </div>
@@ -65,7 +65,7 @@
             <div class="admin--button">
                 <input type="button" value="RIDERS" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/riders'">
             </div> 
-        </div>
+        </div> -->
 
         <!-- report card on the upper section of the display -->
             <a href="<?php echo URLROOT ?>/owners/reportsControl" style="text-decoration:none;color:black" class="anchor--card">

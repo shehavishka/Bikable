@@ -10,10 +10,10 @@ class Mechanics extends Controller
         $this->mechanicModel = $this->model('Mechanic');
     }
     
-    public function login(){
-        //if (session)
-        header('location:' . URLROOT . '/users/login');
-    }
+    // public function login(){
+    //     //if (session)
+    //     header('location:' . URLROOT . '/users/login');
+    // }
 
     public function mechanicLandPage(){
         /**
@@ -24,7 +24,7 @@ class Mechanics extends Controller
     
         //code will implement here
         $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
-        //$reportDetails = $this->mechanicModel->getDashboardReports();
+        $reportDetails = $this->mechanicModel->getDashboardReports();
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
             'dashboard_reports' => $reportDetails

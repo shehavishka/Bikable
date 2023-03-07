@@ -19,7 +19,6 @@
         ////////////////
         private $userModel;
 
-
         ///////////////
         // assigned 'User' model file
         //////////////
@@ -128,7 +127,7 @@
         ///////////////////////
         public function createUserSession($user){
             //store session data
-            $_SESSION['user_ID'] = $user->UserID;
+            $_SESSION['user_ID'] = $user->userID;
             $_SESSION['user_picture'] = $user->userPicture;
             $_SESSION['user_NIC'] = $user->NIC;
             $_SESSION['user_fName'] = $user->firstName;
@@ -140,20 +139,23 @@
 
             //redirect to the user's(owners) home
             // die("logged successfully");
-            // $this->view('owners/ownerLandPage');
+            $this->view('mechanics/mechanicLandPage');
             if(ucwords($_SESSION['user_role']) == 'Owner')
             {
-                redirect('owners/ownerLandPage');
+                // redirect('owners/ownerLandPage');
+                header('Location:'.URLROOT.'/owners/ownerLandPage');
             }
             else if(ucwords($_SESSION['user_role']) == 'Administrator')
             {
-                redirect('admins/adminLandPage');
+                // redirect('admins/adminLandPage');
+                header('Location:'.URLROOT.'/admins/adminLandPage');
             }
             else if(ucwords($_SESSION['user_role']) == 'Mechanic')
             {
                 redirect('mechanics/mechanicLandPage');
+                // header('Location:'.URLROOT.'/mechanics/mechanicLandPage');
             }
-            //redirect('owners/ownerLandPage');
+            // redirect('mechanics/mechanicLandPage');
         }
 
         ///////////////////////////////////

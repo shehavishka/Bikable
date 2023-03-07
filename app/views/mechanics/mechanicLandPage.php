@@ -48,25 +48,8 @@
         </div>
     </section>
 
-
+<!-- 
     <section class="upper__section">
-
-        <div class="upper__section--buttons cardd">
-            <!-- button class and put button into that classes -->
-            <div class="admin--button">
-                <input type="button" value="ADMIN" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/administrator'">
-            </div>
-            <div class="admin--button">
-                <input type="button" value="MECHANIC" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/mechanic'">
-            </div>
-            <div class="admin--button">
-                <input type="button" value="BICYCLE OWNER" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/bicycleOwner'">
-            </div>
-            <div class="admin--button">
-                <input type="button" value="RIDERS" class="btn" onclick="location.href='<?php echo URLROOT;?>/owners/riders'">
-            </div> 
-        </div>
-
         <!-- report card on the upper section of the display -->
             <a href="<?php echo URLROOT ?>/owners/reportsControl" style="text-decoration:none;color:black" class="anchor--card">
                 <div class="upper__section--reports cardd">
@@ -106,7 +89,7 @@
             </a>
 
         <!-- upper section repair log card -->
-        <a href="<?php echo URLROOT ?>/owners/addNewRepairLog" style="text-decoration:none;color:black">
+        <a href="<?php echo URLROOT ?>/mechanics/addNewRepairLog" style="text-decoration:none;color:black">
             <div class="upper__section--repairlog cardd">
                 <div class="upper__section__card--title">
                     Repair Log(Active)
@@ -196,7 +179,6 @@
                             <td>M</td>
                             <td>Inactive</td>
                         </tr>
-
                     </table>
                 </div>
             </div>
@@ -234,27 +216,10 @@
                                     labelClass: "marker-position",
                                     title: '<?php echo $oneObject->areaName; ?>'
                                 });
-                    <?php endforeach; ?>
-                        
+                    <?php endforeach; ?>      
                 }
             </script>
         </div>
-
-        <div class="lower_section--statistics">
-            <div class="lower__section__card--title">
-                Statistics
-            </div>
-
-            <div class="lower__section__statistics--body">
-                <div class="static__image">
-                    <!-- <h2>Image here</h2> -->
-                </div>
-                <div class="static__graph">
-                    <!-- <h2>Static graph here</h2> -->
-                </div>
-            </div>
-        </div>
-
     </section>
 </body>
 </html>
