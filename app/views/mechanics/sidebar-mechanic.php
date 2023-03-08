@@ -11,9 +11,8 @@
             </div>
             <div class="sidebar__detail">
                 <div class="detail detail__dashboard">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/mechanics/adminLandPage">Dashboard</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/mechanics/mechanicLandPage">Dashboard</a></div>
                 </div>
-                <hr>
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
@@ -32,7 +31,6 @@
                         <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/mechanics/bicyclesControl">Bicycles</a></div>
                     </div>
                 </div>
-                <hr>
                 <hr>
                 <div class="detail detail__reports">
                     <div class="detail__reports--title">
