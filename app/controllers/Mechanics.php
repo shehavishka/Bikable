@@ -29,13 +29,14 @@ class Mechanics extends Controller
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
             'dashboard_reports' => $reportDetails
+            'dashboard_'
         ];
 
     //  view details
         $this->view('mechanics/mechanicLandPage', $data);
     }
 
-    public function repairLogs(){
+    public function repairLogsControl(){
         /**
          * Task 
          *      1.) handle repair in the system
@@ -50,7 +51,7 @@ class Mechanics extends Controller
         ];
 
         //this is not load data from the data
-        $this->view('mechanics/repairLog', $data);
+        $this->view('mechanics/repairLogs', $data);
     }
 
     public function addLog()
@@ -197,50 +198,51 @@ class Mechanics extends Controller
 
 
 
+    // public function addReport()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         // process form
+    //         //init data
+    //         $data = [
+    //             'Rid' => trim($_POST['Report_ID']),
+    //             'RLid' => trim($_POST['Repair_Log_ID']),
+    //             'Bid' => trim($_POST['BicycleID']),
+    //             'Ptitle' => trim($_POST['Problem_Title']),
+    //             'Din' => trim($_POST['Date_In']),
+    //             'Tin' => trim($_POST['Time_In']),
+    //             'Mid' => trim($_POST['Mechanic_ID']),
+    //             'SolnDesc' => trim($_POST['SolutionDescription']),
+    //             'Tag' => trim($_POST['Tags']),
+
+    //             'Rid_err' => '',
+    //             'RLid_err' => '',
+    //             'Bid_err' => '',
+    //             'Ptitle_err' => '',
+    //             'Din_err' => '',
+    //             'Tin_err' => '',
+    //             'Mid_err' => '',
+    //             'SolnDesc_err' => '',
+    //             'Tag_err' => '',
+    //         ];
+    //         $this->mechanicModel->addReport($data);
+    //         redirect('mechanics/mechanicOp');
+    //     } else
+    //         $this->view('mechanics/addReport', [
+    //             'Rid_err' => '',
+    //             'RLid_err' => '',
+    //             'Bid_err' => '',
+    //             'Ptitle_err' => '',
+    //             'Din_err' => '',
+    //             'Tin_err' => '',
+    //             'Mid_err' => '',
+    //             'SolnDesc_err' => '',
+    //             'Tag_err' => '',
+    //         ]);
+    // }
+
+
+    // public function addReportToTheSystem()
     public function addReport()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // process form
-            //init data
-            $data = [
-                'Rid' => trim($_POST['Report_ID']),
-                'RLid' => trim($_POST['Repair_Log_ID']),
-                'Bid' => trim($_POST['BicycleID']),
-                'Ptitle' => trim($_POST['Problem_Title']),
-                'Din' => trim($_POST['Date_In']),
-                'Tin' => trim($_POST['Time_In']),
-                'Mid' => trim($_POST['Mechanic_ID']),
-                'SolnDesc' => trim($_POST['SolutionDescription']),
-                'Tag' => trim($_POST['Tags']),
-
-                'Rid_err' => '',
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
-                'Mid_err' => '',
-                'SolnDesc_err' => '',
-                'Tag_err' => '',
-            ];
-            $this->mechanicModel->addReport($data);
-            redirect('mechanics/mechanicOp');
-        } else
-            $this->view('mechanics/addReport', [
-                'Rid_err' => '',
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
-                'Mid_err' => '',
-                'SolnDesc_err' => '',
-                'Tag_err' => '',
-            ]);
-    }
-
-
-    public function addReportToTheSystem()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // process form

@@ -89,7 +89,7 @@
             </a>
 
         <!-- upper section repair log card -->
-        <a href="<?php echo URLROOT ?>/mechanics/addNewRepairLog" style="text-decoration:none;color:black">
+        <a href="<?php echo URLROOT ?>/mechanics/repairLogsControl" style="text-decoration:none;color:black">
             <div class="upper__section--repairlog cardd">
                 <div class="upper__section__card--title">
                     Repair Log(Active)
@@ -99,7 +99,7 @@
                     <table>
                         <tr>
                             <th>Log ID</th>
-                            <th>Bicyle ID</th>
+                            <th>Bicycle ID</th>
                             <th>Date in</th>
                         </tr>
 

@@ -9,14 +9,14 @@
 </head>
 <body>
     <!-- finalized side bar -->
-    <?php require APPROOT . '/views/inc/sidebar-mechanic.php'; ?>
+    <?php require 'sidebar-mechanic.php'; ?>
 
 
     <!-- In the framework right side of the web page view -->
     <section class="data_area">
 
         <!-- dashboard section -->
-        <?php require APPROOT . '/views/inc/header.php'; ?>
+        <?php require 'header.php'; ?>
 
         <!-- REAL DATA AREA -->
 
