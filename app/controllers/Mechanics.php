@@ -26,10 +26,11 @@ class Mechanics extends Controller
         //code will implement here
         $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
         $reportDetails = $this->mechanicModel->getDashboardReports();
+        $bicyclesDetails = $this->mechanicModel->getDashboardBicycles();
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
-            'dashboard_reports' => $reportDetails
-            'dashboard_'
+            'dashboard_reports' => $reportDetails,
+            'dashboard_bicycles' => $bicyclesDetails
         ];
 
     //  view details
