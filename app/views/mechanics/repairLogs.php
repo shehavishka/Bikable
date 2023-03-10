@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/repairLogs.css">
-    <title>Repair Logs</title>
+    <title>Repair Log</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -13,85 +13,133 @@
 
 
     <!-- In the framework right side of the web page view -->
-    <section class="data_area">
+    <section class="admin_data_area">
 
         <!-- dashboard section -->
         <?php require 'header.php'; ?>
 
         <!-- REAL DATA AREA -->
-        <form action="<?php echo URLROOT;?>/mechanics/deleteRepairLog" method="POST" id="userInterface">
-            <input type="hidden" name="logID" value="<?php echo $data['logDetailObject']->logID;?>" id="logID">
-            <!-- admin real data top -->
-            <div class="data__area--top">
-                <div class="data__area__top--title">Repair Logs</div>
-                <div class="data_area__top--twobuttons">
-                    <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/mechanic/repairLogs'">
-                    </div>
-                    <div class="delete_user_button">
-                        <input type="submit" class="btn btn_delete" value="Delete">
-                    </div>
-                </div>
 
+        <!-- admin real data top -->
+        <div class="admin__data__area--top">
+            <div class="admin__data__area__top--title">Repair Log</div>
+            <div class="admin__data_area__top--twobuttons">
+                <div class="add_user_button">
+                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/archivedRepairLogControl'">
+                </div>
+                
+                <form action="<?php echo URLROOT;?>/mechanics/archiveRepairLogs" method="POST" id="userInterface">
+                <div class="delete_user_button">
+                    <input type="submit" class="btn btn_delete" value="Archive Selected">
+                </div>
             </div>
 
-            <div class="data__area--detail">
+        </div>
 
-                <div class="data__area__detail--logID">
-                        <div class="data--name--label">Repair Log ID: </div>
-                        <div class="data--name--content"><?php echo $data['logDetailObject']->logID;?></div>
-                </div>
+        <div class="admin__table__area">
+            <table>
+                <tr>
+                    <th style="width: 3%;"></th>
+                    <th style="width: 5%;">Log ID</th>
+                    <th style="width: 6%;">Mechanic ID</th>
+                    <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 10%;">Problem Title</th>
+                    <th style="width: 15%;">Problem Description</th>
+                    <!-- <th style="width: 8%;">Estimated Cost</th> -->
+                    <th style="width: 5%;">Final Cost</th>
+                    <th style="width: 7%;">Date In</th>
+                    <th style="width: 7%;">Date Out</th>
+                    <th style="width: 20%;">Repair Notes</th>
+                    <th style="width: 7%;">Report ID</th>
+                    <th style="width: 5%;"></th>
 
-                <div class="data__area__detail--mechanicID">
-                        <div class="data--name--label">Mechanic ID: </div>
-                        <div class="data--name--content"><?php echo $data['logDetailObject']->mechanicID;?></div>
-                </div>
+                    <?php foreach($data['repairLog_details'] as $oneObject) : ?>
+                    <tr>
+                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->logID ?>"></td>
+                        <td><?php echo $oneObject->logID ?></td>
+                        <td><?php echo $oneObject->mechanicID ?></td>
+                        <td><?php echo $oneObject->bicycleID ?></td>
+                        <td><?php echo $oneObject->problemTitle ?></td>
+                        <td><?php 
+                                if(!$oneObject->problemDescription){
+                                    echo "-";
+                                }else{
+                                    echo $oneObject->problemDescription;
+                                }
+                            ?>
+                        </td>
+                        <!-- <td><?php echo $oneObject->	estCost ?></td> -->
+                        <td><?php 
+                                if(!$oneObject->finalCost){
+                                    echo "-";
+                                }else{
+                                    echo $oneObject->finalCost;
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo $oneObject->	dateIn ?></td>
+                        <td><?php 
+                                if(!$oneObject->dateOut){
+                                    echo "-";
+                                }else{
+                                    echo $oneObject->dateOut;
+                                }
+                            ?>
+                        </td>
+                        <td><?php 
+                                if(!$oneObject->repairNotes){
+                                    echo "-";
+                                }else if(strlen($oneObject->repairNotes) > 50){
+                                    echo substr($oneObject->repairNotes, 0, 50) . "...";
+                                }else{
+                                    echo $oneObject->repairNotes;
+                                }
+                                // echo $oneObject->	repairNotes ?></td>
+                        <td><?php 
+                                if(!$oneObject->reportID){
+                                    echo "-";
+                                }else{
+                                    echo $oneObject->reportID;
+                                }
+                            ?>
+                        </td>
+                        <td>
+                        <!-- update icon svg format -->
+                        <a href="<?php echo URLROOT;?>/mechanics/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/viewIcon1.png" alt="edit"></a>
+                    </tr>
+                <?php endforeach; ?>
 
-                <div class="data__area__detail--bicycleID">
-                        <div class="data--name--label">Bicycle ID: </div>
-                        <div class="data--name--content"><?php echo $data['logDetailObject']->bicycleID;?></div>
-                </div>
+            </table>
+            </form>
+        </div>
+    </section>
 
-                <div class="data__area__detail--problemTitle">
-                        <div class="data--name--label">Problem Title: </div>
-                        <div class="data--name--content"><?php echo $data['logDetailObject']->problemTitle;?></div>
-                </div>
+    <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the form from submitting
 
-                <div class="data__area__detail--problemDescription">
-                        <div class="data--name--label">Problem Description: </div>
-                        <div class="data--name--content"><?php if($data['logDetailObject']->problemDescription){echo $data['logDetailObject']->problemDescription;}else{echo "-";}?></div>
-                </div>
+        // get all the checkboxes in the table
+        const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
 
-                <div class="data__area__detail--estCost">
-                        <div class="data--name--label">Estimated Cost: </div>
-                        <div class="data--name--content"><?php echo "LKR ".$data['logDetailObject']->estCost;?></div>
-                </div>
+        // collect the values of the checked checkboxes
+        const selectedRows = [];
+        checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            selectedRows.push(checkbox.value);
+        }
+        });
 
-                <div class="data__area__detail--finalCost">
-                        <div class="data--name--label">Final Cost: </div>
-                        <div class="data--name--content"><?php if($data['logDetailObject']->finalCost){echo "LKR ".$data['logDetailObject']->finalCost;}else{echo "-";}?></div>
-                </div>
+        // add the selected rows to a hidden input field in the form
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'selectedRows');
+        input.setAttribute('value', JSON.stringify(selectedRows));
+        this.appendChild(input);
 
-                <div class="data__area__detail--dateIn">
-                        <div class="data--name--label">Date In: </div>
-                        <div class="data--name--content"><?php echo $data['logDetailObject']->dateIn;?></div>
-                </div>
+        // submit the form
+        this.submit();
+    });
+    </script>
 
-                <div class="data__area__detail--dateOut">
-                        <div class="data--name--label">Date Out: </div>
-                        <div class="data--name--content"><?php if($data['logDetailObject']->dateOut){echo $data['logDetailObject']->dateOut;}else{echo "-";}?></div>
-                </div>
-
-                <div class="data__area__detail--repairNotes">
-                        <div class="data--name--label">Repair Notes: </div>
-                        <div class="data--name--content"> <?php if($data['logDetailObject']->repairNotes){echo $data['logDetailObject']->repairNotes;}else{echo "-";}?></div>
-                </div>
-
-                <div class="data__area__detail--reportID">
-                        <div class="data--name--label">Report ID: </div>
-                        <div class="data--name--content"><?php if($data['logDetailObject']->reportID){echo $data['logDetailObject']->reportID;}else{echo "-";}?></div>
-                </div>
-
-            </div>
-
-        </form>
+</body>
+</html>

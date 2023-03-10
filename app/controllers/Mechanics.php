@@ -26,11 +26,11 @@ class Mechanics extends Controller
         //code will implement here
         $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
         $reportDetails = $this->mechanicModel->getDashboardReports();
-        $bicyclesDetails = $this->mechanicModel->getDashboardBicycles();
+        // $bicyclesDetails = $this->mechanicModel->getDashboardBicycles();
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
             'dashboard_reports' => $reportDetails,
-            'dashboard_bicycles' => $bicyclesDetails
+            // 'dashboard_bicycles' => $bicyclesDetails
         ];
 
     //  view details
@@ -54,6 +54,20 @@ class Mechanics extends Controller
         //this is not load data from the data
         $this->view('mechanics/repairLogs', $data);
     }
+
+    public function viewRepairLog(){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $data = [
+                'logID' => intval(trim($_GET['logID'])),
+                'logDetailObject' => ''
+            ];
+            $data['logDetailObject'] = $prespectiveUserDetail = $this->mechanicModel->findLogbyID($data['logID']);
+            $this->view('mechanics/viewRepairLog', $data);
+        }else{
+            die("button didn't work correctly.");
+        }            
+    }
+  
 
     public function addLog()
     {

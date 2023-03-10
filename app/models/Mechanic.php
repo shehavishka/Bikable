@@ -89,20 +89,31 @@
             return $this->db->resultSet();
         }
 
+        public function findLogbyID($LogID){
+            $this->db->prepareQuery("SELECT * FROM repairlog where logID = '$logID'");
+
+            $row = $this->db->single();
+
+            //check
+            if($this->db->rowCount()>0){
+                return $row;
+            }else{
+                return false;
+            }
+        }
 
 
         
-        // public function findUserByEmail($userEmail){
-        //     $this->db->prepareQuery("SELECT * FROM repairlog where email = '$userEmail'");
-        //     // $this->db->bind(':email', $userEmail);
+        public function findReportbyID($reportID){
+            $this->db->prepareQuery("SELECT * FROM reports where reportID = '$reportID'");
 
-        //     $this->db->single();
+            $row = $this->db->single();
 
-        //     //check row
-        //     if($this->db->rowCount() > 0){
-        //         return true;
-        //     }else{
-        //         return false;
-        //     }
-        // }
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            }
+        }
     }

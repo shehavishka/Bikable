@@ -111,14 +111,15 @@ img{
     color: white;
     background: black;
     border-radius: 20px;
-    letter-spacing: 2px;
-
-    margin-left: 35px;
-    font-size: 15px;
     font-weight: var(--fw-bold);
-    font-family: var(--ff-family);
+    letter-spacing: 1px;
 
     transition: 500ms;
+
+    margin-left: 35px;
+    padding: 2%;
+
+    font-family: var(--ff-family);
 }
 
 .btn_add{
@@ -155,7 +156,7 @@ input[type="checkbox"]{
 /* ********************************************************************************************************* */
 /* //////////////////////////////////// ADMIN DATA AREA ///////////////////////////////////////////////////// */
 
-.data_area{
+.admin_data_area{
     /* margin-top: 3rem; */
     width: 100%;
     background-color: var(--clr-light);
@@ -240,7 +241,7 @@ img{
 /* ********************************************************************************************************* */
 /* ///////////////////////////////  REAL DATA AREA TOP TITLE AND TWO BUTTON ROW//////////////////////////// */
 
-.data__area--top{
+.admin__data__area--top{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -250,13 +251,13 @@ img{
     margin-right: 2%;
 }
 
-.data__area__top--title{
+.admin__data__area__top--title{
     font-size: 2rem;
     margin-left: 1%;
     font-weight: var(--fw-lightBold);
 }
 
-.data_area__top--twobuttons{
+.admin__data_area__top--twobuttons{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -265,48 +266,34 @@ img{
 }
 
 /* **************************************************************************************************************** */
-/* //////////////////////////////   DATA AREA //////////////////////////////////////////////////////////////// */
+/* //////////////////////////////   GRID DATA AREA //////////////////////////////////////////////////////////////// */
 
-/* detail box decoration */
-
-.detailbox{
-    border-color: black;
-    outline: none;
-    border-radius: 8px;
-    font-size: 100%;
-    /* font-family: inherit; */
-    /* color: white; */
-    /* background-color: #7c7c7c7c; */
-    padding: 0.3em 1em 0.3em 1.5em;
-    width: 60%;
-    /* margin-bottom: 2%; */
+.admin__table__area{
+    padding: 1%;
 }
 
-/* NAME  PART */
-/* first name and surname location set up */
-.data__area--detail{
-    margin-left: 1.5%;
+table{
+    /* margin: 1%; */
+    padding: 1%;
+    width: 100%;
+    /* border-spacing: 12px */
+    /* border-collapse: collapse; */
 }
 
-.data__area__detail--role{
-    margin-top: 2%;
+/* tr:nth-child(even) {
+    background-color: #d9d9d9;
+} */
+
+
+th{
+    font-size: medium;
+    color: gray;
+    text-align: left;
 }
 
-.detailbox_userrole{
-    width: 50%;
+td{
+    text-align: left;
+    border-spacing: 12px;
+    /* border-bottom: 1px solid #000; */
 }
 
-.data--name--label{
-    display: inline-block;
-    /* font-size: 1.5rem; */
-    width: 10%;
-    font-weight: var(--fw-lightBold);
-    margin: 0.5%;
-}
-
-.data--name--content{
-    display: inline-block;
-    /* font-size: 1.5rem; */
-    font-weight: var(--fw-lightBold);
-    margin-left: 2%;
-}
