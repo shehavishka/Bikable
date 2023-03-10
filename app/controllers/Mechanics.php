@@ -26,10 +26,12 @@ class Mechanics extends Controller
         //code will implement here
         $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
         $reportDetails = $this->mechanicModel->getDashboardReports();
+        $DADetails = $this->mechanicModel->getDashboardDA();
         // $bicyclesDetails = $this->mechanicModel->getDashboardBicycles();
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
             'dashboard_reports' => $reportDetails,
+            'docking_areas_details' => $DADetails,
             // 'dashboard_bicycles' => $bicyclesDetails
         ];
 
@@ -48,7 +50,7 @@ class Mechanics extends Controller
         //code will implement here
         $repairLogDetails = $this->mechanicModel->getRepairLogDetails();
         $data = [
-            'report_details' => $repairLogDetails
+            'repairLog_details' => $repairLogDetails
         ];
 
         //this is not load data from the data
@@ -67,6 +69,8 @@ class Mechanics extends Controller
             die("button didn't work correctly.");
         }            
     }
+
+    
   
 
     public function addLog()
@@ -367,4 +371,23 @@ class Mechanics extends Controller
             }
         }
     }
+
+    public function dockingAreas(){
+            /**
+             *     Tasks
+             *          1.) Load the data 
+             *          2.) View the data
+             *  */ 
+            
+            // load admin's DA control
+            //code will implement here
+            $DADetails = $this->mechanicModel->getDADetails();
+            $data = [
+                'docking_area_details' => $DADetails
+            ];
+            
+            //view details
+            $this->view('admins/dockingareas', $data);
+        }
+        
 }

@@ -42,6 +42,8 @@ table{
     width: 100%;
 }
 
+
+
 th{
     font-size: small;
     color: gray;
@@ -62,11 +64,11 @@ body{
 }
 
 /* UPPER SECTION */
-.upper__section{
-    display: grid;
-    grid-template-columns: .75fr 2fr 2fr 2fr;
+.upper_section{
+    display: grid;,
+    grid-template-columns:  1fr 1fr 1fr;
     grid-template-areas: 
-        "one two three four"
+        "two three four"
     ;
 
     /* background-color: lightblue; */
@@ -154,7 +156,7 @@ body{
 
 
 
-.lower_section--statistics{
+/* .lower_section--statistics{
     background-color: #D9D9D9;
     grid-area: righter;
     margin: 0% 2%;
@@ -162,7 +164,7 @@ body{
     padding: 2rem 2rem;
     padding-bottom: 2rem;
 
-}
+} */
 
 
 .lower__section__card--title{
@@ -171,7 +173,7 @@ body{
 
 /* static card */
 
-.static__image{
+/* .static__image{
     height: 26vh;
     background-image: url('http://localhost/Bikable/images/owners/landPageImages/stat.png');
     background-position: center;
@@ -179,9 +181,9 @@ body{
     background-blend-mode: multiply;
 
     border-radius: 5px;
-}
+} */
 
-.static__graph{
+/* .static__graph{
     height: 16vh;
     background-image: url('http://localhost/Bikable/images/owners/landPageImages/graph.png');
     background-position: center;
@@ -189,7 +191,7 @@ body{
     background-blend-mode: multiply;
 
     border-radius: 5px;
-}
+} */
 
 /* **************************************************************************************************************** */
 /* button adjustment */

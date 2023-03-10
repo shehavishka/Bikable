@@ -90,7 +90,7 @@
         }
 
         public function findLogbyID($LogID){
-            $this->db->prepareQuery("SELECT * FROM repairlog where logID = '$logID'");
+            $this->db->prepareQuery("SELECT * FROM repairlog where logID = '$LogID'");
 
             $row = $this->db->single();
 
@@ -101,10 +101,8 @@
                 return false;
             }
         }
-
-
         
-        public function findReportbyID($reportID){
+        public function findReportByID($reportID){
             $this->db->prepareQuery("SELECT * FROM reports where reportID = '$reportID'");
 
             $row = $this->db->single();
@@ -116,4 +114,45 @@
                 return false;
             }
         }
+
+        public function getDADetails(){
+            $this->db->prepareQuery("SELECT * FROM dockingareas where status !=3");
+
+            //Takes data from the database and send them to the controller
+            return $this->db->resultSet();
+        }
+
+        public function getArchivedRepairLogDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM repairLog WHERE status = 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getArchivedReportDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status = 3");
+        // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function findAreaByID($areaID){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
+
+            $row = $this -> db -> single();
+
+            if($this->db->rowcount() > 0){
+                return $row;
+            }else{
+                return false;
+            }
+        }
+        
+        public function getDashboardDA(){
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status !=3");
+            return $this->db->resultSet();
+        }
+
     }

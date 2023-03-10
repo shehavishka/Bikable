@@ -51,6 +51,7 @@
 <!-- 
     <section class="upper__section">
         <!-- report card on the upper section of the display -->
+        <div class = "upper_section">
             <a href="<?php echo URLROOT ?>/mechanics/reportsControl" style="text-decoration:none;color:black" class="anchor--card">
                 <div class="upper__section--reports cardd">
                         <div class="upper__section__card--title" style="text-decoration:none">
@@ -184,6 +185,7 @@
             </div>
         </a>
     </section>
+    </div>
 
     <!-- ***************************************************************************************************************** -->
     <section class="lower__section">
@@ -203,7 +205,7 @@
 
                     map = new google.maps.Map(mapLayer, defaultOptions);
                     
-                    <?php foreach($data['docking_areas_details'] as $oneObject) : ?>
+                    <?php foreach($data['docking_area_details'] as $oneObject) : ?>
 
                                 var latitude = <?php echo $oneObject->locationLat; ?>;
                                 var longitude = <?php echo $oneObject->locationLong; ?>
@@ -212,14 +214,15 @@
                                     position: new google.maps.LatLng(latitude, longitude),
                                     map: map,
                                     icon: {url:"<?php echo URLROOT; ?>/public/images/mechanics/landPageImages/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},
-                                    label: {text: '<?php echo $oneObject->currentNoOfBikes; ?>', color: "white", fontFamily:"SF Pro Rounded"},
-                                    labelClass: "marker-position",
-                                    title: '<?php echo $oneObject->areaName; ?>'
+                                    // label: {text: '<?php echo $oneObject->currentNoOfBikes; ?>', color: "white", fontFamily:"SF Pro Rounded"},
+                                    // labelClass: "marker-position",
+                                    // title: '<?php echo $oneObject->areaName; ?>'
                                 });
                     <?php endforeach; ?>      
                 }
             </script>
         </div>
     </section>
+    <
 </body>
 </html>
