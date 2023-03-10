@@ -62,6 +62,12 @@
                         lng: position.coords.longitude,
                     };
 
+                    // var watchId = navigator.geolocation.watchPosition(function(position) {
+                    // var lat = position.coords.latitude;
+                    // var lng = position.coords.longitude;
+                    // // update the user's location on the map                    
+                    // });
+
                     infoWindow.setPosition(pos);
                     infoWindow.setContent("Location found.");
                     infoWindow.open(map);

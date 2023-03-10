@@ -270,6 +270,15 @@ body{
     flex-direction: column;
 }
 
+#error{
+    display:flex;
+    position: absolute;
+    bottom: 100px;
+    left: 9%;
+    color: red;
+    align-self: center;
+}
+
 #lower_section{
     position: absolute;
     display: flex;

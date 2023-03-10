@@ -51,17 +51,21 @@
                     <h1>Start Ride</h1>
                 </div>
                 <!-- <a href="<?php echo URLROOT;?>/riders/riderLandPage" onclick="location.href=res;return false;"><img src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start"></a> -->
-                <form action="<?php echo URLROOT;?>/riders/activeRide" id="start_form">
+                <form action="<?php echo URLROOT;?>/riders/activeRide" id="start_form" method="POST">
                     <!-- <a id="outputData2">
                         <img src="<?php echo URLROOT;?>/public/images/general/startIcon.png">
                     </a> -->
-                    <input type="hidden" name="userID" value="<?php echo $_SESSION['user_ID'];?>">
+                    <input type="hidden" name="userID" value="<?php echo $_SESSION['user_ID']; ?>">
                     <input type="hidden" name="bicycleID" value="0" id="bicycle_ID">
-                    <input type="image" src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start">
-                <form>
+                    <input type="hidden" name="userLat" value="0" id="userLat">
+                    <input type="hidden" name="userLong" value="0" id="userLong">
+                    <input type="image" id="submit" src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start" onclick="getUserPos()">
+                </form>
             </div>
         </div>
-        
+        <div id="error">
+            <?php echo $data['rideDetailObject_err']?>
+        </div>
         <div id="lower_section">
             <div id="paymentM_button">
                 <a href="<?php echo URLROOT;?>/riders/riderLandPage"><img src="<?php echo URLROOT;?>/public/images/general/payIcon.png" alt="payM"></a>
@@ -83,6 +87,8 @@
 
         const start_form = document.getElementById("start_form");
         const bicycle_ID = document.getElementById("bicycle_ID");
+        const userLat = document.getElementById("userLat");
+        const userLong = document.getElementById("userLong");
         
         const video = document.createElement("video");
         const canvasElement = document.getElementById("qr-canvas");
@@ -133,19 +139,38 @@
         };
 
         function tick() {
-        canvasElement.height = video.videoHeight;
-        canvasElement.width = video.videoWidth;
-        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
 
-        scanning && requestAnimationFrame(tick);
+            scanning && requestAnimationFrame(tick);
         }
 
         function scan() {
-        try {
-            qrcode.decode();
-        } catch (e) {
-            setTimeout(scan, 300);
+            try {
+                qrcode.decode();
+            } catch (e) {
+                setTimeout(scan, 300);
+            }
         }
+
+        //function to get user position with geolocation in terms of lat and long and give it to the userLat and userLong hidden inputs
+        function getUserPos() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    userLat.value = pos.lat;
+                    userLong.value = pos.lng;
+                    start_form.submit();
+                    },
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
     </script>
 </body>

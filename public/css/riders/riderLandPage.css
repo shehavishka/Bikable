@@ -145,6 +145,15 @@ body{
     justify-content: center;
 }
 
+#marker-position{
+    font-size: "40px";
+}
+
+.big_marker{
+    font-size: "100px";
+    color: #ffffff;
+    font-family:"SF Pro Rounded";
+}
 
 /* ***************************************************************************************************** */
 /* control imag behaviour */
