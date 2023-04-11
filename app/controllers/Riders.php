@@ -32,6 +32,25 @@
             $this->view('riders/riderLandPage', $data);
         }
 
+        public function getMapDADetails(){
+            $id = $_GET['q'];
+            $lat = $_GET['lat'];
+            $long = $_GET['long'];
+
+            // echo($lat);
+
+            $data = $this->riderModel->getDADetails($id);
+
+            //calculate the distance between the user and the docking area
+            $distance = $this->distance($lat, $long, $data->locationLat, $data->locationLong);
+
+            //add the distance to the data object rounded to 2 decimal places
+            $data->distance = round($distance, 2);
+
+            //send the data var back to xhttp as a encoded json
+            echo json_encode($data);
+        }
+
         public function scanQR(){
             $data = [
                 'rideDetailObject_err' => '',
@@ -151,6 +170,20 @@
             }else{
                 return false;
             }
+        }
+
+        function distance($x1, $y1, $x2, $y2) {
+            
+            if (($x1 == $x2) && ($y1 == $y2)) {
+                return 0;
+            }else{
+                $theta = $y1 - $y2;
+                $dist = sin(deg2rad($x1)) * sin(deg2rad($x2)) +  cos(deg2rad($x1)) * cos(deg2rad($x2)) * cos(deg2rad($theta));
+                $dist = acos($dist);
+                $dist = rad2deg($dist);
+                $km = $dist * 60 * 1.1515 * 1.609344;
+            }
+            return $km;
         }
 
     }

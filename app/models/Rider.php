@@ -13,6 +13,13 @@
             return $this->db->resultSet();
         }
 
+        public function getDADetails($id){
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE areaID = $id");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->single();
+        }
+
         public function getBikeDetails(){
 
             $this->db->prepareQuery("SELECT * FROM bicycles WHERE status != 3");
