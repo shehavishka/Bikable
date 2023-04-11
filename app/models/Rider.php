@@ -31,9 +31,12 @@
         public function createRide($data){
             $userID = intval($data['userID']); //should be int
             $bicycleID = intval($data['bicycleID']); //should be int
-            $timeStamp = intval($data['timeStamp']); //should be int
+            $timeStamp = $data['timeStamp']; //should be int
+            $startArea = intval($data['startArea']); //should be int
+            $payMethod = intval($data['payMethod']); //should be int
+            $status = 1;
 
-            $temp = "INSERT INTO ridelog (riderID, bicycleID, rideStartTimeStamp) VALUES ($userID, $bicycleID, $timeStamp)";
+            $temp = "INSERT INTO ridelog (riderID, bicycleID, status, startAreaID, rideStartTimeStamp, payMethod) VALUES ($userID, $bicycleID, $status, $startArea, '$timeStamp', $payMethod)";
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){

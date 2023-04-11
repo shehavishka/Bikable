@@ -69,13 +69,17 @@
                     'bicycleID' => intval(trim($_POST['bicycleID'])),
                     'userLat' => $_POST['userLat'],
                     'userLong' => $_POST['userLong'],
-                    // 'payM' => $_POST['payM'],
+                    // 'payMethod' => $_POST['payM'], for now we'll just use 1
+                    'payMethod' => 1,
+                    'startArea' => '',
                     'timeStamp' => '',
                     'mapDetails' => '',
                     'rideDetailObject' => ''
                 ];
 
-                $data['timeStamp'] = time();
+                $current_timestamp = time();
+                $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
+                
                 $data['mapDetails'] = $this->riderModel->riderLandPageMapDetails();
                 
                 //use mapDetails info to get lat and long of all docking areas and use closestPoint to find the closest area and then use withinRadius to check if it's accepted
@@ -84,10 +88,12 @@
                     $points[] = [$point->locationLat, $point->locationLong];
                 }
                 $closestPoint = $this->closestPoint($data['userLat'], $data['userLong'], $points);
-                
-                $within = $this->withinRadius($data['userLat'], $data['userLong'], $data['mapDetails'][$closestPoint]->locationLat, $data['mapDetails'][$closestPoint]->locationLong, $data['mapDetails'][$closestPoint]->locationRadius);
+                $distance = $this->distance($data['userLat'], $data['userLong'], $data['mapDetails'][$closestPoint]->locationLat, $data['mapDetails'][$closestPoint]->locationLong);
+                $within = $this->withinRadius($distance, $data['mapDetails'][$closestPoint]->locationRadius);
                 if($within){
                     // if it's within the radius, we create the ride
+                    $data['startArea'] = $data['mapDetails'][$closestPoint]->areaID;
+
                     $data['rideDetailObject'] = $this->riderModel->createRide($data);
                     $this->view('riders/ongoingRide', $data);
                 }
@@ -103,9 +109,12 @@
                 print_r($data['bicycleID']. "  ");
                 print_r($data['userLat']. "  ");
                 print_r($data['userLong']. "  ");
+                print_r($current_timestamp. "  ");
                 print_r($data['timeStamp']. "  ");
                 print_r($data['mapDetails'][$closestPoint]->areaName. "  ". $data['mapDetails'][$closestPoint]->locationRadius. "  ");
-                print((int)$within. " ");
+                print_r(round($distance, 5). "  ");
+                print($within. " ");
+                echo date_default_timezone_get();
   
 
             }elseif($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -153,22 +162,22 @@
         //inputs: x and y coordinates of two points, radius
         //output: true or false
 
-        function withinRadius($x1, $y1, $x2, $y2, $radius) {
+        function withinRadius($km, $radius) {
             
-            if (($x1 == $x2) && ($y1 == $y2)) {
-                return 0;
-            }else{
-                $theta = $y1 - $y2;
-                $dist = sin(deg2rad($x1)) * sin(deg2rad($x2)) +  cos(deg2rad($x1)) * cos(deg2rad($x2)) * cos(deg2rad($theta));
-                $dist = acos($dist);
-                $dist = rad2deg($dist);
-                $km = $dist * 60 * 1.1515 * 1.609344;
-            }
+            // if (($x1 == $x2) && ($y1 == $y2)) {
+            //     return 0;
+            // }else{
+            //     $theta = $y1 - $y2;
+            //     $dist = sin(deg2rad($x1)) * sin(deg2rad($x2)) +  cos(deg2rad($x1)) * cos(deg2rad($x2)) * cos(deg2rad($theta));
+            //     $dist = acos($dist);
+            //     $dist = rad2deg($dist);
+            //     $km = $dist * 60 * 1.1515 * 1.609344;
+            // }
             //die($km);
             if ($km <= $radius) {
-                return true;
+                return 1;
             }else{
-                return false;
+                return 0;
             }
         }
 
