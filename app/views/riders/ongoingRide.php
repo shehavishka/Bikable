@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/riderLandPage.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/ongoingRide.css">
     <title>Ongoing Ride</title>
 </head>
 <body>
-    <div id="floating-panel">
-        <!-- logged in user's name -->
+    <!-- <div id="floating-panel">
         <div id="welcome_message">
             <h1>Hi <?php echo $_SESSION['user_fName']; ?></h1>
             <div id="sub-text">
@@ -19,6 +18,48 @@
 
         <div id="scan_button">
             <a href="<?php echo URLROOT;?>/riders/scanQR"><img src="<?php echo URLROOT;?>/public/images/general/scanIcon1.png" alt="scan"></a>
+        </div>
+    </div> -->
+
+    <div class="floating-panel" id="floating-panel">
+        <div class="welcome" id="welcome_message">
+            <div id="main-text">
+                <h1>RIDE ACTIVE</h1>
+            </div>
+            <div id="sub-text">
+                Your ride started at <?php echo $data['timeStamp'] ?>
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="info_1">
+                <div class="info_number" id="time_spent">
+                    0min
+                </div>                    
+                <div class="info_title">
+                    Time Spent
+                </div>
+            </div>
+            <div class="vl"></div>
+            <div class="info_2" id="distance">
+                <div class="info_number" id="current_fare">
+                    0/=
+                </div>
+                <div class="info_title">
+                    Current Fare
+                </div>
+            </div>
+        </div>
+
+            <!-- div for two buttons, cross and directions -->
+        <div class="action_buttons">
+            <div id="closest_DA">
+                <a href="<?php echo URLROOT;?>/riders/scanQR">Closest Area</a>
+            </div>
+
+            <div id="end_ride">
+                <a href="<?php echo URLROOT;?>/riders/scanQR"><div id ="white_text">End Ride</div></a>
+            </div>
         </div>
     </div>
 
