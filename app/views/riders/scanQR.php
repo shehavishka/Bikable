@@ -59,7 +59,7 @@
                     <input type="hidden" name="bicycleID" value="0" id="bicycle_ID">
                     <input type="hidden" name="userLat" value="0" id="userLat">
                     <input type="hidden" name="userLong" value="0" id="userLong">
-                    <input type="image" id="submit" src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start" onclick="getUserPos()">
+                    <input type="image" id="submit" src="<?php echo URLROOT;?>/public/images/general/startIcon.png" alt="start" onclick="getUserPos(event)">
                 </form>
             </div>
         </div>
@@ -155,7 +155,8 @@
         }
 
         //function to get user position with geolocation in terms of lat and long and give it to the userLat and userLong hidden inputs
-        function getUserPos() {
+        function getUserPos(event) {
+            event.preventDefault(); // prevent default form submission behavior
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
