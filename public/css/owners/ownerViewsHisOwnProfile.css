@@ -7,7 +7,7 @@
 /* get local font to the webpage */
 @font-face {
     font-family: 'sfmy-regular';
-    src: url('fonts/SF-Pro-Rounded-Regular.otf');
+    src:url('../../fonts/SF-Pro-Rounded-Regular.otf');
 }
 
 /* import font */
@@ -306,18 +306,7 @@ img{
     margin-left: 15%;
 }
 
-.dropdown_area{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    cursor: pointer;
-    margin-left: 10%;
-    box-shadow: 0px 2px 20px rgba(0,0,0,0.8); /* add a shadow */
-}
+
 
 .detail__view--card{
     padding: 2% 10%;

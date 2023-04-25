@@ -101,7 +101,7 @@
                         <div class="user_detail_x">
                             <label>Role</label>
                             <div class="user__data">
-                                Mechanic
+                                Owner
                             </div>
                         </div>
                         
