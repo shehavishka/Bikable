@@ -38,8 +38,14 @@
         <section class="data__area">
             <div class="left--side">
                 <div class="profile__picture--card">
-                    <div> 
-                        <h1>Image</h1>
+                    <div class="dropdown_area" style="background-image: url(
+                            <?php 
+                                if($data['userDetailObject']->userPicture != null){
+                                    echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
+                                }else{
+                                    echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
+                                }
+                            ?>);">
                     </div>
                     <div class="user_history">
                         <div class="user_detail_x">
