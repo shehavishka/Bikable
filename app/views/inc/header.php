@@ -3,7 +3,7 @@
 </head>
 <section class="dashboard--header">
             <div class="dashboard__header--search">
-                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
+                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
                 <div class="dashboard__header--searchicon">
                     <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
                 </div>
