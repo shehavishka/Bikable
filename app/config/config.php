@@ -19,4 +19,4 @@
     //google API details
     define('API_KEY','AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM');
 
-    date_default_timezone_set('GMT');
+    date_default_timezone_set('Asia/Calcutta');

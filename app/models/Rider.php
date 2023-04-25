@@ -31,7 +31,7 @@
         public function createRide($data){
             $userID = intval($data['userID']); //should be int
             $bicycleID = intval($data['bicycleID']); //should be int
-            $timeStamp = $data['timeStamp']; //should be int
+            $timeStamp = $data['timeStamp'];
             $startArea = intval($data['startArea']); //should be int
             $payMethod = intval($data['payMethod']); //should be int
             $status = 1;
@@ -46,6 +46,12 @@
             }
         }
 
+        public function getLastInsertedRideLogID(){
+            //use last insert id sql feature
+            $lastInsertedId = $this->db->lastInsertId();
+            return $lastInsertedId;
+        }
+
         public function getRideDetails($rideID){
             $this->db->prepareQuery("SELECT * FROM ridelog WHERE rideID = $rideID");
 
@@ -53,6 +59,7 @@
             return $this->db->single();
         }
 
+        //needs modification to check for the ride status and stuff.. currently invalid
         public function getCurrentRideDetails($userID){
             $this->db->prepareQuery("SELECT * FROM ridelog WHERE riderID = $userID AND rideEndTimeStamp IS NULL");
 
