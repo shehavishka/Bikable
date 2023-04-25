@@ -9,111 +9,15 @@
 </head>
 <body>
     <!-- finalized side bar -->
-    <section class="sidebar">
-        <div class="viewData ">
-            <div class="sidebar--logo">
-                <div class="sidebar--logo--img">
-                    <img src="images/bikableLogo/logo.PNG" alt="">
-                </div>
-            </div>
-            <div class="sidebar__detail">
-                <div class="detail detail__dashboard">
-                    Dashboard
-                </div>
-                <hr>
-                <div class="detail detail__users">
-                    <div class="detail__users--title">
-                        Users
-                    </div>
-                    <div class="detail__users--submenu">
-                        <div class="submenu users__submenu--mechanic">
-                            Mechanic
-                        </div>
-                        <div class="submenu users__submenu--riders">
-                            Riders
-                        </div>
-                        <div class="submenu users__submenu--bicycleOwners">
-                            Bicycle Owners
-                        </div>
-                        <div class="submenu users__submenu--administrators">
-                            Administrators
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="detail detail__repairLog">
-                    <div class="detail__repairlog--title">
-                        Repair Log
-                    </div>
-                </div>
-                <hr>
-                <div class="detail detail__dockingAreas">
-                    <div class="detail__dockingAreas--title">
-                        Docking Areas
-                    </div>
-                </div>
-                <hr>
-                <div class="detail detail__bicycles">
-                    <div class="detail__bicycles--title">
-                        Bicycles
-                    </div>
-                </div>
-                <hr>
-                <div class="detail detail__rides">
-                    <div class="detail__rides--title">
-                        Rides
-                    </div>
-                </div>
-                <hr>
-                <div class="detail detail__reports">
-                    <div class="detail__reports--title">
-                        Reports
-                    </div>
-                    <div class="detail__reports--submenu">
-                        <div class="submenu reports__submenu--accidentReport">
-                            Accident Reports
-                        </div>
-                        <div class="submenu users__submenu--bikeComplaintReport">
-                            Bike Complaint Reports
-                        </div>
-                        <div class="submenu users__submenu--dockingAreaReport">
-                            Docking Area Reports
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php require APPROOT . '/views/inc/sidebar.php'; ?>
+
 
 
     <!-- In the framework right side of the web page view -->
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <section class="dashboard--header">
-            <!-- <div class="dashboard__header--title"><strong> Dashboard</strong></div>
-             -->
-            <div class="dashboard__header--search">
-                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">
-                <div class="dashboard__header--searchicon">
-                    <img src="images/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
-                </div>
-            </div>
-    
-            <div class="dashboard__header--helpsetting">
-                <div class="helpsetting__help">
-                    <img src="images/dashboardIcons/question.png" alt="help" class="dashboard__icon">
-                </div>
-                <div class="helpsetting__setting">
-                    <img src="images/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
-                </div>
-            </div>
-    
-            <div class="dashboard__user__detail">
-                <div class="user__address">Hello, Shehaan</div>
-                <img src="images/avatar.png" alt="dashboard profile picture" class="imgProperty">
-            </div>      
-        </section>
+        <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
 
