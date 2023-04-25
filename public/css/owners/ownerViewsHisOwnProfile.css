@@ -6,175 +6,173 @@
 
 /* get local font to the webpage */
 @font-face {
-    font-family: 'sfy-regular';
-    src: url('../../fonts/SF-Pro-Rounded-Regular.otf');
+    font-family: 'sfmy-regular';
+    src: url('fonts/SF-Pro-Rounded-Regular.otf');
 }
 
 /* import font */
 :root{
-    --clr-dark : #303030;
+    --clr-dark : #D9D9D9;
     --clr-light : #fff;
 
     --fs-h1 : 3rem;
     --fs-h2 : 2.25rem;
-    --fs-h3 : 1.25rem;
+    --fs-h3 : .95rem;
+
+    --fs-hN : 2rem;
+
     --fs-body : 1rem;
-    --fs-ele : 0.75rem;
+    --fs-ele : 0.8rem;
 
     --fw-reg : 300;
     --fw-bold : 900;
+    --fw-lightBold : 500;
 
-    --ff-family : 'sfy-regular', sans-serif;
+    --ff-family : 'sfmy-regular', sans-serif;
 }
 
 @media (min-width : 800px){
     :root{
         --fs-h1 : 4rem;
         --fs-h2 : 3.75rem;
-        --fs-h3 : 1.5rem;
+        --fs-h3 : 1.3rem;
         --fs-body : 1.2rem;
-        --fs-ele : 0.8rem
+        --fs-ele : 0.9rem
     }
 }
 
-/* table adjustment */
-table{
-    width: 100%;
-}
-
-th{
-    font-size: small;
-    color: gray;
-}
-
-td{
-    text-align: left;
-}
-
-
-/* ****************************************************************************** */
 body{
     margin: 0;
     background: var(--clr-light);
     font-family: var(--ff-family);
     font-size: var(--fs-body);
     line-height: 1.4;
-    background: linear-gradient(to right, #908f8f, #FFFFFF);
-}
-
-/* DATA AREA */
-.data__area{
-    display: grid;
-    grid-template-columns: 1.5fr 2fr;
-    grid-template-areas: 
-        "one two"
-    ;
-
-    /* background-color: lightblue; */
-    margin: 8% 10%;
-}
-
-
-.left--side{
-    grid-area: one;
-    background-color: rgba(0, 0, 0, 0.45);;
-    border-radius: 16px;
-    padding-top: 2%;
-    margin-right: 2%;
-}
-
-.right--side{
-    grid-area: two;
-    background-color: rgba(0, 0, 0, 0.4);;
-    border-radius: 16px;
-    padding-top: 2%;
-    margin-right: 2%;
-}
-
-.profile__picture--card{
-    /* height: 50px; */
-    margin-left: 25%;
-}
-
-.dropdown_area{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    cursor: pointer;
-    margin-left: 10%;
-    box-shadow: 0px 2px 20px rgba(0,0,0,0.8); /* add a shadow */
-}
-
-.detail__view--card{
-    padding: 2% 10%;
-}
-
-.button__area{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5%;
-    margin-top: 10%;
+    flex-direction: row;
 }
 
-.user_history{
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5rem;
-}
+/* ***************************************************************************************************************** */
+/* //////////////////////// SIDE BAR PRESENTATION //////////////////////////////// */
 
-.image_part{
-    margin-left: 18%;
-}
-
-
-
-
-/* **************************************************************************************************************** */
-
-.btn{
-    display: inline-block;
-    width: 100%;
-    height: 3.2rem;
-    background: black;
-    color: white;
-    padding: .5em 1.5em;
-    text-decoration: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: var(--fw-bold);
-    border-radius: 5px;
-
-    transition: 500ms;
-
-    margin-bottom: 5px;
-    
-    font-family: var(--ff-family);
-}
-
-.btn:hover{
-    transform: scale(1.09);
-}
-
-/* title adjustment */
-.lower__section__card--title,
-.upper__section__card--title{
-    font-weight: var(--fw-bold);
-}
-
-/* ***************************************************************************************************** */
-/* control imag behaviour */
-
+/* image logo handle */
 img{
     display: block;
     max-width: 100%;
-    box-shadow: 0px 2px 60px rgba(0,0,0,0.5); /* add a shadow */
 }
 
+/* side bar column property */
+.sidebar{
+    background-color: var(--clr-dark);
+    width: 250px;
+    height: 100vh;
+    border-top-right-radius: 4%;
+    border-bottom-right-radius: 4%;
+
+}
+
+.sidebar--logo{
+    border-top-right-radius: 5%;
+    background-color: var(--clr-dark);
+}
+
+/* sidebar--logo div has image and set that image property */
+.sidebar--logo--img{
+    width: 110px;
+    margin-left: 18%;
+}
+
+.detail{
+    margin: 8%;
+    margin-top: 0%;
+
+}
+
+.sidebar__detail{
+    font-size: var(--fs-h3);
+    padding: 10%;
+    padding-top: 0%;
+}
+
+.submenu{
+    font-size: var(--fs-ele);
+    font-weight: var(--fw-reg);
+    padding-left: 8%;
+    line-height: 1.5rem;
+    color: grey;
+}
+
+
+/* ******************************************************************************************************* */
+/*///////////////////////////////// BUTTON DECORATION //////////////////////////////////////////////////// */
+.btn{
+    /* margin-left: 0%; */
+    border-color: black;
+    border-width: .5px;
+
+    width: 130px;
+    height: 45px;
+    color: white;
+    background: black;
+    border-radius: 20px;
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+
+    transition: 500ms;
+
+    margin-left: 35px;
+    padding: 2%;
+
+    font-family: var(--ff-family);
+}
+
+.btn_add{
+    color: black;
+    background-color: var(--clr-light);
+
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+/* check box style */
+input[type="checkbox"]{
+    width: 18px;
+    height: 18px;
+    margin-bottom: 0%;
+    
+}
+
+/* .cbox:checked{
+    background-color: black;
+} */
+
+/* input[type="checkbox"]:after{
+    font-family: ;
+    font-weight: var(--fw-bold);
+    content: "\f00c";
+    font-size: 20px;
+    color: white;
+} */
+
+
+/* ********************************************************************************************************* */
+/* //////////////////////////////////// ADMIN DATA AREA ///////////////////////////////////////////////////// */
+
+.admin_data_area{
+    /* margin-top: 3rem; */
+    width: 100%;
+    background-color: var(--clr-light);
+}
+
+/* *********************************************************************************************************** */
+/* ///////////////////////////////////  DASHBOARD  //////////////////////////////////////////////////////////// */
+
+/* control imag behaviour */
+img{
+    display: block;
+    max-width: 100%;
+}
 
 
 .dashboard--header{
@@ -193,6 +191,7 @@ img{
 }
 
 .dashboard__header--search{
+    margin-left: 20%;
     width: 30%;
 }
 
@@ -241,18 +240,128 @@ img{
     transform: scale(1.1);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////////////////////// DetailBox ////////////////////////////////////////////////////////// */
 
-.detailbox{
-    border-color: black;
-    outline: none;
-    border-radius: 8px;
-    font-size: 100%;
-    /* font-family: inherit; */
-    /* color: white; */
-    /* background-color: #7c7c7c7c; */
-    padding: 0.3em 1em 0.3em 1.5em;
-    width: 70%;
-    /* margin-bottom: 2%; */
+/* ********************************************************************************************************* */
+/* ///////////////////////////////  REAL DATA AREA TOP TITLE AND TWO BUTTON ROW//////////////////////////// */
+
+.admin__data__area--top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .7%;
+    margin-top: 1%;
+    margin-right: 2%;
 }
+
+.admin__data__area__top--title{
+    font-size: 2rem;
+    margin-left: 1%;
+    font-weight: var(--fw-lightBold);
+}
+
+.admin__data_area__top--twobuttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2%;
+}
+
+/* **************************************************************************************************************** */
+/* //////////////////////////////   GRID DATA AREA //////////////////////////////////////////////////////////////// */
+
+
+.data__area{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-areas: 
+        "one two"
+    ;
+    ;
+
+    /* background-color: lightblue; */
+    margin: 2% 5%;
+}
+
+
+.left--side{
+    grid-area: one;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+    padding-top: 2%;
+    margin-right: 2%;
+}
+
+.right--side{
+    grid-area: two;
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    background-color: var(--clr-light);
+    border-radius: 16px;
+    padding-top: 2%;
+}
+
+.profile__picture--card{
+    /* height: 50px; */
+    margin-left: 15%;
+}
+
+.dropdown_area{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    margin-left: 10%;
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.8); /* add a shadow */
+}
+
+.detail__view--card{
+    padding: 2% 10%;
+}
+
+.button__area{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 7%;
+    margin-right: 5%;
+}
+
+.user_history{
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.image_part{
+    margin-left: 18%;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////   USER DATA AREA /////////////////////////////////////////////////////////////// */
+
+.user__name{
+    font-size: var(--fs-hN);
+}
+
+label{
+    color: rgba(0, 0, 0, 0.45);
+    font-size: var(--fs-ele);
+    font-weight: var(--fw-bold);
+}
+
+.user_detail_x{
+    margin-top: .4rem;
+}
+
+.user__data{
+    margin-top: -7px;
+}
+
+
+
