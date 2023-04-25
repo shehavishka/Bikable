@@ -426,7 +426,11 @@
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public function ownerViewHisOwnProfile(){
-            die("woooos");
+            /**
+             * show user data             * 
+            */
+
+            $this->view('owners/ownerViewsHisOwnProfile');
         }
 
     }
