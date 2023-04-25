@@ -10,7 +10,7 @@
 <body>
     <!-- finalized side bar -->
     <section class="sidebar">
-        <div class="viewData">
+        <div class="viewData ">
             <div class="sidebar--logo">
                 <div class="sidebar--logo--img">
                     <img src="images/bikableLogo/logo.PNG" alt="">
