@@ -43,7 +43,6 @@
                 </div>
 
             </div>
-
         </div>
         <div class="right--side">
             <div class="detail__view--card">
