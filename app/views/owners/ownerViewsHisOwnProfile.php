@@ -29,7 +29,7 @@
                     <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Suspend" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
                 </div>
             </div>
 
@@ -40,8 +40,8 @@
                 <div class="profile__picture--card">
                     <div class="dropdown_area" style="background-image: url(
                             <?php 
-                                if($data['userDetailObject']->userPicture != null){
-                                    echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
+                                if($_SESSION['user_picture'] != null){
+                                    echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
                                 }else{
                                     echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                                 }
@@ -49,9 +49,9 @@
                     </div>
                     <div class="user_history">
                         <div class="user_detail_x">
-                            <label>User ID</label>
+                            <label>User ID: </label>
                             <div class="user__data">
-                                12582
+                                <?php echo $_SESSION['user_ID'];?>
                             </div>
                         </div>
                         <div class="user_detail_x">
@@ -77,48 +77,57 @@
                         <div class="user_detail_x">
                             <label>Name</label>
                             <div class="user__name">
-                                Deshan Perera
+                                <?php echo $_SESSION['user_fName'] . ' ' . $_SESSION['user_lName']; ?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>Mobile Number</label>
                             <div class="user__data">
-                                0771691525
+                                <?php echo $_SESSION['user_pNumber'];?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>Email</label>
                             <div class="user__data">
-                                deshan@gmail.com
+                                <?php echo $_SESSION['user_email'];?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>NIC</label>
                             <div class="user__data">
-                                200001558692
+                                <?php echo $_SESSION['user_NIC'];?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>Status</label>
                             <div class="user__data">
-                                Active
+                                <?php 
+                                    if($_SESSION['user_status'] == 1){
+                                        echo "Active";
+                                    }else{
+                                        echo "Inactive";
+                                    }
+                                
+                                ?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>Role</label>
                             <div class="user__data">
-                                Owner
+                                <?php
+                                    echo $_SESSION['user_role'];
+                                ?>
                             </div>
                         </div>
                         
                     </div>
                 </div>
-                <div class="button__area">
+                <!-- <div class="button__area">
                     <form action="" method="post">
                         <input type="hidden" name="userIdentity" value="">
                         <input type="submit" value="Suspend" class="btn">
                     </form>
-                </div>
+                </div> -->
             </div>
         </section>
             

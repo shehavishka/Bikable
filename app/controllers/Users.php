@@ -128,7 +128,7 @@
         ///////////////////////
         public function createUserSession($user){
             //store session data
-            $_SESSION['user_ID'] = $user->UserID;
+            $_SESSION['user_ID'] = $user->userID;
             $_SESSION['user_picture'] = $user->userPicture;
             $_SESSION['user_NIC'] = $user->NIC;
             $_SESSION['user_fName'] = $user->firstName;
