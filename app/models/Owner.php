@@ -156,4 +156,31 @@
             }
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////   OWNER UPDATE HIS DATA IN THE DATA BASE //////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function ownerUpdatesHisData($data){
+
+            $unic = $data['nic'];
+            $fName = $data['fName'];
+            $lName = $data['lName'];
+            $uemail = $data['email'];
+            $userID = $_SESSION['user_ID'];
+
+            
+            // $temp = "INSERT INTO users (NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')";
+            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$uemail', NIC = '$unic' WHERE userID = '$userID' ";
+
+
+            
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     }
