@@ -72,7 +72,7 @@
             </div>
 
             <div class="right--side">
-                <form action="">
+                <form action="<?php echo URLROOT;?>/owners/ownerSubmistHisNewDetails" method="post">
                     <div class="detail__view--card">
                         <!-- <div class="generalInformation"><strong><h2>General Information</h2></strong></div> -->
                         <div class="user__detail">
@@ -115,14 +115,10 @@
                             
                         </div>
                     </div>
+                    <div class="button__area">
+                            <input type="submit" value="Submit" class="btn">
+                    </div>
                 </form>
-
-                <!-- <div class="button__area">
-                    <form action="" method="post">
-                        <input type="hidden" name="userIdentity" value="">
-                        <input type="submit" value="Suspend" class="btn">
-                    </form>
-                </div> -->
             </div>
         </section>
             
