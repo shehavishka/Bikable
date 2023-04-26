@@ -40,7 +40,7 @@
                     ?>);">
                     <div class="dashboard__user__dropdown-content">
                         <a href="<?php echo URLROOT ?>/owners/ownerViewHisOwnProfile">Profile</a>
-                        <a href="#">Settings</a>
+                        <!-- <a href="#">Settings</a> -->
                         <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
                     </div>
             </div>
