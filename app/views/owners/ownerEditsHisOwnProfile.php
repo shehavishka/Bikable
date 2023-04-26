@@ -91,7 +91,7 @@
                                     0771691525
                                 </div> -->
                                 <div class="signupView__Detail--data">
-                                    <input type="text" class="signupDetailbox" name="first_name" placeholder="<?php echo $_SESSION['user_lName']; ?>">
+                                    <input type="text" class="signupDetailbox" name="last_name" placeholder="<?php echo $_SESSION['user_lName']; ?>">
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -100,7 +100,7 @@
                                     deshan@gmail.com
                                 </div> -->
                                 <div class="signupView__Detail--data">
-                                    <input type="text" class="signupDetailbox" name="first_name" placeholder="<?php echo $_SESSION['user_email']; ?>">
+                                    <input type="text" class="signupDetailbox" name="user_email" placeholder="<?php echo $_SESSION['user_email']; ?>">
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -109,7 +109,7 @@
                                     200001558692
                                 </div> -->
                                 <div class="signupView__Detail--data">
-                                    <input type="text" class="signupDetailbox" name="first_name" placeholder="<?php echo $_SESSION['user_NIC']; ?>">
+                                    <input type="text" class="signupDetailbox" name="user_nic" placeholder="<?php echo $_SESSION['user_NIC']; ?>">
                                 </div>
                             </div>
                             
