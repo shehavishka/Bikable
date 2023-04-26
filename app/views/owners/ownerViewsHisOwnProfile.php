@@ -39,13 +39,13 @@
             <div class="left--side">
                 <div class="profile__picture--card">
                     <div class="dropdown_area" style="background-image: url(
-                            <?php 
-                                if($_SESSION['user_picture'] != null){
-                                    echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
-                                }else{
-                                    echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
-                                }
-                            ?>);">
+                        <?php 
+                            if($_SESSION['user_picture'] != null){
+                                echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
+                            }else{
+                                echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
+                            }
+                        ?>); width: 200px; height: 200px; margin-left: 10%;">
                     </div>
                     <div class="user_history">
                         <div class="user_detail_x">

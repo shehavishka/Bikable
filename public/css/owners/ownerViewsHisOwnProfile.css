@@ -287,7 +287,8 @@ img{
 
 .left--side{
     grid-area: one;
-    background-color: rgba(0, 0, 0, 0.45);
+    /* background-color: rgba(0, 0, 0, 0.45); */
+    background-color: var(--clr-light);
     border-radius: 16px;
     padding-top: 2%;
     margin-right: 2%;
@@ -325,6 +326,7 @@ img{
     align-items: center;
     justify-content: center;
     margin-top: 1.5rem;
+    margin-left: 10%;
 }
 
 .image_part{
@@ -346,11 +348,10 @@ label{
 
 .user_detail_x{
     margin-top: .4rem;
+    
 }
 
 .user__data{
     margin-top: -7px;
 }
-
-
 
