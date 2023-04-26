@@ -452,7 +452,117 @@
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public function ownerSubmistHisNewDetails(){
-            die('wooooooooo');
+            /**
+             *  This function owner update his details and need to check user input data
+             * 
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'fName' => trim($_POST['first_name']),
+                    'lName' => trim($_POST['last_name']),
+                    'email' => trim($_POST['email']),
+                    // 'status' => trim($_POST['status']),
+                    'nic' => trim($_POST['nic_number']),
+                    // 'pNumber' => trim($_POST['contact_number']),
+                    // 'userRole' => strtolower(trim($_POST['user_role'])),
+
+                    // 'userPassword' => '', // this generate after confirmed entered details are ready.
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    // 'status_err' => '',
+                    'nic_err' => '',
+                    // 'pNumber_err' => '',
+                    // 'userRole_err' => ''
+                ];
+
+                //validate submitted data
+                //validate first_name
+                if(empty($data['fName'])){
+                    $data['fName_err'] = '*enter first name';
+                } 
+
+                //validate last name
+                if(empty($data['lName'])){
+                    $data['lName_err'] = '*enter last name';
+                }
+
+                //validate email
+                if(empty($data['email'])){
+                    $data['email_err'] = '*enter email Number';
+                }else{
+                    //check weather email is availble in database
+                    if($this->ownerModel->findUserByEmail($data['email'])){
+                        // true means that email is already taken.
+                        $data['email_err'] = "*email is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+
+                //validate NIC
+                if(empty($data['nic'])){
+                    $data['nic_err'] = '*enter NIC number';
+                }else{
+                    //check weather nic is availble in database
+                    if($this->ownerModel->findNicNumber($data['nic'])){
+                        // true means that email is already taken.
+                        $data['nic_err'] = "*NIC is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+                //validate phone number
+                // if(empty($data['pNumber'])){
+                //     $data['pNumber_err'] = '*enter phone Number';
+                // }else{
+                //     //check weather phone number is availble in database
+                //     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
+                //         // true means that email is already taken.
+                //         $data['pNumber_err'] = "*Phone Number is already taken";
+                //     }else{
+                //         //pass
+                //     }
+                // }
+
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err'])){
+                    // register user
+                    if($this->ownerModel->ownerUpdatesHisData($data)){
+                        // next implementation should be land into the right position according to the role
+                        $this->view('owners/ownerEditsHisOwnProfile');
+                    }else{
+                        die('something went wrong');
+                    }
+                }else{
+                    $this->view('owners/ownerEditsHisOwnProfile', $data);
+                }
+
+            }else{
+                //init data
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    // 'pNumber' => '',
+                    'email' => '',
+                    // 'password' => '',
+                    'nic' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    // 'pNumber_err' => '',
+                    'email_err' => '',
+                    // 'password_err' => '',
+                    'nic_err' => '',
+
+                ];
+                $this->view('owners/ownerEditsHisOwnProfile', $data);
+            }
+
         }
 
     }
