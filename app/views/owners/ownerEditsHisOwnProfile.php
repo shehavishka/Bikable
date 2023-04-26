@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/ownerViewsHisOwnProfile.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/ownerEditsHisOwnProfile.css">
     <title>Owner Edit His Profile</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
 
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">User Profile</div>
+            <div class="admin__data__area__top--title">User Edits Profile</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
@@ -70,7 +70,7 @@
     
                 </div>
             </div>
-            
+
             <div class="right--side">
                 <form action="">
                     <div class="detail__view--card">

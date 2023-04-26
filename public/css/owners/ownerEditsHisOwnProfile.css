@@ -355,3 +355,15 @@ label{
     margin-top: -7px;
 }
 
+.signupDetailbox{
+    border-color: black;
+    outline: none;
+    border-radius: 8px;
+    font-size: 100%;
+    /* font-family: inherit; */
+    /* color: white; */
+    /* background-color: #7c7c7c7c; */
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 75%;
+    /* margin-bottom: 2%; */
+}
