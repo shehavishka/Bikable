@@ -482,17 +482,17 @@
                 //validate submitted data
                 //validate first_name
                 if(empty($data['fName'])){
-                    $data['fName_err'] = '*enter first name';
+                    $data['fName'] = $_SESSION['user_fName'];
                 } 
 
                 //validate last name
                 if(empty($data['lName'])){
-                    $data['lName_err'] = '*enter last name';
+                    $data['lName'] = $_SESSION['user_lName'];
                 }
 
                 //validate email
                 if(empty($data['email'])){
-                    $data['email_err'] = '*enter email Number';
+                    $data['email'] = $_SESSION['user_email'];
                 }else{
                     //check weather email is availble in database
                     if($this->ownerModel->findUserByEmail($data['email'])){
@@ -506,7 +506,7 @@
 
                 //validate NIC
                 if(empty($data['nic'])){
-                    $data['nic_err'] = '*enter NIC number';
+                    $data['nic'] = $_SESSION['user_NIC'];
                 }else{
                     //check weather nic is availble in database
                     if($this->ownerModel->findNicNumber($data['nic'])){
@@ -534,7 +534,7 @@
                     // register user
                     if($this->ownerModel->ownerUpdatesHisData($data)){
                         // next implementation should be land into the right position according to the role
-                        $this->view('owners/ownerEditsHisOwnProfile');
+                        $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
                         die('something went wrong');
                     }
