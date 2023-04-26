@@ -534,6 +534,13 @@
                     // register user
                     if($this->ownerModel->ownerUpdatesHisData($data)){
                         // next implementation should be land into the right position according to the role
+
+                        //after user details updated then need to update session data.
+                        $_SESSION['user_fName'] = $data['fName'];
+                        $_SESSION['user_lName'] = $data['lName'];
+                        $_SESSION['user_email'] = $data['email'];                       
+                        $_SESSION['user_NIC'] = $data['nic'];
+                        
                         $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
                         die('something went wrong');
