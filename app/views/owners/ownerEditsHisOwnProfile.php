@@ -83,6 +83,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="first_name" placeholder="<?php echo $_SESSION['user_fName']; ?>">
+                                    <span style="color: red;"><?php echo $data['fName_err'];?></span>
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -92,6 +93,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="last_name" placeholder="<?php echo $_SESSION['user_lName']; ?>">
+                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -101,6 +103,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="email" placeholder="<?php echo $_SESSION['user_email']; ?>">
+                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -110,6 +113,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="nic_number" placeholder="<?php echo $_SESSION['user_NIC']; ?>">
+                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
                                 </div>
                             </div>
                             
