@@ -29,7 +29,7 @@
                     <input type="button" class="btn btn_add" value="<< Back" onclick="location.href='<?php echo URLROOT;?>/owners/ownerViewHisOwnProfile'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/owners/ownerViewsHisPasswordChange'">
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
             </div>
 
             <div class="right--side">
-                <form action="<?php echo URLROOT;?>/owners/ownerSubmistHisNewDetails" method="post">
+                <form action="<?php echo URLROOT;?>/owners/ownerSubmitsHisNewDetails" method="post">
                     <div class="detail__view--card">
                         <!-- <div class="generalInformation"><strong><h2>General Information</h2></strong></div> -->
                         <div class="user__detail">
