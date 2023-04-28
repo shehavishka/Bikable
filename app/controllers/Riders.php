@@ -138,6 +138,41 @@
         }
 
 
+        public function rideEnded(){
+            //need to check if the user nikan came here or not. can do this by checking if there's an active ride first I suppose.
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'rideLogID' => intval(trim($_POST['rideLogID'])),
+                    'userID' => intval(trim($_POST['userID'])),
+                    'bicycleID' => intval(trim($_POST['bicycleID'])),
+                    'endArea' => intval(trim($_POST['endArea'])),
+                    'time_spent' => intval(trim($_POST['time_spent'])),
+                    'fare' => trim($_POST['current_fare']),
+                    'payMethod' => intval(trim($_POST['payMethod'])),
+                    'timeStamp' => '',
+                ];
+
+                //need to get the actual last payment method from the db based on the user and payment method number
+                //and then charge the user
+
+                $current_timestamp = time();
+                $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
+
+                //update the ride details
+                if($this->riderModel->updateRideDetails($data)){
+                    $this->view('riders/rideEnded', $data);
+                }else{
+                    //need to replace this with a 404 page
+                    die("something went wrong");
+                }
+
+            }else{
+                //need to replace this with a 404 page
+                die("something went wrong");
+            }
+        }
+
+
         public function ajax_track(){
             if (isset($_POST["req"])){
                 // (F) DATABASE SETTINGS - CHANGE THESE TO YOUR OWN!
