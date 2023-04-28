@@ -28,7 +28,8 @@
 
             // there is a another method to unhashed the values;
             $passwd = $row->password;
-            if($passwd == $userPassword){
+
+            if(password_verify(strval($userPassword),($passwd))){
                 return $row;
             }else{
                 return false;
