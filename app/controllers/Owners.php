@@ -573,12 +573,118 @@
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////   OWNER CHANGES PASSWORD //////////////////////////////////////////////////
+        /////////////////////////////   OWNER VIEWS HIS PASSWORD //////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public function ownerViewsHisPasswordChange(){
             // view details.
             $this->view('owners/ownerChangesHisPassword');
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////   OWNER CHANGES PASSWORD /////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function changePassword(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'currentPassword' => trim($_POST['current-password']),
+                    'newPassword' => trim($_POST['new-password']),
+                    'confirmPassword' => trim($_POST['confirm-password']),
+
+                    'currentPassword_err' => '',
+                    'newPassword_err' => '',
+                    'confirmPassword_err' => '',
+
+                ];
+
+                //store USER ID
+                $userID = $_SESSION['user_ID'];
+                
+                $userDetails = $this->ownerModel->findUserByUserID($userID);
+
+                if($userDetails){
+                    //take user hashed password from the database
+                    $userHashedPassword = $userDetails->password;
+
+                    //hash inserted password
+                    if(password_verify($data['currentPassword'],$userHashedPassword)){
+                        
+                    }
+
+
+                }else{
+                    
+                }
+
+                //validate NIC
+                if(empty($data['nic'])){
+                    $data['nic'] = $_SESSION['user_NIC'];
+                }else{
+                    //check weather nic is availble in database
+                    if($this->ownerModel->findNicNumber($data['nic'])){
+                        // true means that email is already taken.
+                        $data['nic_err'] = "*NIC is already taken";
+                    }else{
+                        //pass
+                    }
+                }
+
+                //validate phone number
+                // if(empty($data['pNumber'])){
+                //     $data['pNumber_err'] = '*enter phone Number';
+                // }else{
+                //     //check weather phone number is availble in database
+                //     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
+                //         // true means that email is already taken.
+                //         $data['pNumber_err'] = "*Phone Number is already taken";
+                //     }else{
+                //         //pass
+                //     }
+                // }
+
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err'])){
+                    // register user
+                    if($this->ownerModel->ownerUpdatesHisData($data)){
+                        // next implementation should be land into the right position according to the role
+
+                        //after user details updated then need to update session data.
+                        $_SESSION['user_fName'] = $data['fName'];
+                        $_SESSION['user_lName'] = $data['lName'];
+                        $_SESSION['user_email'] = $data['email'];                       
+                        $_SESSION['user_NIC'] = $data['nic'];
+                        
+                        $this->view('owners/ownerViewsHisOwnProfile');
+                    }else{
+                        die('something went wrong');
+                    }
+                }else{
+                    $this->view('owners/ownerEditsHisOwnProfile', $data);
+                }
+
+            }else{
+                //init data
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    // 'pNumber' => '',
+                    'email' => '',
+                    // 'password' => '',
+                    'nic' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    // 'pNumber_err' => '',
+                    'email_err' => '',
+                    // 'password_err' => '',
+                    'nic_err' => '',
+
+                ];
+                $this->view('owners/ownerEditsHisOwnProfile', $data);
+            }
         }
 
     }

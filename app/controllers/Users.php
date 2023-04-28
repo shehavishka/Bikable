@@ -75,8 +75,8 @@
                     ///////////////
                     // AUTHENTICATE USER'S EMAIL AND PASSWORD
                     ///////////////
+                    
                     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
                     if($loggedInUser){
                         /////////////////////
                         //SEND EMAIL
