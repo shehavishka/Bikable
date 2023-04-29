@@ -16,7 +16,14 @@
             <img src="<?php echo URLROOT;?>/public/images/z_z_errorImages/500InternalServerError.PNG" alt="BikableLogo" class="serverImage">
         </div>
         <div class="box__goBack_button">
-            <input type="button" value="Go back" class="btn">
+            <input type="button" value="Go back" class="btn" onclick="goBack()">
+
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+
         </div>
     </div>
     
