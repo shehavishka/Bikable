@@ -72,6 +72,7 @@
                             <div class="current_password password_div_section">
                                 <label for="current-password" style="margin-right: 7.5%;">Current Password:</label> 
                                 <input type="password" id="current-password" name="current-password" required class="signupDetailbox">
+                                <span style="color: red;"><?php echo $data['currentPassword_err'];?></span>
                             </div>
 
                             <div class="new_Password password_div_section">
@@ -82,6 +83,7 @@
                             <div class="confirm_password password_div_section">
                                 <label for="confirm-password" style="margin-right: 3%;">Confirm New Password:</label>
                                 <input type="password" id="confirm-password" name="confirm-password" required class="signupDetailbox">
+                                <span style="color: red;"><?php echo $data['confirmPassword_err'];?></span>  
                             </div>
                
                             <div class="button__area">

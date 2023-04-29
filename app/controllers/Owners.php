@@ -145,7 +145,8 @@
                         // next implementation should be land into the right position according to the role
                         $this->view('owners/addUser');
                     }else{
-                        die('something went wrong');
+                        // die('something went wrong');
+                        $this->view('users/error');
                     }
                 }else{
                     $this->view('owners/addUser', $data);
@@ -400,7 +401,8 @@
                 $data['userDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findUserByUserID($data['userID']);
                 $this->view('owners/ownerViewsUserProfile', $data);
             }else{
-                die("button didn't work correctly.");
+                // die("button didn't work correctly.");
+                $this->view('users/error');
             }            
         }
 
@@ -543,7 +545,8 @@
                         
                         $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
-                        die('something went wrong');
+                        // die('something went wrong');
+                        $this->view('users/error');
                     }
                 }else{
                     $this->view('owners/ownerEditsHisOwnProfile', $data);
@@ -596,73 +599,45 @@
                     'confirmPassword' => trim($_POST['confirm-password']),
 
                     'currentPassword_err' => '',
-                    'newPassword_err' => '',
                     'confirmPassword_err' => '',
 
                 ];
 
                 //store USER ID
                 $userID = $_SESSION['user_ID'];
-                
                 $userDetails = $this->ownerModel->findUserByUserID($userID);
 
                 if($userDetails){
                     //take user hashed password from the database
-                    $userHashedPassword = $userDetails->password;
-
-                    //hash inserted password
-                    if(password_verify($data['currentPassword'],$userHashedPassword)){
-                        
-                    }
-
-
-                }else{
-                    
-                }
-
-                //validate NIC
-                if(empty($data['nic'])){
-                    $data['nic'] = $_SESSION['user_NIC'];
-                }else{
-                    //check weather nic is availble in database
-                    if($this->ownerModel->findNicNumber($data['nic'])){
-                        // true means that email is already taken.
-                        $data['nic_err'] = "*NIC is already taken";
+                    $userHashedValue = $userDetails->password;
+                    if(password_verify(strval($data['currentPassword']),strval($userHashedValue))){
+                        // alows to change password no code here
                     }else{
-                        //pass
+                        $data['confirmPassword_err'] = "*invalid password";
                     }
+                }else{
+                    // die("Something went wrong!!!");
+                    $this->view('users/error');
                 }
 
-                //validate phone number
-                // if(empty($data['pNumber'])){
-                //     $data['pNumber_err'] = '*enter phone Number';
-                // }else{
-                //     //check weather phone number is availble in database
-                //     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
-                //         // true means that email is already taken.
-                //         $data['pNumber_err'] = "*Phone Number is already taken";
-                //     }else{
-                //         //pass
-                //     }
-                // }
+                // check weather confirm password and new password is equal
+                if(strval($data["newPassword"]) == strval($data["confirmPassword"])){
+                    // if confirm password and newPassword equals no error
+                }else{
+                    $data["confirmPassword_err"] = "*password didn't match";
+                }
 
-                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err'])){
-                    // register user
-                    if($this->ownerModel->ownerUpdatesHisData($data)){
-                        // next implementation should be land into the right position according to the role
+                if(empty($data['currentPassword_err']) && empty($data['confirmPassword_err'])){
+                    // change password
+                    if($this->ownerModel->ownerChangesHisPassword($data)){
 
-                        //after user details updated then need to update session data.
-                        $_SESSION['user_fName'] = $data['fName'];
-                        $_SESSION['user_lName'] = $data['lName'];
-                        $_SESSION['user_email'] = $data['email'];                       
-                        $_SESSION['user_NIC'] = $data['nic'];
-                        
                         $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
-                        die('something went wrong');
+                        // die('something went wrong');
+                        $this->view('users/error');
                     }
                 }else{
-                    $this->view('owners/ownerEditsHisOwnProfile', $data);
+                    $this->view('owners/ownerChangesHisPassword', $data);
                 }
 
             }else{

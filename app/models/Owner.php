@@ -183,4 +183,25 @@
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////   OWNER CHANGES HIS PASSWORD  /////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public function ownerChangesHisPassword($data){
+            $newPassword = $data['newPassword'];
+            //hash the password
+            $hashedPassword = password_hash(strval($newPassword), PASSWORD_DEFAULT);
+            $userEmail = $_SESSION['user_email'];
+
+            //prepare query
+            $temp = "UPDATE users SET password = '$hashedPassword' WHERE emailAdd = '$userEmail' ";
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
