@@ -26,7 +26,7 @@
             <div class="admin__data__area__top--title">User Edits Profile</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="<< Back" onclick="location.href='<?php echo URLROOT;?>/owners/ownerViewHisOwnProfile'">
+                    <input type="button" class="btn btn_add" value="<< Back" onclick="location.href='<?php echo URLROOT;?>/owners/ownerViewsHisOwnProfile'">
                 </div>
                 <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/owners/ownerViewsHisPasswordChange'">

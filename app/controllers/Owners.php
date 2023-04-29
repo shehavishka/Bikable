@@ -419,7 +419,8 @@
                     $this->view('owners/ownerLandPage');
                 }
             }else{
-                die("some thing went wrong at the suspend process");
+                // die("some thing went wrong at the suspend process");
+                $this->view('users/error');
             }   
         }
 
@@ -427,7 +428,7 @@
         ///////////////////////////////// USER VIEWS HIS OWN PROFILE ////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function ownerViewHisOwnProfile(){
+        public function ownerViewsHisOwnProfile(){
             /**
              * show user data             * 
             */

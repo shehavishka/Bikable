@@ -13,7 +13,7 @@
             Oops! Technical Difficulties
         </div>
         <div class="box__image">
-            <img src="<?php echo URLROOT;?>/public/images/z_z_errorImages/500InternalServerError.PNG" alt="BikableLogo" class="serverImage">
+            <img src="<?php echo URLROOT;?>/public/images/z_errorImages/500InternalServerError.png" alt="BikableLogo" class="serverImage">
         </div>
         <div class="box__goBack_button">
             <input type="button" value="Go back" class="btn" onclick="goBack()">
