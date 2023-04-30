@@ -682,16 +682,17 @@
         //////////////////////////////////////// UPDATE BUTTON (SUSPEND) ///////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function viewUserPersonallyPenButton(){
-            /**
-             *  Task one load the user detail button
-            */
+        public function userProfileViewButton(){
+            // get the user id from the form
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $data = [
                     'userID' => intval(trim($_POST['userID'])),
                     'userDetailObject' => ''
                 ];
+                //get the user details from the database
                 $data['userDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findUserByUserID($data['userID']);
+                
+                //load the user profile view page
                 $this->view('owners/ownerViewsUserProfile', $data);
             }else{
                 // die("button didn't work correctly.");
@@ -700,16 +701,34 @@
         }
 
         //suspend process of the user by owner
-        public function suspendUser(){
+        public function suspendReleaseUser(){
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $data = [
-                    'userIdentity' => intval(trim($_POST['userIdentity']))
+                    'userIdentity' => intval(trim($_POST['userIdentity'])),
+                    'userStatus' => intval(trim($_POST['userStatus']))
                 ];
                 
-                $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
-                if($isUserSuspend){
-                    $this->view('owners/ownerLandPage');
+                //suspend the user and release the user
+                if($data['userStatus'] == 1){
+                    $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
+                    if($isUserSuspend){
+                        $this->view('owners/administrator');
+                    }else{
+                        // die("some thing went wrong at the suspend process");
+                        $this->view('users/error');
+                    }
+                }elseif ($data['userStatus'] == 0) {
+                    $isUserRelease = $this->ownerModel->activateUserByUserID($data['userIdentity']);
+                    if($isUserRelease){
+                        $this->view('owners/administrator');
+                    }else{
+                        // die("some thing went wrong at the suspend process");
+                        $this->view('users/error');
+                    }
+                }else{
+                    // die("some thing went wrong at the suspend process");
+                    $this->view('users/error');
                 }
             }else{
                 // die("some thing went wrong at the suspend process");

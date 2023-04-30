@@ -142,8 +142,24 @@
             } 
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public function suspendUserByUserID($userID){
             $status = 0;
+            $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function activateUserByUserID($userID){
+            $status = 1;
             $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
 
             $row = $this->db->single();
