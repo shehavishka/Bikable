@@ -1,32 +1,49 @@
 <?php
 
+    // this class is for owner's controller
+    /**
+     *  1.) Owner's landing page (ownerLandPage)
+     *
+     * 
+     */
+
+    // dependencies for phpmailer
     use PHPMailer\PHPMailer\PHPMailer;
 
     class Owners extends Controller{
-        // owner connect to the database
+
+        // Owner connects to the database using this variable.
         private $ownerModel;
 
         public function __construct(){
-            // connect to the database
+
+            // ownerModel variable connect to the Owner model
             $this->ownerModel = $this->model('Owner');
         }
 
         public function ownerLandPage(){
             /**
-             *  Two tasks
-             *      1.) Load the data
-             *      2.) View the data 
+             *  This is Owner's landing page
+             *    There are,
+             *          1.) Three tables
+             *              a.) Reports table
+             *              b.) Reports log table
+             *              c.) Bicycle details table
+             *          2.) 4 buttons -> done
+             *          3.) 1 map -> done
+             *          4.) 2 graphs
+             *        
             */
 
-            // load owner's landpage
-            //code will implement here
-            // 1. Load Map details
+            // docking areas details for the map take from the database
             $dockingAreasDeatails = $this->ownerModel->ownerLandPageMapDetails();
+            
+            
             $data = [
                 'docking_areas_details' => $dockingAreasDeatails
             ];
 
-            //view details
+            // load the data form UI and send all data to the UI
             $this->view('owners/ownerLandPage', $data);
         }
 
