@@ -118,11 +118,9 @@ body{
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-areas: 
-        "lefter middle righter"
+        "lefter mid righter"
     ;
-
-    margin: 0% 2%;
-    
+    margin: 0% 2%;    
 }
 
 /* lower section map card */
@@ -144,7 +142,7 @@ body{
 
 .lower_sectiotn_satistics--doughnut{
     background-color: var(--clr-dark);
-    grid-area: middle;
+    grid-area: mid;
     margin: 0% 2%;
     border-radius: 10px;
     padding: 0rem 2rem;
