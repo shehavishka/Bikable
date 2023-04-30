@@ -18,6 +18,9 @@
      * 14.) Owner handle docking areas page (dockingAreas)
      * 15.) Owner handle bicycle control page (bicyclesControl)
      * 16.) Owner handle rides control page (ridesControl)
+     * 17.) Owner handle reports control page (reportsControl)
+     * 18.) (inbuilt) Generate password length 8
+     * 19.) (inbuilt) Send email to the user
      */
 
     // dependencies for phpmailer
@@ -565,26 +568,28 @@
         // 16.) Owner handle rides control page (ridesControl)
         public function ridesControl(){
             /**
-             *  Task
-             *      1.) handle rides in the system
-             */
+             * There are,
+             *     1.) Load the data
+             *    2.) View the data
+            */
 
              //this is not load data from the database
             $this->view('owners/rides');
         }
 
-        // owner vies the reports and controll
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 17.) Owner handle reports control page (reportsControl)
         public function reportsControl(){
             /**
-             * Task 
-             *      1.) handle reports in the system
-             */
-
-            //this is not load data from the data
+             * There are,
+             *     1.) Load the data
+             *    2.) View the data
+            */
             $this->view('owners/reports');
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 18.) (inbuilt) Generate password length 8
         private function generatePassword() {
             $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
             $pass = array();
@@ -598,6 +603,7 @@
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
+        // 19.) (inbuilt) Send email to the user
         private function sendEmailToTheUser($userName, $userEmail , $userPassword){
 
             $mail = new PHPMailer(true);
