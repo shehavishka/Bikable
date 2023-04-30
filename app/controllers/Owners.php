@@ -13,6 +13,9 @@
      * 9.) Owner handle administrator page (administrator)
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
+     * 12.) Owner handle bicycle owner page (bicycleOwner)
+     * 13.) Owner handle add new repair log page (addNewRepairLog)
+     * 14.) Owner handle docking areas page (dockingAreas)
      */
 
     // dependencies for phpmailer
@@ -501,6 +504,8 @@
             $this->view('owners/riders', $data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 12.) Owner handle bicycle owner page (bicycleOwner)
         public function bicycleOwner(){
             /**
              *     Tasks
@@ -519,26 +524,26 @@
             $this->view('owners/bicycleOwner', $data);
         }
 
-        // owner controll repair log
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 13.) Owner handle add new repair log page (addNewRepairLog)
         public function addNewRepairLog(){
             /**
-             *  Tasks 
-             *        1.) add repair log to the system
-             * 
+             * There is,
+             *      1.) Load the data
+             *     2.) View the data
             */
-
-            // this is not load data from the database
             $this->view('owners/addNewRepairLog');
         }
 
-        // owner controll docking areas
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 14.) Owner handle docking areas page (dockingAreas)
         public function dockingAreas(){
             /**
-             * Task
-             *      1.) add docking area to the system
-             */
-
-            //this is not load data from the database
+             * There is,
+             *      1.) Load the data
+             *      2.) View the data
+             *   
+            */
             $this->view('owners/dockingareas');
         }
 
