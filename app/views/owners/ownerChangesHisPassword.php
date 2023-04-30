@@ -68,7 +68,7 @@
 
                     <div class="detail__view--card">
                         <div class="generalInformation"><strong><h3>Update your password to keep your account secure.</h3></strong></div>
-                        <form action="<?php echo URLROOT;?>/owners/changePassword" method="post">
+                        <form action="<?php echo URLROOT;?>/owners/ownerSubmitsHisNewPassword" method="post">
                             <div class="current_password password_div_section">
                                 <label for="current-password" style="margin-right: 7.5%;">Current Password:</label> 
                                 <input type="password" id="current-password" name="current-password" required class="signupDetailbox">

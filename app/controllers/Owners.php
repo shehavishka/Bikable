@@ -7,7 +7,7 @@
      * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
      * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
-     * 
+     * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      */
 
     // dependencies for phpmailer
@@ -215,6 +215,89 @@
              *      1.) Load the form that's it.
             */
             $this->view('owners/ownerChangesHisPassword');
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
+        public function ownerSubmitsHisNewPassword(){
+            // load the form
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // get the form data store in data variable
+                $data = [
+                    'currentPassword' => trim($_POST['current-password']),
+                    'newPassword' => trim($_POST['new-password']),
+                    'confirmPassword' => trim($_POST['confirm-password']),
+
+                    'currentPassword_err' => '',
+                    'confirmPassword_err' => '',
+
+                ];
+
+                // store the user id in a variable
+                $userID = $_SESSION['user_ID'];
+
+                //find user details by user id
+                $userDetails = $this->ownerModel->findUserByUserID($userID);
+
+                // check weather current password is correct or not
+                if($userDetails){
+
+                    $userHashedValue = $userDetails->password;
+                    if(password_verify(strval($data['currentPassword']),strval($userHashedValue))){
+                        //verified
+                    }else{
+                        // if not verified
+                        $data['currentPassword_err'] = "*invalid password";
+                    }
+                }else{
+                    //user not found
+                    // die("Something went wrong!!!");
+                    $this->view('users/error');
+                }
+
+                // check weather new password and confirm password are equal or not
+                if(strval($data["newPassword"]) == strval($data["confirmPassword"])){
+                    //pass
+                }else{
+                    $data["confirmPassword_err"] = "*password doesn't match";
+                }
+
+                // check weather there are no errors
+                if(empty($data['currentPassword_err']) && empty($data['confirmPassword_err'])){
+                    
+                    //allow to change password
+                    if($this->ownerModel->ownerChangesHisPassword($data)){
+                        $this->view('owners/ownerViewsHisOwnProfile');
+                    }else{
+                        // die('something went wrong');
+                        $this->view('users/error');
+                    }
+                }else{
+                    //load the view with errors
+                    $this->view('owners/ownerChangesHisPassword', $data);
+                }
+
+            }else{
+                // if request is not a POST request then load the form
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    'email' => '',
+                    'nic' => '',
+                    // 'pNumber' => '',
+                    // 'password' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    // 'pNumber_err' => '',
+                    // 'password_err' => '',
+
+                ];
+                //load the view
+                $this->view('owners/ownerEditsHisOwnProfile', $data);
+            }
         }
 
 
@@ -633,79 +716,7 @@
         /////////////////////////////   OWNER CHANGES PASSWORD /////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function changePassword(){
-
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // process form
-                //init data
-                $data = [
-                    'currentPassword' => trim($_POST['current-password']),
-                    'newPassword' => trim($_POST['new-password']),
-                    'confirmPassword' => trim($_POST['confirm-password']),
-
-                    'currentPassword_err' => '',
-                    'confirmPassword_err' => '',
-
-                ];
-
-                //store USER ID
-                $userID = $_SESSION['user_ID'];
-                $userDetails = $this->ownerModel->findUserByUserID($userID);
-
-                if($userDetails){
-                    //take user hashed password from the database
-                    $userHashedValue = $userDetails->password;
-                    if(password_verify(strval($data['currentPassword']),strval($userHashedValue))){
-                        // alows to change password no code here
-                    }else{
-                        $data['confirmPassword_err'] = "*invalid password";
-                    }
-                }else{
-                    // die("Something went wrong!!!");
-                    $this->view('users/error');
-                }
-
-                // check weather confirm password and new password is equal
-                if(strval($data["newPassword"]) == strval($data["confirmPassword"])){
-                    // if confirm password and newPassword equals no error
-                }else{
-                    $data["confirmPassword_err"] = "*password didn't match";
-                }
-
-                if(empty($data['currentPassword_err']) && empty($data['confirmPassword_err'])){
-                    // change password
-                    if($this->ownerModel->ownerChangesHisPassword($data)){
-
-                        $this->view('owners/ownerViewsHisOwnProfile');
-                    }else{
-                        // die('something went wrong');
-                        $this->view('users/error');
-                    }
-                }else{
-                    $this->view('owners/ownerChangesHisPassword', $data);
-                }
-
-            }else{
-                //init data
-                $data = [
-                    'fName' => '',
-                    'lName' => '',
-                    // 'pNumber' => '',
-                    'email' => '',
-                    // 'password' => '',
-                    'nic' => '',
-
-                    'fName_err' => '',
-                    'lName_err' => '',
-                    // 'pNumber_err' => '',
-                    'email_err' => '',
-                    // 'password_err' => '',
-                    'nic_err' => '',
-
-                ];
-                $this->view('owners/ownerEditsHisOwnProfile', $data);
-            }
-        }
+        
 
 
 
