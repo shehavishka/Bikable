@@ -6,6 +6,7 @@
      * 2.) Owner's profile page (ownerViewsHisOwnProfile)
      * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
      * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+     * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 
      */
 
@@ -204,6 +205,16 @@
                 $this->view('owners/ownerEditsHisOwnProfile', $data);
             }
 
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 5.) Owner views his password change page (ownerViewsHisPasswordChange)
+        public function ownerViewsHisPasswordChange(){
+            /**
+             * There are,
+             *      1.) Load the form that's it.
+            */
+            $this->view('owners/ownerChangesHisPassword');
         }
 
 
@@ -616,10 +627,7 @@
         /////////////////////////////   OWNER VIEWS HIS PASSWORD //////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function ownerViewsHisPasswordChange(){
-            // view details.
-            $this->view('owners/ownerChangesHisPassword');
-        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER CHANGES PASSWORD /////////////////////////////////////////////
