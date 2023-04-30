@@ -11,6 +11,7 @@
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
      * 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
      * 9.) Owner handle administrator page (administrator)
+     * 10.) Owner handle mechanic page (mechanic)
      */
 
     // dependencies for phpmailer
@@ -461,16 +462,16 @@
             $this->view('owners/administrator',$data);
         }
 
-        // owner controll Mechanic data view
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 10.) Owner handle mechanic page (mechanic)
         public function mechanic(){
             /**
-             *     Tasks
-             *          1.) Load the data 
-             *          2.) View the data
-            *  */ 
+             * There are,
+             *      1.) Load the data 
+             *      2.) View the data
+            */
 
-            // load owner's mechanic control
-            //code will implement here
+            // load mechanic's data
             $mechanicDetails = $this->ownerModel->getMechanicDetails();
             $data = [
                 'mechanic_details' => $mechanicDetails
@@ -480,6 +481,7 @@
             $this->view('owners/mechanic', $data);
         }
 
+        
         // owner controll Mechanic data view
         public function riders(){
             /**
