@@ -3,7 +3,7 @@
     // this class is for owner's controller
     /**
      *  1.) Owner's landing page (ownerLandPage)
-     *
+     *  2.) Owner's profile page (ownerViewsHisOwnProfile)
      * 
      */
 
@@ -49,8 +49,21 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////// ADD USER INTO THE SYSTEM /////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 2.) Owner's profile page (ownerViewsHisOwnProfile)
+        public function ownerViewsHisOwnProfile(){
+           /**
+            * There are,
+            *      1.) Profile Picture -> done
+            *      2.) User ID
+            *      3.) Last Logged in
+            *      4.) Registered Date
+            *      5.) Session Details need to be added -> done
+            */
+
+            $this->view('owners/ownerViewsHisOwnProfile');
+        }
+
+
         public function addUserToTheSystemButton(){
             /**
              *  Two tasks 1
@@ -441,13 +454,7 @@
         ///////////////////////////////// USER VIEWS HIS OWN PROFILE ////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function ownerViewsHisOwnProfile(){
-            /**
-             * show user data             * 
-            */
 
-            $this->view('owners/ownerViewsHisOwnProfile');
-        }
 
         // //////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////// OWNER VIEWS HIS OWN PROFILE /////////////////////////////////////////
