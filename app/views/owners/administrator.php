@@ -87,7 +87,7 @@
                         <td><?php echo $oneAdmin->role ?></td>
                         <td>
                         <!-- update icon svg format -->
-                            <form action="<?php echo URLROOT;?>/owners/viewUserPersonallyPenButton" method="post">
+                            <form action="<?php echo URLROOT;?>/owners/userProfileViewButton" method="post">
                                 <input type="hidden" name="userID" value="<?php echo $oneAdmin->userID;?>">
                                 <input type="submit" name="edit" value="edit" >
                             </form>

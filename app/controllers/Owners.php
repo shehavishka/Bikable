@@ -190,7 +190,7 @@
                     }else{
                         // die('something went wrong');
                         //redirect to the error page
-                        $this->view('users/error');
+                        $this->landToErrorPage();
                     }
                 }else{
                     //load the view with errors
@@ -266,7 +266,7 @@
                 }else{
                     //user not found
                     // die("Something went wrong!!!");
-                    $this->view('users/error');
+                    $this->landToErrorPage();
                 }
 
                 // check weather new password and confirm password are equal or not
@@ -284,7 +284,7 @@
                         $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
                         // die('something went wrong');
-                        $this->view('users/error');
+                        $this->landToErrorPage();
                     }
                 }else{
                     //load the view with errors
@@ -424,7 +424,7 @@
                         $this->view('owners/addUser');
                     }else{
                         // die('something went wrong');
-                        $this->view('users/error');
+                        $this->landToErrorPage();
                     }
                 }else{
                     //load the view with errors
@@ -696,7 +696,7 @@
                 $this->view('owners/ownerViewsUserProfile', $data);
             }else{
                 // die("button didn't work correctly.");
-                $this->view('users/error');
+                $this->landToErrorPage();
             }            
         }
 
@@ -713,26 +713,28 @@
                 if($data['userStatus'] == 1){
                     $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
                     if($isUserSuspend){
-                        $this->view('owners/administrator');
+                        //land to the administrator page
+                        $this->administrator();
                     }else{
                         // die("some thing went wrong at the suspend process");
-                        $this->view('users/error');
+                        $this->landToErrorPage();
                     }
                 }elseif ($data['userStatus'] == 0) {
                     $isUserRelease = $this->ownerModel->activateUserByUserID($data['userIdentity']);
                     if($isUserRelease){
-                        $this->view('owners/administrator');
+                        //land to the administrator page
+                        $this->administrator();
                     }else{
                         // die("some thing went wrong at the suspend process");
-                        $this->view('users/error');
+                        $this->landToErrorPage();
                     }
                 }else{
                     // die("some thing went wrong at the suspend process");
-                    $this->view('users/error');
+                    $this->landToErrorPage();
                 }
             }else{
                 // die("some thing went wrong at the suspend process");
-                $this->view('users/error');
+                $this->landToErrorPage();
             }   
         }
     }
