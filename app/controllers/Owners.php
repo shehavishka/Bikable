@@ -21,9 +21,10 @@
             $this->ownerModel = $this->model('Owner');
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 1.) Owner's landing page (ownerLandPage)
         public function ownerLandPage(){
             /**
-             *  This is Owner's landing page
              *    There are,
              *          1.) Three tables
              *              a.) Reports table
@@ -46,11 +47,6 @@
             // load the data form UI and send all data to the UI
             $this->view('owners/ownerLandPage', $data);
         }
-
-        /////////////////////////////////////////////////
-        // OWNER LANDPAGE ADMIN/ MECHANIC/ BICYCLE/ OWNER RIDERS, BUTTONS IMPLEMENT
-        /////////////////////////////////////////////////
-        // test comment
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////// ADD USER INTO THE SYSTEM /////////////////////////////////////////////////////
