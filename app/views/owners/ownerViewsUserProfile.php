@@ -89,7 +89,7 @@
                 <form action="<?php echo URLROOT;?>/owners/suspendReleaseUser" method="post">
                     <input type="hidden" name="userIdentity" value="<?php echo $data['userDetailObject']->userID;?>">
                     <input type="hidden" name="userStatus" value="<?php echo $data['userDetailObject']->status;?>">
-                    <input type="submit" value="
+                    <input type="submit" class="btn" value="
                         <?php
                             if($data['userDetailObject']->status == 1){
                                 echo "Suspend";
@@ -97,7 +97,7 @@
                                 echo "Release";
                             }
                         ?>
-                    " class="btn">
+                    ">
                 </form>
             </div>
         </div>
