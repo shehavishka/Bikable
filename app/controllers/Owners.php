@@ -2,9 +2,11 @@
 
     // this class is for owner's controller
     /**
-     *  1.) Owner's landing page (ownerLandPage)
-     *  2.) Owner's profile page (ownerViewsHisOwnProfile)
-     *  3.) Owner edits his own profile (ownerEditsHisOwnProfile)
+     * 1.) Owner's landing page (ownerLandPage)
+     * 2.) Owner's profile page (ownerViewsHisOwnProfile)
+     * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
+     * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+     * 
      */
 
     // dependencies for phpmailer
@@ -76,6 +78,132 @@
             */
 
             $this->view('owners/ownerEditsHisOwnProfile');
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+        public function ownerSubmitsHisNewDetails(){
+            /**
+             * This function is for update owner's details
+             * need to validate submitted data 
+            */
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // get the form data store in data variable
+                $data = [
+                    'fName' => trim($_POST['first_name']),
+                    'lName' => trim($_POST['last_name']),
+                    'email' => trim($_POST['email']),
+                    'nic' => trim($_POST['nic_number']),
+                    // 'status' => trim($_POST['status']),
+                    // 'pNumber' => trim($_POST['contact_number']),
+                    // 'userRole' => strtolower(trim($_POST['user_role'])),
+                    // 'userPassword' => '', // this generate after confirmed entered details are ready.
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    // 'status_err' => '',
+                    // 'pNumber_err' => '',
+                    // 'userRole_err' => ''
+                ];
+
+                //validate first name weather it is empty or not
+                if(empty($data['fName'])){
+                    $data['fName'] = $_SESSION['user_fName'];
+                } 
+
+                //validate last name weather it is empty or not
+                if(empty($data['lName'])){
+                    $data['lName'] = $_SESSION['user_lName'];
+                }
+
+                //validate email weather it is empty or not
+                if(empty($data['email'])){
+                    $data['email'] = $_SESSION['user_email'];
+                }else{
+                    //check weather email is availble in database
+                    // true means that email is already taken.
+                    if($this->ownerModel->findUserByEmail($data['email'])){
+                        $data['email_err'] = "*email is already taken";
+                    }else{
+                        //update email
+                        //pass
+                    }
+                }
+
+                //validate nic weather it is empty or not
+                if(empty($data['nic'])){
+                    $data['nic'] = $_SESSION['user_NIC'];
+                }else{
+                    //check weather nic is availble in database
+                    // true means that nic is already taken.
+                    if($this->ownerModel->findNicNumber($data['nic'])){
+                        $data['nic_err'] = "*NIC is already taken";
+                    }else{
+                        //update nic
+                        //pass
+                    }
+                }
+
+                //validate phone number weather it is empty or not
+                // if(empty($data['pNumber'])){
+                //     $data['pNumber_err'] = '*enter phone Number';
+                // }else{
+                //     //check weather phone number is availble in database
+                //     // true means that phone number is already taken.
+                //     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
+                //         
+                //         $data['pNumber_err'] = "*Phone Number is already taken";
+                //     }else{
+                //         //pass
+                //     }
+                //}
+
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err'])){
+                    //if all data are valid then update user details
+                    if($this->ownerModel->ownerUpdatesHisData($data)){
+                        //update session variables
+                        $_SESSION['user_fName'] = $data['fName'];
+                        $_SESSION['user_lName'] = $data['lName'];
+                        $_SESSION['user_email'] = $data['email'];                       
+                        $_SESSION['user_NIC'] = $data['nic'];
+                        
+                        //redirect to the profile page
+                        $this->view('owners/ownerViewsHisOwnProfile');
+                    }else{
+                        // die('something went wrong');
+                        //redirect to the error page
+                        $this->view('users/error');
+                    }
+                }else{
+                    //load the view with errors
+                    $this->view('owners/ownerEditsHisOwnProfile', $data);
+                }
+
+            }else{
+                // if request is not a POST request then load the form
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    'email' => '',
+                    'nic' => '',
+                    // 'pNumber' => '',
+                    // 'password' => '',
+
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    // 'pNumber_err' => '',
+                    // 'password_err' => '',
+                ];
+
+                //load the view
+                $this->view('owners/ownerEditsHisOwnProfile', $data);
+            }
+
         }
 
 
@@ -482,127 +610,7 @@
         ////////////////////////////// OWNER EDITS HIS OWN PROFILE /////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public function ownerSubmitsHisNewDetails(){
-            /**
-             *  This function owner update his details and need to check user input data
-             * 
-            */
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // process form
-                //init data
-                $data = [
-                    'fName' => trim($_POST['first_name']),
-                    'lName' => trim($_POST['last_name']),
-                    'email' => trim($_POST['email']),
-                    // 'status' => trim($_POST['status']),
-                    'nic' => trim($_POST['nic_number']),
-                    // 'pNumber' => trim($_POST['contact_number']),
-                    // 'userRole' => strtolower(trim($_POST['user_role'])),
-
-                    // 'userPassword' => '', // this generate after confirmed entered details are ready.
-
-                    'fName_err' => '',
-                    'lName_err' => '',
-                    'email_err' => '',
-                    // 'status_err' => '',
-                    'nic_err' => '',
-                    // 'pNumber_err' => '',
-                    // 'userRole_err' => ''
-                ];
-
-                //validate submitted data
-                //validate first_name
-                if(empty($data['fName'])){
-                    $data['fName'] = $_SESSION['user_fName'];
-                } 
-
-                //validate last name
-                if(empty($data['lName'])){
-                    $data['lName'] = $_SESSION['user_lName'];
-                }
-
-                //validate email
-                if(empty($data['email'])){
-                    $data['email'] = $_SESSION['user_email'];
-                }else{
-                    //check weather email is availble in database
-                    if($this->ownerModel->findUserByEmail($data['email'])){
-                        // true means that email is already taken.
-                        $data['email_err'] = "*email is already taken";
-                    }else{
-                        //pass
-                    }
-                }
-
-
-                //validate NIC
-                if(empty($data['nic'])){
-                    $data['nic'] = $_SESSION['user_NIC'];
-                }else{
-                    //check weather nic is availble in database
-                    if($this->ownerModel->findNicNumber($data['nic'])){
-                        // true means that email is already taken.
-                        $data['nic_err'] = "*NIC is already taken";
-                    }else{
-                        //pass
-                    }
-                }
-
-                //validate phone number
-                // if(empty($data['pNumber'])){
-                //     $data['pNumber_err'] = '*enter phone Number';
-                // }else{
-                //     //check weather phone number is availble in database
-                //     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
-                //         // true means that email is already taken.
-                //         $data['pNumber_err'] = "*Phone Number is already taken";
-                //     }else{
-                //         //pass
-                //     }
-                // }
-
-                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err'])){
-                    // register user
-                    if($this->ownerModel->ownerUpdatesHisData($data)){
-                        // next implementation should be land into the right position according to the role
-
-                        //after user details updated then need to update session data.
-                        $_SESSION['user_fName'] = $data['fName'];
-                        $_SESSION['user_lName'] = $data['lName'];
-                        $_SESSION['user_email'] = $data['email'];                       
-                        $_SESSION['user_NIC'] = $data['nic'];
-                        
-                        $this->view('owners/ownerViewsHisOwnProfile');
-                    }else{
-                        // die('something went wrong');
-                        $this->view('users/error');
-                    }
-                }else{
-                    $this->view('owners/ownerEditsHisOwnProfile', $data);
-                }
-
-            }else{
-                //init data
-                $data = [
-                    'fName' => '',
-                    'lName' => '',
-                    // 'pNumber' => '',
-                    'email' => '',
-                    // 'password' => '',
-                    'nic' => '',
-
-                    'fName_err' => '',
-                    'lName_err' => '',
-                    // 'pNumber_err' => '',
-                    'email_err' => '',
-                    // 'password_err' => '',
-                    'nic_err' => '',
-
-                ];
-                $this->view('owners/ownerEditsHisOwnProfile', $data);
-            }
-
-        }
+        
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER VIEWS HIS PASSWORD //////////////////////////////////////////////////
