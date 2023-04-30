@@ -663,4 +663,10 @@
             }
         }
 
+
+
+        public function landToErrorPage(){
+            $this->view('users/error');
+        }
+
     }
