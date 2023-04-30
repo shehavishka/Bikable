@@ -10,7 +10,7 @@
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
      * 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
-     * 
+     * 9.) Owner handle administrator page (administrator)
      */
 
     // dependencies for phpmailer
@@ -442,16 +442,16 @@
             }
         }
 
-
-        // owner controll administrator
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 9.) Owner handle administrator page (administrator)
         public function administrator(){
             /**
-             *     Tasks
-             *          1.) Load the data 
-             *          2.) View the data
-            *  */ 
-
-            // load owner's administrator control
+             * There are,
+             *      1.) Load the data 
+             *      2.) View the data
+            */
+            
+            // load administrator's data
             $administratorsDetails = $this->ownerModel->getAdminDetails();
             $data = [
                 'admin_details' => $administratorsDetails
