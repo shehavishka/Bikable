@@ -9,6 +9,8 @@
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
+     * 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
+     * 
      */
 
     // dependencies for phpmailer
@@ -302,7 +304,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 7.) Owner adds a new user to the system (addUserToTheSystemButton)
+        // 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
         public function addUserToTheSystemButton(){
             /**
              * There is,
@@ -311,18 +313,21 @@
 
             $this->view('owners/addUser');
         }
-        
 
-        // after addUser form filled if they are valid then insert data into the system
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
         public function addUserToTheSystemFormSubmitButton(){
             /**
-             *  Task
-             *      This function task is validate data from the addUser form and,
-             *          generate the password and send it the user 
+             * There are,
+             *      1.) Validate the form data -> done
+             *      2.) Generate a password -> done
+             *      3.) If there are no errors then add the user to the system -> done
+             *      4.) Send an email to the user with the password -> done
             */
+
+            // load the form
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                // process form
-                //init data
+                // get the form data store in data variable
                 $data = [
                     'fName' => trim($_POST['first_name']),
                     'lName' => trim($_POST['last_name']),
@@ -343,8 +348,7 @@
                     'userRole_err' => ''
                 ];
 
-                //validate submitted data
-                //validate first_name
+                //validate first name
                 if(empty($data['fName'])){
                     $data['fName_err'] = '*enter first name';
                 } 
@@ -359,22 +363,21 @@
                     $data['email_err'] = '*enter email Number';
                 }else{
                     //check weather email is availble in database
+                    // true means that email is already taken.
                     if($this->ownerModel->findUserByEmail($data['email'])){
-                        // true means that email is already taken.
                         $data['email_err'] = "*email is already taken";
                     }else{
                         //pass
                     }
                 }
 
-
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
                 }else{
                     //check weather nic is availble in database
+                    // true means that email is already taken.
                     if($this->ownerModel->findNicNumber($data['nic'])){
-                        // true means that email is already taken.
                         $data['nic_err'] = "*NIC is already taken";
                     }else{
                         //pass
@@ -385,27 +388,26 @@
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
                 }else{
-                    //check weather phone number is availble in database
+                    //check weather phone number is availble in database.
+                    // true means that phone number is already taken.
                     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
-                        // true means that email is already taken.
                         $data['pNumber_err'] = "*Phone Number is already taken";
                     }else{
                         //pass
                     }
                 }
 
+                // if there is no error then add the user to the system
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
-                    //every things up to ready 
 
-                    // hash password
-                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
+                    // generate password -> calls generatePassword() function
                     $data['userPassword'] = $this->generatePassword();
+                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
                     
-                    //After authentication is done send new Password to the user to his/her email.
+                    // send email to the user -> calls sendEmailToTheUser() function                    
                     $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
-                    // register user
+                    // add user to the system
                     if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         $this->view('owners/addUser');
@@ -414,11 +416,12 @@
                         $this->view('users/error');
                     }
                 }else{
+                    //load the view with errors
                     $this->view('owners/addUser', $data);
                 }
 
             }else{
-                //init data
+                // if request is not a POST request then load the form
                 $data = [
                     'fName' => '',
                     'lName' => '',
