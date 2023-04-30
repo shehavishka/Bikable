@@ -21,6 +21,7 @@
      * 17.) Owner handle reports control page (reportsControl)
      * 18.) (inbuilt) Generate password length 8
      * 19.) (inbuilt) Send email to the user
+     * 20.) (inbuilt) land to the error page
      */
 
     // dependencies for phpmailer
@@ -669,6 +670,13 @@
             $mail->send();
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 20.) (inbuilt) land to the error page
+        public function landToErrorPage(){
+            //load the error page only view
+            $this->view('users/error');
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////// UPDATE BUTTON (SUSPEND) ///////////////////////////////////////
@@ -709,8 +717,6 @@
             }   
         }
 
-        public function landToErrorPage(){
-            $this->view('users/error');
-        }
+
 
     }
