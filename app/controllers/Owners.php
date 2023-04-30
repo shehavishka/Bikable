@@ -22,7 +22,9 @@
      * 18.) (inbuilt) Generate password length 8
      * 19.) (inbuilt) Send email to the user
      * 20.) (inbuilt) land to the error page
-     */
+     * 21.) user profile view button (userProfileViewButton)
+     * 22.) suspend and release user (suspendReleaseUser)
+    */
 
     // dependencies for phpmailer
     use PHPMailer\PHPMailer\PHPMailer;
