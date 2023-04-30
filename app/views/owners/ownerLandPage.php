@@ -241,12 +241,12 @@
             </script>
         </div>
 
-        <div class="lower_sectiotn_satistics--doughnut">
+        <div class="lower_section_statistics--doughnut">
             <div class="lower__section__card--title">
                 Bike Inventory Status
             </div>
             <!-- DOUGHNUT CHART -->
-            <div class="lowe__section__card--doughnuts">
+            <div class="lower__section__card--doughnuts">
                 <canvas id="myChart" width="20" height="20"></canvas>
             </div>
             <script>
@@ -316,11 +316,11 @@
             </script>            
         </div>
 
-        <div class="lower_sectiotn_satistics--bars">
+        <div class="lower_section_statistics--bars">
             <div class="lower__section__card--title">
                 Bike Availability Trend
             </div>
-            <div class="lowe__section__card--bars">
+            <div class="lower__section__card--bars">
                 <canvas id="myLine" width="20" height="20"></canvas>
             </div>  
             <script>

@@ -140,7 +140,7 @@ body{
 
 }
 
-.lower_sectiotn_satistics--doughnut{
+.lower_section_statistics--bars{
     background-color: var(--clr-dark);
     grid-area: mid;
     margin: 0% 2%;
@@ -150,7 +150,7 @@ body{
 
 }
 
-.lower_sectiotn_satistics--bars{
+.lower_section_statistics--doughnut{
     background-color: var(--clr-dark);
     grid-area: righter;
     margin: 0% 2%;
