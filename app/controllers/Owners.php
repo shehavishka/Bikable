@@ -16,6 +16,8 @@
      * 12.) Owner handle bicycle owner page (bicycleOwner)
      * 13.) Owner handle add new repair log page (addNewRepairLog)
      * 14.) Owner handle docking areas page (dockingAreas)
+     * 15.) Owner handle bicycle control page (bicyclesControl)
+     * 16.) Owner handle rides control page (ridesControl)
      */
 
     // dependencies for phpmailer
@@ -528,9 +530,9 @@
         // 13.) Owner handle add new repair log page (addNewRepairLog)
         public function addNewRepairLog(){
             /**
-             * There is,
+             * There are,
              *      1.) Load the data
-             *     2.) View the data
+             *      2.) View the data
             */
             $this->view('owners/addNewRepairLog');
         }
@@ -539,7 +541,7 @@
         // 14.) Owner handle docking areas page (dockingAreas)
         public function dockingAreas(){
             /**
-             * There is,
+             * There are,
              *      1.) Load the data
              *      2.) View the data
              *   
@@ -547,18 +549,20 @@
             $this->view('owners/dockingareas');
         }
 
-        // owner controll bicycle details
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 15.) Owner handle bicycle control page (bicyclesControl)
         public function bicyclesControl(){
             /**
-             * Task 
-             *      1.) handle bicycles in the system.
-             */
-
-            //this is not load data from the database
+             * There are,
+             *      1.) Load the data
+             *      2.) View the data
+             *   
+            */
             $this->view('owners/bicycles');
         }
 
-        // owner views the the rides and controll
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 16.) Owner handle rides control page (ridesControl)
         public function ridesControl(){
             /**
              *  Task
