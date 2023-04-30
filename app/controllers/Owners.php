@@ -8,6 +8,7 @@
      * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
+     * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
      */
 
     // dependencies for phpmailer
@@ -300,16 +301,17 @@
             }
         }
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 7.) Owner adds a new user to the system (addUserToTheSystemButton)
         public function addUserToTheSystemButton(){
             /**
-             *  Two tasks 1
-             *      1.) Load the form      
+             * There is,
+             *      1.) Load the form that's it.
             */
 
-            // load the data form UI
             $this->view('owners/addUser');
         }
+        
 
         // after addUser form filled if they are valid then insert data into the system
         public function addUserToTheSystemFormSubmitButton(){
