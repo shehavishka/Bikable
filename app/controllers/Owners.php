@@ -716,7 +716,4 @@
                 $this->view('users/error');
             }   
         }
-
-
-
     }
