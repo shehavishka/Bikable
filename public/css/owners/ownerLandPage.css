@@ -92,7 +92,7 @@ body{
 
 .upper__section--reports{
     grid-area: two;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     /* background-color: lightyellow; */
 }
 
@@ -116,12 +116,12 @@ body{
 
 .lower__section{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     grid-template-areas: 
-        "lefter righter"
+        "lefter middle righter"
     ;
 
-    margin: 0% 4%;
+    margin: 0% 2%;
     
 }
 
@@ -131,52 +131,44 @@ body{
     grid-area: lefter;
     background-color: lightgreen;
     border-radius: 10px;
-    height: 47vh;
+    height: 49vh;
     /* background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/kk.png'); */
     background-position: center;
     background-size: cover;
     background-blend-mode: multiply;
 
-    margin-bottom: 0.5em;
+    margin-bottom: 0rem;
+    margin-right: 1%;
 
 }
 
-.lower_section--statistics{
-    background-color: #D9D9D9;
+.lower_sectiotn_satistics--doughnut{
+    background-color: var(--clr-dark);
+    grid-area: middle;
+    margin: 0% 2%;
+    border-radius: 10px;
+    padding: 0rem 2rem;
+    padding-bottom: 0.1rem;
+
+}
+
+.lower_sectiotn_satistics--bars{
+    background-color: var(--clr-dark);
     grid-area: righter;
     margin: 0% 2%;
     border-radius: 10px;
     padding: 0rem 2rem;
     padding-bottom: 0.2rem;
-
 }
 
 
 .lower__section__card--title{
+    margin-top: 2%;
     font-size: var(--fs-h3);
 }
 
 /* static card */
 
-.static__image{
-    height: 26vh;
-    background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/stat.png');
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: multiply;
-
-    border-radius: 5px;
-}
-
-.static__graph{
-    height: 16vh;
-    background-image: url('http://localhost/Bikable_23.1.1/images/owners/landPageImages/graph.png');
-    background-position: center;
-    background-size: cover;
-    background-blend-mode: multiply;
-
-    border-radius: 5px;
-}
 
 /* **************************************************************************************************************** */
 /* button adjustment */

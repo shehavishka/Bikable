@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/ownerLandPage.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Owner Landpage</title>
 </head>
 <body>
@@ -240,21 +241,146 @@
             </script>
         </div>
 
-        <div class="lower_section--statistics">
+        <div class="lower_sectiotn_satistics--doughnut">
             <div class="lower__section__card--title">
-                Statistics
+                Bike Inventory Status
             </div>
+            <!-- DOUGHNUT CHART -->
+            <div class="lowe__section__card--doughnuts">
+                <canvas id="myChart" width="20" height="20"></canvas>
+            </div>
+            <script>
+                    const data1 = {
+                        labels: [
+                            'Occupied Bikes',
+                            'Vacant Bikes',
+                            'Bikes in Repair'
+                        ],
+                        datasets: [{
+                            label: 'Bikes',
+                            data: [300, 50, 100],
+                            backgroundColor: [
+                                'rgb(28, 28, 28)',
+                                'rgb(158, 158, 157)',
+                                'rgb(222, 222, 222)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    };
 
-            <div class="lower__section__statistics--body">
-                <div class="static__image">
-                    <!-- <h2>Image here</h2> -->
-                </div>
-                <div class="static__graph">
-                    <!-- <h2>Static graph here</h2> -->
-                </div>
-            </div>
+                    const config = {
+                        type: 'doughnut',
+                        data: data1,
+                        options: {
+                            cutout: '70%',
+                            fontSize: 12,
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'right',
+                                    align: 'center',
+                                    labels: {
+                                        font: {
+                                            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                                            size: 10,
+                                        },
+                                        padding: 10,
+                                        boxWidth: 80,
+                                        usePointStyle: true
+                                    }
+                                },
+                                // datalabels: {
+                                //     color: '#fff',
+                                //     font: {
+                                //         size: 12,
+                                //     },
+                                //     formatter: (value, context) => {
+                                //         const total = context.chart.data.datasets[0].data.reduce((acc, val) => acc + val, 0);
+                                //         const percentage = Math.round((value / total) * 100);
+                                //         return `${value} (${percentage}%)`;
+                                //     },
+                                // },
+                                
+                            },
+                            // scales: {
+                            //     y: {
+                            //         beginAtZero: true,
+                            //     },
+                            // },
+                        },
+                    };
+                    var myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                    );
+            </script>            
         </div>
 
+        <div class="lower_sectiotn_satistics--bars">
+            <div class="lower__section__card--title">
+                Bike Availability Trend
+            </div>
+            <div class="lowe__section__card--bars">
+                <canvas id="myLine" width="20" height="20"></canvas>
+            </div>  
+            <script>
+                const data2 = {
+                        labels: [
+                            "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+                        ],
+                        datasets: [{
+                                label: "Vacant Bikes",
+                                data: [180,200,150,120,100,150,200],
+                                borderColor: "rgba(255, 99, 132, 1)",
+                                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                                fill: true,
+                                tension: 0.1,
+                            },
+                            {
+                                label: "Occupied Bikes",
+                                data: [100,80,120,150,200,150,100],
+                                borderColor: "rgba(54, 162, 235, 1)",
+                                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                                fill: true,
+                                tension: 0.4,
+                            },
+                        ]
+                };
+
+                    const config2 = {
+                        type: 'line',
+                        data: data2,
+                        options: {
+                            plugins: {
+                                legend: {
+                                    position: "bottom",
+                                },
+                            },
+                            scales: {
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: "Days",
+                                    },
+                                },
+                                y: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: "Number of Bikes",
+                                    },
+                                    suggestedMin: 50,
+                                },
+                            },
+                        },
+                    };
+                    var myChart = new Chart(
+                        document.getElementById('myLine'),
+                        config2
+                );
+            </script>
+        </div>
     </section>
 </body>
 </html>
