@@ -31,7 +31,6 @@
                     <input type="button" class="btn btn_delete" value="Submit" onclick="location.href='<?php echo URLROOT;?>/mechanics/addReport'">
                 </div>
             </div>
-
         </div>
 
         <div class="data__area--detail">

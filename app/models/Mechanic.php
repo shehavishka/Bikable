@@ -155,4 +155,16 @@
             return $this->db->resultSet();
         }
 
+        public function getDashboardBicycles(){
+            $this->db->prepareQuery("SELECT * FROM bicycles where status = 0 order by datePutInUse desc limit 6");
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getBicycleDetails(){
+            $this->db->prepareQuery("SELECT * FROM bicycles where status != 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
     }

@@ -27,12 +27,12 @@ class Mechanics extends Controller
         $repairLogDetails = $this->mechanicModel->getDashboardRepairLog();
         $reportDetails = $this->mechanicModel->getDashboardReports();
         $DADetails = $this->mechanicModel->getDashboardDA();
-        // $bicyclesDetails = $this->mechanicModel->getDashboardBicycles();
+        $bicycleDetails = $this->mechanicModel->getDashboardBicycles();
         $data = [
             'dashboard_repairLog' => $repairLogDetails,
             'dashboard_reports' => $reportDetails,
             'docking_areas_details' => $DADetails,
-            // 'dashboard_bicycles' => $bicyclesDetails
+            'dashboard_bicycles' => $bicycleDetails
         ];
 
     //  view details
@@ -387,7 +387,37 @@ class Mechanics extends Controller
             ];
             
             //view details
-            $this->view('admins/dockingareas', $data);
-        }
+            $this->view('mechanics/dockingareas', $data);
+    }
+
+    public function bicycleControl(){
+        /**
+         * Tasks 
+         * 1) Load the data
+         * 2) View the data
+         **/
+        $bicycleDetails = $this->mechanicModel->getBicycleDetails();
+        $data = [
+            'bicycle_details' => $bicycleDetails
+        ];
+
+        //view details
+        $this->view('mechanics/bicycles', $data);
         
+    }
+
+    public function viewBicycle(){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $data = [
+                'logID' => intval(trim($_GET['logID'])),
+                'logDetailObject' => ''
+            ];
+            $data['logDetailObject'] = $prespectiveUserDetail = $this->mechanicModel->findLogbyID($data['logID']);
+            $this->view('mechanics/viewBicycle', $data);
+        }
+        else{
+            die("button didn't work correctly.");
+        }
+    }  
+          
 }

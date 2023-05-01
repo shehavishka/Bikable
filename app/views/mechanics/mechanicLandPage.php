@@ -138,7 +138,7 @@
             </div>
         </a>
 
-        <a href="<?php echo URLROOT ?>/mechanics/bicyclesControl" style="text-decoration:none;color:black">
+        <a href="<?php echo URLROOT ?>/mechanics/bicycleControl" style="text-decoration:none;color:black">
             <div class="upper__section--bicycles cardd">
                 <div class="upper__section__card--title">
                     Bicycles

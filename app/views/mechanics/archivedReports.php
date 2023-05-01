@@ -4,36 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/reports.css">
-    <title>Reports</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/reports.css">
+    <title>Archived Reports</title>
 </head>
 <body>
     <!-- finalized side bar -->
-    <?php require 'sidebar-mechanic.php'; ?>
+    <?php require APPROOT . '/views/inc/sidebar-admin.php'; ?>
 
 
     <!-- In the framework right side of the web page view -->
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <?php require 'header.php'; ?>
+        <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">Reports</div>
+            <div class="admin__data__area__top--title">Archived Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/mechanics/addReport'">
-                </div>
-
-                <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/archivedReports'">
+                    <input type="button" class="btn btn_add" value="View Active" onclick="location.href='<?php echo URLROOT;?>/admins/reportsControl'">
                 </div>
                 
-                <form action="<?php echo URLROOT;?>/mechanics/archiveReports" method="POST" id="userInterface">
+                <form action="<?php echo URLROOT;?>/admins/unarchiveReports" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="submit" class="btn btn_delete" value="Archive Selected">
+                    <input type="submit" class="btn btn_delete" value="Unarchive Selected">
                 </div>
             </div>
 
@@ -83,7 +79,7 @@
                         <td><?php echo printValue($oneObject, 'areaID') ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/mechanics/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>'/public/images/mechanics/edit.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; 
                     function printValue($oneObject, $column_name){
