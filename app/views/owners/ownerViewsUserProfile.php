@@ -8,70 +8,102 @@
     <title>User Profile</title>
 </head>
 <body>
-    <section class="data__area">
-        <div class="left--side">
-            <div class="profile__picture--card">
-                <div class="dropdown_area" style="background-image: url(
+    <!-- finalized side bar -->
+    <?php require APPROOT . '/views/inc/sidebar.php'; ?>
+
+    <!-- In the framework right side of the web page view -->
+    <section class="admin_data_area">
+
+        <!-- dashboard section -->
+        <?php require APPROOT . '/views/inc/header.php'; ?>
+
+        <!-- REAL DATA AREA -->
+
+        <!-- admin real data top -->
+        <div class="admin__data__area--top">
+            <div class="admin__data__area__top--title">User Profile</div>
+            <div class="admin__data_area__top--twobuttons">
+                <!-- <div class="add_user_button">
+                    <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/owners/ownerEditsHisOwnProfile'">
+                </div> -->
+                <div class="delete_user_button">
+                    <input type="button" value="Go back" class="btn" onclick="goBack()">
+                    <script>
+                        function goBack(){
+                            window.history.back();
+                        }
+                    </script>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="data__area">
+            <div class="left--side">
+                <div class="profile__picture--card">
+                    <div class="dropdown_area" style="background-image: url(
                         <?php 
                             if($data['userDetailObject']->userPicture != null){
                                 echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
                             }else{
                                 echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                             }
-                        ?>);">
+                        ?>); width: 200px; height: 200px; margin-left: 10%;">
+                    </div>
+                    <div class="user_history">
+                        <div class="user_detail_x">
+                            <label>User ID: </label>
+                            <div class="user__data">
+                                <?php echo $data['userDetailObject']->userID ?>
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Last Logged In</label>
+                            <div class="user__data">
+                                2022/10/10
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Registered Date</label>
+                            <div class="user__data">
+                                2020/10/24
+                            </div>
+                        </div>
+                    </div>
+    
                 </div>
-                <div class="user_history">
-                    <table>
-                        <tr>
-                            <th style="width: 3%;"></th>
-                            <th style="width: 5%;"></th>
-        
-                        </tr>
-                        <tr>
-                            <td>User ID</td>
-                            <td><?php echo $data['userDetailObject']->userID; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Last Logged in  :</td>
-                            <td>2023/02/5</td>
-                        </tr>
-                        <tr>
-                            <td>Registered date : </td>
-                            <td>2022/12/28</td>
-                        </tr>
-                    </table>
-                </div>
-
             </div>
-        </div>
-        <div class="right--side">
-            <div class="detail__view--card">
-                <div class="generalInformation"><strong><h2>General Information</h2></strong></div>
-                <div class="user__detail">
-                    <table>
-                        <tr>
-                            <td>Name</td>
-                            <td><?php echo $data['userDetailObject']->firstName . ' ' . $data['userDetailObject']->lastName; ?></td>
-                        </tr>
-                        <tr>
-                            <td>NIC</td>
-                            <td><?php echo $data['userDetailObject']->NIC; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Role</td>
-                            <td><?php echo $data['userDetailObject']->role; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Mobile Number</td>
-                            <td><?php echo $data['userDetailObject']->phoneNumber; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><?php echo $data['userDetailObject']->emailAdd; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>
+            <div class="right--side">
+                <div class="detail__view--card">
+                    <!-- <div class="generalInformation"><strong><h2>General Information</h2></strong></div> -->
+                    <div class="user__detail">
+                        <div class="user_detail_x">
+                            <label>Name</label>
+                            <div class="user__name">
+                                <?php echo $data['userDetailObject']->firstName . ' ' . $data['userDetailObject']->lastName; ?>
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Mobile Number</label>
+                            <div class="user__data">
+                                <?php echo $data['userDetailObject']->phoneNumber; ?>
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Email</label>
+                            <div class="user__data">
+                                <?php echo $data['userDetailObject']->emailAdd; ?>
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>NIC</label>
+                            <div class="user__data">
+                                <?php echo $data['userDetailObject']->NIC; ?>   
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Status</label>
+                            <div class="user__data">
                                 <?php
                                     if($data['userDetailObject']->status == 1){
                                         echo "Active";
@@ -79,29 +111,38 @@
                                         echo "Inactive";
                                     }
                                 ?>
-                            </td>
-                        </tr>
-
-                    </table>
+                            </div>
+                        </div>
+                        <div class="user_detail_x">
+                            <label>Role</label>
+                            <div class="user__data">
+                                <?php
+                                    echo $data['userDetailObject']->role;
+                                ?>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="button__area">
+                    <form action="<?php echo URLROOT;?>/owners/suspendReleaseUser" method="post">
+                        <input type="hidden" name="userIdentity" value="<?php echo $data['userDetailObject']->userID;?>">
+                        <input type="hidden" name="userStatus" value="<?php echo $data['userDetailObject']->status;?>">
+                        <button type="submit" class="btn btnSuspendRelease">
+                            <?php
+                                if($data['userDetailObject']->status == 1){
+                                    echo "Suspend";
+                                }else{
+                                    echo "Release";
+                                }
+                            ?>
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="button__area">
-                <form action="<?php echo URLROOT;?>/owners/suspendReleaseUser" method="post">
-                    <input type="hidden" name="userIdentity" value="<?php echo $data['userDetailObject']->userID;?>">
-                    <input type="hidden" name="userStatus" value="<?php echo $data['userDetailObject']->status;?>">
-                    <input type="submit" class="btn" value="
-                        <?php
-                            if($data['userDetailObject']->status == 1){
-                                echo "Suspend";
-                            }else{
-                                echo "Release";
-                            }
-                        ?>
-                    ">
-                </form>
-            </div>
+        </section>
+            
         </div>
-    </section>
 
 
 </body>
