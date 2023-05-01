@@ -252,13 +252,14 @@
                             move_uploaded_file($tmp_name, $img_upload_path);
             
                             // //Insert into database
-                            // if($this->sellerModel->addAdvertisement($data)){
-                            //     flash('post_message', 'Advertisement Added');
-                            //     redirect('sellers/advertisements');
-                            // }
-                            // else{
-                            //     die('Something went wrong');
-                            // }
+                            if($this->ownerModel->ownerUploadsHisProfilePicture($new_img_name)){
+                                //update profile picture session variable
+                                $_SESSION['user_picture'] = $new_img_name;
+                                $this->view('owners/ownerEditsHisOwnProfile');
+                            }
+                            else{
+                                $this->landToErrorPage();
+                            }
                         }else{
                             $this->landToErrorPage();
                         }

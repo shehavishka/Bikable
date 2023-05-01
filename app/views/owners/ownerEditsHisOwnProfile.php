@@ -45,9 +45,9 @@
                             }else{
                                 echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                             }
-                        ?>); width: 200px; height: 200px; margin-left: 10%;">
+                        ?>); width: 200px; height: 200px; margin-left: 0%;">
                     </div>
-                    <div class="profile__picture__upload--area">
+                    <div class="profile__picture__upload--area" style="margin-top: 4%;">
 
                         <form class="" action="<?php echo URLROOT;?>/owners/ownerUpdatesHisProfilePicture" method="post" autocomplete="off" enctype="multipart/form-data">
                             <input type="file" name="image1" id = "image1" accept=".jpg, .jpeg, .png" value="">

@@ -226,9 +226,8 @@
         public function ownerUploadsHisProfilePicture($data){
             $profilePicture = $data;
             $userEmail = $_SESSION['user_email'];
-
             //prepare query
-            $temp = "UPDATE users SET profilePicture = '$profilePicture' WHERE emailAdd = '$userEmail' ";
+            $temp = "UPDATE users SET userPicture = '$profilePicture' WHERE emailAdd = '$userEmail' ";
 
             $this->db->prepareQuery($temp);
 
