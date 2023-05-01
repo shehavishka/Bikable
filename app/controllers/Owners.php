@@ -247,7 +247,7 @@
                         $allowed_exs = array("jpg", "jpeg", "png"); 
             
                         if(in_array($img_ex_lc, $allowed_exs)){
-                            
+
                             $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
                             $img_upload_path = dirname(APPROOT).'/public/images/profile_pictures/'.$new_img_name;
                             move_uploaded_file($tmp_name, $img_upload_path);
@@ -277,8 +277,7 @@
                 $this->landToErrorPage();
             }
         }
-
-        
+          
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 5.) Owner views his password change page (ownerViewsHisPasswordChange)
         public function ownerViewsHisPasswordChange(){
