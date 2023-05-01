@@ -41,11 +41,19 @@
                     <div class="dropdown_area" style="background-image: url(
                         <?php 
                             if($_SESSION['user_picture'] != null){
-                                echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
+                                echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'];
                             }else{
                                 echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                             }
                         ?>); width: 200px; height: 200px; margin-left: 10%;">
+                    </div>
+                    <div class="profile__picture__upload--area">
+
+                        <form class="" action="<?php echo URLROOT;?>/owners/ownerUpdatesHisProfilePicture" method="post" autocomplete="off" enctype="multipart/form-data">
+                            <input type="file" name="image1" id = "image1" accept=".jpg, .jpeg, .png" value="">
+                            <button type = "submit" name = "submit" class="">Submit</button>
+                        </form>
+
                     </div>
                     <div class="user_history">
                         <div class="user_detail_x">

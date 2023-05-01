@@ -6,6 +6,7 @@
      * 2.) Owner's profile page (ownerViewsHisOwnProfile)
      * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
      * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+     *  4.1) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
@@ -222,7 +223,55 @@
             }
 
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 4.1) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+        public function ownerUpdatesHisProfilePicture(){
+            /**
+             * There are,
+             *      1.) Profile  Picture  upload
+            */
+            if(!empty($_FILES['image1']['name'])){
+                $img_name = $_FILES['image1']['name'];
+                $img_size = $_FILES['image1']['size'];
+                $tmp_name = $_FILES['image1']['tmp_name'];
+                $error = $_FILES['image1']['error'];
+            
+                if($error === 0){
+                    if($img_size > 12500000){
+                        $data['image1_err'] = "Sorry, your first image is too large.";
+                    }
+                    else{
+                        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION); //Extension type of image(jpg,png)
+                        $img_ex_lc = strtolower($img_ex);
+            
+                        $allowed_exs = array("jpg", "jpeg", "png"); 
 
+                        if(in_array($img_ex_lc, $allowed_exs)){
+                            $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                            $img_upload_path = dirname(APPROOT).'/public/images/profile_pictures/'.$new_img_name;
+                            move_uploaded_file($tmp_name, $img_upload_path);
+            
+                            // //Insert into database
+                            // if($this->sellerModel->addAdvertisement($data)){
+                            //     flash('post_message', 'Advertisement Added');
+                            //     redirect('sellers/advertisements');
+                            // }
+                            // else{
+                            //     die('Something went wrong');
+                            // }
+                        }else{
+                            $this->landToErrorPage();
+                        }
+                    }
+                }else{
+                    $this->landToErrorPage();
+                }
+            }else{
+                $this->landToErrorPage();
+            }
+        }
+
+        
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 5.) Owner views his password change page (ownerViewsHisPasswordChange)
         public function ownerViewsHisPasswordChange(){

@@ -220,4 +220,22 @@
                 return false;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Owner upload his profile picture
+        public function ownerUploadsHisProfilePicture($data){
+            $profilePicture = $data;
+            $userEmail = $_SESSION['user_email'];
+
+            //prepare query
+            $temp = "UPDATE users SET profilePicture = '$profilePicture' WHERE emailAdd = '$userEmail' ";
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }

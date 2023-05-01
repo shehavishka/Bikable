@@ -35,7 +35,7 @@
             <div class="dropdown_area" style="background-image: url(
                     <?php 
                         if($_SESSION['user_picture'] != null){
-                            echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'] . ".jpg";
+                            echo URLROOT. "/public/images/profile_pictures/". $_SESSION['user_picture'];
                         }else{
                             echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                         }
