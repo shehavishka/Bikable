@@ -11,7 +11,7 @@
 
             <div class="dashboard__header--helpsetting">
                 <div class="helpsetting__help">
-                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon">
+                    <a href="<?php echo URLROOT; ?>/owners/landToErrorPage"><img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon"></a>
                 </div>
                 <div class="helpsetting__setting">
                     <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
