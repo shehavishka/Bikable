@@ -105,7 +105,7 @@
                         </td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/mechanics/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/viewIcon1.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/mechanics/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/dashboardIcons/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

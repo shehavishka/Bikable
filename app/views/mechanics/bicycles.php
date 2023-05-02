@@ -23,13 +23,13 @@
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Bicycles</div>
             <div class="admin__data_area__top--twobuttons">
-                <!-- <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/admins/addBicycle'">
+                <div class="add_user_button">
+                    <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/mechanics/addBicycle'">
                 </div>
 
-                <form action="<?php echo URLROOT;?>/admins/deleteBicycles" method="POST" id="userInterface">
+                <form action="<?php echo URLROOT;?>/mechanics/deleteBicycles" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="submit" class="btn btn_delete" value="Delete Selected"> -->
+                    <input type="submit" class="btn btn_delete" value="Delete Selected">
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
                         <td><?php echo $oneObject->	currentDA ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <!-- <a href="<?php echo URLROOT;?>/admins/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a> -->
+                        <a href="<?php echo URLROOT;?>/mechanics/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/editIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

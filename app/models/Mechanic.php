@@ -167,4 +167,64 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+
+        public function addBicycleIntoTheSystem($data){
+
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+
+
+            $temp = "INSERT INTO bicycles (bikeOwnerID, frameSize, dateAcquired, datePutInUse, status, currentDA ) VALUES ('$bikeOwnerID', '$frameSize', '$dateAcquired', '$datePutInUse', '$status', '$currentDA')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function findBicycleByID($bicycleID){
+
+            $this->db->prepareQuery("SELECT * FROM bicycles where bicycleID = '$bicycleID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
+        public function updateBicycle($data){
+            
+            // $bicycleID = $data['bicycleDetailObject']->bicycleID;
+            $bicycleID = $data['bicycleID'];
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+            
+            $temp = "UPDATE bicycles SET bikeOwnerID = '$bikeOwnerID', frameSize = '$frameSize', dateAcquired = '$dateAcquired', datePutInUse = '$datePutInUse', status = '$status', currentDA = '$currentDA' WHERE bicycleID = '$bicycleID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
     }
