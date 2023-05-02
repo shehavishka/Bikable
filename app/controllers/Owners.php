@@ -61,9 +61,13 @@
             // reportsID, assignedMechanic take from the database
             $reportsIDAssignedMechanicIDDetails = $this->ownerModel->ownerLandpageReportIDAssignedMechanic();
             
+            // repaire log details take from the database
+            $repairLogDetails = $this->ownerModel->ownerLandpageRepairLogDetails();
+
             $data = [
                 'docking_areas_details' => $dockingAreasDeatails,
-                'reportID_assignedMechanicID_details' => $reportsIDAssignedMechanicIDDetails
+                'reportID_assignedMechanicID_details' => $reportsIDAssignedMechanicIDDetails,
+                'repair_log_details' => $repairLogDetails
             ];
 
             // load the data form UI and send all data to the UI

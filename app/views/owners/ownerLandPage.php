@@ -105,43 +105,24 @@
                     Repair Log(Active)
                 </div>
 
-                <div class="upper__section__repairlog--body">
+                <div class="upper__section__repairlog--body" style="height: 11rem;">
                     <table>
                         <tr>
                             <th>Log ID</th>
                             <th>Bicyle ID</th>
                             <th>Date in</th>
                         </tr>
-
-                        <tr>
-                            <td>M32465</td>
-                            <td>34156D</td>
-                            <td>2022.11.11</td>
-                        </tr>
-
-                        <tr>
-                            <td>F35325</td>
-                            <td>26134F</td>
-                            <td>2022.11.11</td>
-                        </tr>
-
-                        <tr>
-                            <td>J31535</td>
-                            <td>34524G</td>
-                            <td>2022.11.11</td>
-                        </tr>
-
-                        <tr>
-                            <td>L78975</td>
-                            <td>25236D</td>
-                            <td>2022.11.11</td>
-                        </tr>
-
-                        <tr>
-                            <td>F35325</td>
-                            <td>26134F</td>
-                            <td>2022.11.11</td>
-                        </tr>
+                        
+                        <?php 
+                                shuffle($data['repair_log_details']); // shuffle the array
+                                foreach(array_slice($data['repair_log_details'], 0, 5) as $reportRow) : // select first five elements
+                        ?>
+                                <tr style="height: .5rem;">
+                                    <td><?php echo $reportRow->logID ?></td>
+                                    <td><?php echo $reportRow->bicycleID?></td>
+                                    <td><?php echo $reportRow->dateIn?></td>
+                                </tr>
+                        <?php endforeach; ?>
                     </table>
                 </div>
             </div>

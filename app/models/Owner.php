@@ -248,4 +248,12 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public function ownerLandpageRepairLogDetails(){
+            $this->db->prepareQuery("SELECT logID , bicycleID , dateIn FROM repairlog");
+            
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
     }
