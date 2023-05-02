@@ -618,7 +618,14 @@
              *      2.) View the data
              *   
             */
-            $this->view('owners/dockingareas');
+
+            $dockingAreaDetails = $this->ownerModel->getDockingAreasDetails();
+
+            $data = [
+                'docking_areas_details' => $dockingAreaDetails
+            ];
+
+            $this->view('owners/dockingareas', $data);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -636,7 +643,7 @@
             $data = [
                 'bicycles_details' => $bicyclesDetails
             ];
-            
+
             $this->view('owners/bicycles', $data);
         }
 
