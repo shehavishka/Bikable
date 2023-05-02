@@ -111,6 +111,14 @@
             return $this->db->resultSet();
         }
 
+        public function getRidesDetails(){
+                
+            $this->db->prepareQuery("SELECT * FROM ridelog");
+    
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////

@@ -642,8 +642,15 @@
              *    2.) View the data
             */
 
-             //this is not load data from the database
-            $this->view('owners/rides');
+            // load rides data
+            $ridesDetails = $this->ownerModel->getRidesDetails();
+
+            $data = [
+                'rides_details' => $ridesDetails
+            ];
+
+            //this is not load data from the database
+            $this->view('owners/rides', $data);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
