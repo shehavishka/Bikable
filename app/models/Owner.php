@@ -135,6 +135,12 @@
             return $this->db->resultSet();
         }
 
+        public function getReportDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM reports");
+            return $this->db->resultSet();
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////

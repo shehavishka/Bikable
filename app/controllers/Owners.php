@@ -675,7 +675,13 @@
              *     1.) Load the data
              *    2.) View the data
             */
-            $this->view('owners/reports');
+
+            $reportDetails = $this->ownerModel->getReportDetails();
+            $data = [
+                'reports_details' => $reportDetails
+            ];
+
+            $this->view('owners/reports', $data);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
