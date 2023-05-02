@@ -82,26 +82,17 @@
                                 <th>Report ID</th>
                                 <th>Mechanic ID</th>
                             </tr>
-                            <tr>
-                                <td>2902012</td>
-                                <td>200002403065</td>
-                            </tr>
-                            <tr>
-                                <td>2902012</td>
-                                <td>200002403065</td>
-                            </tr>
-                            <tr>
-                                <td>2902012</td>
-                                <td>200002403065</td>
-                            </tr>
-                            <tr>
-                                <td>2902012</td>
-                                <td>200002403065</td>
-                            </tr>
-                            <tr>
-                                <td>2902012</td>
-                                <td>200002403065</td>
-                            </tr>
+
+                            <?php 
+                                shuffle($data['reportID_assignedMechanicID_details']); // shuffle the array
+                                foreach(array_slice($data['reportID_assignedMechanicID_details'], 0, 5) as $reportRow) : // select first five elements
+                            ?>
+                                <tr style="height: .5rem;">
+                                    <td><?php echo $reportRow->reportID ?></td>
+                                    <td><?php echo $reportRow->assignedMechanic ? $reportRow->assignedMechanic : "Not Assigned" ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+
                         </table>
                     </div>
                 </div>

@@ -57,10 +57,13 @@
 
             // docking areas details for the map take from the database
             $dockingAreasDeatails = $this->ownerModel->ownerLandPageMapDetails();
-            
+
+            // reportsID, assignedMechanic take from the database
+            $reportsIDAssignedMechanicIDDetails = $this->ownerModel->ownerLandpageReportIDAssignedMechanic();
             
             $data = [
-                'docking_areas_details' => $dockingAreasDeatails
+                'docking_areas_details' => $dockingAreasDeatails,
+                'reportID_assignedMechanicID_details' => $reportsIDAssignedMechanicIDDetails
             ];
 
             // load the data form UI and send all data to the UI

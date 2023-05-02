@@ -237,4 +237,15 @@
                 return false;
             }
         }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Owner land page reports (reportID, assignedMechanic) get from the database
+        public function ownerLandpageReportIDAssignedMechanic(){
+            $this->db->prepareQuery("SELECT reportID , assignedMechanic FROM reports");
+            
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
     }
