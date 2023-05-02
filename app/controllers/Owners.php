@@ -630,7 +630,14 @@
              *      2.) View the data
              *   
             */
-            $this->view('owners/bicycles');
+
+            $bicyclesDetails = $this->ownerModel->getBicyclesDetails();
+
+            $data = [
+                'bicycles_details' => $bicyclesDetails
+            ];
+            
+            $this->view('owners/bicycles', $data);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////

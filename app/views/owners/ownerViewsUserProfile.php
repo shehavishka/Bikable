@@ -44,7 +44,7 @@
                     <div class="dropdown_area" style="background-image: url(
                         <?php 
                             if($data['userDetailObject']->userPicture != null){
-                                echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture . ".jpg";
+                                echo URLROOT. "/public/images/profile_pictures/". $data['userDetailObject']->userPicture;
                             }else{
                                 echo URLROOT. "/public/images/z_bikableLogo/logo.PNG";
                             }
