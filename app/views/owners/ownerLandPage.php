@@ -140,36 +140,17 @@
                             <th>Frame</th>
                             <th>Status</th>
                         </tr>
-
+                        
+                        <?php 
+                            shuffle($data['bicycles_details']); // shuffle the array
+                            foreach(array_slice($data['bicycles_details'], 0, 5) as $bicycleRow) : // select first five elements
+                        ?>
                         <tr>
-                            <td>34156D</td>
-                            <td>L</td>
-                            <td>Active</td>
+                            <td><?php echo $bicycleRow->bicycleID ?></td>
+                            <td><?php echo $bicycleRow->frameSize ?></td>
+                            <td><?php echo $bicycleRow->status ?></td>
                         </tr>
-
-                        <tr>
-                            <td>34152D</td>
-                            <td>L</td>
-                            <td>Active</td>
-                        </tr>
-
-                        <tr>
-                            <td>43214Q</td>
-                            <td>S</td>
-                            <td>Active</td>
-                        </tr>
-
-                        <tr>
-                            <td>43214Q</td>
-                            <td>S</td>
-                            <td>Active</td>
-                        </tr>
-
-                        <tr>
-                            <td>43214Q</td>
-                            <td>M</td>
-                            <td>Inactive</td>
-                        </tr>
+                        <?php endforeach; ?>
 
                     </table>
                 </div>

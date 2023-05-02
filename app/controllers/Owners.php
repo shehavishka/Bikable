@@ -64,10 +64,14 @@
             // repaire log details take from the database
             $repairLogDetails = $this->ownerModel->ownerLandpageRepairLogDetails();
 
+            // bicycles details take from the database
+            $bicyclesDetails = $this->ownerModel->ownerLandpageBicyclesDetails();
+
             $data = [
                 'docking_areas_details' => $dockingAreasDeatails,
                 'reportID_assignedMechanicID_details' => $reportsIDAssignedMechanicIDDetails,
-                'repair_log_details' => $repairLogDetails
+                'repair_log_details' => $repairLogDetails,
+                'bicycles_details' => $bicyclesDetails
             ];
 
             // load the data form UI and send all data to the UI

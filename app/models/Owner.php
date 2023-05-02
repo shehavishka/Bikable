@@ -249,6 +249,7 @@
             return $this->db->resultSet();
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Owner land page repair log (logID, bicycleID, dateIn) get from the database
         public function ownerLandpageRepairLogDetails(){
             $this->db->prepareQuery("SELECT logID , bicycleID , dateIn FROM repairlog");
             
@@ -256,4 +257,15 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Owner land page bicycles (bicycleID, frameSize, status) get from the database
+        public function ownerLandpageBicyclesDetails(){
+            $this->db->prepareQuery("SELECT bicycleID , frameSize , status FROM bicycles");
+            
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
     }
