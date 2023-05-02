@@ -251,7 +251,7 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Owner land page repair log (logID, bicycleID, dateIn) get from the database
         public function ownerLandpageRepairLogDetails(){
-            $this->db->prepareQuery("SELECT logID , bicycleID , dateIn FROM repairlog");
+            $this->db->prepareQuery("SELECT logID , bicycleID , dateIn FROM repairlog order by dateIn desc limit 6");
             
 
             // take data from the database as the objects and send them into the controller.

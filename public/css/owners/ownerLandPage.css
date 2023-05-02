@@ -120,7 +120,7 @@ body{
     grid-template-areas: 
         "lefter mid righter"
     ;
-    margin: 0% 2%;    
+    margin: 0% 4%;    
 }
 
 /* lower section map card */

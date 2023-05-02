@@ -84,7 +84,7 @@
                             </tr>
 
                             <?php 
-                                shuffle($data['reportID_assignedMechanicID_details']); // shuffle the array
+                                // shuffle($data['reportID_assignedMechanicID_details']); // shuffle the array
                                 foreach(array_slice($data['reportID_assignedMechanicID_details'], 0, 5) as $reportRow) : // select first five elements
                             ?>
                                 <tr style="height: .5rem;">
@@ -114,7 +114,7 @@
                         </tr>
                         
                         <?php 
-                                shuffle($data['repair_log_details']); // shuffle the array
+                                // shuffle($data['repair_log_details']); // shuffle the array
                                 foreach(array_slice($data['repair_log_details'], 0, 5) as $reportRow) : // select first five elements
                         ?>
                                 <tr style="height: .5rem;">
@@ -142,7 +142,7 @@
                         </tr>
                         
                         <?php 
-                            shuffle($data['bicycles_details']); // shuffle the array
+                            // shuffle($data['bicycles_details']); // shuffle the array
                             foreach(array_slice($data['bicycles_details'], 0, 5) as $bicycleRow) : // select first five elements
                         ?>
                         <tr>
@@ -194,9 +194,8 @@
                 }
             </script>
         </div>
-
         <div class="lower_section_statistics--doughnut">
-            <div class="lower__section__card--title">
+            <div class="lower__section__card--title" styles="margin-bottom: 3%;">
                 Bike Inventory Status
             </div>
             <!-- DOUGHNUT CHART -->
@@ -274,7 +273,7 @@
             <div class="lower__section__card--title">
                 Bike Availability Trend
             </div>
-            <div class="lower__section__card--bars">
+            <div class="lower__section__card--bars" style="margin-top: 10px;">
                 <canvas id="myLine" width="20" height="20"></canvas>
             </div>  
             <script>
