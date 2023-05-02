@@ -182,10 +182,11 @@
                     hLat : null,   // html latitude
                     hLng : null,   // html longitude
                     durationHTML: null, // duration of the ride
-                    duration: -10, //duration in seconds
+                    duration: 0, //duration in seconds
                     fareHTML: null,
-                    fare: 149.80, // fare of the ride
-                    fareRate: 0.20, // this should in the future come from the database, since the super admin can set it
+                    fare: 0.0, // fare of the ride
+                    baseValue: <?php echo($data['fareBaseValue']); ?>, // this should in the future come from the database, since the super admin can set it
+                    fareRate: <?php echo($data['fareRate']); ?>, // this should in the future come from the database, since the super admin can set it
 
                     init : () => {
                     // (A1) GET HTML
@@ -228,11 +229,25 @@
                             // track.hLat.innerHTML = pos.coords.latitude;
                             // track.hLng.innerHTML = pos.coords.longitude;
 
+                            // //to update the fare and duration on the html side
+                            // track.fare += track.fareRate;
+                            // track.fareHTML.innerHTML = track.fare.toFixed(2) + "/=";
+                            // track.duration += 10;
+                            // track.durationHTML.innerHTML = Math.floor(track.duration / 3600) + "h" + Math.floor((track.duration / 60) % 60) + "m" + track.duration % 60 + "s";
+
                             //to update the fare and duration on the html side
-                            track.fare += track.fareRate;
-                            track.fareHTML.innerHTML = track.fare.toFixed(2) + "/=";
-                            track.duration += 10;
+                            $present = Math.floor(new Date().getTime() / 1000);
+                            $rideStartTimeStamp = <?php echo(strtotime($data['rideDetailObject']->rideStartTimeStamp));?>;
+                            track.duration = $present - $rideStartTimeStamp;
                             track.durationHTML.innerHTML = Math.floor(track.duration / 3600) + "h" + Math.floor((track.duration / 60) % 60) + "m" + track.duration % 60 + "s";
+
+                            track.fare = track.baseValue + (track.duration / 10) * 0.2;
+                            track.fareHTML.innerHTML = track.fare.toFixed(2) + "/=";
+
+                            console.log("duration " + track.duration + " fare " + track.fare);
+                            console.log($present);
+                            console.log($rideStartTimeStamp);
+                            
 
                         } else { track.error(txt); }})
                         .catch(err => track.error(err));

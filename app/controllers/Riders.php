@@ -64,6 +64,11 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 //if it's post, we take it as the user is creating a new ride
 
+                //check if a ride is already active and the user simply refreshed the page
+                if($this->redirectIfActive()){
+                    return;
+                }
+
                 $data = [
                     'userID' => intval(trim($_POST['userID'])),
                     'bicycleID' => intval(trim($_POST['bicycleID'])),
@@ -71,6 +76,9 @@
                     'userLong' => $_POST['userLong'],
                     // 'payMethod' => $_POST['payM'], for now we'll just use 1
                     'payMethod' => 1,
+                    //fare base value and rate should come from the database, but for now we'll just use 150 and 0.2
+                    'fareBaseValue' => 150,
+                    'fareRate' => 0.2,
                     'startArea' => '',
                     'timeStamp' => '',
                     'mapDetails' => '',
@@ -99,6 +107,13 @@
                     if($this->riderModel->createRide($data))
                     {
                         $data['rideLogID'] = $this->riderModel->getLastInsertedRideLogID();
+
+                        //fetch ride details just to make the rideDetailObject the right class
+                        $data['rideDetailObject'] = $this->riderModel->getRideDetails($data['rideLogID']);
+                        //enter static fare value -> this should come from the super owner technically
+                        $data['rideDetailObject']->fare = 149.80;
+                        $data['rideDetailObject']->timeTravelled = -10;
+
                         $this->view('riders/ongoingRide', $data);
                     }
                 }
@@ -126,14 +141,36 @@
             }elseif($_SERVER['REQUEST_METHOD'] == 'GET'){
                 //if it's get, we take it as the user is requesting the current ride details
 
-                $data = [
-                    'userID' => intval(trim($_GET['userID'])),
+                $data = [                    
+                    'userID' => $_SESSION['user_ID'],
+                    'rideLogID' => intval(trim($_GET['rideLogID'])),
+                    'bicycleID' => '',
+                    'payMethod' => '',
+                    //fare base value and rate should come from the database, but for now we'll just use 150 and 0.2
+                    'fareBaseValue' => 150,
+                    'fareRate' => 0.2,
+                    'mapDetails' => '',
                     'rideDetailObject' => ''
                 ];
-                //get the ride details
-                $data['rideDetailObject'] = $this->riderModel->getCurrentRideDetails($data['userID']);
 
-                $this->view('riders/ongoingRide', $data);
+                $data['mapDetails'] = $this->riderModel->riderLandPageMapDetails();
+
+                //get the ride details
+                $data['rideDetailObject'] = $this->riderModel->getRideDetails($data['rideLogID']);
+                $data['rideLogID'] = $data['rideDetailObject']->rideLogID;
+                $data['bicycleID'] = $data['rideDetailObject']->bicycleID;
+                $data['payMethod'] = $data['rideDetailObject']->payMethod;
+                $data['timeStamp'] = $data['rideDetailObject']->rideStartTimeStamp;
+
+                //if there's rideDetailObject has a value, proceed to page, else redirect to header('location: ' . URLROOT . '/riders/riderLandPage');
+                if($data['rideDetailObject']){
+                    $this->view('riders/ongoingRide', $data);
+                }else{
+                    header('location: ' . URLROOT . '/riders/riderLandPage');
+                }
+            }else{
+                //if it's neither, we redirect to the rider landing page
+                header('location: ' . URLROOT . '/riders/riderLandPage');
             }
         }
 
@@ -152,18 +189,26 @@
                     'timeStamp' => '',
                 ];
 
-                //need to get the actual last payment method from the db based on the user and payment method number
-                //and then charge the user
+                //check if the ride is still active
+                $status = $this->riderModel->checkRideStatus($data['rideLogID']);
 
-                $current_timestamp = time();
-                $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
+                if($status->status == 1){  
+                    
+                    //need to get the actual last payment method from the db based on the user and payment method number
+                    //and then charge the user
 
-                //update the ride details
-                if($this->riderModel->updateRideDetails($data)){
-                    $this->view('riders/rideEnded', $data);
+                    $current_timestamp = time();
+                    $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
+
+                    //update the ride details
+                    if($this->riderModel->updateRideDetails($data)){
+                        $this->view('riders/rideEnded', $data);
+                    }else{
+                        //need to replace this with a 404 page
+                        die("something went wrong");
+                    }
                 }else{
-                    //need to replace this with a 404 page
-                    die("something went wrong");
+                    $this->view('riders/rideEnded', $data);
                 }
 
             }else{
@@ -258,6 +303,21 @@
                 $km = $dist * 60 * 1.1515 * 1.609344;
             }
             return $km;
+        }
+
+        function redirectIfActive(){
+            if(isset($_SESSION['user_ID'])){
+                $currentRide = $this->riderModel->checkIfActive($_SESSION['user_ID']);
+                if($currentRide){
+                    //got to ongoing ride page with userID as a get request
+                    header('location: ' . URLROOT . '/riders/activeRide?rideLogID=' . $currentRide->rideLogID);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                header('location: ' . URLROOT . '/users/login');
+            }
         }
 
     }
