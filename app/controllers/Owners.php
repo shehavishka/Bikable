@@ -15,7 +15,7 @@
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
      * 12.) Owner handle bicycle owner page (bicycleOwner)
-     * 13.) Owner handle add new repair log page (addNewRepairLog)
+     * 13.) Owner handle repair log page (repairLog)
      * 14.) Owner handle docking areas page (dockingAreas)
      * 15.) Owner handle bicycle control page (bicyclesControl)
      * 16.) Owner handle rides control page (ridesControl)
@@ -613,14 +613,14 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 13.) Owner handle add new repair log page (addNewRepairLog)
-        public function addNewRepairLog(){
+        // 13.) Owner handle add new repair log page (repairLog)
+        public function repairLog(){
             /**
              * There are,
              *      1.) Load the data
              *      2.) View the data
             */
-            $this->view('owners/addNewRepairLog');
+            $this->view('owners/repairLog');
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
