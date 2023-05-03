@@ -6,7 +6,7 @@
             $this->db = new Database;
         }
          
-        public function addReport($data){
+        public function addReportIntoTheSystem($data){
             // die('Inserted');
             $Rid = $data['Rid'];
             $RLid = $data['RLid'];
@@ -89,8 +89,8 @@
             return $this->db->resultSet();
         }
 
-        public function findLogbyID($LogID){
-            $this->db->prepareQuery("SELECT * FROM repairlog where logID = '$LogID'");
+        public function findLogByID($LogID){
+            $this->db->prepareQuery("SELECT * FROM repairlog WHERE logID = '$LogID'");
 
             $row = $this->db->single();
 
@@ -103,7 +103,7 @@
         }
         
         public function findReportByID($reportID){
-            $this->db->prepareQuery("SELECT * FROM reports where reportID = '$reportID'");
+            $this->db->prepareQuery("SELECT * FROM reports WHERE reportID = '$reportID'");
 
             $row = $this->db->single();
 
@@ -139,7 +139,7 @@
 
         public function findAreaByID($areaID){
 
-            $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE areaID = '$areaID'");
 
             $row = $this -> db -> single();
 
@@ -156,7 +156,7 @@
         }
 
         public function getDashboardBicycles(){
-            $this->db->prepareQuery("SELECT * FROM bicycles where status = 0 order by datePutInUse desc limit 6");
+            $this->db->prepareQuery("SELECT * FROM bicycles WHERE status = 0 order by datePutInUse desc limit 6");
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }

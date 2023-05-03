@@ -70,7 +70,7 @@
                         <td><?php echo $oneObject->	currentDA ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/mechanics/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/editIcon1.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/mechanics/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/viewIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

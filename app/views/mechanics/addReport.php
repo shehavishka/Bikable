@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/addReport.css">
-    <title>New Log</title>
+    <title>New Report</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -25,10 +25,10 @@
             <div class="data__area__top--title">New Report</div>
             <div class="data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/addReport'">
+                    <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/reportsControl'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Submit" onclick="location.href='<?php echo URLROOT;?>/mechanics/addReport'">
+                    <input type="button" class="btn btn_delete" value="Submit" onclick="location.href='<?php echo URLROOT;?>/mechanics/reportsControl'">
                 </div>
             </div>
         </div>

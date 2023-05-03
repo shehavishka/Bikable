@@ -214,51 +214,50 @@ class Mechanics extends Controller
 
 
 
-    // public function addReport()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         // process form
-    //         //init data
-    //         $data = [
-    //             'Rid' => trim($_POST['Report_ID']),
-    //             'RLid' => trim($_POST['Repair_Log_ID']),
-    //             'Bid' => trim($_POST['BicycleID']),
-    //             'Ptitle' => trim($_POST['Problem_Title']),
-    //             'Din' => trim($_POST['Date_In']),
-    //             'Tin' => trim($_POST['Time_In']),
-    //             'Mid' => trim($_POST['Mechanic_ID']),
-    //             'SolnDesc' => trim($_POST['SolutionDescription']),
-    //             'Tag' => trim($_POST['Tags']),
-
-    //             'Rid_err' => '',
-    //             'RLid_err' => '',
-    //             'Bid_err' => '',
-    //             'Ptitle_err' => '',
-    //             'Din_err' => '',
-    //             'Tin_err' => '',
-    //             'Mid_err' => '',
-    //             'SolnDesc_err' => '',
-    //             'Tag_err' => '',
-    //         ];
-    //         $this->mechanicModel->addReport($data);
-    //         redirect('mechanics/mechanicOp');
-    //     } else
-    //         $this->view('mechanics/addReport', [
-    //             'Rid_err' => '',
-    //             'RLid_err' => '',
-    //             'Bid_err' => '',
-    //             'Ptitle_err' => '',
-    //             'Din_err' => '',
-    //             'Tin_err' => '',
-    //             'Mid_err' => '',
-    //             'SolnDesc_err' => '',
-    //             'Tag_err' => '',
-    //         ]);
-    // }
-
-
-    // public function addReportToTheSystem()
     public function addReport()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // process form
+            //init data
+            $data = [
+                'Rid' => trim($_POST['Report_ID']),
+                'RLid' => trim($_POST['Repair_Log_ID']),
+                'Bid' => trim($_POST['BicycleID']),
+                'Ptitle' => trim($_POST['Problem_Title']),
+                'Din' => trim($_POST['Date_In']),
+                'Tin' => trim($_POST['Time_In']),
+                'Mid' => trim($_POST['Mechanic_ID']),
+                'SolnDesc' => trim($_POST['SolutionDescription']),
+                'Tag' => trim($_POST['Tags']),
+
+                'Rid_err' => '',
+                'RLid_err' => '',
+                'Bid_err' => '',
+                'Ptitle_err' => '',
+                'Din_err' => '',
+                'Tin_err' => '',
+                'Mid_err' => '',
+                'SolnDesc_err' => '',
+                'Tag_err' => '',
+            ];
+            $this->mechanicModel->addReportIntoTheSystem($data);
+            redirect('mechanics/reportsControl');
+        } else
+            $this->view('mechanics/addReport', [
+                'Rid_err' => '',
+                'RLid_err' => '',
+                'Bid_err' => '',
+                'Ptitle_err' => '',
+                'Din_err' => '',
+                'Tin_err' => '',
+                'Mid_err' => '',
+                'SolnDesc_err' => '',
+                'Tag_err' => '',
+            ]);
+    }
+
+
+    public function addReportToTheSystem()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // process form
@@ -380,7 +379,7 @@ class Mechanics extends Controller
             //code will implement here
             $DADetails = $this->mechanicModel->getDADetails();
             $data = [
-                'docking_area_details' => $DADetails
+                'DA_Details' => $DADetails
             ];
             
             //view details
@@ -482,6 +481,19 @@ class Mechanics extends Controller
         }
     }
 
+    public function viewDockingAreas(){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $data = [
+                'areaID' => intval(trim($_GET['areaID'])),
+                'areaObject' => ''
+            ];
+            $data['areaObject'] = $respectiveUserDetail = $this->mechanicModel->findAreaByID($data['areaID']);
+            $this->view('mechanics/viewDockingAreas', $data);
+        }
+        else{
+            die("button did not work correctly.");
+        }
+    }
 
     public function viewBicycle(){
         if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -489,7 +501,7 @@ class Mechanics extends Controller
                 'logID' => intval(trim($_GET['logID'])),
                 'logDetailObject' => ''
             ];
-            $data['logDetailObject'] = $respectiveUserDetail = $this->mechanicModel->findLogbyID($data['logID']);
+            $data['logDetailObject'] = $respectiveUserDetail = $this->mechanicModel->findLogByID($data['logID']);
             $this->view('mechanics/viewBicycle', $data);
         }
         else{

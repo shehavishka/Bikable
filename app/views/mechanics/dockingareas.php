@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanic/dockingareas.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/dockingareas.css">
     <title>Docking Areas</title>
 </head>
 <body>
@@ -51,7 +51,7 @@
                 </tr>
         
 
-                <?php foreach($data['DA_details'] as $oneObject) : ?>
+                <?php foreach($data['DA_Details'] as $oneObject) : ?>
                     <tr>
                     <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->areaID;?>"></td>
                         <td><?php echo $oneObject->areaID ?></td>
@@ -71,7 +71,7 @@
                         <td><?php echo $oneObject->currentNoOfBikes ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/mechanics/editDADetails?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/editIcon1.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/mechanics/viewDockingAreas?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/viewIcon1.png" alt="view"></a>
                     </tr>
                 <?php endforeach; ?>
 

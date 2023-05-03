@@ -27,9 +27,9 @@
                     <div class="add_user_button">
                         <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/bicycleControl'">
                     </div>
-                    <div class="delete_user_button">
+                    <!-- <div class="delete_user_button">
                         <input type="submit" class="btn btn_delete" value="Update" >
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
