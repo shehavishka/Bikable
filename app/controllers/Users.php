@@ -155,9 +155,6 @@
             }
             else if(ucwords($user->role) == 'Rider')
             {
-                if($user->status == 6){
-                    redirect('riders/activeRide?userID='.$user->UserID);
-                }
                 redirect('riders/riderLandPage');
             }
             //redirect('owners/ownerLandPage');
