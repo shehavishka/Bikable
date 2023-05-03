@@ -37,7 +37,7 @@
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/addNewRepairLog">Repair Log</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/repairLog">Repair Log</a></div>
                     </div>
                 </div>
                 <hr>

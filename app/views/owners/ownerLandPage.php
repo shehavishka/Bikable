@@ -100,7 +100,7 @@
             </a>
 
         <!-- upper section reapir log card -->
-        <a href="<?php echo URLROOT ?>/owners/addNewRepairLog" style="text-decoration:none;color:black">
+        <a href="<?php echo URLROOT ?>/owners/repairLog" style="text-decoration:none;color:black">
             <div class="upper__section--repairlog cardd">
                 <div class="upper__section__card--title">
                     Repair Log(Active)

@@ -363,7 +363,7 @@
                                         'Password changed successfully',
                                         'success'
                                     )
-                        </script>";
+                            </script>";
                     }else{
                         // die('something went wrong');
                         $this->landToErrorPage();
@@ -613,14 +613,15 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 13.) Owner handle add new repair log page (repairLog)
+        // 13.) Owner handle repair log page (repairLog)
         public function repairLog(){
             /**
              * There are,
              *      1.) Load the data
              *      2.) View the data
             */
-            $this->view('owners/repairLog');
+            $this->landToErrorPage();
+            // $this->view('owners/repairLog');
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
