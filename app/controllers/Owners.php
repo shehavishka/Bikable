@@ -5,7 +5,8 @@
      * 1.) Owner's landing page (ownerLandPage)
      * 2.) Owner's profile page (ownerViewsHisOwnProfile)
      * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
-     * 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+     * 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
+     * 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
@@ -20,7 +21,8 @@
      * 16.) Owner handle rides control page (ridesControl)
      * 17.) Owner handle reports control page (reportsControl)
      * 18.) (inbuilt) Generate password length 8
-     * 19.) (inbuilt) Send email to the user
+     * 19.1) (inbuilt) Send email to the user
+     * 19.2) (inbuilt) Send email to the user when current password is changed
      * 20.) (inbuilt) land to the error page
      * 21.) user profile view button (userProfileViewButton)
      * 22.) suspend and release user (suspendReleaseUser)
@@ -699,7 +701,7 @@
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
-        // 19.) (inbuilt) Send email to the user
+        // 19.1) (inbuilt) Send email to the user
         private function sendEmailToTheUser($userName, $userEmail , $userPassword){
 
             $mail = new PHPMailer(true);
@@ -764,6 +766,68 @@
 
             $mail->send();
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        // 19.2) (inbuilt) Send email to the user when current password is changed
+        private function sendEmailToTheUserWhenPasswordChanged($userName, $userEmail){
+
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = 'true';
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Password Changed for ' . APPLICATION_NAME;
+            $mail->Body = '            
+                    <html>
+                    <head>
+                    <title>Password Changed for '. APPLICATION_NAME .'</title>
+                    <style>
+                        body {
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                        }
+                        h1 {
+                        font-size: 18px;
+                        color: #444;
+                        margin-bottom: 20px;
+                        }
+                        ul {
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                        }
+                        li {
+                        margin-bottom: 10px;
+                        }
+                    </style>
+                    </head>
+                    <body>
+                    <h1>Password Changed for '.APPLICATION_NAME.'</h1>
+                    <br>
+                    <p>Dear '. $userName .',</p>
+                    <br>
+                    <p>We wanted to let you know that your password for '.APPLICATION_NAME.' has been changed. If you did not request this change, please contact our support team immediately at <a href="mailto:support@bikable.com">'.APPEMAIL.'</a>.</p>
+                    <p>If you did change your password, you can ignore this message.</p>
+                    <br>
+                    <p>Thank you for using BIKABLE.</p>
+                    <p>Best regards,<br>The '.APPLICATION_NAME.' Team</p>
+                    </body>
+                    </html>'
+                ;
+            
+            $mail->send();
+        }
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 20.) (inbuilt) land to the error page
