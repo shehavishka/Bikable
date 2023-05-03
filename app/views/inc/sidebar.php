@@ -1,6 +1,7 @@
     <!-- finalized side bar -->
     <head>
         <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/sidebar.css"> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <section class="sidebar">
         <div class="viewData">

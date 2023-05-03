@@ -351,7 +351,19 @@
                     
                     //allow to change password
                     if($this->ownerModel->ownerChangesHisPassword($data)){
-                        $this->view('owners/ownerViewsHisOwnProfile');
+                        $this->view('owners/ownerChangesHisPassword');
+                        
+                        // send email to the user
+                        $userName = $_SESSION['user_fName'];
+                        $userEmail = $_SESSION['user_email'];
+
+                        $this->sendEmailToTheUserWhenPasswordChanged($userName,$userEmail);
+                        echo "<script>
+                                    Swal.fire(
+                                        'Password changed successfully',
+                                        'success'
+                                    )
+                        </script>";
                     }else{
                         // die('something went wrong');
                         $this->landToErrorPage();
@@ -815,8 +827,7 @@
                     <h1>Password Changed for '.APPLICATION_NAME.'</h1>
                     <br>
                     <p>Dear '. $userName .',</p>
-                    <br>
-                    <p>We wanted to let you know that your password for '.APPLICATION_NAME.' has been changed. If you did not request this change, please contact our support team immediately at <a href="mailto:support@bikable.com">'.APPEMAIL.'</a>.</p>
+                    <p>We wanted to let you know that your password for '.APPLICATION_NAME.' has been changed.<br> If you did not request this change, please contact our support team immediately at <a href="mailto:support@bikable.com">'.APPEMAIL.'</a>.</p>
                     <p>If you did change your password, you can ignore this message.</p>
                     <br>
                     <p>Thank you for using BIKABLE.</p>
