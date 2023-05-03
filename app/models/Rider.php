@@ -111,5 +111,43 @@
                 die("Error in checkIfActive function in Rider model");
             }
         }
+
+        public function updateBikeStatus($bikeID, $status){
+            //fetch the bike's status and if it's not equal to $status, update it to status = $status and return true
+            //if it is equal to $status, return false
+            $this->db->prepareQuery("SELECT status FROM bicycles WHERE bicycleID = $bikeID");
+
+            $this->db->single();
+
+            if($this->db->single()->status == $status){
+                return false;
+            }else{
+                $this->db->prepareQuery("UPDATE bicycles SET status = $status WHERE bicycleID = $bikeID");
+
+                if($this->db->executeStmt()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        public function updateDockingAreaBikeCount($areaID, $action){
+            if($action == 1){
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes + 1 WHERE areaID = $areaID";
+            }else if($action == 2){
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes - 1 WHERE areaID = $areaID";
+            }else{
+                die("Error in updateDockingAreaBikeCount function in Rider model");
+            }
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
         
     }

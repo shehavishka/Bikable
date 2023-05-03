@@ -219,8 +219,8 @@
                         //update position on map
                         myLoc.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 
-                        // (B2) AJAX SEND TO SERVER
-                        fetch("<?php echo URLROOT;?>/riders/ajax_track", { method:"POST", body:data })
+                        // (B2) SEND TO SERVER
+                        fetch("<?php echo URLROOT;?>/riders/track_user", { method:"POST", body:data })
                         .then(res => res.text())
                         .then(txt => { if (txt=="OK") {
                             let now = new Date();

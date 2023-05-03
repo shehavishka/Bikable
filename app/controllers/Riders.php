@@ -18,8 +18,11 @@
         // }
 
         public function riderLandPage(){
-
-            // $bicycles = $this->riderModel->getBikeDetails();
+            //check if a ride is already active and the user simply refreshed the page
+            if($this->redirectIfActive()){
+                return;
+            }
+            
             $map = $this->riderModel->riderLandPageMapDetails();
 
             $data = [
@@ -32,6 +35,7 @@
             $this->view('riders/riderLandPage', $data);
         }
 
+        //for the xhttp on the rider land page
         public function getMapDADetails(){
             $id = $_GET['q'];
             $lat = $_GET['lat'];
@@ -52,6 +56,11 @@
         }
 
         public function scanQR(){
+            //check if a ride is already active and the user simply refreshed the page
+            if($this->redirectIfActive()){
+                return;
+            }
+
             $data = [
                 'rideDetailObject_err' => '',
             ];
@@ -104,6 +113,15 @@
                     // if it's within the radius, we create the ride
                     $data['startArea'] = $data['mapDetails'][$closestPoint]->areaID;
 
+                    //update the bike and docking area in question to reflect the removal of a bike and the new status of the bike
+                    if($this->riderModel->updateBikeStatus($data['bicycleID'], 1)){
+                        $this->riderModel->updateDockingAreaBikeCount($data['startArea'], 2);
+                    }else{
+                        $data['rideDetailObject_err'] = 'Bicycle not available. Please try another bicycle.';
+                        $this->view('riders/scanQR', $data);
+                        return;
+                    }
+
                     if($this->riderModel->createRide($data))
                     {
                         $data['rideLogID'] = $this->riderModel->getLastInsertedRideLogID();
@@ -111,8 +129,8 @@
                         //fetch ride details just to make the rideDetailObject the right class
                         $data['rideDetailObject'] = $this->riderModel->getRideDetails($data['rideLogID']);
                         //enter static fare value -> this should come from the super owner technically
-                        $data['rideDetailObject']->fare = 149.80;
-                        $data['rideDetailObject']->timeTravelled = -10;
+                        // $data['rideDetailObject']->fare = 149.80;
+                        // $data['rideDetailObject']->timeTravelled = -10;
 
                         $this->view('riders/ongoingRide', $data);
                     }
@@ -157,14 +175,21 @@
 
                 //get the ride details
                 $data['rideDetailObject'] = $this->riderModel->getRideDetails($data['rideLogID']);
-                $data['rideLogID'] = $data['rideDetailObject']->rideLogID;
-                $data['bicycleID'] = $data['rideDetailObject']->bicycleID;
-                $data['payMethod'] = $data['rideDetailObject']->payMethod;
-                $data['timeStamp'] = $data['rideDetailObject']->rideStartTimeStamp;
-
-                //if there's rideDetailObject has a value, proceed to page, else redirect to header('location: ' . URLROOT . '/riders/riderLandPage');
+                
+                //if rideDetailObject has a value, proceed to page, else redirect to header('location: ' . URLROOT . '/riders/riderLandPage');
                 if($data['rideDetailObject']){
-                    $this->view('riders/ongoingRide', $data);
+
+                    if($data['rideDetailObject']->status == 1){
+                        //if the ride is still ongoing, we redirect to the ongoing ride page
+                        $data['bicycleID'] = $data['rideDetailObject']->bicycleID;
+                        $data['payMethod'] = $data['rideDetailObject']->payMethod;
+                        $data['timeStamp'] = $data['rideDetailObject']->rideStartTimeStamp;
+    
+                        $this->view('riders/ongoingRide', $data);
+                    }else{
+                        header('location: ' . URLROOT . '/riders/riderLandPage');
+                    }
+
                 }else{
                     header('location: ' . URLROOT . '/riders/riderLandPage');
                 }
@@ -176,7 +201,7 @@
 
 
         public function rideEnded(){
-            //need to check if the user nikan came here or not. can do this by checking if there's an active ride first I suppose.
+            //need to check if the user nikan came here or not. we assume that the user cannot replicate the post request
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $data = [
                     'rideLogID' => intval(trim($_POST['rideLogID'])),
@@ -196,12 +221,22 @@
                     
                     //need to get the actual last payment method from the db based on the user and payment method number
                     //and then charge the user
-
+                    
+                    
                     $current_timestamp = time();
                     $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
-
+                    
                     //update the ride details
                     if($this->riderModel->updateRideDetails($data)){
+
+                        //update the bike and docking area in question to reflect the addition of a bike and the new status of the bike
+                        if($this->riderModel->updateBikeStatus($data['bicycleID'], 0)){
+                            $this->riderModel->updateDockingAreaBikeCount($data['endArea'], 1);
+                        }else{
+                            //need to replace this with a 404 page
+                            die("something went wrong");
+                        }
+
                         $this->view('riders/rideEnded', $data);
                     }else{
                         //need to replace this with a 404 page
@@ -212,15 +247,15 @@
                 }
 
             }else{
-                //need to replace this with a 404 page
-                die("something went wrong");
+                //redirect to the rider landing page
+                header('location: ' . URLROOT . '/riders/riderLandPage');
             }
         }
 
 
-        public function ajax_track(){
+        public function track_user(){
             if (isset($_POST["req"])){
-                // (F) DATABASE SETTINGS - CHANGE THESE TO YOUR OWN!
+                // (F) DATABASE SETTINGS
                 define("DB_CHARSET", "utf8mb4");
                 define("DB_PASSWORD", "");
                 
