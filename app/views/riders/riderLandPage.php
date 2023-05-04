@@ -8,6 +8,8 @@
     <title>Rider Landpage</title>
 </head>
 <body>
+    <?php require APPROOT . '/views/inc/header-rider.php'; ?>
+
     <div class="floating-panel" id="floating-panel">
         <div id="welcome_message">
             <!-- logged in user's name -->
