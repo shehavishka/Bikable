@@ -906,4 +906,11 @@
                 $this->landToErrorPage();
             }   
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 23.) Statistics
+        public function satatisticsPageView(){
+            //only view statistics page
+            $this->view('owners/statistics');
+        }
     }

@@ -78,7 +78,7 @@
                 <hr>
                 <div class="detail detail__statics">
                     <div class="detail__static--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/ridesControl">Statistics</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/satatisticsPageView">Statistics</a></div>
                     </div>
                 </div>
             </div>
