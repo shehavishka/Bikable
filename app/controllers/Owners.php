@@ -26,6 +26,7 @@
      * 20.) (inbuilt) land to the error page
      * 21.) user profile view button (userProfileViewButton)
      * 22.) suspend and release user (suspendReleaseUser)
+     * 23.) Statistics page (statisticsPageView)
     */
 
     // dependencies for phpmailer
@@ -948,4 +949,33 @@
             
             $this->view('owners/statistics', $data);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 24.) Set fare and rate
+        public function setFareAndRate(){
+            /**
+             * There are,
+             *      1.) Insert data into the database
+             *     
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'fareValue' => floatval(trim($_POST['fare'])),
+                    'rateValue' => floatval(trim($_POST['rate']))
+                ];
+                //get the user details from the database
+                if($this->ownerModel->setFareAndRate($data)){
+                    //load the user profile view page
+
+                    $this->statisticsPageView();
+                }else{
+                    // die("button didn't work correctly.");
+                    $this->landToErrorPage();
+                }
+            }else{
+                // die("button didn't work correctly.");
+                $this->landToErrorPage();
+            }  
+        }
+
     }

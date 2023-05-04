@@ -59,7 +59,7 @@
                         <button id="open-form-btn">Edit</button>
 
                         <div id="form-popup" style="display:none;">
-                            <form id="rental-form" action="controller-function-url" method="post">
+                            <form id="rental-form" action="<?php echo URLROOT;?>/owners/setFareAndRate" method="post">
                                 <label for="fare">Fare:</label>
                                 <input type="text" id="fare" name="fare" required>
 

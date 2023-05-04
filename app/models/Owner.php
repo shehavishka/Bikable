@@ -339,4 +339,22 @@
             return $row;
         }
 
+        public function setFareAndRate($data){
+
+            $baseValue = $data['fareValue'];
+            $ratePer10 = $data['rateValue'];
+
+            $userID = $_SESSION['user_ID'];
+            $temp = "INSERT INTO fareRate (userID, baseValue, ratePer10) VALUES ('$userID', '$baseValue', '$ratePer10')";
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
     }
