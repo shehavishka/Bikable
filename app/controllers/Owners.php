@@ -909,8 +909,22 @@
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 23.) Statistics
-        public function satatisticsPageView(){
-            //only view statistics page
-            $this->view('owners/statistics');
+        public function statisticsPageView(){
+            /**
+             * There are,
+             *      1.) Load the data
+             *     2.) View the data 
+            */
+
+            //get total riders from the database
+            $totalRiders = $this->ownerModel->getTotalRiders();
+            $riderCount = $totalRiders->{'COUNT(*)'};
+        
+
+            $data = [
+                'totalRiders' => $riderCount
+            ];
+            
+            $this->view('owners/statistics', $data);
         }
     }

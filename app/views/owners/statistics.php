@@ -67,7 +67,7 @@
         <div class="data__count--area">
             <div class="data__count__area--totalRiders cardd">
                 <div class="data__count__area--totalRiders--value">
-                    100
+                    <?php echo $data['totalRiders']; ?>
                 </div>
                 <div class="data__count__area--totalRiders--title">
                     Total Riders

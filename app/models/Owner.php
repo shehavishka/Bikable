@@ -298,4 +298,16 @@
             return $this->db->resultSet();
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Statis page data get from the database
+
+        //get total number of riders
+        public function getTotalRiders(){
+            $this->db->prepareQuery("SELECT COUNT(*) FROM users WHERE role = 'rider' ");
+            
+            $row = $this->db->single();
+            return $row;
+        }
+
     }
