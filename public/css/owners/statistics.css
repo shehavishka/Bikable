@@ -273,95 +273,64 @@ img{
         "one two three four"
     ;
 
-    background-color: lightblue;
+    /* background-color: lightblue; */
     margin-top: 2%;
     margin-right: 5%;
 }
 
 .data__count__area--totalRiders{
     grid-area: one;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .data__count__area--totalBikes{
     grid-area: two;
-    background-color: blueviolet
+    /* background-color: blueviolet */
 }
 
 .data__count__area--totalDockingAreas{
     grid-area: three;
-    background-color: green;
+    /* background-color: green; */
 }
 
 .data__count__area--activeReports{
     grid-area: four;
-    background-color: yellow;
+    /* background-color: yellow; */
+}
+
+.cardd{
+    margin: 0% 2%;
+    border-radius: 10px;
+    padding: 2rem 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    background-color: #D9D9D9;
+
+    text-align: center;
+    justify-content: center;
+
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 
 /* **************************************************************************************************************** */
 /* //////////////////////////////   GRAPH DATA AREA //////////////////////////////////////////////////////////////// */
 
-.graphs-Area{
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-areas: 
-        "top-left       top-middle      top-right"
-        "bottom-left    bottom-middle   bottom-right"
-    ;
-
-    background-color: lightblue;
-    margin-top: 2%;
-    margin-right: 5%;
+.graphs-Area1{
+    margin-top:3%;
+    overflow: hidden; 
+    margin-right: 4%;
 }
 
-.top_left-graph{
-    grid-area: top-left;
-    background-color: aqua;
+.top_left-g{
+    float: left;
+    width: 20%; /* adjust width to your preference */
 }
 
-.top_middle-graph{
-    grid-area: top-middle;
-    background-color: blueviolet
+.top_righ-g{
+    float: right;
+    width: 80%; /* adjust width to your preference */
 }
 
-.top_right-graph{
-    grid-area: top-right;
-    background-color: green;
-}
-
-.bottom_left-graph{
-    grid-area: bottom-left;
-    background-color: yellow;
-}
-
-.bottom_middle-graph{
-    grid-area: bottom-middle;
-    background-color: peru;
-}
-
-.bottom_right-graph{
-    grid-area: bottom-right;
-    background-color: red;
-}
-
-
-
-
-
-/* 
-table{
-    padding: 1%;
-    width: 100%;
-}
-
-th{
-    font-size: medium;
-    color: gray;
-    text-align: left;
-}
-
-td{
-    text-align: left;
-} */
 
