@@ -932,11 +932,18 @@
             $activeReports = $this->ownerModel->getActiveReports();
             $activeReportCount = $activeReports->{'COUNT(*)'};
 
+            //get fare and rate value from the database
+            $fareAndRate = $this->ownerModel->getFareAndRate();
+            $fare = $fareAndRate->{'baseValue'};
+            $rate = $fareAndRate->{'ratePer10'};
+
             $data = [
                 'totalRiders' => $riderCount,
                 'totalBikes' => $bikeCount,
                 'totalDockingAreas' => $dockingAreaCount,
-                'activeReports' => $activeReportCount
+                'activeReports' => $activeReportCount,
+                'fare' => $fare,
+                'rate' => $rate
             ];
             
             $this->view('owners/statistics', $data);

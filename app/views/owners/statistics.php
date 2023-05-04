@@ -49,10 +49,10 @@
             <div class="data__area__top--fare--rate--button">
                 <div class="data__area__top__fare__rate">
                     <div class="data__area__top__fare">
-                        Fare Base Value : 150/=
+                        Fare Base Value : Rs. <?php echo $data['fare'] ?> /=
                     </div>
                     <div class="data__area__top__rate">
-                        Rate per seconds : 0.2/=
+                        Rate per seconds : Rs. <?php echo $data['rate'] ?> /=
                     </div>
                 </div>
                 <div class="data__area--top--button">
