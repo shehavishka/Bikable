@@ -38,13 +38,13 @@
                 <div class="data__area__top--title">
                     Statistics
                 </div>
-                <div class="data__area__top--date">
+                <!-- <div class="data__area__top--date">
                     <label for="start-date">From</label>
                     <input type="date" id="start-date">
 
                     <label for="end-date">To</label>
                     <input type="date" id="end-date">
-                </div>
+                </div> -->
             </div>
             <div class="data__area__top--fare--rate--button">
                 <div class="data__area__top__fare__rate">
@@ -56,8 +56,43 @@
                     </div>
                 </div>
                 <div class="data__area--top--button">
-                    
-                    <input type="button" value="submit">
+                        <button id="open-form-btn">Edit</button>
+
+                        <div id="form-popup" style="display:none;">
+                            <form id="rental-form" action="controller-function-url" method="post">
+                                <label for="fare">Fare:</label>
+                                <input type="text" id="fare" name="fare" required>
+
+                                <label for="rate">Rate:</label>
+                                <input type="text" id="rate" name="rate" required>
+
+                                <button type="submit" id="submit-btn">Submit</button>
+                                <button type="button" id="cancel-btn">Cancel</button>
+                            </form>
+                        </div>
+
+                        <script>
+                            var openFormBtn = document.getElementById('open-form-btn');
+                            var formPopup = document.getElementById('form-popup');
+                            var cancelBtn = document.getElementById('cancel-btn');
+                            
+                            openFormBtn.addEventListener('click', function() {
+                                formPopup.style.display = 'block';
+                            });
+                            
+                            cancelBtn.addEventListener('click', function() {
+                                formPopup.style.display = 'none';
+                            });
+                            
+                            var rentalForm = document.getElementById('rental-form');
+                            var submitBtn = document.getElementById('submit-btn');
+                            
+                            submitBtn.addEventListener('click', function() {
+                                // Validate form fields here
+                                
+                                rentalForm.submit();
+                            });
+                        </script>
                 </div>
             </div>
         </div>
