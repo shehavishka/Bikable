@@ -111,7 +111,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 4.) Owner submits his new details (ownerSubmitsHisNewDetails)
+        // 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
         public function ownerSubmitsHisNewDetails(){
             /**
              * This function is for update owner's details
@@ -236,7 +236,7 @@
 
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 4.1) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+        // 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
         public function ownerUpdatesHisProfilePicture(){
             /**
              * There are,
