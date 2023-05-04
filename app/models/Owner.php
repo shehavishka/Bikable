@@ -305,7 +305,29 @@
         //get total number of riders
         public function getTotalRiders(){
             $this->db->prepareQuery("SELECT COUNT(*) FROM users WHERE role = 'rider' ");
-            
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        //get total number of bicycles
+        public function getTotalBicycles(){
+            $this->db->prepareQuery("SELECT COUNT(*) FROM bicycles");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function getTotalDockingAreas(){
+            $this->db->prepareQuery("SELECT COUNT(*) FROM dockingareas");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function getActiveReports(){
+            $this->db->prepareQuery("SELECT COUNT(*) FROM reports WHERE status = 0 ");
+
             $row = $this->db->single();
             return $row;
         }

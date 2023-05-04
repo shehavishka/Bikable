@@ -75,7 +75,7 @@
             </div>
             <div class="data__count__area--totalBikes cardd">
                 <div class="data__count__area--totalBikes--value">
-                    200
+                    <?php echo $data['totalBikes']; ?>
                 </div>
                 <div class="data__count__area--totalBikes--title">
                     Total Bikes
@@ -83,7 +83,7 @@
             </div>
             <div class="data__count__area--totalDockingAreas cardd">
                 <div class="data__count__area--totalDockingAreas--value">
-                    10
+                    <?php echo $data['totalDockingAreas']; ?>
                 </div>
                 <div class="data__count__area--totalDockingAreas--title">
                     Total Docking Areas
@@ -91,7 +91,7 @@
             </div>
             <div class="data__count__area--activeReports cardd">
                 <div class="data__count__area--activeReports--value">
-                    13
+                    <?php echo $data['activeReports']; ?>
                 </div>
                 <div class="data__count__area--activeReports--title">
                     Active Reports

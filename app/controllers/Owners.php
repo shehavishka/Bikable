@@ -919,10 +919,24 @@
             //get total riders from the database
             $totalRiders = $this->ownerModel->getTotalRiders();
             $riderCount = $totalRiders->{'COUNT(*)'};
-        
+
+            //get total bikes from the database
+            $totalBikes = $this->ownerModel->getTotalBicycles();
+            $bikeCount = $totalBikes->{'COUNT(*)'};
+
+            //get total docking areas from the database
+            $totalDockingAreas = $this->ownerModel->getTotalDockingAreas();
+            $dockingAreaCount = $totalDockingAreas->{'COUNT(*)'};
+
+            //get active reports from the database
+            $activeReports = $this->ownerModel->getActiveReports();
+            $activeReportCount = $activeReports->{'COUNT(*)'};
 
             $data = [
-                'totalRiders' => $riderCount
+                'totalRiders' => $riderCount,
+                'totalBikes' => $bikeCount,
+                'totalDockingAreas' => $dockingAreaCount,
+                'activeReports' => $activeReportCount
             ];
             
             $this->view('owners/statistics', $data);
