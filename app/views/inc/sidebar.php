@@ -67,12 +67,18 @@
                         <div class="submenu reports__submenu--accidentReport">
                             Accident Reports
                         </div>
-                        <div class="submenu users__submenu--bikeComplaintReport">
+                        <!-- <div class="submenu users__submenu--bikeComplaintReport">
                             Bike Complaint Reports
-                        </div>
+                        </div> -->
                         <div class="submenu users__submenu--dockingAreaReport">
                             Docking Area Reports
                         </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="detail detail__statics">
+                    <div class="detail__static--title">
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/ridesControl">Statistics</a></div>
                     </div>
                 </div>
             </div>
