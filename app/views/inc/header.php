@@ -20,8 +20,12 @@
                 <p id="time"></p>
 
                 <script>
+                    // Set the timezone to the desired value
+                    var options = { timeZone: 'Asia/Colombo' };
+                    var now = new Date().toLocaleString('en-US', options);
+                    now = new Date(now);
+
                     // Get current time and display personalized greeting
-                    var now = new Date();
                     var hours = now.getHours();
                     var greeting;
                     if (hours >= 5 && hours < 12) {
@@ -31,11 +35,12 @@
                     } else {
                         greeting = "Good Evening!";
                     }
+
                     var minutes = now.getMinutes();
                     var ampm = hours >= 12 ? 'pm' : 'am';
                     hours = hours % 12;
                     hours = hours ? hours : 12;
-                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
                     var currentTime = hours + ':' + minutes + ' ' + ampm;
                     document.getElementById("greeting").innerHTML = greeting;
                     document.getElementById("time").innerHTML =  currentTime;
