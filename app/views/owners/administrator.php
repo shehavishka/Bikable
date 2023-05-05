@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/owners/administrator.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Admin Detail</title>
 </head>
 <body>
@@ -23,9 +24,9 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Administrators</div>
-            
+
             <div class="dashboard__header--search">
-                <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
                 <div class="dashboard__header--searchicon">
                     <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
                 </div>
@@ -72,43 +73,73 @@
                             
                     </td>
                 </tr> -->
-        
 
-                <?php foreach($data['admin_details'] as $oneAdmin) : ?>
-                    <tr style="height: 2.5rem;">
-                        <td><input type="checkbox"></td>
-                        <td><?php echo $oneAdmin->firstName . " " . $oneAdmin->lastName ?></td>
-                        <td><?php echo $oneAdmin->userID ?></td>
-                        <td>
-                            <?php 
-                                if($oneAdmin->status == 1){
+                <tbody class="all-data">
+                    
+                    <?php foreach ($data['admin_details'] as $oneAdmin) {
+                        echo '
+                            <tr style="height: 2.5rem;">
+                                <td><input type="checkbox"></td>
+                                <td>' . $oneAdmin->firstName . " " . $oneAdmin->lastName . '</td>
+                                <td>' . $oneAdmin->userID . '</td>
+                                <td>';
+
+                                if ($oneAdmin->status == 1) {
                                     echo "Active";
-                                }elseif ($oneAdmin->status == 0) {
+                                } elseif ($oneAdmin->status == 0) {
                                     echo "Inactive";
-                                }else{
+                                } else {
                                     echo "Deleted";
                                 }
-                            
-                            ?>
-                        </td>
-                        <td><?php echo $oneAdmin->emailAdd ?></td>
-                        <td><?php echo $oneAdmin->NIC ?></td>
-                        <td><?php echo $oneAdmin->role ?></td>
-                        <td>
-                        <!-- update icon svg format -->
-                            <form action="<?php echo URLROOT;?>/owners/userProfileViewButton" method="post">
-                                <input type="hidden" name="userID" value="<?php echo $oneAdmin->userID;?>">
-                                <input type="submit" name="edit" value="edit" >
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
 
+                        echo '</td>
+                                <td>' . $oneAdmin->emailAdd . '</td>
+                                <td>' . $oneAdmin->NIC . '</td>
+                                <td>' . $oneAdmin->role . '</td>
+                                <td>
+                                    <!-- update icon svg format -->
+                                    <form action="' . URLROOT . '/owners/userProfileViewButton" method="post">
+                                        <input type="hidden" name="userID" value="' . $oneAdmin->userID . '">
+                                        <input type="submit" name="edit" value="edit">
+                                    </form>
+                                </td>
+                            </tr>';
+                    }?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
+            
             </table>
         </div>
     </section>
 
+    <script>
+        $(document).ready(function(){
+            $("#search").keyup(function(){
+                var searchText = $(this).val();
 
+                if(searchText)
+                {
+                    $('.all-data').hide();
+                    $('.search-data').show();
+                }
+                else{
+                    $('.all-data').show();
+                    $('.search-data').hide();
+                }
+
+                $.ajax({
+                    url: './search_adminstrators',
+                    type: 'POST',
+                    data: {search: searchText},
+                    success: function(response){
+                        console.log(response);
+                        $("#details").html(response);
+                    }
+                });
+            });       
+        });
+</script>
 
 </body>
 </html>
