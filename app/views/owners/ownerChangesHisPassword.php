@@ -102,5 +102,26 @@
             
         </div>
     </section>
+
+    <script>
+        var passwordInput = document.getElementById("new-password");
+
+        passwordInput.addEventListener("input", function() {
+            validatePassword();
+        });
+
+        function validatePassword() {
+            var password = passwordInput.value;
+            var pattern = /^[a-zA-Z0-9]*$/; // only letters and numbers
+            if (!pattern.test(password)) {
+                passwordInput.setCustomValidity("Password can only contain letters and numbers.");
+            } else {
+                passwordInput.setCustomValidity("");
+            }
+        }
+
+    </script>
+
+
 </body>
 </html>
