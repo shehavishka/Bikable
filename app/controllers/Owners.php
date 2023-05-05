@@ -1022,7 +1022,7 @@
                 }
             }else{
                 $output .= '<tr>
-                                <td colspan="10">No Data Found</td>
+                                <td>No Data Found</td>
                             </tr>';
             }
 
