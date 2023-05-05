@@ -76,8 +76,10 @@
                             <?php 
                                 if($oneAdmin->status == 1){
                                     echo "Active";
-                                }else{
+                                }elseif ($oneAdmin->status == 0) {
                                     echo "Inactive";
+                                }else{
+                                    echo "Deleted";
                                 }
                             
                             ?>
