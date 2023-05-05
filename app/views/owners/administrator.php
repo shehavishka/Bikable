@@ -23,6 +23,7 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Administrators</div>
+            
             <div class="dashboard__header--search">
                 <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
                 <div class="dashboard__header--searchicon">
