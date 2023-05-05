@@ -2,20 +2,44 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css"> 
 </head>
 <section class="dashboard--header">
-            <div class="dashboard__header--search">
+            <!-- <div class="dashboard__header--search">
                 <input type="text" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
                 <div class="dashboard__header--searchicon">
                     <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
                 </div>
-            </div>
+            </div> -->
 
-            <div class="dashboard__header--helpsetting">
-                <div class="helpsetting__help">
+            <div class="dashboard__header--helpsetting" style="margin-left: 1%;">
+                <!-- <div class="helpsetting__help">
                     <a href="<?php echo URLROOT; ?>/owners/landToErrorPage"><img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/question.png" alt="help" class="dashboard__icon"></a>
                 </div>
                 <div class="helpsetting__setting">
                     <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/setting.png" alt="setting" class="dashboard__icon">
-                </div>
+                </div> -->
+                <p id="greeting"></p>
+                <p id="time"></p>
+
+                <script>
+                    // Get current time and display personalized greeting
+                    var now = new Date();
+                    var hours = now.getHours();
+                    var greeting;
+                    if (hours >= 5 && hours < 12) {
+                        greeting = "Good Morning!";
+                    } else if (hours >= 12 && hours < 18) {
+                        greeting = "Good Afternoon!";
+                    } else {
+                        greeting = "Good Evening!";
+                    }
+                    var minutes = now.getMinutes();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12;
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var currentTime = hours + ':' + minutes + ' ' + ampm;
+                    document.getElementById("greeting").innerHTML = greeting;
+                    document.getElementById("time").innerHTML =  currentTime;
+                </script>
             </div>
 
             <div class="dashboard__user__detail">
