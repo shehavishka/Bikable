@@ -35,13 +35,13 @@
         </div>
 
         <div class="admin__table__area">
-            <table style="margin-left: 4rem; margin-right: 4rem;">
+            <table style="margin-left: 3rem; margin-right: 4rem;">
                 <tr>
                     <th style="width: 1%;"></th>
-                    <th style="width: 3%;">Area ID</th>
-                    <th style="width: 3%;">Area Name</th>
+                    <th style="width: 2%;">Area ID</th>
+                    <th style="width: 5%;">Area Name</th>
                     <th style="width: 3%;">Status</th>
-                    <th style="width: 8%;">Address</th>
+                    <th style="width: 7%;">Address</th>
                     <th style="width: 3%;">Current Bikes</th>
                     <!-- <th style="width: 8%;">Mechanic ID</th> -->
                     <!-- <th style="width: 4%;">Log ID</th> -->
