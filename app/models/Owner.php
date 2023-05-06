@@ -129,7 +129,7 @@
 
         public function getDockingAreasDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM dockingareas");
+            $this->db->prepareQuery("SELECT * FROM dockingareas where status != 3");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
