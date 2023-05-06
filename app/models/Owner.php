@@ -135,6 +135,28 @@
             return $this->db->resultSet();
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Add docking area to the system
+        public function addDAIntoTheSystem($data){
+
+            $areaName = $data['areaName'];
+            $locationRadius = $data['locationRadius'];
+            $status = intval($data['status']); //should be int
+            $locationLat = $data['locationLat']; //should be double
+            $locationLong = $data['locationLong']; //should be double
+            $traditionalAdd = $data['traditionalAdd'];
+            $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+
+            $temp = "INSERT INTO dockingareas (areaName, locationRadius, status, locationLat, locationLong, traditionalAdd, currentNoOfBikes ) VALUES ('$areaName', '$locationRadius', '$status', '$locationLat', '$locationLong', '$traditionalAdd', '$currentNoOfBikes')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
