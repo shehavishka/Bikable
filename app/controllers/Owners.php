@@ -16,7 +16,8 @@
      * 11.) Owner handle rider page (riders)
      * 12.) Owner handle bicycle owner page (bicycleOwner)
      * 13.) Owner handle repair log page (repairLog)
-     * 14.) Owner handle docking areas page (dockingAreas)
+     * 14.1) Owner handle docking areas page (dockingAreas)
+     * 14.2) Add docking area to the system (addDockingAreaToSystem)
      * 15.) Owner handle bicycle control page (bicyclesControl)
      * 16.) Owner handle rides control page (ridesControl)
      * 17.) Owner handle reports control page (reportsControl)
@@ -628,7 +629,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 14.) Owner handle docking areas page (dockingAreas)
+        // 14.1) Owner handle docking areas page (dockingAreas)
         public function dockingAreas(){
             /**
              * There are,
@@ -644,6 +645,106 @@
             ];
 
             $this->view('owners/dockingareas', $data);
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 14.2) Add docking area to the system (addDockingAreaToSystem)
+        public function addDockingAreaToSystem(){
+            /**
+             *  Task
+             *      This function task is validate data from the addBikeOwner form and,
+             *         1.) if data is valid then send data to insert into the system
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'areaName' => trim($_POST['areaName']),
+                    'locationLat' => trim($_POST['locationLat']),
+                    'locationLong' => trim($_POST['locationLong']),
+                    'locationRadius' => trim($_POST['locationRadius']),
+                    'traditionalAdd' => trim($_POST['traditionalAdd']),
+                    'status' => trim($_POST['status']),
+                    'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+
+                    'areaName_err' => '',
+                    'locationLat_err' => '',
+                    'locationLong_err' => '',
+                    'locationRadius_err' => '',
+                    'traditionalAdd_err' => '',
+                    'status_err' => '',
+                    'currentNoOfBikes_err' => '',
+                ];
+
+                //validate submitted data
+                if(empty($data['areaName'])){
+                    $data['areaName_err'] = '*enter area name';
+                }
+
+                if(empty($data['locationLat'])){
+                    $data['locationLat_err'] = '*enter location latitude';
+                }
+
+                if(empty($data['locationLong'])){
+                    $data['locationLong_err'] = '*enter location longitude';
+                }
+
+                if(empty($data['locationRadius'])){
+                    $data['locationRadius_err'] = '*enter location radius';
+                }
+
+                if(empty($data['traditionalAdd'])){
+                    $data['traditionalAdd_err'] = '*enter traditional address';
+                }
+
+                if(empty($data['status'])){
+                    $data['status_err'] = '*enter status';
+                }
+
+                if(empty($data['currentNoOfBikes'])){
+                    $data['currentNoOfBikes'] = 0;
+                }
+
+                //make sure there are no errors
+                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err'])){
+                    //every things up to ready 
+
+                    // add docking area
+                    if($this->adminModel->updateDA($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/admins/dockingareas');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/admins/dockingareas');
+                        //die('something went wrong!');
+                    }
+                }
+                else{
+
+                    $this->view('admins/addDockingArea', $data);
+                }
+            }else{
+                //init data
+                $data = [
+                    'areaName' => '',
+                    'locationLat' => '',
+                    'locationLong' => '',
+                    'locationRadius' => '',
+                    'traditionalAdd' => '',
+                    'status' => '',
+                    'currentNoOfBikes' => '',
+
+                    'areaName_err' => '',
+                    'locationLat_err' => '',
+                    'locationLong_err' => '',
+                    'locationRadius_err' => '',
+                    'traditionalAdd_err' => '',
+                    'status_err' => '',
+                    'currentNoOfBikes_err' => '',
+
+                ];
+                $this->view('admins/addDockingArea', $data);
+            }
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
