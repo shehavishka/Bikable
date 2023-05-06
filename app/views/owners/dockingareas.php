@@ -39,9 +39,11 @@
                 <tr>
                     <th style="width: 1%;"></th>
                     <th style="width: 3%;">Area ID</th>
-                    <th style="width: 3%;">Availability</th>
+                    <th style="width: 3%;">Area Name</th>
                     <th style="width: 3%;">Status</th>
-                    <th style="width: 8%;">Location</th>
+                    <th style="width: 8%;">Address</th>
+                    <th style="width: 8%;">Current Bikes</th>
+
                     <!-- <th style="width: 8%;">Mechanic ID</th> -->
                     <!-- <th style="width: 4%;">Log ID</th> -->
                     <th style="width: 4%;"></th>
