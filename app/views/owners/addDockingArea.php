@@ -25,7 +25,7 @@
                 <div class="data__area__top--title">Add Docking Area</div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/admins/dockingareas'">
+                        <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/owners/dockingareas'">
                     </div>
                     <div class="delete_user_button">
                         <input type="submit" class="btn btn_delete" value="Submit" >

@@ -712,16 +712,16 @@
                     // add docking area
                     if($this->adminModel->addDAIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
-                        header('Location:'.URLROOT.'/admins/dockingareas');
+                        header('Location:'.URLROOT.'/owners/dockingareas');
                     }else{
                         //have an issue where, even if you don't update anything and click update, the above if returns false
-                        header('Location:'.URLROOT.'/admins/dockingareas');
+                        header('Location:'.URLROOT.'/owners/dockingareas');
                         //die('something went wrong!');
                     }
                 }
                 else{
 
-                    $this->view('admins/addDockingArea', $data);
+                    $this->view('owners/addDockingArea', $data);
                 }
             }else{
                 //init data
@@ -743,7 +743,7 @@
                     'currentNoOfBikes_err' => '',
 
                 ];
-                $this->view('admins/addDockingArea', $data);
+                $this->view('owners/addDockingArea', $data);
             }
         }
 
