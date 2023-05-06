@@ -1,5 +1,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png"> -->
     <style>
 
         @font-face {
@@ -83,6 +84,7 @@
         .item.i3{padding-left: 0px;}
         .item.i4{padding-left: 3px;}
         .item.i5{padding-left: 0px;}
+        .item.i6{padding-left: 0px;}
 
         hr{
             border: none;
@@ -92,7 +94,7 @@
             padding-bottom: 50px;
         }
 
-        .main_text{
+        .main_title{
             display: inline-block;
             font-size: 1.7rem;
             font-weight: bold;
@@ -124,13 +126,14 @@
         <img style="position:absolute;top:35px;width:166px;min-width:166px;display:inline-block;" src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo1.png" alt="menu">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     </div>
-    <div class="main_text">Hello <span style="font-weight: bold;"><?php echo $_SESSION['user_fName']; ?></span></div>
+    <div class="main_title">Hello <span style="font-weight: bold;"><?php echo $_SESSION['user_fName']; ?></span></div>
     <hr>
-    <a href="#"><div class="item i1"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/currentIcon.png" alt="menu">Current Ride</div></a>
+    <a href="<?php echo URLROOT;?>/riders/activeRidez"><div class="item i1"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/currentIcon.png" alt="menu">Current Ride</div></a>
     <a href="#"><div class="item i2"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/historyIcon.png" alt="menu">Ride History</div></a>
-    <a href="#"><div class="item i3"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/userIcon.png" alt="menu">View Profile</div></a>
+    <a href="<?php echo URLROOT;?>/riders/profilePage"><div class="item i3"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/userIcon.png" alt="menu">View Profile</div></a>
     <a href="#"><div class="item i4"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/cardIcon.png" alt="menu">Payment</div></a>
-    <a href="#"><div class="item i5"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/logoutIcon.png" alt="menu">Help</div></a>
+    <a href="#"><div class="item i5"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/reportIcon.png" alt="menu">Make a Report</div></a>
+    <a href="<?php echo URLROOT;?>/users/logout"><div class="item i6"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/logoutIcon.png" alt="menu">Logout</div></a>
 </div>
 
 <span style="font-size:30px;cursor:pointer;" onclick="openNav()">
