@@ -27,6 +27,8 @@
      * 21.) user profile view button (userProfileViewButton)
      * 22.) suspend and release user (suspendReleaseUser)
      * 23.) Statistics page (statisticsPageView)
+     * 24.) Set fare and rate
+     * 25.) Search Administrators through the search bar
     */
 
     // dependencies for phpmailer
