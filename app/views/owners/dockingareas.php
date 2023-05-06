@@ -42,7 +42,7 @@
                     <th style="width: 3%;">Area Name</th>
                     <th style="width: 3%;">Status</th>
                     <th style="width: 8%;">Address</th>
-                    <th style="width: 8%;">Current Bikes</th>
+                    <th style="width: 3%;">Current Bikes</th>
                     <!-- <th style="width: 8%;">Mechanic ID</th> -->
                     <!-- <th style="width: 4%;">Log ID</th> -->
                     <th style="width: 4%;"></th>
@@ -71,12 +71,12 @@
                 <?php foreach($data['docking_areas_details'] as $oneDoc) : ?>
                     <tr>
                         <td><input type="checkbox" class="cbox"></td>
-                        <td><?php echo $oneDoc->areaID?></td>
-                        <td><?php echo $oneDoc->currentNoOfBikes ?></td>
+                        <td><?php echo $oneDoc->areaID;?></td>
+                        <td><?php echo $oneDoc->areaName;?></td>
                         <td>
                             <?php 
-                                if($oneDoc->status == "1"){
-                                    echo "Inactive";
+                                if($oneDoc->status == 0){
+                                    echo "Active";
                                 }else{
                                     echo "Deactive";
                                 }
@@ -84,8 +84,7 @@
                             ?>
                         </td>
                         <td><?php echo "E" . round($oneDoc->locationLat,4) ."° N, ". round($oneDoc->locationLong,4) ."° E" ?></td>
-                        <!-- <td>d</td>
-                        <td>d</td> -->
+                        <td><?php echo $oneDoc->currentNoOfBikes;?></td>
                         <td>
                             <!-- update icon svg format -->
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
