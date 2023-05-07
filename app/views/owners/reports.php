@@ -83,7 +83,7 @@
                         <td><?php echo $oneReport->loggedTimestamp ?></td>
                         <td><?php echo $oneReport->reportType ?></td>
                         <td>
-                            <!-- <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a> -->
+                            <a href="<?php echo URLROOT;?>/owners/editReportDetails?reportID=<?php echo $oneReport->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
