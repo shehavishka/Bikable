@@ -64,15 +64,17 @@
                         <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/reportsControl">Reports</a></div>
                     </div>
                     <div class="detail__reports--submenu">
+                    <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
-                            Accident Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/AccidentReportsControl">Accident Reports</a></div>
                         </div>
-                        <!-- <div class="submenu users__submenu--bikeComplaintReport">
-                            Bike Complaint Reports
-                        </div> -->
+                        <div class="submenu users__submenu--bikeComplaintReport">
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/BicycleReportsControl">Bike Reports</a></div>
+                        </div>
                         <div class="submenu users__submenu--dockingAreaReport">
-                            Docking Area Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/DAReportsControl">Docking Area Reports</a></div>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <hr>
