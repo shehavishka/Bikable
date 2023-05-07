@@ -25,7 +25,12 @@
                 <div class="data__area__top--title">Add User</div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/owners/ownerLandPage'">
+                        <input type="button" class="btn btn_add" value="Cancel" onclick="goBack()">
+                        <script>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
                     </div>
                     <div class="delete_user_button">
                         <input type="submit" class="btn btn_delete" value="Submit" >
