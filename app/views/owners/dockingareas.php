@@ -86,7 +86,7 @@
                         <td><?php echo "E" . round($oneDoc->locationLat,4) ."° N, ". round($oneDoc->locationLong,4) ."° E" ?></td>
                         <td><?php echo $oneDoc->currentNoOfBikes;?></td>
                         <td>
-                            <a href="<?php echo URLROOT;?>/admins/editDADetails?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>    
+                            <a href="<?php echo URLROOT;?>/owners/editDADetails?areaID=<?php echo $oneDoc->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>    
                         </td>
                     </tr>
 

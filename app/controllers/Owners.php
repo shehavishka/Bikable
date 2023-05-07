@@ -754,7 +754,7 @@
                     'currentNoOfBikes_err' => '',
 
                 ];
-                $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
+                $data['areaDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findAreaByID($data['areaID']);
                 $this->view('owners/viewAreaDetails', $data);
 
             }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
