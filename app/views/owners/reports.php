@@ -25,10 +25,10 @@
             <div class="admin__data__area__top--title">Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="View Archieved" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="button" class="btn btn_delete" value="Archive Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
                 </div>
             </div>
 
