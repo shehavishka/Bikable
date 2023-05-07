@@ -1217,7 +1217,7 @@
             ];
 
             //this is not load data from the data
-            $this->view('admins/reportsAccident', $data);
+            $this->view('owners/reportsAccident', $data);
         }
 
         public function BicycleReportsControl(){
