@@ -674,7 +674,7 @@
                     //every things up to ready 
 
                     // add docking area
-                    if($this->adminModel->addDAIntoTheSystem($data)){
+                    if($this->ownerModel->addDAIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         header('Location:'.URLROOT.'/owners/dockingareas');
                     }else{
@@ -831,7 +831,7 @@
                     //every things up to ready 
 
                     // update bike
-                    if($this->adminModel->updateDA($data)){
+                    if($this->ownerModel->updateDA($data)){
                         // next implementation should be land into the right position according to the role
                         header('Location:'.URLROOT.'/owners/dockingareas');
                     }else{
