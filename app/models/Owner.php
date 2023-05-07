@@ -312,6 +312,20 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
+        
+        public function removeReport($reportID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
