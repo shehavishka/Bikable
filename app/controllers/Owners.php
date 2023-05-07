@@ -1177,6 +1177,20 @@
             }
         }
 
+        public function unarchiveReports(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->adminModel->unarchiveReport($selectedRow);
+                }
+                header('Location:'.URLROOT.'/owners/archivedReportsControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
+
         public function archivedReportsControl(){
 
             $reportDetails = $this->ownerModel->getArchivedReportDetails();
