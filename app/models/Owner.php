@@ -190,6 +190,33 @@
             } 
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // update docking area
+        public function updateDA($data){
+            
+            $areaID = intval($data['areaID']); //should be int
+
+            $areaName = $data['areaName'];
+            $locationRadius = $data['locationRadius'];
+            $status = intval($data['status']); //should be int
+            $locationLat = $data['locationLat']; //should be double
+            $locationLong = $data['locationLong']; //should be double
+            $traditionalAdd = $data['traditionalAdd'];
+            $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            
+            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes' WHERE areaID = '$areaID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
