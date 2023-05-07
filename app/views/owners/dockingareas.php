@@ -42,7 +42,7 @@
                     <th style="width: 3%;">Area Name</th>
                     <th style="width: 3%;">Status</th>
                     <th style="width: 4%;">Address</th>
-                    <th style="width: 1%;">Current Bikes</th>
+                    <th style="width: 2%;">Current Bikes</th>
                     <!-- <th style="width: 8%;">Mechanic ID</th> -->
                     <!-- <th style="width: 4%;">Log ID</th> -->
                     <th style="width: 1%;"></th>
