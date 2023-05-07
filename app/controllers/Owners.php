@@ -4,8 +4,8 @@
     /**
      * 1.) Owner's landing page (ownerLandPage)
      * 2.) Owner's profile page (ownerViewsHisOwnProfile)
-     * 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
-     * 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+     * 3.) Owner edits his new details (ownerEditsHisNewDetails)
+     * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
      * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
@@ -99,7 +99,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
+        // 3) Owner edits his details (ownerSubmitsHisNewDetails)
         public function ownerEditsHisNewDetails(){
             /**
              * This function is for update owner's details
@@ -224,7 +224,7 @@
 
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+        // 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
         public function ownerUpdatesHisProfilePicture(){
             /**
              * There are,
@@ -291,7 +291,7 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
-        public function ownerSubmitsHisNewPassword(){
+        public function ownerChangesHisPassword(){
             // load the form
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // get the form data store in data variable
@@ -380,7 +380,7 @@
 
                 ];
                 //load the view
-                $this->view('owners/ownerEditsHisOwnProfile', $data);
+                $this->view('owners/ownerChangesHisPassword', $data);
             }
         }
 
