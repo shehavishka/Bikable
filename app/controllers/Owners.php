@@ -1104,6 +1104,70 @@
             $this->view('owners/reports', $data);
         }
 
+        public function archivedReportsControl(){
+            $reportDetails = $this->adminModel->getArchivedReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/archivedReports', $data);
+        }
+
+        public function AccidentReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsAccident', $data);
+        }
+
+        public function BicycleReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsBike', $data);
+        }
+
+        public function DAReportsControl(){
+            /**
+             * Task 
+             *      1.) handle repair in the system
+             *      2.) View the data
+            *  */ 
+        
+            // load admin's repairlog control
+            //code will implement here
+            $reportDetails = $this->adminModel->getReportDetails();
+            $data = [
+                'report_details' => $reportDetails
+            ];
+
+            //this is not load data from the data
+            $this->view('admins/reportsDA', $data);
+        }
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 18.) (inbuilt) Generate password length 8
         private function generatePassword() {
