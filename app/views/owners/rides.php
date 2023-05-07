@@ -27,9 +27,9 @@
                 <!-- <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Area" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
                 </div> -->
-                <div class="delete_user_button">
+                <!-- <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
-                </div>
+                </div> -->
             </div>
 
         </div>
