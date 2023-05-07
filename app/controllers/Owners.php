@@ -968,6 +968,106 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // edit bicycle
+        public function editBicycleDetails(){
+            /**
+             *  Task one load the user detail button
+            */
+            //die("halp");
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'bicycleID' => intval(trim($_GET['bicycleID'])),
+                    'bicycleDetailObject' => '',
+
+                    'bikeOwnerID' => '',
+                    'frameSize' => '',
+                    'dateAcquired' => '',
+                    'datePutInUse' => '',
+                    'status' => '',
+                    'currentDA' => '',
+
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+                ];
+                $data['bicycleDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findBicycleByID($data['bicycleID']);
+                $this->view('owners/viewBicycleDetails', $data);
+
+            }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'bicycleDetailObject' => '',
+                    
+                    'bicycleID' => intval(trim($_POST['bicycleID'])),
+                    'bikeOwnerID' => trim($_POST['bikeOwnerID']),
+                    'frameSize' => trim($_POST['frameSize']),
+                    'dateAcquired' => trim($_POST['dateAcquired']),
+                    'datePutInUse' => trim($_POST['datePutInUse']),
+                    'status' => trim($_POST['status']),
+                    'currentDA' => trim($_POST['currentDA']),
+
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+                ];
+                $data['bicycleDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findBicycleByID($data['bicycleID']);
+                //validate submitted data
+                    //validate bicycle owner ID
+                    if(empty($data['bikeOwnerID'])){
+                        $data['bikeOwnerID_err'] = '*Bike Owner ID is Required';
+                    } 
+
+                    //validate frame size
+                    if(empty($data['frameSize'])){
+                        $data['frameSize_err'] = '*Frame Size is required';
+                    }else if(!is_numeric($data['frameSize'])){
+                        $data['frameSize_err'] = '*Frame Size must be a number';
+                    }
+
+                    //validate date acquired
+                    if(empty($data['dateAcquired'])){
+                        $data['dateAcquired_err'] = '*Date Acquired is required';
+                    }
+
+                    //validate DA
+                    if(empty($data['currentDA'])){
+                        $data['currentDA_err'] = '*Current Docking Area is required';
+                    }else if(!is_numeric($data['currentDA'])){
+                        $data['currentDA_err'] = '*Current Docking Area must be a number';
+                    }
+                //
+                
+
+                if(empty($data['bikeOwnerID_err']) && empty($data['frameSize_err']) && empty($data['dateAcquired_err']) && empty($data['datePutInUse_err']) && empty($data['status_err']) && empty($data['currentDA_err'])){
+                    //every things up to ready 
+
+                    // update bike
+                    if($this->ownerModel->updateBicycle($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/owners/bicyclesControl');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/owners/bicyclesControl');
+                        //die('something went wrong!');
+                    }
+                }
+                else{
+                    $this->view('owners/viewBicycleDetails', $data);
+                }
+
+            }else{
+                die("button didn't work correctly.");
+            }       
+        }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 16.) Owner handle rides control page (ridesControl)
         public function ridesControl(){
             /**
