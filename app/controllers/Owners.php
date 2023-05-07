@@ -1235,7 +1235,7 @@
             ];
 
             //this is not load data from the data
-            $this->view('admins/reportsBike', $data);
+            $this->view('owners/reportsBike', $data);
         }
 
         public function DAReportsControl(){
@@ -1253,7 +1253,7 @@
             ];
 
             //this is not load data from the data
-            $this->view('admins/reportsDA', $data);
+            $this->view('owners/reportsDA', $data);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
