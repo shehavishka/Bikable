@@ -27,8 +27,9 @@
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/owners/addBicycle'">
                 </div>
+    <form action="<?php echo URLROOT;?>/owners/deleteBicycles" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="submit" class="btn btn_delete" value="Delete Selected">
                 </div>
             </div>
 
@@ -76,7 +77,7 @@
 
                 <?php foreach($data['bicycles_details'] as $oneBike) : ?>
                     <tr style="height: 2.5rem;">
-                        <td></td>
+                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneBike->bicycleID;?>"></td>
                         <td><?php echo $oneBike->bicycleID ?></td>
                         <td><?php echo $oneBike->frameSize ?></td>
                         <td>
@@ -95,16 +96,13 @@
                         <td><?php echo $oneBike->currentLocationLat ? $oneBike->currentLocationLat : "Null" ?></td>
                         <td><?php echo $oneBike->bikeOwnerID ?></td>
                         <td>
-                        <!-- update icon svg format -->
-                            <form action="<?php echo URLROOT;?>/owners/userProfileViewButton" method="post">
-                                <input type="hidden" name="userID" value="<?php echo $oneAdmin->userID;?>">
-                                <input type="submit" name="edit" value="edit" >
-                            </form>
+                            <a href="<?php echo URLROOT;?>/admins/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
 
             </table>
+    </form>
         </div>
     </section>
 
