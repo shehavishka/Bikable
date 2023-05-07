@@ -174,6 +174,22 @@
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // find area by ID
+        public function findAreaByID($areaID){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
