@@ -239,6 +239,23 @@
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // delete bike selected
+        public function removeBicycle($bicycleID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE bicycles SET status='$status' WHERE bicycleID = '$bicycleID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
