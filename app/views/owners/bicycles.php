@@ -96,7 +96,7 @@
                         <td><?php echo $oneBike->currentLocationLat ? $oneBike->currentLocationLat : "Null" ?></td>
                         <td><?php echo $oneBike->bikeOwnerID ?></td>
                         <td>
-                            <a href="<?php echo URLROOT;?>/admins/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                            <a href="<?php echo URLROOT;?>/owners/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
