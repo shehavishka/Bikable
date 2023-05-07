@@ -374,20 +374,10 @@
             }
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
-        public function addUserToTheSystemButton(){
-            /**
-             * There is,
-             *      1.) Load the form that's it.
-            */
-
-            $this->view('owners/addUser');
-        }
-
+        
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
-        public function addUserToTheSystemFormSubmitButton(){
+        public function addUserToTheSystem(){
             /**
              * There are,
              *      1.) Validate the form data -> done
