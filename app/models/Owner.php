@@ -142,6 +142,32 @@
             } 
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // update bicycle
+        public function updateBicycle($data){
+            
+            // $bicycleID = $data['bicycleDetailObject']->bicycleID;
+            $bicycleID = $data['bicycleID'];
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+            
+            $temp = "UPDATE bicycles SET bikeOwnerID = '$bikeOwnerID', frameSize = '$frameSize', dateAcquired = '$dateAcquired', datePutInUse = '$datePutInUse', status = '$status', currentDA = '$currentDA' WHERE bicycleID = '$bicycleID'";
+            $this->db->prepareQuery($temp);
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getDockingAreasDetails(){
 
             // get Active and Inactive docking areas
