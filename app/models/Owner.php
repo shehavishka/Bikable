@@ -217,6 +217,28 @@
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // add bicycle to the system
+        public function addBicycleIntoTheSystem($data){
+
+            $bikeOwnerID = $data['bikeOwnerID'];
+            $frameSize = $data['frameSize'];
+            $dateAcquired = $data['dateAcquired'];
+            $datePutInUse = $data['datePutInUse'];
+            $status = intval($data['status']); //should be int
+            $currentDA = $data['currentDA'];
+
+
+            $temp = "INSERT INTO bicycles (bikeOwnerID, frameSize, dateAcquired, datePutInUse, status, currentDA ) VALUES ('$bikeOwnerID', '$frameSize', '$dateAcquired', '$datePutInUse', '$status', '$currentDA')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
