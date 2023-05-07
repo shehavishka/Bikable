@@ -1108,7 +1108,7 @@
 
             $reportDetails = $this->ownerModel->getArchivedReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'reports_details' => $reportDetails
             ];
 
             //this is not load data from the data
