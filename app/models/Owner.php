@@ -129,6 +129,7 @@
 
         public function getDockingAreasDetails(){
 
+            // get Active and Inactive docking areas
             $this->db->prepareQuery("SELECT * FROM dockingareas where status != 3");
 
             // take data from the database as the objects and send them into the controller.
