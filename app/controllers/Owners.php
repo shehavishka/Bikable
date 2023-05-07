@@ -4,7 +4,6 @@
     /**
      * 1.) Owner's landing page (ownerLandPage)
      * 2.) Owner's profile page (ownerViewsHisOwnProfile)
-     * 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
      * 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
      * 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
@@ -98,21 +97,6 @@
 
             $this->view('owners/ownerViewsHisOwnProfile');
         }
-
-        // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // // 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
-        // public function ownerEditsHisOwnProfile(){
-        //     /**
-        //      * There are,
-        //      *      1.) Profile Picture -> done
-        //      *      2.) User ID
-        //      *      3.) Last Logged in  
-        //      *      4.) Registered Date
-        //      *      5.) There is a form to edit name, email, phone number, NIC number -> done
-        //     */
-
-        //     $this->view('owners/ownerEditsHisOwnProfile');
-        // }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
