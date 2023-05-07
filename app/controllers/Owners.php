@@ -1104,6 +1104,65 @@
             $this->view('owners/reports', $data);
         }
 
+        public function editReportDetails(){
+            /**
+             *  Task one load the user detail button
+            */
+            //die("halp");
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'reportID' => intval(trim($_GET['reportID'])),
+                    'reportDetailObject' => '',
+
+                    'mechanicID' => '',
+                    'mechanicID_err' => '',
+                ];
+                $data['reportDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findReportByID($data['reportID']);
+                $this->view('owners/viewReport', $data);
+
+            }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'reportDetailObject' => '',
+                    
+                    'reportID' => intval(trim($_POST['reportID'])),
+                    'mechanicID' => trim($_POST['mechanicID']),
+                    'mechanicID_err' => '',
+                ];
+                $data['reportDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findReportByID($data['reportID']);
+                
+                //validate submitted data
+                    //validate mechanic ID
+                    if(empty($data['mechanicID'])){
+                        $data['mechanicID_err'] = '*Mechanic ID is Required';
+                    }else if(!is_numeric($data['mechanicID'])){
+                        $data['mechanicID_err'] = '*Mechanic ID must be a number';
+                    }else if($data['mechanicID'] < 0){
+                        $data['mechanicID_err'] = '*Mechanic ID must be a positive number';
+                    }
+                //
+
+                if(empty($data['mechanicID_err'])){
+                    //every things up to ready 
+
+                    // update bike
+                    if($this->ownerModel->assignReportMechanic($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/owners/reportsControl');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/owners/reportsControl');
+                        //die('something went wrong!');
+                    }
+                }
+                else{
+                    $this->view('owners/viewReport', $data);
+                }
+
+            }else{
+                die("button didn't work correctly.");
+            }       
+        }
+
         public function archiveReports(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $selectedRows = json_decode($_POST['selectedRows']);
