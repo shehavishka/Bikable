@@ -726,6 +726,130 @@
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public function editDADetails(){
+            /**
+             *  Task one load the user detail button
+            */
+            //die("halp");
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data = [
+                    'areaID' => intval(trim($_GET['areaID'])),
+                    'areaDetailObject' => '',
+
+                    'areaName' => '',
+                    'locationLat' => '',
+                    'locationLong' => '',
+                    'locationRadius' => '',
+                    'traditionalAdd' => '',
+                    'status' => '',
+                    'currentNoOfBikes' => '',
+
+                    'areaName_err' => '',
+                    'locationLat_err' => '',
+                    'locationLong_err' => '',
+                    'locationRadius_err' => '',
+                    'traditionalAdd_err' => '',
+                    'status_err' => '',
+                    'currentNoOfBikes_err' => '',
+
+                ];
+                $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
+                $this->view('owners/viewAreaDetails', $data);
+
+            }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'areaDetailObject' => '',
+                    'areaID' => intval(trim($_POST['areaID'])),
+
+                    'areaName' => trim($_POST['areaName']),
+                    'locationLat' => trim($_POST['locationLat']),
+                    'locationLong' => trim($_POST['locationLong']),
+                    'locationRadius' => trim($_POST['locationRadius']),
+                    'traditionalAdd' => trim($_POST['traditionalAdd']),
+                    'status' => trim($_POST['status']),
+                    'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+
+                    'areaName_err' => '',
+                    'locationLat_err' => '',
+                    'locationLong_err' => '',
+                    'locationRadius_err' => '',
+                    'traditionalAdd_err' => '',
+                    'status_err' => '',
+                    'currentNoOfBikes_err' => '',
+                ];
+                $data['areaDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findAreaByID($data['areaID']);
+
+                //validate submitted data
+                    if(empty($data['areaName'])){
+                        $data['areaName_err'] = '*Area Name is Required';
+                    }
+
+                    if(empty($data['locationLat'])){
+                        $data['locationLat_err'] = '*Latitude is Required';
+                    }else if(!is_numeric($data['locationLat'])){
+                        $data['locationLat_err'] = '*Latitude should be a number';
+                    }else if($data['locationLat'] < 0){
+                        $data['locationLat_err'] = '*Latitude should be a positive number';
+                    }
+
+                    if(empty($data['locationLong'])){
+                        $data['locationLong_err'] = '*Longitude is Required';
+                    }else if(!is_numeric($data['locationLong'])){
+                        $data['locationLong_err'] = '*Longitude should be a number';
+                    }else if($data['locationLong'] < 0){
+                        $data['locationLong_err'] = '*Longitude should be a positive number';
+                    }
+
+                    if(empty($data['locationRadius'])){
+                        $data['locationRadius_err'] = '*Location Radius is Required';
+                    }else if(!is_numeric($data['locationRadius'])){
+                        $data['locationRadius_err'] = '*Location Radius should be a number';
+                    }else if($data['locationRadius'] < 0){
+                        $data['locationRadius_err'] = '*Location Radius should be a positive number';
+                    }
+
+                    if(empty($data['traditionalAdd'])){
+                        $data['traditionalAdd_err'] = '*Traditional Address is Required';
+                    }
+
+                    // if(empty($data['status'])){
+                    //     $data['status_err'] = '*Status is Required';
+                    // }
+
+                    if(empty($data['currentNoOfBikes'])){
+                        $data['currentNoOfBikes'] = 0;
+                    }else if(!is_numeric($data['currentNoOfBikes'])){
+                        $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a number';
+                    }else if($data['currentNoOfBikes'] < 0){
+                        $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a positive number';
+                    }
+                //
+                
+
+                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err'])){
+                    //every things up to ready 
+
+                    // update bike
+                    if($this->adminModel->updateDA($data)){
+                        // next implementation should be land into the right position according to the role
+                        header('Location:'.URLROOT.'/admins/dockingAreas');
+                    }else{
+                        //have an issue where, even if you don't update anything and click update, the above if returns false
+                        header('Location:'.URLROOT.'/admins/dockingAreas');
+                        // die('something went wrong!');
+                    }
+                }
+                else{
+                    // die($data['areaName_err'].$data['locationLat_err'].$data['locationLong_err'].$data['locationRadius_err'].$data['traditionalAdd_err'].$data['status_err'].$data['currentNoOfBikes_err']);
+                    $this->view('admins/viewAreaDetails', $data);
+                }
+
+            }else{
+                die("button didn't work correctly.");
+            }       
+        }
+
         
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
