@@ -19,7 +19,7 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
-        <form action="<?php echo URLROOT;?>/admins/addDockingAreaToSystem" method="POST" id="userInterface">
+        <form action="<?php echo URLROOT;?>/owners/addDockingAreaToSystem" method="POST" id="userInterface">
             <!-- admin real data top -->
             <div class="data__area--top">
                 <div class="data__area__top--title">Add Docking Area</div>
@@ -41,13 +41,13 @@
                     <div class="data__area__div data--areaname">
                         <div class="data--name--lebal">Area Name</div>
                         <input type="text" class="detailbox" name="areaName" placeholder="Area Name" id="areaName">
-                        <br><span class="error_text"><?php echo $data['areaName_err'];?></span>
+                        <br><span class="error_text" style="color: red;"><?php echo $data['areaName_err'];?></span>
                     </div>
 
                     <div class="data__area__div data--locationradius">
                         <div class="data--name--lebal">Location Radius</div>
                         <input type="text" class="detailbox" name="locationRadius" placeholder="Kilometers" id="locationRadius">
-                        <br><span class="error_text"><?php echo $data['locationRadius_err'];?></span>
+                        <br><span class="error_text" style="color: red;"><?php echo $data['locationRadius_err'];?></span>
                     </div>
 
                 </div>
@@ -55,7 +55,7 @@
                 <div class="data__area__detail--email">
                     <div class="data--email--lebal">Traditional Address</div>
                     <input type="text" class="detailbox detailbox--email" name="traditionalAdd" placeholder="Traditional Address" id="traditionalAdd">
-                    <br><span class="error_text"><?php echo $data['traditionalAdd_err'];?></span>
+                    <br><span class="error_text" style="color: red;"><?php echo $data['traditionalAdd_err'];?></span>
                 </div>
 
                 <div class="data__area__detail--status">
@@ -76,19 +76,19 @@
                     <div class="data__area__detail--latitude">
                         <div class="data--name--lebal">Latitude</div>
                         <input type="text" class="detailbox" name="locationLat" placeholder="Latitude value up to 14 decimal places" id="locationLat">
-                        <br><span class="error_text"><?php echo $data['locationLat_err'];?></span>
+                        <br><span class="error_text" style="color: red;"><?php echo $data['locationLat_err'];?></span>
                     </div>
                     <div class="data__area__detai--longitude">
                         <div class="data--name--lebal">Longitude</div>
                         <input type="text" class="detailbox" name="locationLong" placeholder="Longitude value up to 14 decimal places" id="locationLong">
-                        <br><span class="error_text"><?php echo $data['locationLat_err'];?></span>
+                        <br><span class="error_text" style="color: red;"><?php echo $data['locationLat_err'];?></span>
                     </div>
                 </div>
 
                 <div class="data__area__detail--role">
                     <div class="data--name--lebal">Current Number Of Bikes</div>
-                    <input type="text" class="detailbox_userrole detailbox" name="currentNoOfBikes" placeholder="Current Number Of Bikes" id="currentNoOfBikes">
-                    <br><span class="error_text"><?php echo $data['currentNoOfBikes_err'];?></span>
+                    <input type="text" class="detailbox_userrole detailbox" name="currentNoOfBikes" placeholder="Number Of Bikes" id="currentNoOfBikes">
+                    <br><span class="error_text" style="color: red;"><?php echo $data['currentNoOfBikes_err'];?></span>
                 </div>
 
             </div>
