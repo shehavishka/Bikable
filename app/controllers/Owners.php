@@ -99,24 +99,24 @@
             $this->view('owners/ownerViewsHisOwnProfile');
         }
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
-        public function ownerEditsHisOwnProfile(){
-            /**
-             * There are,
-             *      1.) Profile Picture -> done
-             *      2.) User ID
-             *      3.) Last Logged in  
-             *      4.) Registered Date
-             *      5.) There is a form to edit name, email, phone number, NIC number -> done
-            */
+        // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // // 3.) Owner edits his own profile (ownerEditsHisOwnProfile)
+        // public function ownerEditsHisOwnProfile(){
+        //     /**
+        //      * There are,
+        //      *      1.) Profile Picture -> done
+        //      *      2.) User ID
+        //      *      3.) Last Logged in  
+        //      *      4.) Registered Date
+        //      *      5.) There is a form to edit name, email, phone number, NIC number -> done
+        //     */
 
-            $this->view('owners/ownerEditsHisOwnProfile');
-        }
+        //     $this->view('owners/ownerEditsHisOwnProfile');
+        // }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 4.1) Owner submits his new details (ownerSubmitsHisNewDetails)
-        public function ownerSubmitsHisNewDetails(){
+        public function ownerEditsHisNewDetails(){
             /**
              * This function is for update owner's details
              * need to validate submitted data 
