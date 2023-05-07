@@ -1183,7 +1183,7 @@
                 
                 foreach($selectedRows as $selectedRow){
                     // echo $selectedRow." ";
-                    $this->adminModel->unarchiveReport($selectedRow);
+                    $this->ownerModel->unarchiveReport($selectedRow);
                 }
                 header('Location:'.URLROOT.'/owners/archivedReportsControl');
             }else{
