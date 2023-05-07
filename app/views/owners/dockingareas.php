@@ -29,7 +29,7 @@
                 </div>
     <form action="<?php echo URLROOT;?>/owners/deleteDAs" method="POST" id="userInterface">
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Delete Selected" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
+                    <input type="submit" class="btn btn_delete" value="Delete Selected">
                 </div>
             </div>
         </div>
