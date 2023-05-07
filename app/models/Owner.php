@@ -158,6 +158,22 @@
             }
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Delete docking Areas
+        public function removeDA($areaID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE dockingareas SET status='$status' WHERE areaID = '$areaID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function getReportDetails(){
 
             $this->db->prepareQuery("SELECT * FROM reports");
