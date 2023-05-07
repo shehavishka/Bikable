@@ -299,7 +299,9 @@
 
         public function getReportDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM reports");
+            // $this->db->prepareQuery("SELECT * FROM reports");
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status != 3");
+
             return $this->db->resultSet();
         }
 
