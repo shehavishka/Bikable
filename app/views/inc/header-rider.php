@@ -37,6 +37,8 @@
             backdrop-filter: blur(5px) opacity(1);
             transition: backdrop-filter 2s, opacity 2s;
             background-color: rgba(0,0,0,0.4);
+            /* overscroll-behavior: contain; */
+            overflow: hidden;
         }
 
         .sidenav a {
@@ -128,8 +130,8 @@
     </div>
     <div class="main_title">Hello <span style="font-weight: bold;"><?php echo $_SESSION['user_fName']; ?></span></div>
     <hr>
-    <a href="<?php echo URLROOT;?>/riders/activeRidez"><div class="item i1"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/currentIcon.png" alt="menu">Current Ride</div></a>
-    <a href="#"><div class="item i2"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/historyIcon.png" alt="menu">Ride History</div></a>
+    <a href="<?php echo URLROOT;?>/riders/activeRide"><div class="item i1"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/currentIcon.png" alt="menu">Current Ride</div></a>
+    <a href="<?php echo URLROOT;?>/riders/viewHistory"><div class="item i2"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/historyIcon.png" alt="menu">Ride History</div></a>
     <a href="<?php echo URLROOT;?>/riders/profilePage"><div class="item i3"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/userIcon.png" alt="menu">View Profile</div></a>
     <a href="#"><div class="item i4"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/cardIcon.png" alt="menu">Payment</div></a>
     <a href="#"><div class="item i5"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/reportIcon.png" alt="menu">Make a Report</div></a>

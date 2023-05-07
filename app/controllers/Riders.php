@@ -388,6 +388,18 @@
             $this->view('riders/editProfile', $data);
         }
 
+        public function viewHistory(){
+            $data=[
+                'rideHistoryDetailObject' => '',
+                'mapDetails' => '',
+            ];
+            
+            $data['rideHistoryDetailObject'] = $this->riderModel->getRideHistory($_SESSION['user_ID']);
+            $data['mapDetails'] = $this->riderModel->getAllMapDetails();
+
+            $this->view('riders/rideHistory', $data);
+        }
+
 
         /////////////////Internal functions
 

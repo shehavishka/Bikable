@@ -13,6 +13,13 @@
             return $this->db->resultSet();
         }
 
+        public function getAllMapDetails(){
+            $this->db->prepareQuery("SELECT * FROM dockingareas");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
         public function getDADetails($id){
             $this->db->prepareQuery("SELECT * FROM dockingareas WHERE areaID = $id");
 
@@ -173,5 +180,12 @@
             }else{
                 return false;
             }
+        }
+
+        public function getRideHistory($userID){
+            $this->db->prepareQuery("SELECT * FROM ridelog WHERE riderID = $userID AND status = 2 ORDER BY rideLogID DESC");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
         }
     }

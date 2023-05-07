@@ -632,7 +632,7 @@
                     //every things up to ready 
 
                     // add docking area
-                    if($this->adminModel->updateDA($data)){
+                    if($this->adminModel->addDAIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         header('Location:'.URLROOT.'/admins/dockingareas');
                     }else{

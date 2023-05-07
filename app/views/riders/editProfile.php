@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/viewProfile.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Profile Page</title>
-    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <!-- <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script> -->
 </head>
 <body>
 <?php require APPROOT . '/views/inc/header-rider.php'; ?>
