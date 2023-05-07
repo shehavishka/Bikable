@@ -917,7 +917,7 @@
                     //every things up to ready 
 
                     // add bike
-                    if($this->adminModel->addBicycleIntoTheSystem($data)){
+                    if($this->ownerModel->addBicycleIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         // $this->bicyclesControl();
                         header('Location:'.URLROOT.'/owners/bicyclesControl');
@@ -953,7 +953,19 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Delete Bike selected
-        
+        public function deleteBicycles(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->ownerModel->removeBicycle($selectedRow);
+                }
+                header('Location:'.URLROOT.'/owners/bicyclesControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 16.) Owner handle rides control page (ridesControl)
