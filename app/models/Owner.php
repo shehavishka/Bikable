@@ -121,7 +121,8 @@
 
         public function getBicyclesDetails(){
 
-            $this->db->prepareQuery("SELECT * FROM bicycles");
+            // $this->db->prepareQuery("SELECT * FROM bicycles");
+            $this->db->prepareQuery("SELECT * FROM bicycles where status != 3");
             
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
