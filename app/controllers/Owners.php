@@ -1111,7 +1111,7 @@
             ];
 
             //this is not load data from the data
-            $this->view('admins/archivedReports', $data);
+            $this->view('owners/archievedReports', $data);
         }
 
         public function AccidentReportsControl(){
