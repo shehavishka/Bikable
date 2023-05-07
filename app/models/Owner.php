@@ -303,6 +303,14 @@
             return $this->db->resultSet();
         }
 
+        public function getArchivedReportDetails(){
+
+            $this->db->prepareQuery("SELECT * FROM reports WHERE status = 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////
