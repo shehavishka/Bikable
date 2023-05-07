@@ -106,6 +106,33 @@
         </div>
     </section>
 
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // prevent the form from submitting
+
+            // get all the checkboxes in the table
+            const checkboxes = document.querySelectorAll('table input[type="checkbox"]');
+
+            // collect the values of the checked checkboxes
+            const selectedRows = [];
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    selectedRows.push(checkbox.value);
+                }
+            });
+
+            // add the selected rows to a hidden input field in the form
+            const input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', 'selectedRows');
+            input.setAttribute('value', JSON.stringify(selectedRows));
+            this.appendChild(input);
+
+            // submit the form
+            this.submit();
+        });
+    </script>
+
 
 
 </body>
