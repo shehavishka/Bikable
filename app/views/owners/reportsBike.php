@@ -72,7 +72,7 @@
                     </td>
                 </tr> -->
 
-                <?php foreach($data['report_details'] as $oneReport) : if($oneReport->reportType == "Accident"){?>
+                <?php foreach($data['report_details'] as $oneReport) : if($oneReport->reportType == "Bicycle"){?>
                     <tr>
                         <td><input type="checkbox" name="selected[]" value="<?php echo $oneReport->reportID ?>"></td>
                         <td><?php echo $oneReport->reportID ?></td>
