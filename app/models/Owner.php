@@ -341,6 +341,20 @@
             } 
         }
 
+        public function unarchiveReport($reportID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////
