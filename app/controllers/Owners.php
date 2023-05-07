@@ -713,6 +713,19 @@
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 14.3) Delete Docking Areas selected (deleteDockingArea)
+        public function deleteDAs(){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $selectedRows = json_decode($_POST['selectedRows']);
+                
+                foreach($selectedRows as $selectedRow){
+                    // echo $selectedRow." ";
+                    $this->ownerModel->removeDA($selectedRow);
+                }
+                header('Location:'.URLROOT.'/owners/dockingareas');
+            }else{
+                die("button didn't work correctly.");
+            }
+        }
 
         
 
