@@ -327,6 +327,20 @@
             }
         }
 
+        public function findReportbyID($reportID){
+
+            $this->db->prepareQuery("SELECT * FROM reports where reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////   OWNER LANDPAGE MAP PART DATA TAKE FROM THE DATABASE //////////////////////
