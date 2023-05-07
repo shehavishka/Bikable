@@ -70,7 +70,7 @@
                
                 <?php foreach($data['docking_areas_details'] as $oneDoc) : ?>
                     <tr>
-                        <td><input type="checkbox" class="cbox"></td>
+                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneDoc->areaID;?>"></td>
                         <td><?php echo $oneDoc->areaID;?></td>
                         <td><?php echo $oneDoc->areaName;?></td>
                         <td>
@@ -86,7 +86,7 @@
                         <td><?php echo "E" . round($oneDoc->locationLat,4) ."° N, ". round($oneDoc->locationLong,4) ."° E" ?></td>
                         <td><?php echo $oneDoc->currentNoOfBikes;?></td>
                         <td>
-                            <a href="<?php echo URLROOT;?>/admins/editDADetails?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>    
+                            <!-- <a href="<?php echo URLROOT;?>/admins/editDADetails?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>     -->
                         </td>
                     </tr>
 
@@ -106,10 +106,10 @@
 
             // collect the values of the checked checkboxes
             const selectedRows = [];
-                checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    selectedRows.push(checkbox.value);
-                }
+            checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                selectedRows.push(checkbox.value);
+            }
             });
 
             // add the selected rows to a hidden input field in the form
