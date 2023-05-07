@@ -280,16 +280,6 @@
         }
           
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 5.) Owner views his password change page (ownerViewsHisPasswordChange)
-        public function ownerViewsHisPasswordChange(){
-            /**
-             * There are,
-             *      1.) Load the form that's it.
-            */
-            $this->view('owners/ownerChangesHisPassword');
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
         public function ownerChangesHisPassword(){
             // load the form

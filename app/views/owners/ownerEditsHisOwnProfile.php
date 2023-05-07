@@ -80,7 +80,7 @@
             </div>
 
             <div class="right--side">
-                <form action="<?php echo URLROOT;?>/owners/ownerSubmitsHisNewDetails" method="post">
+                <form action="<?php echo URLROOT;?>/owners/ownerEditsHisNewDetails" method="post">
                     <div class="detail__view--card">
                         <!-- <div class="generalInformation"><strong><h2>General Information</h2></strong></div> -->
                         <div class="user__detail">
