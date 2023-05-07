@@ -872,6 +872,86 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 16.) Add bicycle to the system
+        public function addBicycle(){
+            /**
+             *  Task
+             *      This function task is validate data from the addbike form and,
+            */
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // process form
+                //init data
+                $data = [
+                    'bikeOwnerID' => trim($_POST['bikeOwnerID']),
+                    'frameSize' => trim($_POST['frameSize']),
+                    'dateAcquired' => trim($_POST['dateAcquired']),
+                    'datePutInUse' => trim($_POST['datePutInUse']),
+                    'status' => trim($_POST['status']),
+                    'currentDA' => trim($_POST['currentDA']),
+
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+                ];
+
+                //validate submitted data
+                //validate bicycle owner ID
+                if(empty($data['bikeOwnerID'])){
+                    $data['bikeOwnerID_err'] = '*enter bicycle owner ID';
+                } 
+
+                //validate frame size
+                if(empty($data['frameSize'])){
+                    $data['frameSize_err'] = '*enter frame size';
+                }
+
+                //validate date acquired
+                if(empty($data['dateAcquired'])){
+                    $data['dateAcquired_err'] = '*enter date acquired';
+                }
+
+                if(empty($data['bikeOwnerID_err']) && empty($data['frameSize_err']) && empty($data['dateAcquired_err']) && empty($data['datePutInUse_err']) && empty($data['status_err']) && empty($data['currentDA_err'])){
+                    //every things up to ready 
+
+                    // add bike
+                    if($this->adminModel->addBicycleIntoTheSystem($data)){
+                        // next implementation should be land into the right position according to the role
+                        // $this->bicyclesControl();
+                        header('Location:'.URLROOT.'/owners/bicyclesControl');
+                    }else{
+                        die('something went wrong');
+                    }
+                }
+                else{
+                    $this->view('owners/addBicycle', $data);
+                }
+
+            }else{
+                //init data
+                $data = [
+                    'bikeOwnerID' => '',
+                    'frameSize' => '',
+                    'dateAcquired' => '',
+                    'datePutInUse' => '',
+                    'status' => '',
+                    'currentDA' => '',
+                
+                    'bikeOwnerID_err' => '',
+                    'frameSize_err' => '',
+                    'dateAcquired_err' => '',
+                    'datePutInUse_err' => '',
+                    'status_err' => '',
+                    'currentDA_err' => '',
+
+                ];
+                $this->view('owners/addBicycle', $data);
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 16.) Owner handle rides control page (ridesControl)
         public function ridesControl(){
             /**
