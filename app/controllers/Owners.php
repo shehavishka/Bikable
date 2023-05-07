@@ -1105,7 +1105,8 @@
         }
 
         public function archivedReportsControl(){
-            $reportDetails = $this->adminModel->getArchivedReportDetails();
+
+            $reportDetails = $this->ownerModel->getArchivedReportDetails();
             $data = [
                 'report_details' => $reportDetails
             ];
@@ -1123,7 +1124,7 @@
         
             // load admin's repairlog control
             //code will implement here
-            $reportDetails = $this->adminModel->getReportDetails();
+            $reportDetails = $this->ownerModel->getReportDetails();
             $data = [
                 'report_details' => $reportDetails
             ];
@@ -1141,7 +1142,7 @@
         
             // load admin's repairlog control
             //code will implement here
-            $reportDetails = $this->adminModel->getReportDetails();
+            $reportDetails = $this->ownerModel->getReportDetails();
             $data = [
                 'report_details' => $reportDetails
             ];
@@ -1159,7 +1160,7 @@
         
             // load admin's repairlog control
             //code will implement here
-            $reportDetails = $this->adminModel->getReportDetails();
+            $reportDetails = $this->ownerModel->getReportDetails();
             $data = [
                 'report_details' => $reportDetails
             ];
