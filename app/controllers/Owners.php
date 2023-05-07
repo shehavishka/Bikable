@@ -833,16 +833,16 @@
                     // update bike
                     if($this->adminModel->updateDA($data)){
                         // next implementation should be land into the right position according to the role
-                        header('Location:'.URLROOT.'/admins/dockingAreas');
+                        header('Location:'.URLROOT.'/owners/dockingareas');
                     }else{
                         //have an issue where, even if you don't update anything and click update, the above if returns false
-                        header('Location:'.URLROOT.'/admins/dockingAreas');
+                        header('Location:'.URLROOT.'/owners/dockingareas');
                         // die('something went wrong!');
                     }
                 }
                 else{
                     // die($data['areaName_err'].$data['locationLat_err'].$data['locationLong_err'].$data['locationRadius_err'].$data['traditionalAdd_err'].$data['status_err'].$data['currentNoOfBikes_err']);
-                    $this->view('admins/viewAreaDetails', $data);
+                    $this->view('owners/viewAreaDetails', $data);
                 }
 
             }else{
