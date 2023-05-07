@@ -72,7 +72,7 @@
                     </td>
                 </tr> -->
 
-                <?php foreach($data['report_details'] as $oneReport) : if($oneReport->reportType == "Accident")?>
+                <?php foreach($data['report_details'] as $oneReport) : if($oneReport->reportType == "Accident"){?>
                     <tr>
                         <td><input type="checkbox" name="selected[]" value="<?php echo $oneReport->reportID ?>"></td>
                         <td><?php echo $oneReport->reportID ?></td>
@@ -86,7 +86,7 @@
                             <a href="<?php echo URLROOT;?>/owners/editReportDetails?reportID=<?php echo $oneReport->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php } endforeach; ?>
 
             </table>
     </form>
