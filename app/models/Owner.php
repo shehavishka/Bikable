@@ -128,6 +128,20 @@
             return $this->db->resultSet();
         }
 
+        public function findBicycleByID($bicycleID){
+
+            $this->db->prepareQuery("SELECT * FROM bicycles where bicycleID = '$bicycleID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return $row;
+            }else{
+                return false;
+            } 
+        }
+
         public function getDockingAreasDetails(){
 
             // get Active and Inactive docking areas
