@@ -600,4 +600,15 @@
 
             return $this->db->resultSet();
         }
+
+        public function search_docking_areas($search){
+
+            // $this->db->prepareQuery("SELECT * FROM dockingareas WHERE (areaID LIKE '%$search%' OR areaName LIKE '%$search%' OR currentNoOfBikes LIKE '%$search%')");
+            $this->db->prepareQuery("SELECT * FROM dockingareas
+                                    WHERE status <> '3'
+                                    AND 
+                                    (areaID LIKE '%$search%' OR areaName LIKE '%$search%' OR currentNoOfBikes LIKE '%$search%') ;
+            ");
+            return $this->db->resultSet();
+        }
     }

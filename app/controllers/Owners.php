@@ -831,6 +831,51 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 17.) Owner handle docking areas search (search_dockingAreas)
+        public function search_docking_areas(){
+
+            $result = $this->ownerModel->search_docking_areas($_POST['search']);
+            $output = '';
+            
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                        <td><input type="checkbox" name="selected[]" value="'.$row->areaID.'"></td>
+                        <td>' . $row->areaID .  '</td>
+                        <td>' . $row->areaName . '</td>
+                        <td>';
+
+                    $secondPart = ' ';
+
+                    if ($row->status == 1) {
+                        $secondPart .= "Active";
+                    } elseif ($row->status == 0) {
+                        $secondPart .= "Inactive";
+                    } else {
+                        $secondPart .= "Deleted";
+                    }
+
+                    $thirdPart = '
+                    </td>
+                        <td>'. round($row->locationLat,4) ."° N, ". round($row->locationLong,4) .'° E </td>
+                        <td>' . $row->currentNoOfBikes . '</td>
+                        <td>
+                            <a href="'.URLROOT.'/owners/editDADetails?areID='.$row->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                        </td>
+                    </tr>';
+
+                    $output .= $firstPart . $secondPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 14.2) Add docking area to the system (addDockingAreaToSystem)

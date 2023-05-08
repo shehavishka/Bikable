@@ -129,7 +129,7 @@
                 }
 
                 $.ajax({
-                    url: './search_riders',
+                    url: './search_docking_areas',
                     type: 'POST',
                     data: {search: searchText},
                     success: function(response){
