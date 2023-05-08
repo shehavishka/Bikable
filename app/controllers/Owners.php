@@ -16,7 +16,15 @@
      * 12.) Owner handle rider search (search_riders) -> done
      * 13.) Owner handle bicycle owner page (bicycleOwner) -> done
      * 14.) Owner handle bicycle owner search (search_bicycleOwners) -> done
-     * 15.) Owner handle repair log page (repairLog) -> done
+     * 15.) Owner handle repair log page (repairLog) -> **** not completed
+     * 16.) Owner handle docking areas page (dockingAreas) -> done
+     * 17.) Owner handle docking areas search (search_dockingAreas) -> done
+     * 18.) Add docking area to the system (addDockingAreaToSystem) -> done
+     * 19.) Delete Docking Areas selected (deleteDockingArea) -> done
+     * 20.) Edit Docking Area Details (editDADetails) -> done (bug found)
+     * 21.) Owner handle bicycle control page (bicyclesControl) -> done
+     * 
+     * 
      * 
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
@@ -835,7 +843,7 @@
 
             $result = $this->ownerModel->search_docking_areas($_POST['search']);
             $output = '';
-            
+
             if($result>0){
                 foreach($result as $row){
 
@@ -878,7 +886,7 @@
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 14.2) Add docking area to the system (addDockingAreaToSystem)
+        // 18.) Add docking area to the system (addDockingAreaToSystem)
         public function addDockingAreaToSystem(){
             /**
              *  Task
@@ -978,7 +986,7 @@
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 14.3) Delete Docking Areas selected (deleteDockingArea)
+        // 19.) Delete Docking Areas selected (deleteDockingArea)
         public function deleteDAs(){
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $selectedRows = json_decode($_POST['selectedRows']);
@@ -993,6 +1001,7 @@
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 20.) Edit Docking Area Details (editDADetails)
         public function editDADetails(){
             /**
              *  Task one load the user detail button
@@ -1119,7 +1128,7 @@
         
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 15.) Owner handle bicycle control page (bicyclesControl)
+        // 21.) Owner handle bicycle control page (bicyclesControl)
         public function bicyclesControl(){
             /**
              * There are,
@@ -1136,6 +1145,10 @@
 
             $this->view('owners/bicycles', $data);
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 22.) Owner handle search bicycle
+        
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 16.) Add bicycle to the system
