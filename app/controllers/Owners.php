@@ -2,13 +2,15 @@
 
     // this class is for owner's controller
     /**
-     * 1.) Owner's landing page (ownerLandPage) -> done
-     * 2.) Owner's profile page (ownerViewsHisOwnProfile) -> done
-     * 3.) Owner edits his new details (ownerEditsHisNewDetails) -> done
-     * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture) -> done
-     * 5.) Owner submits his new password (ownerSubmitsHisNewPassword) -> done
-     * 6.) Owner adds a new user to the system (addUserToTheSystem)
-     * 9.) Owner handle administrator page (administrator)
+     * 1. ) Owner's landing page (ownerLandPage) -> done
+     * 2. ) Owner's profile page (ownerViewsHisOwnProfile) -> done
+     * 3. ) Owner edits his new details (ownerEditsHisNewDetails) -> done
+     * 4. ) Owner updates his profile picture (ownerUpdatesHisProfilePicture) -> done
+     * 5. ) Owner submits his new password (ownerSubmitsHisNewPassword) -> done
+     * 6. ) Owner adds a new user to the system (addUserToTheSystem) -> done
+     * 7. ) Owner handle administrator page (administrator) -> done
+     * 8. ) Owner handle administrator search (search administrator) -> done
+     * 
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
      * 12.) Owner handle bicycle owner page (bicycleOwner)
@@ -44,7 +46,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 1.) Owner's landing page (ownerLandPage)
+        // 1. ) Owner's landing page (ownerLandPage)
         public function ownerLandPage(){
             /**
              *    There are,
@@ -82,7 +84,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 2.) Owner's profile page (ownerViewsHisOwnProfile)
+        // 2. ) Owner's profile page (ownerViewsHisOwnProfile)
         public function ownerViewsHisOwnProfile(){
            /**
             * There are,
@@ -97,7 +99,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 3) Owner edits his details (ownerSubmitsHisNewDetails)
+        // 3. ) Owner edits his details (ownerSubmitsHisNewDetails)
         public function ownerEditsHisNewDetails(){
             /**
              * This function is for update owner's details
@@ -227,7 +229,7 @@
 
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+        // 4. ) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
         public function ownerUpdatesHisProfilePicture(){
             /**
              * There are,
@@ -289,7 +291,7 @@
         }
           
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 5.) Owner submits his new password (ownerSubmitsHisNewPassword)
+        // 5. ) Owner submits his new password (ownerSubmitsHisNewPassword)
         public function ownerChangesHisPassword(){
             // load the form
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -382,10 +384,9 @@
                 $this->view('owners/ownerChangesHisPassword', $data);
             }
         }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////       
+      
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 8.) Owner adds a new user to the system addUserToTheSystem
+        // 6. ) Owner adds a new user to the system (addUserToTheSystem)
         public function addUserToTheSystem(){
             /**
              * There are,
@@ -520,7 +521,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 9.) Owner handle administrator page (administrator)
+        // 7. ) Owner handle administrator page (administrator)
         public function administrator(){
             /**
              * There are,
@@ -538,6 +539,8 @@
             $this->view('owners/administrator',$data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 8. ) Owner handle administrator search (search administrator)
         public function search_adminstrators(){
 
             $result = $this->ownerModel->search_adminstrators($_POST['search']);
@@ -585,7 +588,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 10.) Owner handle mechanic page (mechanic)
+        // 9. ) Owner handle mechanic page (mechanic)
         public function mechanic(){
             /**
              * There are,
