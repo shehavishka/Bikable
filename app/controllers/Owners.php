@@ -1148,7 +1148,54 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 22.) Owner handle search bicycle
-        
+        public function search_bicycles(){
+
+            $result = $this->ownerModel->search_bicycles($_POST['search']);
+            $output = '';
+
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                        <td><input type="checkbox" name="selected[]" value="'.$row->bicycleID.'"></td>
+                        <td>' . $row->bicycleID .  '</td>
+                        <td>' . $row->frameSize . '</td>
+                        <td>';
+
+                    $secondPart = ' ';
+
+                    if ($row->status == 1) {
+                        $secondPart .= "Active";
+                    } elseif ($row->status == 0) {
+                        $secondPart .= "Inactive";
+                    } else {
+                        $secondPart .= "Deleted";
+                    }
+
+                    $thirdPart = '
+                        </td>
+                        <td>' . $row->dateAcquired . '</td>
+                        <td>' . $row->datePutInUse . '</td>
+                        <td>' . $row->totalKM . '</td>
+                        <td>' . ($row->currentLocationLat != NULL ? $row->currentLocationLat : "Null") . '</td>
+                        <td>' . $row->bikeOwnerID . '</td>
+                        <td>
+                            <a href="'.URLROOT.'/owners/editDADetails?areID='.$row->bicycleID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                        </td>
+                    </tr>';
+
+                    $output .= $firstPart . $secondPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 16.) Add bicycle to the system

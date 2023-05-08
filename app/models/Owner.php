@@ -611,4 +611,13 @@
             ");
             return $this->db->resultSet();
         }
+
+        public function search_bicycles($search){
+                
+                $this->db->prepareQuery("SELECT * FROM bicycles
+                                         WHERE status <> '3' 
+                                         AND (bicycleID LIKE '%$search%' OR frameSize LIKE '%$search%' OR status LIKE '%$search%' OR bikeOwnerID LIKE '%$search%')");
+    
+                return $this->db->resultSet();
+        }
     }

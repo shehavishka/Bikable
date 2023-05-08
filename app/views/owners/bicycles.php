@@ -23,6 +23,16 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Bicycles</div>
+
+            <!-- search bar -->
+            <div class="dashboard__header--search">
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <div class="dashboard__header--searchicon">
+                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                </div>
+            </div>
+
+
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/owners/addBicycle'">
@@ -74,32 +84,38 @@
                     </td>
                 </tr> -->
 
+                <tbody class="all-data">
+                    
+                    <?php foreach ($data['bicycles_details'] as $oneObject) {
+                        echo '
+                            <tr style="height: 2.5rem;">
+                                <td><input type="checkbox" name="selected[]" value="'.$oneObject->bicycleID.'"></td>
+                                <td>' . $oneObject->bicycleID .  '</td>
+                                <td>' . $oneObject->frameSize . '</td>
+                                <td>';
 
-                <?php foreach($data['bicycles_details'] as $oneBike) : ?>
-                    <tr style="height: 2.5rem;">
-                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneBike->bicycleID;?>"></td>
-                        <td><?php echo $oneBike->bicycleID ?></td>
-                        <td><?php echo $oneBike->frameSize ?></td>
-                        <td>
-                            <?php 
-                                if($oneBike->status == 1){
+                                if ($oneObject->status == 1) {
                                     echo "Active";
-                                }else{
+                                } elseif ($oneObject->status == 0) {
                                     echo "Inactive";
+                                } else {
+                                    echo "Deleted";
                                 }
-                            
-                            ?>
-                        </td>
-                        <td><?php echo $oneBike->dateAcquired ?></td>
-                        <td><?php echo $oneBike->datePutInUse ?></td>
-                        <td><?php echo $oneBike->totalKM ?></td>
-                        <td><?php echo $oneBike->currentLocationLat ? $oneBike->currentLocationLat : "Null" ?></td>
-                        <td><?php echo $oneBike->bikeOwnerID ?></td>
-                        <td>
-                            <a href="<?php echo URLROOT;?>/owners/editBicycleDetails?bicycleID=<?php echo $oneBike->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+
+                        echo '</td>
+                                <td>' . $oneObject->dateAcquired . '</td>
+                                <td>' . $oneObject->datePutInUse . '</td>
+                                <td>' . $oneObject->totalKM . '</td>
+                                <td>' . ($oneObject->currentLocationLat != NULL ? $oneBike->currentLocationLat : "Null") . '</td>
+                                <td>' . $oneObject->bikeOwnerID . '</td>
+                                <td>
+                                    <a href="'.URLROOT.'/owners/editDADetails?areID='.$oneObject->bicycleID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                </td>
+                            </tr>';
+                    }?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
 
             </table>
     </form>
@@ -131,6 +147,34 @@
             // submit the form
             this.submit();
         });
+
+
+            $(document).ready(function(){
+                $("#search").keyup(function(){
+                    var searchText = $(this).val();
+
+                    if(searchText)
+                    {
+                        $('.all-data').hide();
+                        $('.search-data').show();
+                    }
+                    else{
+                        $('.all-data').show();
+                        $('.search-data').hide();
+                    }
+
+                    $.ajax({
+                        url: './search_bicycles',
+                        type: 'POST',
+                        data: {search: searchText},
+                        success: function(response){
+                            console.log(response);
+                            $("#details").html(response);
+                        }
+                    });
+                });       
+            });
+
     </script>
 
 
