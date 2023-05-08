@@ -76,28 +76,28 @@
 
                 <tbody class="all-data">
                     
-                    <?php foreach ($data['admin_details'] as $oneAdmin) {
+                    <?php foreach ($data['admin_details'] as $oneObject) {
                         echo '
                             <tr style="height: 2.5rem;">
                                 <td><input type="checkbox"></td>
-                                <td>' . $oneAdmin->firstName . " " . $oneAdmin->lastName . '</td>
-                                <td>' . $oneAdmin->userID . '</td>
+                                <td>' . $oneObject->firstName . " " . $oneObject->lastName . '</td>
+                                <td>' . $oneObject->userID . '</td>
                                 <td>';
 
-                                if ($oneAdmin->status == 1) {
+                                if ($oneObject->status == 1) {
                                     echo "Active";
-                                } elseif ($oneAdmin->status == 0) {
+                                } elseif ($oneObject->status == 0) {
                                     echo "Inactive";
                                 } else {
                                     echo "Deleted";
                                 }
 
                         echo '</td>
-                                <td>' . $oneAdmin->emailAdd . '</td>
-                                <td>' . $oneAdmin->NIC . '</td>
-                                <td>' . $oneAdmin->role . '</td>
+                                <td>' . $oneObject->emailAdd . '</td>
+                                <td>' . $oneObject->NIC . '</td>
+                                <td>' . $oneObject->role . '</td>
                                 <td>
-                                    <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$oneAdmin->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                    <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$oneObject->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                                 </td>
                             </tr>';
                     }?>
