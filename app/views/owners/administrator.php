@@ -97,11 +97,7 @@
                                 <td>' . $oneAdmin->NIC . '</td>
                                 <td>' . $oneAdmin->role . '</td>
                                 <td>
-                                    <!-- update icon svg format -->
-                                    <form action="' . URLROOT . '/owners/userProfileViewButton" method="post">
-                                        <input type="hidden" name="userID" value="' . $oneAdmin->userID . '">
-                                        <input type="submit" name="edit" value="edit">
-                                    </form>
+                                    <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$oneAdmin->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                                 </td>
                             </tr>';
                     }?>

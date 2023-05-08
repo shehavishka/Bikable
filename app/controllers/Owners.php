@@ -1409,9 +1409,9 @@
         // 21.) user profile view button (userProfileViewButton)
         public function userProfileViewButton(){
             // get the user id from the form
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $data = [
-                    'userID' => intval(trim($_POST['userID'])),
+                    'userID' => intval(trim($_GET['userID'])),
                     'userDetailObject' => ''
                 ];
                 //get the user details from the database
