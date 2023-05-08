@@ -743,7 +743,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 13.) Owner handle bicycle owner search (search_bicycleOwners)
+        // 14.) Owner handle bicycle owner search (search_bicycleOwners)
         public function search_bicycleOwners(){
 
             $result = $this->ownerModel->search_bicycleOwners($_POST['search']);
@@ -792,7 +792,7 @@
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 13.) Owner handle repair log page (repairLog)
+        // 15.) Owner handle repair log page (repairLog)
         public function repairLog(){
             /**
              * There are,
