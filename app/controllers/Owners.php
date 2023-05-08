@@ -675,7 +675,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 12.) Owner handle rider search
+        // 12.) Owner handle rider search (search_riders)
         public function search_riders(){
 
             $result = $this->ownerModel->search_riders($_POST['search']);
@@ -723,7 +723,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 12.) Owner handle bicycle owner page (bicycleOwner)
+        // 13.) Owner handle bicycle owner page (bicycleOwner)
         public function bicycleOwner(){
             /**
              *     Tasks
@@ -741,6 +741,55 @@
             //view details
             $this->view('owners/bicycleOwner', $data);
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 13.) Owner handle bicycle owner search (search_bicycleOwners)
+        public function search_bicycleOwners(){
+
+            $result = $this->ownerModel->search_bicycleOwners($_POST['search']);
+            $output = '';
+
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                    <td><input type="checkbox"></td>
+                    <td>' . $row->firstName . " " . $row->lastName . '</td>
+                    <td>' . $row->userID . '</td>
+                    <td>';
+
+                    $secondPart = ' ';
+
+                    if ($row->status == 1) {
+                        $secondPart .= "Active";
+                    } elseif ($row->status == 0) {
+                        $secondPart .= "Inactive";
+                    } else {
+                        $secondPart .= "Deleted";
+                    }
+
+                    $thirdPart = '
+                    </td>
+                    <td>' . $row->emailAdd . '</td>
+                    <td>' . $row->NIC . '</td>
+                    <td>' . $row->role . '</td>
+                    <td>
+                        <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$row->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                    </td>
+                    </tr>';
+
+                    $output .= $firstPart . $secondPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 13.) Owner handle repair log page (repairLog)

@@ -592,4 +592,12 @@
             return $this->db->resultSet();
         }
 
+        public function search_bicycleOwners($search){
+
+            // $this->db->prepareQuery("SELECT * FROM users WHERE (bicycleID LIKE '%$search%' OR frameSize LIKE '%$search%' OR status LIKE '%$search%')");
+            $this->db->prepareQuery("SELECT * FROM users WHERE role = 'BikeOwner' AND (firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR emailAdd LIKE '%$search%' OR NIC LIKE '%$search%')");
+
+
+            return $this->db->resultSet();
+        }
     }
