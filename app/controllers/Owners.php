@@ -5,12 +5,9 @@
      * 1.) Owner's landing page (ownerLandPage) -> done
      * 2.) Owner's profile page (ownerViewsHisOwnProfile) -> done
      * 3.) Owner edits his new details (ownerEditsHisNewDetails) -> done
-     * 
-     * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
-     * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
-     * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
-     * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
-     * 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
+     * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture) -> done
+     * 5.) Owner submits his new password (ownerSubmitsHisNewPassword) -> done
+     * 6.) Owner adds a new user to the system (addUserToTheSystem)
      * 9.) Owner handle administrator page (administrator)
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
@@ -292,7 +289,7 @@
         }
           
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
+        // 5.) Owner submits his new password (ownerSubmitsHisNewPassword)
         public function ownerChangesHisPassword(){
             // load the form
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -388,7 +385,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////       
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
+        // 8.) Owner adds a new user to the system addUserToTheSystem
         public function addUserToTheSystem(){
             /**
              * There are,
@@ -480,6 +477,13 @@
                     // send email to the user -> calls sendEmailToTheUser() function                    
                     $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
+                    //sweet alert
+                    echo "<script>
+                                Swal.fire(
+                                    'User added successfully',
+                                    'success'
+                                )
+                        </script>";
                     // add user to the system
                     if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
