@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/rideHistory.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
-    <title>Profile Page</title>
+    <title>Ride History</title>
 </head>
 <body>
 <?php require APPROOT . '/views/inc/header-rider.php'; ?>
