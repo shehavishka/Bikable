@@ -510,9 +510,11 @@
                 //     $data['image_Err'] = '*Image size should be less than 5MB';
                 // }
 
-                //if there are no errors
-                if(empty($data['type_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
+                //if there are no errors 
+                if(empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
                     //create the report
+                    // print_r($data);
+
                     if($this->riderModel->createReport($data)){
                         header('location: ' . URLROOT . '/riders/viewReports');
                         return;
@@ -532,10 +534,158 @@
         }
 
         public function editReport(){
+            $data = [
+                'reportID' => '',
+                'type' => '',
+                'problemTitle' => '',
+                'problemDescription' => '',
+                'areaID' => '',
+                'accidentLocation' => '',
+                'date' => '',
+                'time' => '',
+                'bicycleID' => '',
+                'image' => '',
+
+                'accidentTimeStamp' => '',
+
+                'type_Err' => '',
+                'problemTitle_Err' => '',
+                'problemDescription_Err' => '',
+                'areaID_Err' => '',
+                'accidentLocation_Err' => '',
+                'date_Err' => '',
+                'time_Err' => '',
+                'bicycleID_Err' => '',
+                'image_Err' => '',
+
+                'mapDetails' => '',
+            ];
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                //validate and update the report
+                //get the data from the form
+                $data['reportID'] = $_POST['reportID'];
+                if($_POST['type']){$data['type'] = $_POST['type'];}
+                $data['problemTitle'] = $_POST['problemTitle'];
+                $data['problemDescription'] = $_POST['problemDescription'];
+                if($_POST['areaID']){$data['areaID'] = $_POST['areaID'];}
+                $data['accidentLocation'] = $_POST['accidentLocation'];
+                $data['date'] = $_POST['date'];
+                $data['time'] = $_POST['time'];
+                $data['bicycleID'] = $_POST['bicycleID'];
+                // $data['image'] = $_POST['image'];
+
+                //validate the report type
+                if(empty($data['type'])){
+                    $data['type_Err'] = '*Please select a report type';
+                }
+
+                //validate the report title
+                if(empty($data['problemTitle'])){
+                    $data['problemTitle_Err'] = '*Please enter a title';
+                }
+
+                //validate the report description
+                if(empty($data['problemDescription'])){
+                    $data['problemDescription_Err'] = '*Please enter a description';
+                }
+
+                //if type = docking area issue, validate the area ID    
+                if($data['type'] == 'Area'){
+                    if(empty($data['areaID'])){
+                        $data['areaID_Err'] = '*Please select an area';
+                    }
+                }
+
+                //if type = accident, validate the accident location, date, time and bike
+                if($data['type'] == 'Accident'){
+                    if(empty($data['accidentLocation'])){
+                        $data['accidentLocation_Err'] = '*Please enter an accident location';
+                    }
+                    if(empty($data['date'])){
+                        $data['date_Err'] = '*Please select a date';
+                        // else if date is after today
+                    }else if($data['date'] > date("Y-m-d")){
+                        $data['date_Err'] = '*Please select a valid date';
+                    }
+                    // print_r($data['date']);
+                    // print_r(date("Y-m-d"));
+                    if(empty($data['time'])){
+                        $data['time_Err'] = '*Please select a time';
+                    }
+                    if(empty($data['bicycleID'])){
+                        $data['bicycleID_Err'] = '*Please scan the bicycle';
+                    }
+
+                    // concatenate date and time to timestamp format
+                    $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
+                }else{
+                    $data['date'] = '';
+                }
+
+                //if type = bicycle, validate the bikeID
+                if($data['type'] == 'Bicycle'){
+                    if(empty($data['bicycleID'])){
+                        $data['bicycleID_Err'] = '*Please scan the bicycle';
+                    }
+                }
+
+                //if there are no errors 
+                if(empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
+                    if($this->riderModel->updateReport($data)){
+                        header('location: ' . URLROOT . '/riders/viewReports');
+                        return;
+                    }else{
+                        //error page
+                        die("something went wrong");
+                        return;
+                    }
+                }else{
+                    //load the view with errors
+                    $this->view('riders/editReport', $data);
+                    return;
+                }
                 
             }else if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                $data['mapDetails'] = $this->riderModel->getAllMapDetails();
+                $data['reportID'] = $_GET['reportID'];
+
+                $report = $this->riderModel->getReportByID($data['reportID']);
+                $data['type'] = $report->reportType;
+                $data['problemTitle'] = $report->problemTitle;
+                $data['problemDescription'] = $report->problemDescription;
+                $data['areaID'] = $report->areaID;
+                $data['accidentLocation'] = $report->accidentLocation;
+                $data['bicycleID'] = $report->bicycleID;    
+                $data['accidentTimeStamp'] = $report->accidentTimeApprox;
                 
+                // split the timestamp into date and time
+                $data['date'] = substr($data['accidentTimeStamp'], 0, 10);
+                $data['time'] = substr($data['accidentTimeStamp'], 11, 21);
+
+                // print_r($data['date'] . " " . $data['time'] . " " . $data['accidentTimeStamp'] . " " . $report->accidentTimeApprox . " test");
+                // die("hlello?");
+
+                $this->view('riders/editReport', $data);
+            }
+        }
+
+        //function to delete a report
+        public function deleteReport(){
+            if($_SERVER['REQUEST_METHOD'] == 'GET'){
+                    $reportID = $_GET['reportID'];
+
+                if($this->riderModel->deleteReport($reportID)){
+                    header('location: ' . URLROOT . '/riders/viewReports');
+                    return;
+                }else{
+                    //error page
+                    die("something went wrong");
+                    return;
+                }
+            }else{
+                header('location: ' . URLROOT . '/riders/viewReports');
+                return;
             }
         }
 

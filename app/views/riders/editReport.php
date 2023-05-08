@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/createReport.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
-    <title>Create Report</title>
+    <title>Edit Report</title>
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
@@ -14,10 +14,13 @@
 
     <div id="container">
         <div id="upper_section">
-            <div class="title" id="title">Make a Report</div>
+            <div class="title" id="title">Edit Report</div>
+            <div class="edit_btn" id="delete_btn">
+                <a href="<?php echo URLROOT;?>/riders/deleteReport?reportID=<?php echo $data['reportID'];?>" onclick="return confirm('Are you sure you want to delete this report?')"><img src="<?php echo URLROOT;?>/public/images/general/delete.png" alt="delete"></a>
+            </div>
         </div>         
         
-        <form action="<?php echo URLROOT;?>/riders/createReport" method="POST" id="create_form">
+        <form action="<?php echo URLROOT;?>/riders/editReport" method="POST" id="create_form">
             <div class="middle_section">
                     <div class="info" id="info_type">
                         <div class="main_text">What's your issue?</div>
@@ -96,7 +99,8 @@
         
 
         <div id="lower_section">
-            <input type="submit" class="create_btn" value="Create" >
+            <input type="hidden" name="reportID" value="<?php echo $data['reportID'];?>">
+            <input type="submit" class="create_btn" value="Update" >
             
             </form>
             <a href="<?php echo URLROOT;?>/riders/viewReports"><div class="cancel_btn">Cancel</div></a>
@@ -206,6 +210,7 @@
                 setTimeout(scan, 300);
             }
         }
+
     </script>
 </body>
 </html>

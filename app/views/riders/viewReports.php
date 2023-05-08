@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="edit_btn">
-                        <a href="<?php echo URLROOT;?>/riders/editReport?reportID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/riders/editReport?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
                     </div>
                 </div>
             <?php endforeach; ?>

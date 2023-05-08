@@ -188,11 +188,13 @@ body{
     flex-direction: row-reverse;
     justify-content: space-between;
     height: 15%;
-    bottom: 25px;
+    /* bottom: 25px; */
     align-items: center;
     width: 332px;
     padding-left: 13px;
     /* display: none; */
+    margin-top: 9px;
+    margin-bottom: 30px;
 }
 
 .cancel_btn{
@@ -253,6 +255,10 @@ a:link {
     font-size: 0.8rem;
     font-weight: var(--fw-lightBold);
     padding-left: 10px;
+}
+
+#qr-canvas{
+    max-width: 316px;
 }
 
 /* ***************************************************************************************************** */
