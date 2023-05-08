@@ -578,4 +578,11 @@
             return $this->db->resultSet();
         }
 
+        public function search_mechanics($search){
+
+            $this->db->prepareQuery("SELECT * FROM users WHERE role = 'Mechanic' AND (firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR emailAdd LIKE '%$search%' OR NIC LIKE '%$search%')");
+
+            return $this->db->resultSet();
+        }
+
     }
