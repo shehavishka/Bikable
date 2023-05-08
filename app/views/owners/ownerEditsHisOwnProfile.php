@@ -101,7 +101,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="last_name" value="<?php echo $_SESSION['user_lName']; ?>">
-                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
+                                    <span style="color: red;"><?php echo $data['lName_err'];?></span>
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -111,7 +111,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="email" value="<?php echo $_SESSION['user_email']; ?>">
-                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
+                                    <br><span style="color: red;"><?php echo $data['email_err'];?></span>
                                 </div>
                             </div>
                             <div class="user_detail_x">
@@ -121,7 +121,7 @@
                                 </div> -->
                                 <div class="signupView__Detail--data">
                                     <input type="text" class="signupDetailbox" name="nic_number" value="<?php echo $_SESSION['user_NIC']; ?>">
-                                    <span style="color: red;"><?php echo $data['email_err'];?></span>
+                                    <br><span style="color: red;"><?php echo $data['nic_err'];?></span>
                                 </div>
                             </div>
                             
