@@ -678,7 +678,7 @@
         // 12.) Owner handle rider search
         public function search_riders(){
 
-            $result = $this->ownerModel->search_mechanics($_POST['search']);
+            $result = $this->ownerModel->search_riders($_POST['search']);
             $output = '';
 
             if($result>0){
