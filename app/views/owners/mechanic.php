@@ -23,6 +23,15 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Mechanic</div>
+
+            <!-- search bar -->
+            <div class="dashboard__header--search">
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <div class="dashboard__header--searchicon">
+                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                </div>
+            </div>
+
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add User" onclick="location.href='<?php echo URLROOT;?>/owners/addUserToTheSystem'">
@@ -67,35 +76,36 @@
                 </tr> -->
         
 
-                <?php foreach($data['mechanic_details'] as $oneObject) : ?>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td><?php echo $oneObject->firstName . " " . $oneObject->lastName ?></td>
-                        <td><?php echo $oneObject->userID ?></td>
-                        <td>
-                            <?php 
-                                if($oneObject->status == 1){
+                <tbody class="all-data">
+                    
+                    <?php foreach ($data['mechanic_details'] as $oneObject) {
+                        echo '
+                            <tr style="height: 2.5rem;">
+                                <td><input type="checkbox"></td>
+                                <td>' . $oneObject->firstName . " " . $oneObject->lastName . '</td>
+                                <td>' . $oneObject->userID . '</td>
+                                <td>';
+
+                                if ($oneObject->status == 1) {
                                     echo "Active";
-                                }else{
+                                } elseif ($oneObject->status == 0) {
                                     echo "Inactive";
+                                } else {
+                                    echo "Deleted";
                                 }
-                            
-                            ?>
-                        </td>
-                        <td><?php echo $oneObject->emailAdd ?></td>
-                        <td><?php echo $oneObject->NIC ?></td>
-                        <td><?php echo $oneObject->role ?></td>
-                        <td>
-                        <!-- update icon svg format -->
-                            <form action="<?php echo URLROOT;?>/owners/userProfileViewButton" method="post">
-                                <input type="hidden" name="userID" value="<?php echo $oneObject->userID;?>">
-                                <input type="submit" name="edit" value="edit" >
-                            </form>
-                        </td>
 
-                    </tr>
-                <?php endforeach; ?>
-
+                        echo '</td>
+                                <td>' . $oneObject->emailAdd . '</td>
+                                <td>' . $oneObject->NIC . '</td>
+                                <td>' . $oneObject->role . '</td>
+                                <td>
+                                    <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$oneObject->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                </td>
+                            </tr>';
+                    }?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
 
             </table>
         </div>
