@@ -23,6 +23,15 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Docking Areas</div>
+
+            <!-- search bar -->
+            <div class="dashboard__header--search">
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <div class="dashboard__header--searchicon">
+                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                </div>
+            </div>
+
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Area" onclick="location.href='<?php echo URLROOT;?>/owners/addDockingAreaToSystem'">
@@ -68,34 +77,71 @@
                     </td>
                 </tr> -->
                
-                <?php foreach($data['docking_areas_details'] as $oneDoc) : ?>
-                    <tr>
-                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneDoc->areaID;?>"></td>
-                        <td><?php echo $oneDoc->areaID;?></td>
-                        <td><?php echo $oneDoc->areaName;?></td>
-                        <td>
-                            <?php 
-                                if($oneDoc->status == 0){
-                                    echo "Active";
-                                }else{
-                                    echo "Deactive";
-                                }
-                            
-                            ?>
-                        </td>
-                        <td><?php echo "E" . round($oneDoc->locationLat,4) ."° N, ". round($oneDoc->locationLong,4) ."° E" ?></td>
-                        <td><?php echo $oneDoc->currentNoOfBikes;?></td>
-                        <td>
-                            <a href="<?php echo URLROOT;?>/owners/editDADetails?areaID=<?php echo $oneDoc->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>    
-                        </td>
-                    </tr>
+                <tbody class="all-data">
+                    
+                    <?php foreach ($data['docking_areas_details'] as $oneObject) {
+                        echo '
+                            <tr style="height: 2.5rem;">
+                                <td><input type="checkbox" name="selected[]" value="'.$oneObject->areaID.'"></td>
+                                <td>' . $oneObject->areaID .  '</td>
+                                <td>' . $oneObject->areaName . '</td>
+                                <td>';
 
-                <?php endforeach; ?>
+                                if ($oneObject->status == 1) {
+                                    echo "Active";
+                                } elseif ($oneObject->status == 0) {
+                                    echo "Inactive";
+                                } else {
+                                    echo "Deleted";
+                                }
+
+                        echo '</td>
+                                <td>'. round($oneObject->locationLat,4) ."° N, ". round($oneObject->locationLong,4) .'° E </td>
+                                <td>' . $oneObject->currentNoOfBikes . '</td>
+                                <td>
+                                    <a href="'.URLROOT.'/owners/editDADetails?areID='.$oneObject->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                </td>
+                            </tr>';
+                    }?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
 
             </table>
     </form>
         </div>
     </section>
+
+    <!-- search bar script -->
+    <script>
+        $(document).ready(function(){
+            $("#search").keyup(function(){
+                var searchText = $(this).val();
+
+                if(searchText)
+                {
+                    $('.all-data').hide();
+                    $('.search-data').show();
+                }
+                else{
+                    $('.all-data').show();
+                    $('.search-data').hide();
+                }
+
+                $.ajax({
+                    url: './search_riders',
+                    type: 'POST',
+                    data: {search: searchText},
+                    success: function(response){
+                        console.log(response);
+                        $("#details").html(response);
+                    }
+                });
+            });       
+        });
+    </script>
+
+
 
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {

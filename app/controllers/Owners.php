@@ -10,6 +10,13 @@
      * 6. ) Owner adds a new user to the system (addUserToTheSystem) -> done
      * 7. ) Owner handle administrator page (administrator) -> done
      * 8. ) Owner handle administrator search (search administrator) -> done
+     * 9. ) Owner handle mechanic page (mechanic) -> done
+     * 10.) Owner handle mechanic search (search_mechanic) -> done
+     * 11.) Owner handle rider page (riders) -> done
+     * 12.) Owner handle rider search (search_riders) -> done
+     * 13.) Owner handle bicycle owner page (bicycleOwner) -> done
+     * 14.) Owner handle bicycle owner search (search_bicycleOwners) -> done
+     * 15.) Owner handle repair log page (repairLog) -> done
      * 
      * 10.) Owner handle mechanic page (mechanic)
      * 11.) Owner handle rider page (riders)
@@ -804,7 +811,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 14.1) Owner handle docking areas page (dockingAreas)
+        // 16.) Owner handle docking areas page (dockingAreas)
         public function dockingAreas(){
             /**
              * There are,
@@ -821,6 +828,9 @@
 
             $this->view('owners/dockingareas', $data);
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 17.) Owner handle docking areas search (search_dockingAreas)
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 14.2) Add docking area to the system (addDockingAreaToSystem)
