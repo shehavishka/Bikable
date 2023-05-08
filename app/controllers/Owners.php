@@ -2,9 +2,9 @@
 
     // this class is for owner's controller
     /**
-     * 1.) Owner's landing page (ownerLandPage)
-     * 2.) Owner's profile page (ownerViewsHisOwnProfile)
-     * 3.) Owner edits his new details (ownerEditsHisNewDetails)
+     * 1.) Owner's landing page (ownerLandPage) -> done
+     * 2.) Owner's profile page (ownerViewsHisOwnProfile) -> done
+     * 3.) Owner edits his new details (ownerEditsHisNewDetails) -> done
      * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
@@ -141,14 +141,14 @@
                 if(empty($data['email'])){
                     $data['email'] = $_SESSION['user_email'];
                 }else{
-                    //check weather email is availble in database
-                    // true means that email is already taken.
-                    if($this->ownerModel->findUserByEmail($data['email'])){
-                        $data['email_err'] = "*email is already taken";
-                    }else{
-                        //update email
-                        //pass
-                    }
+                    // //check weather email is availble in database
+                    // // true means that email is already taken.
+                    // if($this->ownerModel->findUserByEmail($data['email'])){
+                    //     $data['email_err'] = "*email is already taken";
+                    // }else{
+                    //     //update email
+                    //     //pass
+                    // }
                 }
 
                 //validate nic weather it is empty or not
@@ -157,12 +157,12 @@
                 }else{
                     //check weather nic is availble in database
                     // true means that nic is already taken.
-                    if($this->ownerModel->findNicNumber($data['nic'])){
-                        $data['nic_err'] = "*NIC is already taken";
-                    }else{
-                        //update nic
-                        //pass
-                    }
+                    // if($this->ownerModel->findNicNumber($data['nic'])){
+                    //     $data['nic_err'] = "*NIC is already taken";
+                    // }else{
+                    //     //update nic
+                    //     //pass
+                    // }
                 }
 
                 //validate phone number weather it is empty or not
@@ -187,7 +187,6 @@
                         $_SESSION['user_lName'] = $data['lName'];
                         $_SESSION['user_email'] = $data['email'];                       
                         $_SESSION['user_NIC'] = $data['nic'];
-                        
                         //redirect to the profile page
                         $this->view('owners/ownerViewsHisOwnProfile');
                     }else{
@@ -374,7 +373,7 @@
             }
         }
 
-        
+////////////////////////////////////////////////////////////////////////////////////////////////////////////       
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
         public function addUserToTheSystem(){
