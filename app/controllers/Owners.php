@@ -522,6 +522,52 @@
             $this->view('owners/administrator',$data);
         }
 
+        public function search_adminstrators(){
+
+            $result = $this->ownerModel->search_adminstrators($_POST['search']);
+            $output = '';
+
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                    <td><input type="checkbox"></td>
+                    <td>' . $row->firstName . " " . $row->lastName . '</td>
+                    <td>' . $row->userID . '</td>
+                    <td>';
+
+                    $secondPart = ' ';
+
+                    if ($row->status == 1) {
+                        $secondPart .= "Active";
+                    } elseif ($row->status == 0) {
+                        $secondPart .= "Inactive";
+                    } else {
+                        $secondPart .= "Deleted";
+                    }
+
+                    $thirdPart = '
+                    </td>
+                    <td>' . $row->emailAdd . '</td>
+                    <td>' . $row->NIC . '</td>
+                    <td>' . $row->role . '</td>
+                    <td>
+                        <a href="'.URLROOT.'/owners/userProfileViewButton?userID='.$row->userID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                    </td>
+                    </tr>';
+
+                    $output .= $firstPart . $secondPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 10.) Owner handle mechanic page (mechanic)
         public function mechanic(){
@@ -1534,54 +1580,5 @@
             }  
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 25.) Search Administrators through the search bar
-        public function search_adminstrators(){
 
-            $result = $this->ownerModel->search_adminstrators($_POST['search']);
-            $output = '';
-
-            if($result>0){
-                foreach($result as $row){
-
-                    $firstPart = '
-                    <tr style="height: 2.5rem;">
-                    <td><input type="checkbox"></td>
-                    <td>' . $row->firstName . " " . $row->lastName . '</td>
-                    <td>' . $row->userID . '</td>
-                    <td>';
-
-                    $secondPart = ' ';
-
-                    if ($row->status == 1) {
-                        $secondPart .= "Active";
-                    } elseif ($row->status == 0) {
-                        $secondPart .= "Inactive";
-                    } else {
-                        $secondPart .= "Deleted";
-                    }
-
-                    $thirdPart = '
-                    </td>
-                    <td>' . $row->emailAdd . '</td>
-                    <td>' . $row->NIC . '</td>
-                    <td>' . $row->role . '</td>
-                    <td>
-                        <form action="' . URLROOT . '/owners/userProfileViewButton" method="post">
-                            <input type="hidden" name="userID" value=" '. $row->userID .' ">
-                            <input type="submit" name="edit" value="edit">
-                        </form>
-                    </td>
-                    </tr>';
-
-                    $output .= $firstPart . $secondPart . $thirdPart;
-                }
-            }else{
-                $output .= '<tr>
-                                <td>No Data Found</td>
-                            </tr>';
-            }
-
-            echo $output;
-        }
 }
