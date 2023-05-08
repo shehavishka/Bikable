@@ -192,8 +192,8 @@
                         $this->view('owners/ownerViewsHisOwnProfile');
                         echo "<script>
                                 Swal.fire(
-                                    'Data changed successfully',
-                                    'success'
+                                    'Changed successfully',
+                                    'Personal Data Changed Successfully',
                                 )
                             </script>";
                     }else{
