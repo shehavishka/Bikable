@@ -308,7 +308,7 @@ textarea,
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
-        "reportid repairid bicycleid"
+        "reporterid status mechanicid"
         "probtitle probtitle probtitle"
         "datein dateout mechanicid"
         "repairdis repairdis repairdis"
@@ -318,12 +318,26 @@ textarea,
     grid-gap: 20px 20px;
 }
 
-.data--reportID{
-    grid-area: reportid;
-}
+/* .data__area__detail--number{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "datein dateout"
+    ;
+    margin-top: 2%;
+} */
 
-.data--repairLogID{
-    grid-area: repairid;
+/* .data__area__detail--number{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas: 
+        "datein dateout mechanicid"
+    ;
+    margin-top: 2%;
+} */
+
+.data--reporterID{
+    grid-area: reporterid;
 }
 
 .data--bicycleID{
@@ -360,4 +374,8 @@ textarea,
 
 .data--finalCost{
     grid-area: finalcost;
+}
+
+.data--status{
+    grid-area: status;
 }

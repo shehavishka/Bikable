@@ -234,11 +234,11 @@ class Mechanics extends Controller
                 'RLid_err' => '',
                 'Bid_err' => '',
                 'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
                 'Mid_err' => '',
                 'SolnDesc_err' => '',
                 'Tag_err' => '',
+                'dateAcquired_err' => '',
+                'datePutInUse_err' => '',
             ];
             $this->mechanicModel->addReportIntoTheSystem($data);
             redirect('mechanics/reportsControl');
@@ -248,11 +248,11 @@ class Mechanics extends Controller
                 'RLid_err' => '',
                 'Bid_err' => '',
                 'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
                 'Mid_err' => '',
                 'SolnDesc_err' => '',
                 'Tag_err' => '',
+                'dateAcquired_err' => '',
+                'datePutInUse_err' => '',
             ]);
     }
 
@@ -267,8 +267,6 @@ class Mechanics extends Controller
                 'RLid' => trim($_POST['Repair_Log_ID']),
                 'Bid' => trim($_POST['BicycleID']),
                 'Ptitle' => trim($_POST['ProblemTitle']),
-                'Din' => trim($_POST['DateIN']),
-                'Tin' => trim($_POST['TimeIN']),
                 'Mid' => trim($_POST['MechanicID']),
                 'SolnDesc' => trim($_POST['SolutionDescription']),
                 'Tag' => trim($_POST['Tags']),
@@ -277,11 +275,11 @@ class Mechanics extends Controller
                 'RLid_err' => '',
                 'Bid_err' => '',
                 'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
                 'Mid_err' => '',
                 'SolnDesc_err' => '',
                 'Tag_err' => '',
+                'dateAcquired_err' => '',
+                'datePutInUse_err' => '',
             ];
 
             //validate data
@@ -327,6 +325,11 @@ class Mechanics extends Controller
                     $data['Tag_err'] = '*Enter Tag';
                 }
 
+                //validate date acquired
+                if (empty($data['dateAcquired'])) {
+                    $data['dateAcquired_err'] = '*enter date acquired';
+                
+                }
                 // if(empty($data['email_err']) && empty($data['password_err']) && empty($data['fName_err']) && empty($data['lName_err']) && empty($data['pNumber_err']) && empty($data['nic_err'])){
                 // add new report
                 if ($this->mechanicModel->addReport($data)) {

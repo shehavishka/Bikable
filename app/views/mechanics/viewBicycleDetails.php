@@ -22,7 +22,7 @@
         <form action="<?php echo URLROOT;?>/mechanics/editBicycleDetails" method="POST" id="userInterface">
             <!-- admin real data top -->
             <div class="data__area--top">
-                <div class="data__area__top--title">Edit Bicycle Details</div>
+                <div class="data__area__top--title">View Bicycle Details</div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
                         <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/bicycleControl'">

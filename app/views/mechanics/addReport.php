@@ -35,20 +35,29 @@
 
         <div class="data__area--detail">
 
-            <div class="data__area__div data--reportID">
-                <div class="data--name--lebal">Report ID</div>
-                <input type="text" class="detailbox" placeholder="Report ID" id="fName">
-            </div>
+            
 
-            <div class="data__area__div data--repairLogID">
-                <div class="data--name--lebal">Reporter ID</div>
-                <input type="text" class="detailbox"  placeholder="Reporter ID" id="fName">
-            </div>
-
-            <div class="data__area__div data--status">
-                <div class="data--name--lebal">Status</div>
-                <input type="text" class="detailbox"  placeholder="Bicycle ID" id="fName">
-            </div>
+            <div class="data__area__div data--report">
+                    <div class="data--name--lebal">Status</div>
+                    <div class="data__area__div data--reporterID">
+                        <div class="data--name--lebal">Reporter ID</div>
+                        <input type="text" class="detailbox"  placeholder="Reporter ID" id="fName">
+                    </div>
+                    <div class="data__status">
+                        <div class="data__status--active">
+                            <input type="radio" id="active" name="status" value="1" checked>
+                            <label for="active">Active</label>
+                        </div>
+                        <div class="data__status--inactive">
+                            <input type="radio" id="inactive" name="status" value="0" >
+                            <label for="inactive">Inactive</label>
+                        </div>
+                    </div>
+                    <div class="data__area__div data--mechanicID">
+                        <div class="data--name--lebal">Mechanic ID</div>
+                        <input type="text" class="detailbox" placeholder="Mechanic ID" id="fName">
+                    </div>
+                </div>
 
             <div class="data__area__div data--problemTitle">
                 <div class="data--name--lebal">Problem Title</div>
@@ -56,25 +65,17 @@
                 <!-- <textarea name="" id="fName" class="detailbox" cols="30" rows="5" placeholder="Problem Title"></textarea> -->
             </div>
 
-            <div class="data__area__div data--problemTitle">
-                <div class="data--name--lebal">Problem Title</div>
-                <input type="text" class="detailbox__problemtitle detailbox" placeholder="Problem ID" id="fName">
-                <!-- <textarea name="" id="fName" class="detailbox" cols="30" rows="5" placeholder="Problem Title"></textarea> -->
-            </div>
-
-            <div class="data__area__div data--dateIn">
-                <div class="data--name--lebal">Date In</div>
-                <input type="text" class="detailbox" placeholder="Date In" id="fName">
-            </div>
-
-            <div class="data__area__div data--dateOut">
-                <div class="data--name--lebal">Date Out</div>
-                <input type="text" class="detailbox" placeholder="Date Out" id="fName">
-            </div>
-
-            <div class="data__area__div data--mechanicID">
-                <div class="data--name--lebal">Mechanic ID</div>
-                <input type="text" class="detailbox" placeholder="Mechanic ID" id="fName">
+            <div class="data__area__detail--number">
+                    <div class="data__area__detail--dateAcquired">
+                        <div class="data--name--lebal">Date Acquired</div>
+                        <input type="date" class="detailbox" name="dateAcquired" placeholder="Date Acquired" id="dateAcquired">
+                        <br><span class="error_text"><?php echo $data['dateAcquired_err'];?></span>
+                    </div>
+                    <div class="data__area__detail--datePutInUse">
+                        <div class="data--name--lebal">Date Put Into Use</div>
+                        <input type="date" class="detailbox" name="datePutInUse" placeholder="Date Put Into Use" id="datePutInUse">
+                        <br><span class="error_text"><?php echo $data['datePutInUse_err'];?></span>
+                    </div>
             </div>
 
             <div class="data__area__div data--repairDescription">
