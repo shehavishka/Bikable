@@ -5,6 +5,7 @@
      * 1.) Owner's landing page (ownerLandPage) -> done
      * 2.) Owner's profile page (ownerViewsHisOwnProfile) -> done
      * 3.) Owner edits his new details (ownerEditsHisNewDetails) -> done
+     * 
      * 4.) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
      * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
      * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
@@ -189,6 +190,12 @@
                         $_SESSION['user_NIC'] = $data['nic'];
                         //redirect to the profile page
                         $this->view('owners/ownerViewsHisOwnProfile');
+                        echo "<script>
+                                Swal.fire(
+                                    'Data changed successfully',
+                                    'success'
+                                )
+                            </script>";
                     }else{
                         // die('something went wrong');
                         //redirect to the error page
@@ -257,6 +264,12 @@
                             if($this->ownerModel->ownerUploadsHisProfilePicture($new_img_name)){
                                 $_SESSION['user_picture'] = $new_img_name;
                                 $this->view('owners/ownerEditsHisOwnProfile');
+                                echo "<script>
+                                        Swal.fire(
+                                            'Profile picture changed successfully',
+                                            'success'
+                                        )
+                                    </script>";
                             }
                             else{
                                 die('Something went wrong');
