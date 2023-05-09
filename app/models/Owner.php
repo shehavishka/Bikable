@@ -218,8 +218,8 @@
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // find area by ID
         public function findAreaByID($areaID){
-
-            $this->db->prepareQuery("SELECT * FROM dockingareas where areaID = '$areaID'");
+            
+            $this->db->prepareQuery(" SELECT * FROM dockingareas where areaID = '$areaID' ");
 
             $row = $this->db->single();
 

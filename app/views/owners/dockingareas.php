@@ -88,9 +88,9 @@
                                 <td>';
 
                                 if ($oneObject->status == 1) {
-                                    echo "Active";
-                                } elseif ($oneObject->status == 0) {
                                     echo "Inactive";
+                                } elseif ($oneObject->status == 0) {
+                                    echo "Active";
                                 } else {
                                     echo "Deleted";
                                 }
@@ -99,7 +99,7 @@
                                 <td>'. round($oneObject->locationLat,4) ."° N, ". round($oneObject->locationLong,4) .'° E </td>
                                 <td>' . $oneObject->currentNoOfBikes . '</td>
                                 <td>
-                                    <a href="'.URLROOT.'/owners/editDADetails?areID='.$oneObject->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                    <a href="'.URLROOT.'/owners/editDADetails?areaID='.$oneObject->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                                 </td>
                             </tr>';
                     }?>

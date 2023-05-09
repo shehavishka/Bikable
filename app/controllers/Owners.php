@@ -880,7 +880,7 @@
                         <td>'. round($row->locationLat,4) ."° N, ". round($row->locationLong,4) .'° E </td>
                         <td>' . $row->currentNoOfBikes . '</td>
                         <td>
-                            <a href="'.URLROOT.'/owners/editDADetails?areID='.$row->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                            <a href="'.URLROOT.'/owners/editDADetails?areaID='.$row->areaID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                         </td>
                     </tr>';
 
