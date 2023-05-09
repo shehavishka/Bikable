@@ -138,6 +138,10 @@
             $_SESSION['user_status'] = $user->status;
             $_SESSION['user_email'] = $user->emailAdd;
 
+            //store last logged in and get registered date
+            $_SESSION['user_last_logged_in'] = $user->lastLoggedIn;
+            $_SESSION['user_registered_date'] = $user->registeredDate;
+
             //redirect to the user's(owners) home
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
