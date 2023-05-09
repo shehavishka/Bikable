@@ -571,6 +571,9 @@
 
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // SEARCH FUNCTIONS
+
         public function search_adminstrators($search){
 
             $this->db->prepareQuery("SELECT * FROM users WHERE role = 'Administrator' AND (firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR emailAdd LIKE '%$search%' OR NIC LIKE '%$search%')");

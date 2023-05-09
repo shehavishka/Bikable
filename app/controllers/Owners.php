@@ -2,48 +2,59 @@
 
     // this class is for owner's controller
     /**
-     * 1. ) Owner's landing page (ownerLandPage) -> done
-     * 2. ) Owner's profile page (ownerViewsHisOwnProfile) -> done
-     * 3. ) Owner edits his new details (ownerEditsHisNewDetails) -> done
-     * 4. ) Owner updates his profile picture (ownerUpdatesHisProfilePicture) -> done
-     * 5. ) Owner submits his new password (ownerSubmitsHisNewPassword) -> done
-     * 6. ) Owner adds a new user to the system (addUserToTheSystem) -> done
-     * 7. ) Owner handle administrator page (administrator) -> done
-     * 8. ) Owner handle administrator search (search administrator) -> done
-     * 9. ) Owner handle mechanic page (mechanic) -> done
-     * 10.) Owner handle mechanic search (search_mechanic) -> done
-     * 11.) Owner handle rider page (riders) -> done
-     * 12.) Owner handle rider search (search_riders) -> done
-     * 13.) Owner handle bicycle owner page (bicycleOwner) -> done
-     * 14.) Owner handle bicycle owner search (search_bicycleOwners) -> done
-     * 15.) Owner handle repair log page (repairLog) -> **** not completed
-     * 16.) Owner handle docking areas page (dockingAreas) -> done
-     * 17.) Owner handle docking areas search (search_dockingAreas) -> done
-     * 18.) Add docking area to the system (addDockingAreaToSystem) -> done
-     * 19.) Delete Docking Areas selected (deleteDockingArea) -> done
-     * 20.) Edit Docking Area Details (editDADetails) -> done (bug found)
-     * 21.) Owner handle bicycle control page (bicyclesControl) -> done
-     * 
-     * 
-     * 
-     * 10.) Owner handle mechanic page (mechanic)
+     * 1. ) Owner's landing page (ownerLandPage)
+     
+     * 2. ) Owner's profile page (ownerViewsHisOwnProfile)
+     * 3. ) Owner edits his new details (ownerEditsHisNewDetails)
+     * 4. ) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+     * 5. ) Owner submits his new password (ownerSubmitsHisNewPassword)
+     
+     * 6. ) Owner adds a new user to the system (addUserToTheSystem)
+     * 7. ) Owner handle administrator page (administrator)
+     * 8. ) Owner handle administrator search (search administrator)
+     * 9. ) Owner handle mechanic page (mechanic)
+     * 10.) Owner handle mechanic search (search_mechanic)
      * 11.) Owner handle rider page (riders)
-     * 12.) Owner handle bicycle owner page (bicycleOwner)
-     * 13.) Owner handle repair log page (repairLog)
-     * 14.1) Owner handle docking areas page (dockingAreas)
-     * 14.2) Add docking area to the system (addDockingAreaToSystem)
-     * 15.) Owner handle bicycle control page (bicyclesControl)
-     * 16.) Owner handle rides control page (ridesControl)
-     * 17.) Owner handle reports control page (reportsControl)
-     * 18.) (inbuilt) Generate password length 8
-     * 19.1) (inbuilt) Send email to the user
-     * 19.2) (inbuilt) Send email to the user when current password is changed
-     * 20.) (inbuilt) land to the error page
-     * 21.) user profile view button (userProfileViewButton)
-     * 22.) suspend and release user (suspendReleaseUser)
-     * 23.) Statistics page (statisticsPageView)
-     * 24.) Set fare and rate
-     * 25.) Search Administrators through the search bar
+     * 12.) Owner handle rider search (search_riders)
+     * 13.) Owner handle bicycle owner page (bicycleOwner)
+     * 14.) Owner handle bicycle owner search (search_bicycleOwners)
+     
+     * 15.) Owner handle repair log page (repairLog) -> **** not completed
+     
+     * 16.) Owner handle docking areas page (dockingAreas)
+     * 17.) Owner handle docking areas search (search_dockingAreas)
+     * 18.) Add docking area to the system (addDockingAreaToSystem)
+     * 19.) Delete Docking Areas selected (deleteDockingArea)
+     * 20.) Edit Docking Area Details (editDADetails)
+     
+     * 21.) Owner handle bicycle control page (bicyclesControl)
+     * 22.) Owner handle search bicycle (search_bicycles)
+     * 23.) Add bicycle to the system (addBicycle)
+     * 24.) Delete Bike selected (deleteBicycles)
+     * 25.) Edit bicycle (editBicycleDetails)
+     
+     * 26.) Owner handle rides control page (ridesControl)
+     * 27.) Rides search (search_rides)
+     
+     * 28.) Owner handle reports control page (reportsControl)
+     * 29.) Reports search (search_reports)
+     * 30.) Owner handle edit report details page (editReportDetails)
+     * 31.) archived reports (archivedReports)
+     * 32.) unarchive reports (unarchiveReports)
+     * 33.) Owner handle archived reports page (archivedReportsControl)
+     * 34.) Owner handle accident reports page (AccidentReportsControl)
+     * 35.) Owner handle bicycle reports page (BicycleReportsControl)
+     * 36.) Owner handle DA reports page (DAReportsControl)
+
+     * 37.) (inbuilt) Generate password length 8
+     * 38.) (inbuilt) Send email to the user
+     * 39) (inbuilt) Send email to the user when current password is changed
+     * 40.) (inbuilt) land to the error page
+     * 41.) user profile view button (userProfileViewButton)
+     * 42.) suspend and release user (suspendReleaseUser)
+     * 43.) Statistics page (statisticsPageView)
+     * 44.) Set fare and rate (setFareAndRate)
+     * 
     */
 
     // dependencies for phpmailer
@@ -1147,7 +1158,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 22.) Owner handle search bicycle
+        // 22.) Owner handle search bicycle (search_bicycles)
         public function search_bicycles(){
 
             $result = $this->ownerModel->search_bicycles($_POST['search']);
@@ -1198,7 +1209,7 @@
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 16.) Add bicycle to the system
+        // 23.) Add bicycle to the system (addBicycle)
         public function addBicycle(){
             /**
              *  Task
@@ -1278,7 +1289,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Delete Bike selected
+        // 24.) Delete Bike selected (deleteBicycles)
         public function deleteBicycles(){
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $selectedRows = json_decode($_POST['selectedRows']);
@@ -1294,7 +1305,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // edit bicycle
+        // 25.) Edit bicycle (editBicycleDetails)
         public function editBicycleDetails(){
             /**
              *  Task one load the user detail button
@@ -1394,7 +1405,7 @@
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 16.) Owner handle rides control page (ridesControl)
+        // 26.) Owner handle rides control page (ridesControl)
         public function ridesControl(){
             /**
              * There are,
@@ -1414,7 +1425,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Rides search
+        // 27.) Rides search (search_rides)
         public function search_rides(){
 
             $result = $this->ownerModel->search_rides($_POST['search']);
@@ -1459,7 +1470,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 17.) Owner handle reports control page (reportsControl)
+        // 28.) Owner handle reports control page (reportsControl)
         public function reportsControl(){
             /**
              * There are,
@@ -1476,7 +1487,7 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 18.) Reports search
+        // 29.) Reports search (search_reports)
         public function search_reports(){
 
             $result = $this->ownerModel->search_reports($_POST['search']);
@@ -1515,8 +1526,8 @@
             echo $output;
         }
 
-
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 30.) Owner handle edit report details page (editReportDetails)
         public function editReportDetails(){
             /**
              *  Task one load the user detail button
@@ -1576,6 +1587,8 @@
             }       
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 31.)archived reports (archivedReports)
         public function archiveReports(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $selectedRows = json_decode($_POST['selectedRows']);
@@ -1590,6 +1603,8 @@
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 32.) unarchive reports (unarchiveReports)
         public function unarchiveReports(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $selectedRows = json_decode($_POST['selectedRows']);
@@ -1604,6 +1619,8 @@
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 33.) Owner handle archived reports page (archivedReportsControl)
         public function archivedReportsControl(){
 
             $reportDetails = $this->ownerModel->getArchivedReportDetails();
@@ -1615,6 +1632,8 @@
             $this->view('owners/archievedReports', $data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 34.) Owner handle accident reports page (AccidentReportsControl)
         public function AccidentReportsControl(){
             /**
              * Task 
@@ -1633,6 +1652,8 @@
             $this->view('owners/reportsAccident', $data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 35.) Owner handle bicycle reports page (BicycleReportsControl)
         public function BicycleReportsControl(){
             /**
              * Task 
@@ -1651,6 +1672,8 @@
             $this->view('owners/reportsBike', $data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 36.) Owner handle DA reports page (DAReportsControl)
         public function DAReportsControl(){
             /**
              * Task 
@@ -1670,7 +1693,7 @@
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 18.) (inbuilt) Generate password length 8
+        // 37.) (inbuilt) Generate password length 8
         private function generatePassword() {
             $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
             $pass = array();
@@ -1684,7 +1707,7 @@
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
-        // 19.1) (inbuilt) Send email to the user
+        // 38.) (inbuilt) Send email to the user
         private function sendEmailToTheUser($userName, $userEmail , $userPassword){
 
             $mail = new PHPMailer(true);
@@ -1751,7 +1774,7 @@
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
-        // 19.2) (inbuilt) Send email to the user when current password is changed
+        // 39) (inbuilt) Send email to the user when current password is changed
         private function sendEmailToTheUserWhenPasswordChanged($userName, $userEmail){
 
             $mail = new PHPMailer(true);
@@ -1812,14 +1835,14 @@
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 20.) (inbuilt) land to the error page
+        // 40.) (inbuilt) land to the error page
         public function landToErrorPage(){
             //load the error page only view
             $this->view('users/error');
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 21.) user profile view button (userProfileViewButton)
+        // 41.) user profile view button (userProfileViewButton)
         public function userProfileViewButton(){
             // get the user id from the form
             if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -1839,7 +1862,7 @@
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 22.) suspend and release user (suspendReleaseUser)
+        // 42.) suspend and release user (suspendReleaseUser)
         public function suspendReleaseUser(){
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -1878,7 +1901,7 @@
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 23.) Statistics
+        // 43.) Statistics
         public function statisticsPageView(){
             /**
              * There are,
@@ -1920,7 +1943,7 @@
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // 24.) Set fare and rate
+        // 44.) Set fare and rate
         public function setFareAndRate(){
             /**
              * There are,
