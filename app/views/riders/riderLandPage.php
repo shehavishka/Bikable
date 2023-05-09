@@ -52,11 +52,11 @@
 
             <!-- div for two buttons, cross and directions -->
             <div class="action_buttons">
-                <div class="cross">
+                <div class="cross" id="cross">
                 <img src="<?php echo URLROOT;?>/public/images/general/crossIcon1.png" alt="cancel" >
                 </div>
-
-                <div class="directions">
+                
+                <div id="directions_btn" class="directions" onclick="openDirectionsInGoogleMaps(6.902629133423421, 79.8611961587484)">
                     <div>
                         Directions
                     </div>
@@ -91,6 +91,10 @@
                 let availableBikes = document.getElementById("available_bikes");
                 let distance = document.getElementById("distance");
                 let distance_to = document.getElementById("distance_to");
+
+                let directions_btn = document.getElementById("directions_btn");
+                let cross = document.getElementById("cross");
+                cross.onclick = function() {panelContract();}
                 
                 var centerCoordinates = new google.maps.LatLng(6.9100, 79.8800);
                 var defaultOptions = { center: centerCoordinates, zoom: 13.5, mapId: "f58d941242b91036"}
@@ -134,7 +138,7 @@
                             marker.setLabel(label_big);
 
                             map.panTo(marker.getPosition());
-                            panelExpand(id);
+                            panelExpand(id, position);
                         };
                     })(marker, i));
                     markers.push(marker);
@@ -165,7 +169,7 @@
                     });
                 }
 
-                function panelExpand(id) {
+                function panelExpand(id, position) {
                     console.log("panel expand");
                     console.log(id);
                     
@@ -217,6 +221,13 @@
                         xhttp.open("GET", "<?php echo URLROOT; ?>/riders/getMapDADetails?q="+id+"&lat="+pos[0]+"&long="+pos[1], true);
                         xhttp.send();
 
+                        // change the parameters of the directions_btn variable onclick function such that the paramenter is position
+                        var lat = position.lat();
+                        var long = position.lng();
+                        directions_btn.onclick = function() {
+                            openDirectionsInGoogleMaps(lat, long);
+                        }
+                        
                         //animation and showing the area details
                         panel.classList.add("expanded");
                         welcomeMessage.style.visibility = "hidden";
@@ -268,6 +279,29 @@
                 }
 
                 window.initMap = initMap;      
+            }
+
+            function panelContract(){
+                //console.log("panel contract");
+                panel.classList.remove("expanded");
+
+                welcomeMessage.style.visibility = "visible";
+                area_details.style.display = "none";
+            }
+
+            //open google maps with directions to the area
+            function openDirectionsInGoogleMaps(lat, long) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                    var latFrom = position.coords.latitude;
+                    var longFrom = position.coords.longitude;
+                    console.log(position)
+                    var url = "https://www.google.com/maps/dir/?api=1&origin=" + latFrom + "," + longFrom + "&destination=" + lat + "," + long + "&travelmode=walking";
+                    window.open(url, '_blank');
+                    });
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
             }
         </script>
     </div>
