@@ -204,6 +204,9 @@
                 <canvas id="myChart" width="20" height="20"></canvas>
             </div>
             <script>
+                var activeBikes = <?php echo $data['activeBikes']; ?>;
+                var inactiveBikes = <?php echo $data['inactiveBikes'] ?>;
+                var deleteBikes = <?php echo $data['deletedBikes'] ?>;
                     const data1 = {
                         labels: [
                             'Active Bikes',
@@ -212,7 +215,7 @@
                         ],
                         datasets: [{
                             label: 'Bikes',
-                            data: [x,y,z],
+                            data: [activeBikes, inactiveBikes, deleteBikes],
                             backgroundColor: [
                                 'rgb(28, 28, 28)',
                                 'rgb(158, 158, 157)',

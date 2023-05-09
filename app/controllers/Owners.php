@@ -98,13 +98,23 @@
             // bicycles details take from the database
             $bicyclesDetails = $this->ownerModel->ownerLandpageBicyclesDetails();
 
-            $counts = $this->ownerModel->getBicycleCountByStatus();
+            //bike status count
+            $bikecounts = $this->ownerModel->getBicycleCountByStatus();
+            
+            // this is like dictionary
+            $activeBikes = $bikecounts[0]->count;
+            $inactiveBikes = $bikecounts[1]->count;
+            $deletedBikes = $bikecounts[2]->count;
 
             $data = [
                 'docking_areas_details' => $dockingAreasDeatails,
                 'reportID_assignedMechanicID_details' => $reportsIDAssignedMechanicIDDetails,
                 'repair_log_details' => $repairLogDetails,
                 'bicycles_details' => $bicyclesDetails,
+                
+                'activeBikes' => $activeBikes,
+                'inactiveBikes' => $inactiveBikes,
+                'deletedBikes' => $deletedBikes
             ];
 
             // load the data form UI and send all data to the UI
