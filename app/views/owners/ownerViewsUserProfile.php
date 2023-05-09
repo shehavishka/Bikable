@@ -60,7 +60,13 @@
                         <div class="user_detail_x">
                             <label>Last Logged In</label>
                             <div class="user__data">
-                                <?php echo $_SESSION['user_last_logged_in'];?>
+                                <?php 
+                                    if($_SESSION['user_last_logged_in'] == NULL){
+                                        echo "-";
+                                    }else{
+                                        echo $_SESSION['user_last_logged_in'];
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="user_detail_x">

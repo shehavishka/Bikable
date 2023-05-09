@@ -65,13 +65,13 @@
                         <div class="user_detail_x">
                             <label>Last Logged In</label>
                             <div class="user__data">
-                                2022/10/10
+                                <?php echo $_SESSION['user_last_logged_in'];?>
                             </div>
                         </div>
                         <div class="user_detail_x">
                             <label>Registered Date</label>
                             <div class="user__data">
-                                2020/10/24
+                                <?php echo $_SESSION['user_registered_date'];?>
                             </div>
                         </div>
                     </div>
