@@ -109,7 +109,7 @@
                                 <td>' . ($oneObject->currentLocationLat != NULL ? $oneBike->currentLocationLat : "Null") . '</td>
                                 <td>' . $oneObject->bikeOwnerID . '</td>
                                 <td>
-                                    <a href="'.URLROOT.'/owners/editDADetails?areID='.$oneObject->bicycleID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                                    <a href="'.URLROOT.'/owners/editBicycleDetails?bicycleID='.$oneObject->bicycleID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
                                 </td>
                             </tr>';
                     }?>
