@@ -628,4 +628,12 @@
                                         WHERE (riderID LIKE '%$search%' OR bicycleID LIKE '%$search%')");
                 return $this->db->resultSet();
         }
+
+        public function search_reports($search){
+                    
+                $this->db->prepareQuery("SELECT * FROM reports
+                                        WHERE status <> '3'
+                                        AND (reportID LIKE '%$search%' OR reporterID LIKE '%$search%' OR problemTitle LIKE '%$search%' OR assignedMechanic LIKE '%$search%')");
+                return $this->db->resultSet();
+        }
     }

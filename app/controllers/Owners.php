@@ -1475,6 +1475,48 @@
             $this->view('owners/reports', $data);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // 18.) Reports search
+        public function search_reports(){
+
+            $result = $this->ownerModel->search_reports($_POST['search']);
+            $output = '';
+
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                        <td><input type="checkbox" name="selected[]" value="'.$row->reportID.'"></td>
+                        <td>' . $row->reportID .  '</td>
+                        <td>' . $row->reporterID .  '</td>
+                        <td>' . $row->status .  '</td>
+                        <td>' . $row->problemTitle .  '</td>
+                        <td>' . ($row->assignedMechanic != null ? $row->assignedMechanic : "Null") . '</td>
+                        <td>' . $row->loggedTimestamp . '</td>
+                        <td>' . $row->reportType . '</td>
+                        ';
+
+                    $thirdPart = '
+                    </td>
+                        <td>
+                            <a href="'.URLROOT.'/owners/editReportDetails?reportID='.$row->reportID.'"><img src="'.URLROOT.'/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                        </td>
+                    </tr>';
+
+                    $output .= $firstPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
+
+
         public function editReportDetails(){
             /**
              *  Task one load the user detail button

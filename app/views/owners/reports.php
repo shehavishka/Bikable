@@ -23,6 +23,15 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Reports</div>
+
+            <!-- search bar -->
+            <div class="dashboard__header--search">
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <div class="dashboard__header--searchicon">
+                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                </div>
+            </div>
+
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="View Archieved" onclick="location.href='<?php echo URLROOT;?>/owners/archivedReportsControl'">
@@ -72,21 +81,25 @@
                     </td>
                 </tr> -->
 
-                <?php foreach($data['reports_details'] as $oneReport) : ?>
-                    <tr>
-                        <td><input type="checkbox" name="selected[]" value="<?php echo $oneReport->reportID ?>"></td>
-                        <td><?php echo $oneReport->reportID ?></td>
-                        <td><?php echo $oneReport->reporterID ?></td>
-                        <td><?php echo $oneReport->status ?></td>
-                        <td><?php echo $oneReport->problemTitle ?></td>
-                        <td><?php echo $oneReport->assignedMechanic ? $oneReport->assignedMechanic : "Null" ?></td>
-                        <td><?php echo $oneReport->loggedTimestamp ?></td>
-                        <td><?php echo $oneReport->reportType ?></td>
-                        <td>
-                            <a href="<?php echo URLROOT;?>/owners/editReportDetails?reportID=<?php echo $oneReport->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                <tbody class="all-data">
+                    <?php foreach($data['reports_details'] as $oneReport) : ?>
+                        <tr>
+                            <td><input type="checkbox" name="selected[]" value="<?php echo $oneReport->reportID ?>"></td>
+                            <td><?php echo $oneReport->reportID ?></td>
+                            <td><?php echo $oneReport->reporterID ?></td>
+                            <td><?php echo $oneReport->status ?></td>
+                            <td><?php echo $oneReport->problemTitle ?></td>
+                            <td><?php echo $oneReport->assignedMechanic != null ? $oneReport->assignedMechanic : "Null" ?></td>
+                            <td><?php echo $oneReport->loggedTimestamp ?></td>
+                            <td><?php echo $oneReport->reportType ?></td>
+                            <td>
+                                <a href="<?php echo URLROOT;?>/owners/editReportDetails?reportID=<?php echo $oneReport->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/owners/editIconsViewIcons/editIcon1.png" alt="edit"></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
 
             </table>
     </form>
@@ -118,6 +131,35 @@
             // submit the form
             this.submit();
         });
+
+
+        $(document).ready(function(){
+                $("#search").keyup(function(){
+                    var searchText = $(this).val();
+
+                    if(searchText)
+                    {
+                        $('.all-data').hide();
+                        $('.search-data').show();
+                    }
+                    else{
+                        $('.all-data').show();
+                        $('.search-data').hide();
+                    }
+
+                    $.ajax({
+                        url: './search_reports',
+                        type: 'POST',
+                        data: {search: searchText},
+                        success: function(response){
+                            console.log(response);
+                            $("#details").html(response);
+                        }
+                    });
+                });       
+            });
+
+
     </script>
 
 
