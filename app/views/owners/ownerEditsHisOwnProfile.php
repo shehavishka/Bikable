@@ -110,7 +110,7 @@
                                     deshan@gmail.com
                                 </div> -->
                                 <div class="signupView__Detail--data">
-                                    <input type="text" class="signupDetailbox" name="email" value="<?php echo $_SESSION['user_email']; ?>">
+                                    <input type="text" class="signupDetailbox" name="email" value="<?php echo $_SESSION['user_email']; ?>" disabled>
                                     <br><span style="color: red;"><?php echo $data['email_err'];?></span>
                                 </div>
                             </div>
