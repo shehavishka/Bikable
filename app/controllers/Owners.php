@@ -444,7 +444,7 @@
                     'status' => trim($_POST['status']),
                     'nic' => trim($_POST['nic_number']),
                     'pNumber' => trim($_POST['contact_number']),
-                    'userRole' => strtolower(trim($_POST['user_role'])),
+                    'userRole' => ucfirst(strtolower(trim($_POST['user_role']))),
 
                     'userPassword' => '', // this generate after confirmed entered details are ready.
 
@@ -483,7 +483,10 @@
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
-                }else{
+                }elseif (!(strlen($input) == 12 && ctype_digit($input))) {
+                    $data['nic_err'] = '*invalid NIC number';
+                }
+                else{
                     //check weather nic is availble in database
                     // true means that email is already taken.
                     if($this->ownerModel->findNicNumber($data['nic'])){
@@ -496,7 +499,10 @@
                 //validate phone number
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
-                }else{
+                }elseif (preg_match('/^0[0-9]{0,9}$/', $data['pNumber'])) {
+                    $data['pNumber_err'] = '*invalid phone number';
+                }
+                else{
                     //check weather phone number is availble in database.
                     // true means that phone number is already taken.
                     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
