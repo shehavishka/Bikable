@@ -43,40 +43,35 @@
         <hr class="hr1">
 
         <div id="lower_section1">
-            <a href="<?php echo URLROOT;?>/riders/changePassword"><div class="change_btn">Change Password</div>
-            <a href="<?php echo URLROOT;?>/riders/riderLandPage"><div class="delete_btn">Delete Account</div>
+            <a href="<?php echo URLROOT;?>/riders/changePassword"><div class="change_btn">Change Password</div></a>
+            
+            <div class="delete_btn" id="delete_btn">Delete Account</div>
         </div> 
 
     </div>
 
-    <!-- <script>
-        function showEdit(){
-            // hide edit button, middle section1 and lower section1 and hr
-            document.getElementById("edit_btn").style.display = "none";
-            document.getElementsByClassName("middle_section1")[0].style.display = "none";
-            document.getElementById("lower_section1").style.display = "none";
-            document.getElementsByClassName("hr1")[0].style.display = "none";
+    <script>
+        const delete_btn = document.getElementById("delete_btn");
+        delete_btn.addEventListener("click", function() {deleteForm();});
 
-            //show middle section2 and lower section2
-            document.getElementsByClassName("middle_section2")[0].style.display = "flex";
-            document.getElementById("lower_section2").style.display = "flex";
+        function deleteForm(){
+            if(window.confirm("Are you sure you want to delete your account?")){
+                //creates a form element with userID as a field and submits it
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "<?php echo URLROOT;?>/riders/deleteAccount");
 
-            // change title to Edit Profile
-            document.getElementById("title").innerHTML = "Edit Profile";
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", "userID");
+                hiddenField.setAttribute("value", "<?php echo $_SESSION['user_ID']; ?>");
+
+                form.appendChild(hiddenField);
+                
+                document.body.appendChild(form);
+                form.submit();
+            }
         }
-
-        function hideEdit(){
-            // do the opposite of showEdit
-            document.getElementById("edit_btn").style.display = "flex";
-            document.getElementsByClassName("middle_section1")[0].style.display = "flex";
-            document.getElementById("lower_section1").style.display = "flex";
-            document.getElementsByClassName("hr1")[0].style.display = "block";
-
-            document.getElementsByClassName("middle_section2")[0].style.display = "none";
-            document.getElementById("lower_section2").style.display = "none";
-
-            document.getElementById("title").innerHTML = "Profile Page";
-        }
-    </script> -->
+    </script>
 </body>
 </html>

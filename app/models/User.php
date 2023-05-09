@@ -7,7 +7,7 @@
         }
 
         public function findUserByEmail($userEmail){
-            $this->db->prepareQuery("SELECT * FROM users where emailAdd = '$userEmail'");
+            $this->db->prepareQuery("SELECT * FROM users where emailAdd = '$userEmail' AND status = 0");
             // $this->db->bind(':email', $userEmail);
 
             $this->db->single();

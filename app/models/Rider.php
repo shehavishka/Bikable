@@ -316,4 +316,15 @@
                 return false;
             }
         }
+
+        public function deleteUser($userID){
+            $temp = "UPDATE users SET status = 3 WHERE userID = $userID";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }

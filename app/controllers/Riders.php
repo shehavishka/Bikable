@@ -753,6 +753,23 @@
             }
         }
 
+        public function deleteAccount(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $userID = $_POST['userID'];
+                
+                if($this->riderModel->deleteUser($userID)){
+                    header('location: ' . URLROOT . '/riders/logout');
+                    return;
+                }else{
+                    //error page
+                    die("something went wrong");
+                    return;
+                }
+            }else{
+                $this->view('riders/deleteAccount');
+            }
+        }
+
         /////////////////Internal functions
 
         //function to find the closest point to a given point on a cartesian plane
