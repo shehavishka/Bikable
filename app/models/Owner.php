@@ -639,4 +639,15 @@
                                         AND (reportID LIKE '%$search%' OR reporterID LIKE '%$search%' OR problemTitle LIKE '%$search%' OR assignedMechanic LIKE '%$search%')");
                 return $this->db->resultSet();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        //  GET BICYCLE STATUS
+        public function getBicycleCountByStatus() {
+            // Create connection
+
+            $this->db->prepareQuery("SELECT status, COUNT(*) AS count FROM bicycles GROUP BY status ");
+
+            return $this->db->resultSet();
+        }
+    
     }

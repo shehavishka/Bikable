@@ -206,13 +206,13 @@
             <script>
                     const data1 = {
                         labels: [
-                            'Occupied Bikes',
-                            'Vacant Bikes',
+                            'Active Bikes',
+                            'Inactive Bikes',
                             'Bikes in Repair'
                         ],
                         datasets: [{
                             label: 'Bikes',
-                            data: [300, 50, 100],
+                            data: [x,y,z],
                             backgroundColor: [
                                 'rgb(28, 28, 28)',
                                 'rgb(158, 158, 157)',
