@@ -8,6 +8,8 @@
     <title>Ongoing Ride</title>
 </head>
 <body>
+    <?php require APPROOT . '/views/inc/header-rider.php'; ?>
+    
     <div class="floating-panel" id="floating-panel">
         <div class="welcome" id="welcome_message">
             <div id="main-text">

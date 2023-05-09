@@ -9,6 +9,8 @@
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
+    <?php require APPROOT . '/views/inc/header-rider.php'; ?>
+
     <div id="container">
         <div id="upper_section">
             <div id="cancel_button">
@@ -66,7 +68,7 @@
         <div id="error">
             <?php echo $data['rideDetailObject_err']?>
         </div>
-        <div id="lower_section">
+        <!-- <div id="lower_section">
             <div id="paymentM_button">
                 <a href="<?php echo URLROOT;?>/riders/riderLandPage"><img src="<?php echo URLROOT;?>/public/images/general/payIcon.png" alt="payM"></a>
             </div>
@@ -74,7 +76,7 @@
             <div id="sub_text">
                 Change your payment method
             </div>
-        </div> 
+        </div>  -->
 
     </div>
 

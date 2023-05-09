@@ -63,7 +63,10 @@
                             </tr>
                             <tr>
                                 <td><div class="attribute_text">Fare:</div></td>
-                                <td><div class="sub_text"><?php echo $oneObject->fare; ?> LKR</div></td>
+                                <td><div class="sub_text"><?php 
+                                // echo fare with 2 decimal places
+                                echo number_format((float)$oneObject->fare, 2, '.', '');
+                                 ?> LKR</div></td>
                             </tr>
                             <tr>
                                 <td><div class="attribute_text">Payment:</div></td>

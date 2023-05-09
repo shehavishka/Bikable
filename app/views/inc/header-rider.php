@@ -133,7 +133,7 @@
     <a href="<?php echo URLROOT;?>/riders/activeRide"><div class="item i1"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/currentIcon.png" alt="menu">Current Ride</div></a>
     <a href="<?php echo URLROOT;?>/riders/viewHistory"><div class="item i2"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/historyIcon.png" alt="menu">Ride History</div></a>
     <a href="<?php echo URLROOT;?>/riders/profilePage"><div class="item i3"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/userIcon.png" alt="menu">View Profile</div></a>
-    <a href="#"><div class="item i4"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/cardIcon.png" alt="menu">Payment</div></a>
+    <a href="#"><div class="item i4"><img style="padding:0;margin-right:25px;" src="<?php echo URLROOT;?>/public/images/general/cardIcon.png" alt="menu">Wallet</div></a>
     <a href="<?php echo URLROOT;?>/riders/viewReports"><div class="item i5"><img style="padding:0;margin-right:22px;" src="<?php echo URLROOT;?>/public/images/general/reportIcon.png" alt="menu">Make a Report</div></a>
     <a href="<?php echo URLROOT;?>/users/logout"><div class="item i6"><img style="padding:0;margin-right:20px;" src="<?php echo URLROOT;?>/public/images/general/logoutIcon.png" alt="menu">Logout</div></a>
 </div>

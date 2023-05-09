@@ -143,17 +143,17 @@
                 }
 
                 //for testing. this stuff gets printed behind the map
-                print_r($data['userID']. "  ");
-                print_r($data['bicycleID']. "  ");
-                print_r($data['userLat']. "  ");
-                print_r($data['userLong']. "  ");
-                print_r($current_timestamp. "  ");
-                print_r($data['timeStamp']. "  ");
-                print_r($data['mapDetails'][$closestPoint]->areaName. "  ". $data['mapDetails'][$closestPoint]->locationRadius. "  ");
-                print_r($data['rideLogID']. "  ");
-                print_r(round($distance, 5). "  ");
-                print($within. " ");
-                echo date_default_timezone_get();
+                // print_r($data['userID']. "  ");
+                // print_r($data['bicycleID']. "  ");
+                // print_r($data['userLat']. "  ");
+                // print_r($data['userLong']. "  ");
+                // print_r($current_timestamp. "  ");
+                // print_r($data['timeStamp']. "  ");
+                // print_r($data['mapDetails'][$closestPoint]->areaName. "  ". $data['mapDetails'][$closestPoint]->locationRadius. "  ");
+                // print_r($data['rideLogID']. "  ");
+                // print_r(round($distance, 5). "  ");
+                // print($within. " ");
+                // echo date_default_timezone_get();
   
 
             }elseif($_SERVER['REQUEST_METHOD'] == 'GET'){

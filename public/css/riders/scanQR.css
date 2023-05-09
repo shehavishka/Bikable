@@ -273,7 +273,7 @@ body{
 #error{
     display:flex;
     position: absolute;
-    bottom: 100px;
+    bottom: 45px;
     left: 9%;
     color: red;
     align-self: center;
