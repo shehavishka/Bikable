@@ -1414,6 +1414,51 @@
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Rides search
+        public function search_rides(){
+
+            $result = $this->ownerModel->search_rides($_POST['search']);
+            $output = '';
+
+            if($result>0){
+                foreach($result as $row){
+
+                    $firstPart = '
+                    <tr style="height: 2.5rem;">
+                        <td></td>
+                        <td>' . $row->riderID .  '</td>
+                        <td>' . $row->bicycleID . '</td>
+                        <td>' . $row->startAreaID . '</td>
+                        <td>' . $row->endAreaID . '</td>
+                        <td>' . $row->rideStartTimeStamp . '</td>
+                        <td>';
+
+                    $secondPart = ' ';
+
+                    if ($row->rideEndTimeStamp == NULL) {
+                        $secondPart .= "Active";
+                    }else {
+                        $secondPart .= $row->rideEndTimeStamp;
+                    }
+
+                    $thirdPart = '
+                        </td>
+                        <td>' . $row->distanceTravelled . '</td>
+                        <td>' . $row->fare . '</td>
+                    </tr>';
+
+                    $output .= $firstPart . $secondPart . $thirdPart;
+                }
+            }else{
+                $output .= '<tr>
+                                <td>No Data Found</td>
+                            </tr>';
+            }
+
+            echo $output;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // 17.) Owner handle reports control page (reportsControl)
         public function reportsControl(){
             /**

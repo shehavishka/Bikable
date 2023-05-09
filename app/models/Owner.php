@@ -620,4 +620,12 @@
     
                 return $this->db->resultSet();
         }
+
+
+        public function search_rides($search){
+                    
+                $this->db->prepareQuery("SELECT * FROM ridelog
+                                        WHERE (riderID LIKE '%$search%' OR bicycleID LIKE '%$search%')");
+                return $this->db->resultSet();
+        }
     }

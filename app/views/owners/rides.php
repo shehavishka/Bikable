@@ -23,6 +23,15 @@
         <!-- admin real data top -->
         <div class="admin__data__area--top">
             <div class="admin__data__area__top--title">Rides</div>
+
+            <!-- search bar -->
+            <div class="dashboard__header--search">
+                <input type="text" id="search" class="dashboard__header--searchbox" name="dashboard--searchbox" placeholder="Search">          
+                <div class="dashboard__header--searchicon">
+                    <img src="<?php echo URLROOT;?>/public/images/owners/dashboardIcons/search.png" alt="search icon" class="dashboard__icon searchicon">
+                </div>
+            </div>
+
             <div class="admin__data_area__top--twobuttons">
                 <!-- <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Add Area" onclick="location.href='<?php echo URLROOT;?>/owners/addAdministrator'">
@@ -74,31 +83,66 @@
                     </td>
                 </tr> -->
 
-                <?php foreach($data['rides_details'] as $rideOne) : ?>
-                    <tr style="height: 2.5rem;">
-                        <td></td>
-                        <td><?php echo $rideOne->riderID ?></td>
-                        <td><?php echo $rideOne->bicycleID ?></td>
-                        <td><?php echo $rideOne->startAreaID ?></td>
-                        <td><?php echo $rideOne->endAreaID ?></td>
-                        <td><?php echo $rideOne->rideStartTimeStamp ?></td>
-                        <td><?php
-                            if($rideOne->rideEndTimeStamp == null){
-                                echo "Active";
-                            }else{
-                                echo $rideOne->rideEndTimeStamp;
-                            }                        
-                        ?></td>
-                        <td><?php echo $rideOne->distanceTravelled ?></td>
-                        <td><?php echo $rideOne->fare ?></td>
 
+                <tbody class="all-data">
+                    
+                    <?php foreach ($data['rides_details'] as $oneObject) {
+                        echo '
+                            <tr style="height: 2.5rem;">
+                                <td></td>
+                                <td>' . $oneObject->riderID .  '</td>
+                                <td>' . $oneObject->bicycleID . '</td>
+                                <td>' . $oneObject->startAreaID . '</td>
+                                <td>' . $oneObject->endAreaID . '</td>
+                                <td>' . $oneObject->rideStartTimeStamp . '</td>
+                                <td>';
 
-                    </tr>
-                <?php endforeach; ?>
+                                if ($oneObject->rideEndTimeStamp == null) {
+                                    echo "Active";
+                                }else {
+                                    echo $oneObject->rideEndTimeStamp;
+                                }
+
+                        echo '</td>
+                                <td>' . $oneObject->distanceTravelled . '</td>
+                                <td>' . $oneObject->fare . '</td>
+                            </tr>';
+                    }?>
+                </tbody>
+                
+                <tbody id="details" class="search-data"></tbody>
 
             </table>
         </div>
     </section>
+
+    <script>
+            $(document).ready(function(){
+                $("#search").keyup(function(){
+                    var searchText = $(this).val();
+
+                    if(searchText)
+                    {
+                        $('.all-data').hide();
+                        $('.search-data').show();
+                    }
+                    else{
+                        $('.all-data').show();
+                        $('.search-data').hide();
+                    }
+
+                    $.ajax({
+                        url: './search_rides',
+                        type: 'POST',
+                        data: {search: searchText},
+                        success: function(response){
+                            console.log(response);
+                            $("#details").html(response);
+                        }
+                    });
+                });       
+            });
+    </script>
 
 
 
