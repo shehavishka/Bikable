@@ -1977,7 +1977,14 @@
                 if($this->ownerModel->setFareAndRate($data)){
                     //load the user profile view page
 
+                    //popup message
                     $this->statisticsPageView();
+                    echo "<script>
+                        Swal.fire(
+                            'Changed successfully',
+                            'Fare and rate changed successfully',
+                        )
+                    </script>";
                 }else{
                     // die("button didn't work correctly.");
                     $this->landToErrorPage();
