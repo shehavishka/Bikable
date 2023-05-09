@@ -689,6 +689,70 @@
             }
         }
 
+        public function changePassword(){
+            $data = [
+                'oldPassword' => '',
+                'newPassword' => '',
+                'confirmPassword' => '',
+                'oldPassword_Err' => '',
+                'newPassword_Err' => '',
+                'confirmPassword_Err' => ''
+            ];
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                //sanitize the input
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                //get the data
+                $data['oldPassword'] = trim($_POST['oldPassword']);
+                $data['newPassword'] = trim($_POST['newPassword']);
+                $data['confirmPassword'] = trim($_POST['confirmPassword']);
+
+                //validate the old password
+                if(empty($data['oldPassword'])){
+                    $data['oldPassword_Err'] = '*Please enter your old password';
+                }else{
+                    if(!$this->riderModel->checkPassword($data['oldPassword'])){
+                        $data['oldPassword_Err'] = '*Incorrect password';
+                    }
+                }
+
+                //validate the new password
+                if(empty($data['newPassword'])){
+                    $data['newPassword_Err'] = '*Please enter a new password';
+                }else if(strlen($data['newPassword']) < 8){
+                    $data['newPassword_Err'] = '*Password must be at least 8 characters';
+                }
+
+                //validate the confirm password
+                if(empty($data['confirmPassword'])){
+                    $data['confirmPassword_Err'] = '*Please confirm your password';
+                }else{
+                    if($data['newPassword'] != $data['confirmPassword']){
+                        $data['confirmPassword_Err'] = '*Passwords do not match';
+                    }
+                }
+
+                //if there are no errors
+                if(empty($data['oldPassword_Err']) && empty($data['newPassword_Err']) && empty($data['confirmPassword_Err'])){
+                    if($this->riderModel->changePassword($data['newPassword'])){
+                        header('location: ' . URLROOT . '/riders/profilePage');
+                        return;
+                    }else{
+                        //error page
+                        die("something went wrong");
+                        return;
+                    }
+                }else{
+                    //load the view with errors
+                    $this->view('riders/changePassword', $data);
+                    return;
+                }
+            }else{
+                $this->view('riders/changePassword', $data);
+            }
+        }
+
         /////////////////Internal functions
 
         //function to find the closest point to a given point on a cartesian plane

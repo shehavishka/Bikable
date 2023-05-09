@@ -43,7 +43,7 @@
         <hr class="hr1">
 
         <div id="lower_section1">
-            <a href="<?php echo URLROOT;?>/riders/riderLandPage"><div class="change_btn">Change Password</div>
+            <a href="<?php echo URLROOT;?>/riders/changePassword"><div class="change_btn">Change Password</div>
             <a href="<?php echo URLROOT;?>/riders/riderLandPage"><div class="delete_btn">Delete Account</div>
         </div> 
 

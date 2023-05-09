@@ -281,4 +281,39 @@
                 return false;
             }
         }
+
+        public function checkPassword($password){
+            // die("model reached");   
+            $userID = $_SESSION['user_ID'];
+            $this->db->prepareQuery("SELECT * FROM users WHERE userID = $userID");
+
+            $row = $this->db->single();
+
+            // we need to hash passwords
+            $temp = $row->password;
+            if($password == $temp){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function changePassword(){
+            $userID = $_SESSION['user_ID'];
+            $newPassword = $_POST['newPassword'];
+            $confirmPassword = $_POST['confirmPassword'];
+
+            if($newPassword == $confirmPassword){
+                $temp = "UPDATE users SET password = '$newPassword' WHERE userID = $userID";
+                $this->db->prepareQuery($temp);
+
+                if($this->db->executeStmt()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
     }
