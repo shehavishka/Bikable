@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/rideEnded.css">
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Ride Ended</title>
     <!-- <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script> -->
 </head>
@@ -38,7 +39,7 @@
         </div>
 
         <div id="lower_section">
-            <div class="back_btn"><a href="<?php echo URLROOT;?>/riders/riderLandPage">Back to Home</div>
+            <a href="<?php echo URLROOT;?>/riders/riderLandPage"><div class="back_btn">Back to Home</div></a>
         </div> 
 
     </div>
