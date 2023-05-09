@@ -1865,6 +1865,8 @@
                 //get the user details from the database
                 $data['userDetailObject'] = $prespectiveUserDetail = $this->ownerModel->findUserByUserID($data['userID']);
                 
+                print_r($data['userDetailObject']);
+                die("fuck");
                 //load the user profile view page
                 $this->view('owners/ownerViewsUserProfile', $data);
             }else{
