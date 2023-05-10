@@ -305,64 +305,66 @@ textarea,
 .data__area--detail{
     margin-left: 1.5%;
     /* margin-top: 2%; */
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-        "reportid repairid bicycleid"
-        "probtitle probtitle probtitle"
-        "datein dateout mechanicid"
-        "repairdis repairdis repairdis"
-        "estimatecost finalcost xxx"
-    ;
-
-    grid-gap: 20px 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-.data--reportID{
-    grid-area: reportid;
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+    height: 100%;
+    margin-bottom: 16px;    
 }
 
-.data--repairLogID{
-    grid-area: repairid;
+.main_text{
+    display: inline-block;
+    font-size: 19.2px;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
-.data--bicycleID{
-    grid-area: bicycleid;
+.sub_text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 19px;
+    font-weight: var(--fw-lightBold);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    height: 60px;
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 40%;
+    height: 38px;
 }
 
-.data--problemTitle{
-    grid-area: probtitle;
-}
-/* set the width of the text box */
-/* .detailbox__problemtitle{
-    height: 10rem;
-} */
-
-.data--dateIn{
-    grid-area: datein;
-}
-
-.data--dateOut{
-    grid-area: dateout;
-}
-
-.data--mechanicID{
-    grid-area: mechanicid;
-}
-
-.data--repairDescription{
-    grid-area: repairdis;
-}
-
-.data--estimatedCost{
-    grid-area: estimatecost;
-}
-
-.data--finalCost{
-    grid-area: finalcost;
+.sub_text1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family:var(--ff-family);
+    font-size: 19px;
+    font-weight: var(--fw-lightBold);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    height: 60px;
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 300px;
+    height: 38px;
+    margin-right: 60px;
 }
 
 .error_text{
     color: red; 
     font-size:16px;
+}
+
+textarea  
+{
+    width: 40%;
+    padding-top: 15px;
+    font-family:var(--ff-family);
+    font-size: 18px;   
 }

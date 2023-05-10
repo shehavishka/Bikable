@@ -14,14 +14,25 @@
 <body>
     <?php require APPROOT . '/views/inc/sidebar-admin.php'; ?>
 
-    <div id="container">
+    <section class="data_area">
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
-        <div id="upper_section">
-        </div>         
-        
         <form action="<?php echo URLROOT;?>/admins/addReport" method="POST" id="create_form">
-            <div class="middle_section">
+       
+            <div class="data__area--top">
+                    <div class="data__area__top--title">Add Report</div>
+                    <div class="data_area__top--twobuttons">
+                        <div class="add_user_button">
+                            <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/admins/reportsControl'">
+                        </div>
+                        <div class="delete_user_button">
+                            <input type="submit" class="btn btn_delete" value="Submit" >
+                        </div>
+                    </div>
+
+            </div>        
+        
+            <div class="data__area--detail">
                     <div class="info" id="info_type">
                         <div class="main_text">What's your issue?</div>
                         <!-- a drop down field with Accident Report, Bicycle Issue, Docking Area Issue and Other as the options -->
@@ -90,17 +101,11 @@
                         <span class="error_text"><?php echo $data['image_Err'];?></span>
                     </div> -->
             </div>
+        </form>
         
-        <div class="data__area--top">
-            <div class="title" id="title">Add Report</div>
-            <div class="data_area__top--twobuttons">
-            <input type="submit" class="create_btn" value="Create" >
-            
-            </form>
-            <a href="<?php echo URLROOT;?>/admins/reportsControl"><div class="cancel_btn">Cancel</div></a>
-        </div> 
         
-
+        
+    </section>
     <script>
         showFields();
 
