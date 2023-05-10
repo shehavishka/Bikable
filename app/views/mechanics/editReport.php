@@ -6,19 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/addReport.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/mechanics/favicon.png">
-    <title>Create Report</title>
+    <title>Edit Report</title>
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
 <?php require 'sidebar-mechanic.php'; ?>
 
     <div id="container">
-    <?php require 'header.php'; ?>
-
-        <div id="upper_section">
-        </div>         
+    <?php require 'header.php'; ?>     
         
-        <form action="<?php echo URLROOT;?>/mechanics/addReport" method="POST" id="create_form">
+        <form action="<?php echo URLROOT;?>/mechanics/editReport" method="POST" id="create_form">
+
+            <div id="upper_section">
+                <div class="title" id="title">Edit Report</div>
+                < <input type="hidden" name="reportID" value="<?php echo $data['reportID'];?>">
+                <input type="submit" class="create_btn" value="Update" >
+                
+                </form>
+                <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/reportsControl'">
+                </div>
+            </div> 
+
             <div class="middle_section">
                     <div class="info" id="info_type">
                         <div class="main_text">What's your issue?</div>
@@ -77,27 +85,8 @@
                             <input type="time" name="time" id="time" class="sub_text1" value="<?php echo $data['time'];?>">
                             <span class="error_text"><?php echo $data['time_Err'];?></span>
                         </div>
-                    </div>
-                    <div class="info" id="info_bicycleID">
-                        <div class="main_text">Bicycle ID: </div>
-                        <input type = "text" name="bicycleID" id="bicycleID" class="sub_text" placeholder="Type here">
-                    </div>
-                    <!-- <div class="info">
-                        <div class="main_text">Upload an Image</div>
-                        <input type="file" name="image" id="image" class="sub_text" value="test">
-                        <span class="error_text"><?php echo $data['image_Err'];?></span>
-                    </div> -->
-            </div>
-        
-        <div class="data__area--top">
-            <div class="title" id="title">Add Report</div>
-            <div class="data_area__top--twobuttons">
-            <input type="submit" class="create_btn" value="Create" >
-            
-            </form>
-            <a href="<?php echo URLROOT;?>/mechanics/reports"><div class="cancel_btn">Cancel</div></a>
-        </div> 
-        
+                    </div>        
+    </div>
 
     <script>
         showFields();
@@ -135,8 +124,8 @@
         }
         
         
-        // const bicycle_ID = document.getElementById("bicycleID");
-        // const video = document.createElement("video");
+        const bicycle_ID = document.getElementById("bicycleID");
+        const video = document.createElement("video");
         // const canvasElement = document.getElementById("qr-canvas");
         // const canvas = canvasElement.getContext("2d");
 
@@ -201,6 +190,7 @@
         //         setTimeout(scan, 300);
         //     }
         // }
+
     </script>
 </body>
 </html>

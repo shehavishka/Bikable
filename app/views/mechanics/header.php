@@ -1,5 +1,6 @@
 <head>
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css"> 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/header.css">
+    <link rel="icon" href="<?php echo URLROOT; ?>/public/images/mechanics/favicon.png">
 </head>
 <section class="dashboard--header">
             <div class="dashboard__header--search">

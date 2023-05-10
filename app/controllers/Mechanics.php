@@ -216,158 +216,262 @@ class Mechanics extends Controller
 
     public function addReport()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // process form
-            //init data
-            $data = [
-                'Rid' => trim($_POST['Report_ID']),
-                'RLid' => trim($_POST['Repair_Log_ID']),
-                'Bid' => trim($_POST['BicycleID']),
-                'Ptitle' => trim($_POST['Problem_Title']),
-                'Din' => trim($_POST['Date_In']),
-                'Tin' => trim($_POST['Time_In']),
-                'Mid' => trim($_POST['Mechanic_ID']),
-                'SolnDesc' => trim($_POST['SolutionDescription']),
-                'Tag' => trim($_POST['Tags']),
+        $data = [
+            'type' => '',
+            'problemTitle' => '',
+            'problemDescription' => '',
+            'areaID' => '',
+            'accidentLocation' => '',
+            'date' => '',
+            'time' => '',
+            'bicycleID' => '',
+            'image' => '',
 
-                'Rid_err' => '',
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Mid_err' => '',
-                'SolnDesc_err' => '',
-                'Tag_err' => '',
-                'dateAcquired_err' => '',
-                'datePutInUse_err' => '',
-            ];
-            $this->mechanicModel->addReportIntoTheSystem($data);
-            redirect('mechanics/reportsControl');
-        } else
-            $this->view('mechanics/addReport', [
-                'Rid_err' => '',
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Mid_err' => '',
-                'SolnDesc_err' => '',
-                'Tag_err' => '',
-                'dateAcquired_err' => '',
-                'datePutInUse_err' => '',
-            ]);
+            'accidentTimeStamp' => '',
+
+            'type_Err' => '',
+            'problemTitle_Err' => '',
+            'problemDescription_Err' => '',
+            'areaID_Err' => '',
+            'accidentLocation_Err' => '',
+            'date_Err' => '',
+            'time_Err' => '',
+            'bicycleID_Err' => '',
+            'image_Err' => '',
+
+            'mapDetails' => '',
+        ];
+        $data['mapDetails'] = $this->mechanicModel->getAllMapDetails();
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            //get the data from the form
+            if($_POST['type']){$data['type'] = $_POST['type'];}
+            $data['problemTitle'] = $_POST['problemTitle'];
+            $data['problemDescription'] = $_POST['problemDescription'];
+            if($_POST['areaID']){$data['areaID'] = $_POST['areaID'];}
+            $data['accidentLocation'] = $_POST['accidentLocation'];
+            $data['date'] = $_POST['date'];
+            $data['time'] = $_POST['time'];
+            $data['bicycleID'] = $_POST['bicycleID'];
+            // $data['image'] = $_POST['image'];
+
+            //validate the report type
+            if(empty($data['type'])){
+                $data['type_Err'] = '*Please select a report type';
+            }
+
+            //validate the report title
+            if(empty($data['problemTitle'])){
+                $data['problemTitle_Err'] = '*Please enter a title';
+            }
+
+            //validate the report description
+            if(empty($data['problemDescription'])){
+                $data['problemDescription_Err'] = '*Please enter a description';
+            }
+
+            //if type = docking area issue, validate the area ID    
+            if($data['type'] == 'Area'){
+                if(empty($data['areaID'])){
+                    $data['areaID_Err'] = '*Please select an area';
+                }
+            }
+
+            //if type = accident, validate the accident location, date, time and bike
+            if($data['type'] == 'Accident'){
+                if(empty($data['accidentLocation'])){
+                    $data['accidentLocation_Err'] = '*Please enter an accident location';
+                }
+                if(empty($data['date'])){
+                    $data['date_Err'] = '*Please select a date';
+                    // else if date is after today
+                }else if($data['date'] > date("Y-m-d")){
+                    $data['date_Err'] = '*Please select a valid date';
+                }
+                // print_r($data['date']);
+                // print_r(date("Y-m-d"));
+                if(empty($data['time'])){
+                    $data['time_Err'] = '*Please select a time';
+                }
+                if(empty($data['bicycleID'])){
+                    $data['bicycleID_Err'] = '*Please scan the bicycle';
+                }
+
+                // concatenate date and time to timestamp format
+                $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
+            }else{
+                $data['date'] = '';
+            }
+
+            //if type = bicycle, validate the bikeID
+            if($data['type'] == 'Bicycle'){
+                if(empty($data['bicycleID'])){
+                    $data['bicycleID_Err'] = '*Please scan the bicycle';
+                }
+            }
+
+            // if image size is larger than 5MB
+            // if($_FILES['image']['size'] > 5242880){
+            //     $data['image_Err'] = '*Image size should be less than 5MB';
+            // }
+
+            //if there are no errors 
+            if(empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
+                //add the report
+                // print_r($data);
+
+                if($this->mechanicModel->addReportIntoTheSystem($data)){
+                    header('location: ' . URLROOT . '/mechanics/reports');
+                    return;
+                }else{
+                    //error page
+                    die("something went wrong");
+                    return;
+                }
+            }else{
+                //load the view with errors
+                $this->view('mechanics/addReport', $data);
+                return;
+            }
+        }
+
+        $this->view('mechanics/addReport', $data);            
     }
 
+    public function editReport(){
+        $data = [
+            'reportID' => '',
+            'type' => '',
+            'problemTitle' => '',
+            'problemDescription' => '',
+            'areaID' => '',
+            'accidentLocation' => '',
+            'date' => '',
+            'time' => '',
+            'bicycleID' => '',
+            'image' => '',
 
-    public function addReportToTheSystem()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // process form
-            //init data
-            $data = [
-                'Rid' => trim($_POST['Report_ID']),
-                'RLid' => trim($_POST['Repair_Log_ID']),
-                'Bid' => trim($_POST['BicycleID']),
-                'Ptitle' => trim($_POST['ProblemTitle']),
-                'Mid' => trim($_POST['MechanicID']),
-                'SolnDesc' => trim($_POST['SolutionDescription']),
-                'Tag' => trim($_POST['Tags']),
+            'accidentTimeStamp' => '',
 
-                'Rid_err' => '',
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Mid_err' => '',
-                'SolnDesc_err' => '',
-                'Tag_err' => '',
-                'dateAcquired_err' => '',
-                'datePutInUse_err' => '',
-            ];
+            'type_Err' => '',
+            'problemTitle_Err' => '',
+            'problemDescription_Err' => '',
+            'areaID_Err' => '',
+            'accidentLocation_Err' => '',
+            'date_Err' => '',
+            'time_Err' => '',
+            'bicycleID_Err' => '',
+            'image_Err' => '',
 
-            //validate data
-            //validate first_name
-            //validate last name
-            if (empty($data['Rid'])) {
-                $data['Rid_err'] = 'Enter Solution Description';
+            'mapDetails' => '',
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            //validate and update the report
+            //get the data from the form
+            $data['reportID'] = $_POST['reportID'];
+            if($_POST['type']){$data['type'] = $_POST['type'];}
+            $data['problemTitle'] = $_POST['problemTitle'];
+            $data['problemDescription'] = $_POST['problemDescription'];
+            if($_POST['areaID']){$data['areaID'] = $_POST['areaID'];}
+            $data['accidentLocation'] = $_POST['accidentLocation'];
+            $data['date'] = $_POST['date'];
+            $data['time'] = $_POST['time'];
+            $data['bicycleID'] = $_POST['bicycleID'];
+            // $data['image'] = $_POST['image'];
+
+            //validate the report type
+            if(empty($data['type'])){
+                $data['type_Err'] = '*Please select a report type';
             }
 
-            if (empty($data['RLid'])) {
-                $data['RLid_err'] = '*Enter Report Log ID';
+            //validate the report title
+            if(empty($data['problemTitle'])){
+                $data['problemTitle_Err'] = '*Please enter a title';
             }
 
-            //validate phone number
-            if (empty($data['Bid'])) {
-                $data['Bid_err'] = '*Enter Bicycle ID';
-            } else {
-                //check database whether it is available.
+            //validate the report description
+            if(empty($data['problemDescription'])){
+                $data['problemDescription_Err'] = '*Please enter a description';
             }
 
-            //validate email
-            if (empty($data['Ptitle'])) {
-                $data['Ptitle_err'] = '*Enter Problem Title';
-
-
-                if (empty($data['Din'])) {
-                    $data['Din_err'] = '*Enter Date';
+            //if type = docking area issue, validate the area ID    
+            if($data['type'] == 'Area'){
+                if(empty($data['areaID'])){
+                    $data['areaID_Err'] = '*Please select an area';
                 }
-
-                if (empty($data['Tin'])) {
-                    $data['Tin_err'] = '*Enter Time In';
-                }
-
-                if (empty($data['Mid'])) {
-                    $data['Mid_err'] = '*Enter Mechanic ID';
-                }
-
-                if (empty($data['SolnDesc'])) {
-                    $data['SolnDesc_err'] = '*Enter Solution Description';
-                }
-
-                if (empty($data['Tag'])) {
-                    $data['Tag_err'] = '*Enter Tag';
-                }
-
-                //validate date acquired
-                if (empty($data['dateAcquired'])) {
-                    $data['dateAcquired_err'] = '*enter date acquired';
-                
-                }
-                // if(empty($data['email_err']) && empty($data['password_err']) && empty($data['fName_err']) && empty($data['lName_err']) && empty($data['pNumber_err']) && empty($data['nic_err'])){
-                // add new report
-                if ($this->mechanicModel->addReport($data)) {
-                    redirect('mechanics/addReportSuccess');
-                } else {
-                    redirect('mechanics/addReporterror');
-                    die('Something went wrong');
-                }
-                // }else{
-                // $this->view('mechanics/addReport', $data);
-                // }
-
-            } else {
-                //init data
-                $data = [
-                    'Rid' => '',
-                    'RLid' => '',
-                    'Bid' => '',
-                    'Ptitle' => '',
-                    'Din' => '',
-                    'Tin' => '',
-                    'Mid' => '',
-                    'SolnDesc' => '',
-                    'Tag' => '',
-
-                    'Rid_err' => '',
-                    'RLid_err' => '',
-                    'Bid_err' => '',
-                    'Ptitle_err' => '',
-                    'Din_err' => '',
-                    'Tin_err' => '',
-                    'Mid_err' => '',
-                    'SolnDesc_err' => '',
-                    'Tag_err' => '',
-
-                ];
-                $this->view('mechanics/addReport', $data);
             }
+
+            //if type = accident, validate the accident location, date, time and bike
+            if($data['type'] == 'Accident'){
+                if(empty($data['accidentLocation'])){
+                    $data['accidentLocation_Err'] = '*Please enter an accident location';
+                }
+                if(empty($data['date'])){
+                    $data['date_Err'] = '*Please select a date';
+                    // else if date is after today
+                }else if($data['date'] > date("Y-m-d")){
+                    $data['date_Err'] = '*Please select a valid date';
+                }
+                // print_r($data['date']);
+                // print_r(date("Y-m-d"));
+                if(empty($data['time'])){
+                    $data['time_Err'] = '*Please select a time';
+                }
+                if(empty($data['bicycleID'])){
+                    $data['bicycleID_Err'] = '*Please scan the bicycle';
+                }
+
+                // concatenate date and time to timestamp format
+                $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
+            }else{
+                $data['date'] = '';
+            }
+
+            //if type = bicycle, validate the bikeID
+            if($data['type'] == 'Bicycle'){
+                if(empty($data['bicycleID'])){
+                    $data['bicycleID_Err'] = '*Please scan the bicycle';
+                }
+            }
+
+            //if there are no errors 
+            if(empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
+                if($this->mechanicModel->updateReport($data)){
+                    header('location: ' . URLROOT . '/mechanics/reports');
+                    return;
+                }else{
+                    //error page
+                    die("something went wrong");
+                    return;
+                }
+            }else{
+                //load the view with errors
+                $this->view('mechanics/editReport', $data);
+                return;
+            }
+            
+        }else if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $data['mapDetails'] = $this->mechanicModel->getAllMapDetails();
+            $data['reportID'] = $_GET['reportID'];
+
+            $report = $this->mechanicModel->getReportByID($data['reportID']);
+            $data['type'] = $report->reportType;
+            $data['problemTitle'] = $report->problemTitle;
+            $data['problemDescription'] = $report->problemDescription;
+            $data['areaID'] = $report->areaID;
+            $data['accidentLocation'] = $report->accidentLocation;
+            $data['bicycleID'] = $report->bicycleID;    
+            $data['accidentTimeStamp'] = $report->accidentTimeApprox;
+            
+            // split the timestamp into date and time
+            $data['date'] = substr($data['accidentTimeStamp'], 0, 10);
+            $data['time'] = substr($data['accidentTimeStamp'], 11, 21);
+
+            // print_r($data['date'] . " " . $data['time'] . " " . $data['accidentTimeStamp'] . " " . $report->accidentTimeApprox . " test");
+            // die("hlello?");
+
+            $this->view('mechanics/editReport', $data);
         }
     }
 

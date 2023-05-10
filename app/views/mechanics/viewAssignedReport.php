@@ -23,10 +23,10 @@
             <input type="hidden" name="logID" value="<?php echo $data['reportDetailObject']->reportID;?>" id="reportID">
             <!-- mechanic real data top -->
             <div class="data__area--top">
-                <div class="data__area__top--title">View Repair report</div>
+                <div class="data__area__top--title">View Report</div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/mechanics/repairreportsControl'">
+                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/mechanics/reportsControl'">
                     </div>
                     <div class="delete_user_button">
                         <input type="submit" class="
