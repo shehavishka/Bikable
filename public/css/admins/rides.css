@@ -278,10 +278,10 @@ table{
 th{
     font-size: medium;
     color: gray;
-    text-align: left;
+    text-align: center;
 }
 
 td{
-    text-align: left;
+    text-align: center;
 }
 

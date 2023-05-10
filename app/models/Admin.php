@@ -272,6 +272,14 @@
             return $this->db->resultSet();
         }
 
+        public function getAllDADetails(){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
         public function addBicycleIntoTheSystem($data){
 
             $bikeOwnerID = $data['bikeOwnerID'];

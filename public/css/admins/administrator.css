@@ -14,7 +14,7 @@
 :root{
     --clr-dark : #D9D9D9;
     --clr-light : #fff;
-    --clr-blackDark : rgb(0, 0, 0);
+    /* --clr-blackDark : rgb(0, 0, 0); */
 
     --fs-h1 : 3rem;
     --fs-h2 : 2.25rem;

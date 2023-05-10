@@ -1044,8 +1044,11 @@
              */
             $rideDetails = $this->adminModel->getRideDetails();
             $data = [
-                'ride_details' => $rideDetails
+                'ride_details' => $rideDetails,
+                'map_details' => ''
             ];
+
+            $data['map_details'] = $this->adminModel->getAllDADetails();
 
              //this is not load data from the database
             $this->view('admins/rides', $data);

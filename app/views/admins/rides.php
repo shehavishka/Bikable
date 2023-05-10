@@ -36,38 +36,56 @@
                 <tr>
                     <th style="width: 2%;"></th>
                     <th style="width: 5%;">Rider ID</th>
-                    <th style="width: 6%;">Bicycle ID</th>
-                    <th style="width: 5%;">Status</th>
-                    <th style="width: 5%;">Started At</th>
+                    <th style="width: 5%;">Bicycle ID</th>
+                    <th style="width: 6%;">Status</th>
+                    <th style="width: 8%;">Started At</th>
                     <th style="width: 8%;">Ended At</th>
-                    <th style="width: 8%;">Fare</th>
-                    <th style="width: 8%;">Travelled Time</th>
+                    <th style="width: 5%;">Fare</th>
+                    <th style="width: 6%;">Travelled Time</th>
                     <th style="width: 5%;">Start Area</th>
                     <th style="width: 5%;">End Area</th>
-                    <th style="width: 7%;">Payment Method</th>
+                    <th style="width: 6%;">Payment Method</th>
                     <th style="width: 10%;">Current Location</th>
 
                     <?php foreach($data['ride_details'] as $oneObject) : ?>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td><?php echo $oneObject->rideID ?></td>
+                        <td><?php echo $oneObject->rideLogID ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
                         <td>
                             <?php 
                                 if($oneObject->status == 1){
-                                    echo "Active";
+                                    echo "In progress";
                                 }else{
-                                    echo "Inactive";
+                                    echo "Complete";
                                 }
                             
                             ?>
                         </td>
-                        <td><?php echo $oneObject->startTime ?></td>
-                        <td><?php echo $oneObject->endTime ?></td>
-                        <td><?php echo $oneObject->fare ?></td>
-                        <td><?php echo $oneObject->timeTravelled ?></td>
-                        <td><?php echo $oneObject->startArea ?></td>
-                        <td><?php echo $oneObject->endArea ?></td>
+                        <td><?php echo $oneObject->rideStartTimeStamp ?></td>
+                        <td><?php echo $oneObject->rideEndTimeStamp ?></td>
+                        <td><?php echo $oneObject->fare ?>/=</td>
+                        <td><?php 
+                                    $hours = floor($oneObject->timeTravelled / 3600);
+                                    $minutes = floor(($oneObject->timeTravelled / 60) % 60);
+                                    $seconds = $oneObject->timeTravelled % 60;
+
+                                    echo $hours . 'h' . $minutes . 'm' . $seconds . 's'; 
+                                ?></td>
+                        <td><?php 
+                                foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->startAreaID) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                }
+                        ?></td>
+                        <td><?php 
+                                foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->endAreaID) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                }
+                        ?></td>
                         <td><?php echo $oneObject->payMethod ?></td>
                         <td><?php echo $oneObject->currentLat  . " " . $oneObject->currentLong ?></td>
                     </tr>

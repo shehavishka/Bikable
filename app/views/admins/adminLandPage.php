@@ -101,8 +101,18 @@ $DAResult = $dbController->runQuery($query);
                     <?php foreach($data['dashboard_reports'] as $oneObject) : ?>
                     <tr>
                         <td><?php echo $oneObject->reportID ?></td>
-                        <td><?php echo $oneObject->problemTitle ?></td>
-                        <td><?php echo $oneObject->loggedTimestamp ?></td>
+                        <td><?php 
+                        // if title is longer than 20 char, cut it and add '...'
+                        if(strlen($oneObject->problemTitle) > 18){
+                            echo substr($oneObject->problemTitle, 0, 18).'...';
+                        }else{
+                            echo $oneObject->problemTitle;
+                        }
+                        ?></td>
+                        <td><?php 
+                            // echo only the month and day plus the hour and minute of the timestamp
+                            echo substr($oneObject->loggedTimestamp, 5, 11);
+                        ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>
