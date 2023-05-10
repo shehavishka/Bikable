@@ -6,21 +6,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/addReport.css">
-    <link rel="icon" href="<?php echo URLROOT;?>/public/images/mechanics/favicon.png">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/addReport.css">
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Create Report</title>
     <!-- <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script> -->
 </head>
 <body>
-<?php require 'sidebar-mechanic.php'; ?>
+    <?php require APPROOT . '/views/inc/sidebar-admin.php'; ?>
 
     <div id="container">
-    <?php require 'header.php'; ?>
+        <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <div id="upper_section">
         </div>         
         
-        <form action="<?php echo URLROOT;?>/mechanics/addReport" method="POST" id="create_form">
+        <form action="<?php echo URLROOT;?>/admins/addReport" method="POST" id="create_form">
             <div class="middle_section">
                     <div class="info" id="info_type">
                         <div class="main_text">What's your issue?</div>
@@ -97,7 +97,7 @@
             <input type="submit" class="create_btn" value="Create" >
             
             </form>
-            <a href="<?php echo URLROOT;?>/mechanics/reports"><div class="cancel_btn">Cancel</div></a>
+            <a href="<?php echo URLROOT;?>/admins/reportsControl"><div class="cancel_btn">Cancel</div></a>
         </div> 
         
 
