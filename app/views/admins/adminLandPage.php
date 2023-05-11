@@ -95,7 +95,7 @@ $DAResult = $dbController->runQuery($query);
                     }
                 ?>);">
                 <div class="dashboard__user__dropdown-content">
-                    <a href="<?php echo URLROOT ?>/admins/adminProfilePage">Profile</a>
+                    <a href="<?php echo URLROOT ?>/admins/profilePage">Profile</a>
                     <!-- <a href="#">Settings</a> -->
                     <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
                 </div>
