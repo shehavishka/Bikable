@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/adminEditProfile.css">
-    <title>Owner Edit His Profile</title>
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
+    <title>Edit Profile</title>
 </head>
 <body>
     <!-- finalized side bar -->
@@ -25,7 +26,7 @@
 
         <!-- admin real data top -->
         <div class="admin__data__area--top">
-            <div class="admin__data__area__top--title">User Edits Profile</div>
+            <div class="admin__data__area__top--title">Edit Profile</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="<< Back" onclick="location.href='<?php echo URLROOT;?>/admins/profilePage'">

@@ -47,6 +47,7 @@
     // 45.	unarchiveRepairLog
     // 46.	getUserDetails
     // 47.	updateProfile
+    // 48.	updatePassword
 
     class Admin {
         private $db;
@@ -736,6 +737,24 @@
                 $_SESSION['user_email'] = $uemail;
                 $_SESSION['user_pNumber'] = $phone;
                 
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function updatePassword($data){
+            $newPassword = $data['newPassword'];
+            //hash the password
+            $hashedPassword = password_hash(strval($newPassword), PASSWORD_DEFAULT);
+            $userID = $_SESSION['user_ID'];
+
+            //prepare query
+            $temp = "UPDATE users SET password = '$hashedPassword' WHERE userID = '$userID' ";
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
                 return true;
             }else{
                 return false;

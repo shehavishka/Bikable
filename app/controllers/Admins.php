@@ -3,6 +3,7 @@
     // 1.	adminLandPage
     // 2.	profilePage
     // 3.	profileEdit
+    //      changePassword
     // 4.	addUser
     // 5.	viewUserProfile
     // 6.	suspendUser
@@ -245,6 +246,79 @@
         
         }
 
+        public function changePassword(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'currentPassword' => trim($_POST['current-password']),
+                    'newPassword' => trim($_POST['new-password']),
+                    'confirmPassword' => trim($_POST['confirm-password']),
+        
+                    'currentPassword_err' => '',
+                    'confirmPassword_err' => '',
+        
+                ];
+        
+                $userID = $_SESSION['user_ID'];
+                $userDetails = $this->adminModel->findUserByUserID($userID);
+        
+                // check weather current password is correct or not
+                if($userDetails){
+                    $userHashedValue = $userDetails->password;
+                    if(password_verify(strval($data['currentPassword']),strval($userHashedValue))){
+                    // if(strval($data['currentPassword']) == strval($userHashedValue)){
+                        //verified
+                    }else{
+                        $data['currentPassword_err'] = "*invalid password";
+                    }
+                }else{
+                    die("Something went wrong!!!");
+                    // $this->landToErrorPage();
+                }
+        
+                if(strval($data["newPassword"]) == strval($data["confirmPassword"])){
+                    //pass
+                }else{
+                    $data["confirmPassword_err"] = "*password doesn't match";
+                }
+        
+                if(empty($data['currentPassword_err']) && empty($data['confirmPassword_err'])){
+                    if($this->adminModel->updatePassword($data)){
+                        $this->view('admins/profilePage');
+                        
+                        // send email to the user
+                        // $userName = $_SESSION['user_fName'];
+                        // $userEmail = $_SESSION['user_email'];
+        
+                        // $this->sendEmailToTheUserWhenPasswordChanged($userName,$userEmail);
+                        // echo "<script>
+                        //             Swal.fire(
+                        //                 'Password changed successfully',
+                        //                 'success'
+                        //             )
+                        //     </script>";
+                    }else{
+                        die('something went wrong');
+                        // $this->landToErrorPage();
+                    }
+                }else{
+                    //load the view with errors
+                    $this->view('admins/editPassword', $data);
+                }
+            }else{
+                // if request is not a POST request then load the form
+                $data = [
+                    'currentPassword' => '',
+                    'newPassword' => '',
+                    'confirmPassword' => '',
+        
+                    'currentPassword_err' => '',
+                    'newPassword_err' => '',
+                    'confirmPassword_err' => '',
+                ];
+                //load the view
+                $this->view('admins/editPassword', $data);
+            }
+        }
         
         /////////////////////////////////////////////////
         // ADMIN LANDPAGE MECHANIC/ BICYCLE OWNER/ RIDERS, BUTTONS IMPLEMENT
