@@ -657,4 +657,31 @@
                 return false;
             }
         }
+
+        ////////QUERIES FOR PROFILE
+
+        public function getUserDetails($userID){
+            $this->db->prepareQuery("SELECT * FROM users WHERE userID = $userID");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->single();
+        }
+
+        public function updateUserDetails($data){
+            $userID = $_SESSION['user_ID'];
+            $fName = $data['fName'];
+            $lName = $data['lName'];
+            $email = $data['email'];
+            $phone = $data['phone'];
+            $nic = $data['NIC'];
+
+            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$email', phoneNumber = '$phone', NIC = '$nic' WHERE userID = $userID";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }

@@ -10,7 +10,7 @@
             </div> -->
 
             <div class="dashboard__header--helpsetting" style="margin-left: 1%;">
-                <p id="greeting"></p>
+                <!-- <p id="greeting"></p>
                 <p id="time"></p>
 
                 <script>
@@ -38,7 +38,7 @@
                     var currentTime = hours + ':' + minutes + ' ' + ampm;
                     document.getElementById("greeting").innerHTML = greeting;
                     document.getElementById("time").innerHTML =  currentTime;
-                </script>
+                </script> -->
             </div>
 
             <div class="dashboard__user__detail">

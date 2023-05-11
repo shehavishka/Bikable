@@ -41,6 +41,117 @@
             $this->view('admins/adminLandPage', $data);
         }
 
+
+        public function profilePage(){
+            $data = [
+                'userDetailObject' => '',
+                'name_Err' => '',
+                'email_Err' => '',
+                'phone_Err' => '',
+                'NIC_Err' => '',
+                'password_Err' => '',
+            ];
+
+            $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
+
+            $this->view('admins/viewProfile', $data);
+        }
+
+        public function profileEdit(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data = [
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'phone' => trim($_POST['phone']),
+                    'NIC' => trim($_POST['NIC']),
+                    'fName' => '',
+                    'lName' => '',
+
+                    'userDetailObject' => '',
+
+                    'name_Err' => '',
+                    'email_Err' => '',
+                    'phone_Err' => '',
+                    'NIC_Err' => '',
+                ];
+
+                //split the name into first and last name
+                
+                //validate the name
+                if(empty($data['name'])){
+                    $data['name_Err'] = '*Please enter your name';
+                }else if(!preg_match("/^[a-zA-Z ]*$/", $data['name'])){
+                    $data['name_Err'] = '*Please enter a valid name';
+                }else{
+                    $name = explode(" ", $data['name']);
+                    //check that exactly 2 names were entered
+                    if(count($name) == 2){
+                        $data['fName'] = $name[0];
+                        $data['lName'] = $name[1];
+                    }else{
+                        $data['name_Err'] = '*Please enter exactly two names';
+                    }
+                }
+
+                //validate the email
+                if(empty($data['email'])){
+                    $data['email_Err'] = '*Please enter your email';
+                }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+                    $data['email_Err'] = '*Please enter a valid email';
+                }
+
+                //validate the phone number
+                if(empty($data['phone'])){
+                    $data['phone_Err'] = '*Please enter your phone number';
+                }else if(!preg_match("/^[0-9]{10}$/", $data['phone'])){
+                    $data['phone_Err'] = '*Please enter a valid phone number';
+                }
+
+                //validate the NIC
+                if(empty($data['NIC'])){
+                    $data['NIC_Err'] = '*Please enter your NIC';
+
+                    // if the NIC is not empty, check if it is a valid NIC - it should have 12 numbers or 9 numbers and a v/V/x/X
+                }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['NIC']) && !preg_match("/^[0-9]{12}$/", $data['NIC'])){
+                    $data['NIC_Err'] = '*Please enter a valid NIC';
+                }
+
+                //if there are no errors
+                if(empty($data['name_Err']) && empty($data['email_Err']) && empty($data['phone_Err']) && empty($data['NIC_Err'])){
+                    //update user details
+                    if($this->adminModel->updateUserDetails($data)){
+                        $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
+                        header('location: ' . URLROOT . '/admins/profilePage');
+                        return;
+                    }else{
+                        //error page
+                        die("something went wrong");
+                        return;
+                    }
+                }else{
+                    //load the view with errors
+                    $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
+                    $this->view('admins/editProfile', $data);
+                    return;
+                }
+            }
+
+            $data = [
+                'userDetailObject' => '',
+                'name_Err' => '',
+                'email_Err' => '',
+                'phone_Err' => '',
+                'NIC_Err' => '',
+                'password_Err' => '',
+            ];
+
+            $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
+
+            $this->view('admins/editProfile', $data);
+        }
+
+        
         /////////////////////////////////////////////////
         // ADMIN LANDPAGE MECHANIC/ BICYCLE OWNER/ RIDERS, BUTTONS IMPLEMENT
         /////////////////////////////////////////////////
