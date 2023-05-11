@@ -336,6 +336,10 @@
                     $data['email_Err'] = '*Please enter your email';
                 }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
                     $data['email_Err'] = '*Please enter a valid email';
+                }else{
+                    if($this->riderModel->findUserByEmail($data['email']) && $data['email'] != $_SESSION['user_email']){
+                        $data['email_err'] = "*Email is already registered";
+                    }
                 }
 
                 //validate the phone number
@@ -343,6 +347,13 @@
                     $data['phone_Err'] = '*Please enter your phone number';
                 }else if(!preg_match("/^[0-9]{10}$/", $data['phone'])){
                     $data['phone_Err'] = '*Please enter a valid phone number';
+                }else{
+                    if($this->riderModel->findPhoneNumber($data['phone']) && $data['phone'] != $_SESSION['user_pNumber']){
+                        $data['phone_err'] = "*Phone number is already registered";
+                    }else{
+                        //update phone number
+                        //pass
+                    }
                 }
 
                 //validate the NIC
@@ -352,6 +363,13 @@
                     // if the NIC is not empty, check if it is a valid NIC - it should have 12 numbers or 9 numbers and a v/V/x/X
                 }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['NIC']) && !preg_match("/^[0-9]{12}$/", $data['NIC'])){
                     $data['NIC_Err'] = '*Please enter a valid NIC';
+                }else{
+                    if($this->riderModel->findNicNumber($data['NIC']) && $data['NIC'] != $_SESSION['user_NIC']){
+                        $data['nic_err'] = "*NIC is already registered";
+                    }else{
+                        //update nic
+                        //pass
+                    }
                 }
 
                 //if there are no errors

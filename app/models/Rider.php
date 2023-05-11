@@ -176,6 +176,13 @@
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
+                // update session variables
+                $_SESSION['user_NIC'] = $nic;
+                $_SESSION['user_fName'] = $fName;
+                $_SESSION['user_lName'] = $lName;
+                $_SESSION['user_email'] = $email;
+                $_SESSION['user_pNumber'] = $phone;
+
                 return true;
             }else{
                 return false;
@@ -326,5 +333,49 @@
             }else{
                 return false;
             }
+        }
+
+        //////////////////////////// validation for user update ////////////////////////////
+
+        public function findUserByEmail($userEmail){
+            $this->db->prepareQuery("SELECT * FROM users where emailAdd = '$userEmail'");
+            // $this->db->bind(':email', $userEmail);
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //find NIC number in the database
+        public function findNicNumber($userNIC){
+            $this->db->prepareQuery("SELECT * FROM users where NIC = '$userNIC'");
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //find phone number in the database
+        public function findPhoneNumber($userPNumber){
+            $this->db->prepareQuery("SELECT * FROM users where phoneNumber = '$userPNumber'");
+
+            $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }          
         }
     }

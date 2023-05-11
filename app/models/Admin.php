@@ -672,10 +672,11 @@
             $fName = $data['fName'];
             $lName = $data['lName'];
             $uemail = $data['email'];
+            $phone = $data['pNumber'];
             $userID = $_SESSION['user_ID'];
             
             // $temp = "INSERT INTO users (NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')";
-            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$uemail', NIC = '$unic' WHERE userID = '$userID' ";
+            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$uemail', NIC = '$unic', phoneNumber = $phone WHERE userID = '$userID' ";
             $this->db->prepareQuery($temp);
         
             if($this->db->executeStmt()){
@@ -684,6 +685,7 @@
                 $_SESSION['user_fName'] = $fName;
                 $_SESSION['user_lName'] = $lName;
                 $_SESSION['user_email'] = $uemail;
+                $_SESSION['user_pNumber'] = $phone;
                 
                 return true;
             }else{

@@ -132,12 +132,12 @@
                 }else{
                     //check weather phone number is availble in database
                     // true means that phone number is already taken.
-                    // if($this->adminModel->findPhoneNumber($data['pNumber'])){
+                    if($this->adminModel->findPhoneNumber($data['pNumber']) && $data['pNumber'] != $_SESSION['user_pNumber']){
                         
-                    //     $data['pNumber_err'] = "*Phone Number is already taken";
-                    // }else{
-                    //     //pass
-                    // }
+                        $data['pNumber_err'] = "*Phone Number is already taken";
+                    }else{
+                        //pass
+                    }
                 }
                 
                 // print_r($data);
