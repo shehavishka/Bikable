@@ -26,7 +26,7 @@
             <div class="admin__data__area__top--title">User Profile</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/admins/editProfile'">
+                    <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/admins/profileEdit'">
                 </div>
                 <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/admins/changePassword'">
@@ -77,7 +77,7 @@
                         <div class="user_detail_x">
                             <label>Name</label>
                             <div class="user__name">
-                                <?php echo($data['userDetailObject']->firstName . " " . $data['userDetailObject']->lastName); ?>
+                                <?php echo($_SESSION['user_fName'] . " " . $_SESSION['user_lName']); ?>
                             </div>
                         </div>
                         <div class="user_detail_x">

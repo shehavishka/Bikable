@@ -667,18 +667,24 @@
             return $this->db->single();
         }
 
-        public function updateUserDetails($data){
-            $userID = $_SESSION['user_ID'];
+        public function updateProfile($data){
+            $unic = $data['nic'];
             $fName = $data['fName'];
             $lName = $data['lName'];
-            $email = $data['email'];
-            $phone = $data['phone'];
-            $nic = $data['NIC'];
-
-            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$email', phoneNumber = '$phone', NIC = '$nic' WHERE userID = $userID";
+            $uemail = $data['email'];
+            $userID = $_SESSION['user_ID'];
+            
+            // $temp = "INSERT INTO users (NIC, firstName, lastName, phoneNumber, role, status, password, emailAdd ) VALUES ('$unic', '$fName', '$lName', '$upNumber', '$urole', '$ustatus', '$uPassword', '$uemail')";
+            $temp = "UPDATE users SET firstName = '$fName', lastName = '$lName', emailAdd = '$uemail', NIC = '$unic' WHERE userID = '$userID' ";
             $this->db->prepareQuery($temp);
-
+        
             if($this->db->executeStmt()){
+                // update session variables
+                $_SESSION['user_NIC'] = $unic;
+                $_SESSION['user_fName'] = $fName;
+                $_SESSION['user_lName'] = $lName;
+                $_SESSION['user_email'] = $uemail;
+                
                 return true;
             }else{
                 return false;

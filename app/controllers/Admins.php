@@ -44,111 +44,151 @@
 
         public function profilePage(){
             $data = [
-                'userDetailObject' => '',
-                'name_Err' => '',
-                'email_Err' => '',
-                'phone_Err' => '',
-                'NIC_Err' => '',
-                'password_Err' => '',
+                // 'userDetailObject' => '',
+                // 'name_Err' => '',
+                // 'email_Err' => '',
+                // 'phone_Err' => '',
+                // 'NIC_Err' => '',
+                // 'password_Err' => '',
             ];
 
-            $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
+            // $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
 
             $this->view('admins/viewProfile', $data);
         }
 
         public function profileEdit(){
-
+            /**
+             * This function is for update admin's details
+             * need to validate submitted data 
+            */
+        
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // get the form data store in data variable
                 $data = [
-                    'name' => trim($_POST['name']),
+                    'fName' => trim($_POST['first_name']),
+                    'lName' => trim($_POST['last_name']),
                     'email' => trim($_POST['email']),
-                    'phone' => trim($_POST['phone']),
-                    'NIC' => trim($_POST['NIC']),
-                    'fName' => '',
-                    'lName' => '',
-
-                    'userDetailObject' => '',
-
-                    'name_Err' => '',
-                    'email_Err' => '',
-                    'phone_Err' => '',
-                    'NIC_Err' => '',
+                    'nic' => trim($_POST['nic_number']),
+                    'pNumber' => trim($_POST['pNumber']),
+                    // 'status' => trim($_POST['status']),
+                    // 'userRole' => strtolower(trim($_POST['user_role'])),
+                    // 'userPassword' => '', // this generate after confirmed entered details are ready.
+        
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    'pNumber_err' => '',
+                    // 'status_err' => '',
+                    // 'userRole_err' => ''
                 ];
-
-                //split the name into first and last name
-                
-                //validate the name
-                if(empty($data['name'])){
-                    $data['name_Err'] = '*Please enter your name';
-                }else if(!preg_match("/^[a-zA-Z ]*$/", $data['name'])){
-                    $data['name_Err'] = '*Please enter a valid name';
+        
+                //validate first name weather it is empty or not
+                if(empty($data['fName'])){
+                    $data['fName_err'] = '*Please enter first name';
+                } 
+        
+                //validate last name weather it is empty or not
+                if(empty($data['lName'])){
+                    $data['lName_err'] = '*Please enter last name';
+                }
+        
+                //validate email weather it is empty or not
+                if(empty($data['email'])){
+                    $data['email_err'] = '*Please enter email';
+                }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+                    $data['email_err'] = '*Please enter a valid email';
                 }else{
-                    $name = explode(" ", $data['name']);
-                    //check that exactly 2 names were entered
-                    if(count($name) == 2){
-                        $data['fName'] = $name[0];
-                        $data['lName'] = $name[1];
+                    // //check weather email is availble in database
+                    // // true means that email is already taken.
+                    if($this->adminModel->findUserByEmail($data['email']) && $data['email'] != $_SESSION['user_email']){
+                        $data['email_err'] = "*Email is already registered";
                     }else{
-                        $data['name_Err'] = '*Please enter exactly two names';
+                        //update email
+                        //pass
                     }
                 }
-
-                //validate the email
-                if(empty($data['email'])){
-                    $data['email_Err'] = '*Please enter your email';
-                }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
-                    $data['email_Err'] = '*Please enter a valid email';
-                }
-
-                //validate the phone number
-                if(empty($data['phone'])){
-                    $data['phone_Err'] = '*Please enter your phone number';
-                }else if(!preg_match("/^[0-9]{10}$/", $data['phone'])){
-                    $data['phone_Err'] = '*Please enter a valid phone number';
-                }
-
-                //validate the NIC
-                if(empty($data['NIC'])){
-                    $data['NIC_Err'] = '*Please enter your NIC';
-
-                    // if the NIC is not empty, check if it is a valid NIC - it should have 12 numbers or 9 numbers and a v/V/x/X
-                }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['NIC']) && !preg_match("/^[0-9]{12}$/", $data['NIC'])){
-                    $data['NIC_Err'] = '*Please enter a valid NIC';
-                }
-
-                //if there are no errors
-                if(empty($data['name_Err']) && empty($data['email_Err']) && empty($data['phone_Err']) && empty($data['NIC_Err'])){
-                    //update user details
-                    if($this->adminModel->updateUserDetails($data)){
-                        $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
-                        header('location: ' . URLROOT . '/admins/profilePage');
-                        return;
+        
+                //validate nic weather it is empty or not
+                if(empty($data['nic'])){
+                    $data['nic_err'] = '*Please enter NIC';
+                }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['nic']) && !preg_match("/^[0-9]{12}$/", $data['nic'])){
+                    $data['nic_err'] = '*Please enter a valid NIC';
+                }else{
+                    //check weather nic is availble in database
+                    // true means that nic is already taken.
+                    if($this->adminModel->findNicNumber($data['nic']) && $data['nic'] != $_SESSION['user_NIC']){
+                        $data['nic_err'] = "*NIC is already registered";
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        //update nic
+                        //pass
+                    }
+                }
+        
+                //validate phone number weather it is empty or not
+                if(empty($data['pNumber'])){
+                    $data['pNumber_err'] = '*enter phone Number';
+                }else{
+                    //check weather phone number is availble in database
+                    // true means that phone number is already taken.
+                    // if($this->adminModel->findPhoneNumber($data['pNumber'])){
+                        
+                    //     $data['pNumber_err'] = "*Phone Number is already taken";
+                    // }else{
+                    //     //pass
+                    // }
+                }
+                
+                // print_r($data);
+                // die();
+                if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) &&  empty($data['nic_err']) && empty($data['pNumber_err'])){
+                    //if all data are valid then update user details
+                    if($this->adminModel->updateProfile($data)){
+                        //update session variables
+                        $_SESSION['user_fName'] = $data['fName'];
+                        $_SESSION['user_lName'] = $data['lName'];
+                        $_SESSION['user_email'] = $data['email'];                       
+                        $_SESSION['user_NIC'] = $data['nic'];
+                        //redirect to the profile page
+                        $this->view('admins/viewProfile');
+                        echo "<script>
+                                Swal.fire(
+                                    'Changed successfully',
+                                    'Personal Data Changed Successfully',
+                                )
+                            </script>";
+                    }else{
+                        die('something went wrong');
+                        //redirect to the error page
                     }
                 }else{
                     //load the view with errors
-                    $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
                     $this->view('admins/editProfile', $data);
-                    return;
                 }
+        
+            }else{
+                // if request is not a POST request then load the form
+                $data = [
+                    'fName' => '',
+                    'lName' => '',
+                    'email' => '',
+                    'nic' => '',
+                    // 'pNumber' => '',
+                    // 'password' => '',
+        
+                    'fName_err' => '',
+                    'lName_err' => '',
+                    'email_err' => '',
+                    'nic_err' => '',
+                    'pNumber_err' => '',
+                    // 'password_err' => '',
+                ];
+        
+                //load the view
+                $this->view('admins/editProfile', $data);
             }
-
-            $data = [
-                'userDetailObject' => '',
-                'name_Err' => '',
-                'email_Err' => '',
-                'phone_Err' => '',
-                'NIC_Err' => '',
-                'password_Err' => '',
-            ];
-
-            $data['userDetailObject'] = $this->adminModel->getUserDetails($_SESSION['user_ID']);
-
-            $this->view('admins/editProfile', $data);
+        
         }
 
         
