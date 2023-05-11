@@ -1,4 +1,58 @@
 <?php 
+    // Admins controller class 23-05-11
+    // 1.	adminLandPage
+    // 2.	profilePage
+    // 3.	profileEdit
+    // 4.	addUser
+    // 5.	viewUserProfile
+    // 6.	suspendUser
+    // 7.	deleteUsers
+    // 8.	administrator
+    // 9.	mechanic
+    // 10.	riders
+    // 11.	addbicycleOwner
+    // 12.	bicycleOwner
+    // 13.	editBicycleOwnerProfile
+    // 14.	deleteBicycleOwners
+    // 15.	dockingAreas
+    // 16.	addDA
+    // 17.	deleteDAs
+    // 18.	editDADetails
+    // 19.	bicyclesControl
+    // 20.	addBicycle
+    // 21.	deleteBicycles
+    // 22.	editBicycleDetails
+    // 23.	ridesControl
+    // 24.	addReport
+    // 25.	reportsControl
+    // 26.	editReportDetails
+    // 27.	archivedReports
+    // 28.	unarchiveReports
+    // 29.	archivedReportsControl
+    // 30.	AccidentReportsControl
+    // 31.	BicycleReportsControl
+    // 32.	DAReportsControl
+    // 33.	repairLogControl
+    // 34.	viewRepairLog
+    // 35.	archivedRepairLogControl
+    // 36.	archiveRepairLogs
+    // 37.	unarchiveRepairLogs
+    // 38.	generatePassword
+    // 39.	sendEmailToTheUser
+    // 40.	error404
+    // 41.	sendEmailToTheUserWhenPasswordChanged
+    // 42.	changeImage
+    // 43.	changePassword
+    // 44.	search_administrator
+    // 45.	search_mechanic
+    // 46.	search_riders
+    // 47.	search_bicycleOwner
+    // 48.	search_dockingAreas
+    // 49.	search_bicycles
+    // 50.	search_rides
+    // 51.	search_reports
+
+
     class Admins extends Controller{
         // admin connect to the database
         private $adminModel;

@@ -1,4 +1,31 @@
 <?php 
+    // Rider model class 23-05-11
+    // 1. riderLandPageMapDetails()
+    // 2. getAllMapDetails()
+    // 3. getDADetails($id)
+    // 4. getBikeDetails()
+    // 5. createRide($data)
+    // 6. getLastInsertedRideLogID()
+    // 7. getRideDetails($rideID)
+    // 8. updateRideDetails($data)
+    // 9. checkRideStatus($rideLogID)
+    // 10. checkIfActive($riderID)
+    // 11. updateBikeStatus($bikeID, $status)
+    // 12. updateDockingAreaBikeCount($areaID, $action)
+    // 13. getUserDetails($userID)
+    // 14. updateUserDetails($data)
+    // 15. getRideHistory()
+    // 16. getReportsDetails()
+    // 17. getReportByID()
+    // 18. updateReport()
+    // 19. deleteReport()
+    // 20. checkPassword()
+    // 21. changePassword()
+    // 22. deleteUser()
+    // 23. findUserByEmail()
+    // 24. findNicNumber()
+    // 25. findPhoneNumber()
+
     class Rider {
         private $db;
 
@@ -65,14 +92,6 @@
             // take data from the database as the objects and send them into the controller.
             return $this->db->single();
         }
-
-        //needs modification to check for the ride status and stuff.. currently invalid
-        // public function getCurrentRideDetails($userID){
-        //     $this->db->prepareQuery("SELECT * FROM ridelog WHERE riderID = $userID AND rideEndTimeStamp IS NULL AND status = 1");
-
-        //     // take data from the database as the objects and send them into the controller.
-        //     return $this->db->single();
-        // }
 
         //end ride function -> we just change the status to 2 to show the ride is over
         public function updateRideDetails($data){

@@ -1,4 +1,27 @@
 <?php 
+    // Riders controller class 23-05-11
+    // 1.	riderLandPage
+    // 2.	getMapDADetails
+    // 3.	scanQR
+    // 4.	activeRide
+    // 5.	rideEnded
+    // 6.	track_user
+    // 7.	profilePage
+    // 8.	profileEdit
+    // 9.	viewHistory
+    // 10.	viewReports
+    // 11.	createReport
+    // 12.	editReport
+    // 13.	deleteReport
+    // 14.	changePassword
+    // 15.	deleteAccount
+    // 16.	closestPoint
+    // 17.	withinRadius
+    // 18.	distance
+    // 19.	redirectIfActive
+    // 20.	class - Track
+
+    
     class Riders extends Controller{
         // rider connect to the database
         private $riderModel;

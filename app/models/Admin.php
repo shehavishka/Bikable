@@ -1,4 +1,53 @@
 <?php 
+    // Admin model class 23-05-11
+    // 1.	findUserByEmail
+    // 2.	findNicNumber
+    // 3.	findPhoneNumber
+    // 4.	findBOByEmail
+    // 5.	findBONicNumber
+    // 6.	findBOPhoneNumber
+    // 7.	getDashboardRepairLog
+    // 8.	getDashboardReports
+    // 9.	getDashboardBicycles
+    // 10.	getDashboardRides
+    // 11.	addUserIntoTheSystem
+    // 12.	getRiderDetails
+    // 13.	getMechanicDetails
+    // 14.	addBikeOwnerIntoTheSystem
+    // 15.	updateBikeOwner
+    // 16.	getbikeOwnerDetails
+    // 17.	addDAIntoTheSystem
+    // 18.	updateDA
+    // 19.	getDADetails
+    // 20.	getAllDADetails
+    // 21.	addBicycleIntoTheSystem
+    // 22.	updateBicycle
+    // 23.	getBikeDetails
+    // 24.	getRepairLogDetails
+    // 25.	addReportIntoTheSystem
+    // 26.	getReportDetails
+    // 27.	getArchivedRepairLogDetails
+    // 28.	getArchivedReportDetails
+    // 29.	assignReportMechanic
+    // 30.	findUserByUserID
+    // 31.	findBikeOwnerByID
+    // 32.	findBicycleByID
+    // 33.	findAreaByID
+    // 34.	findLogbyID
+    // 35.	findReportbyID
+    // 36.	suspendUserByUserID
+    // 37.	activateUserByUserID
+    // 38.	removeUser
+    // 39.	removeBikeOwner
+    // 40.	removeDA
+    // 41.	removeBicycle
+    // 42.	removeReport
+    // 43.	removeRepairLog
+    // 44.	unarchiveReport
+    // 45.	unarchiveRepairLog
+    // 46.	getUserDetails
+    // 47.	updateProfile
+
     class Admin {
         private $db;
 
