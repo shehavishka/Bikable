@@ -283,7 +283,7 @@
         
                 if(empty($data['currentPassword_err']) && empty($data['confirmPassword_err'])){
                     if($this->adminModel->updatePassword($data)){
-                        $this->view('admins/profilePage');
+                        $this->view('admins/viewProfile');
                         
                         // send email to the user
                         // $userName = $_SESSION['user_fName'];
