@@ -317,7 +317,7 @@
 
             // we need to hash passwords
             $temp = $row->password;
-            if($password == $temp){
+            if(password_verify(strval($password), strval($temp))){
                 return true;
             }else{
                 return false;
@@ -329,8 +329,10 @@
             $newPassword = $_POST['newPassword'];
             $confirmPassword = $_POST['confirmPassword'];
 
+            $hashedPassword = password_hash(strval($newPassword), PASSWORD_DEFAULT);
+
             if($newPassword == $confirmPassword){
-                $temp = "UPDATE users SET password = '$newPassword' WHERE userID = $userID";
+                $temp = "UPDATE users SET password = '$hashedPassword' WHERE userID = $userID";
                 $this->db->prepareQuery($temp);
 
                 if($this->db->executeStmt()){
