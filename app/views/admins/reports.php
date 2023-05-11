@@ -65,7 +65,7 @@
                         <td><?php echo printValue($oneObject, 'reporterID') ?></td>
                         <td>
                             <?php 
-                                if($oneObject->status == 1){
+                                if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
                                     echo "Inactive";
