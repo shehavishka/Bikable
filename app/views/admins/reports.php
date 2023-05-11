@@ -46,7 +46,7 @@
                     <th style="width: 5%;">Report ID</th>
                     <th style="width: 6%;">Reporter ID</th>
                     <th style="width: 5%;">Status</th>
-                    <th style="width: 10%;">Problem Title</th>
+                    <th style="width: 12%;">Problem Title</th>
                     <th style="width: 20%;">Problem Description</th>
                     <th style="width: 8%;">Logged Time</th>
                     <th style="width: 5%;">Assigned Mechanic</th>
@@ -55,7 +55,7 @@
                     <th style="width: 5%;">Accident Time</th>
                     <th style="width: 5%;">Bicycle ID</th>
                     <th style="width: 5%;">Area ID</th>
-                    <th style="width: 5%;"></th>
+                    <th style="width: 3%;"></th>
 
                     <?php foreach($data['report_details'] as $oneObject) : ?>
                     <tr>
