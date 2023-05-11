@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admins/reports.css">
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Archived Reports</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
     <section class="admin_data_area">
 
         <!-- dashboard section -->
-        <?php require APPROOT . '/views/inc/header.php'; ?>
+        <?php require APPROOT . '/views/inc/header-admin.php'; ?>
 
         <!-- REAL DATA AREA -->
         <!-- admin real data top -->

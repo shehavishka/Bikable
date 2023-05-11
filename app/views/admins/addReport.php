@@ -15,7 +15,7 @@
     <?php require APPROOT . '/views/inc/sidebar-admin.php'; ?>
 
     <section class="data_area">
-        <?php require APPROOT . '/views/inc/header.php'; ?>
+        <?php require APPROOT . '/views/inc/header-admin.php'; ?>
 
         <form action="<?php echo URLROOT;?>/admins/addReport" method="POST" id="create_form">
        
