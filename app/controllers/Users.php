@@ -110,7 +110,28 @@
                     'password_err' => '',
 
                 ];
-                $this->view('users/login', $data);
+
+                // if already logged in, redirect to the user's home
+                if(isset($_SESSION['user_ID'])){
+                    if(ucwords($_SESSION['user_role']) == 'Owner')
+                    {
+                        redirect('owners/ownerLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Administrator')
+                    {
+                        redirect('admins/adminLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Mechanic')
+                    {
+                        redirect('mechanics/mechanicLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Rider')
+                    {
+                        redirect('riders/riderLandPage');
+                    }
+                }else{
+                    $this->view('users/login', $data);
+                }
             }
         }
 
@@ -182,6 +203,8 @@
             unset($_SESSION['user_role']);
             unset($_SESSION['user_status']);
             unset($_SESSION['user_email']);
+            unset($_SESSION['user_registered_date']);
+            unset($_SESSION['user_last_logged_in']);
 
             session_destroy();
             redirect('users/login');
