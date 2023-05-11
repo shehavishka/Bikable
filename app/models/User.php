@@ -34,4 +34,14 @@
                 return false;
             }
         }
+
+        public function updateLastLoggedIn($userID, $lastLoggedIn){
+            $this->db->prepareQuery("UPDATE users SET lastLoggedIn = '$lastLoggedIn' WHERE userID = '$userID'");
+            
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }

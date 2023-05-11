@@ -137,6 +137,14 @@
             $_SESSION['user_role'] = $user->role;
             $_SESSION['user_status'] = $user->status;
             $_SESSION['user_email'] = $user->emailAdd;
+            $_SESSION['user_registered_date'] = $user->registeredDate;
+
+            // get current timestamp
+            $lastLoggedIn = date('Y-m-d H:i:s');
+            $_SESSION['user_last_logged_in'] = $lastLoggedIn;
+
+            // update last logged in time
+            $this->userModel->updateLastLoggedIn($user->userID, $lastLoggedIn);
 
             //redirect to the user's(owners) home
             // die("logged successfully");
