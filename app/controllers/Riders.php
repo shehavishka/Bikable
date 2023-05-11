@@ -37,10 +37,6 @@
             header('location: ' . URLROOT . '/users/login');
         }
 
-        // public function error404(){
-        //     $this->view('admins/error404');
-        // }
-
         public function riderLandPage(){
             //check if a ride is already active and the user simply refreshed the page
             if($this->redirectIfActive()){
