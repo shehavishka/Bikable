@@ -71,10 +71,6 @@
             header('location: ' . URLROOT . '/users/login');
         }
 
-        public function error404(){
-            $this->view('admins/error404');
-        }
-
         public function adminLandPage(){
             /**
              *     Tasks
@@ -1781,7 +1777,11 @@
             $mail->send();
         }
 
-
+        public function landToErrorPage(){
+            //load the error page only view
+            $this->view('users/error');
+        }
+        
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////// UPDATE BUTTON (SUSPEND) ///////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
