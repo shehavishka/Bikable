@@ -37,12 +37,11 @@
                 </div>
                 <div class="data_area__top--twobuttons">
                     <div class="add_user_button">
-                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/admins/ 
-                            <?php 
+                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT;?>/admins/<?php 
                                 if($data['userDetailObject']->role == 'Mechanic' || $data['userDetailObject']->role == 'mechanic'){
-                                    header('Location:'.URLROOT.'/admins/mechanic');
+                                    echo 'mechanic';
                                 }else{
-                                    header('Location:'.URLROOT.'/admins/riders');
+                                    echo 'riders';
                                 }
                             ?>
                         '">
@@ -63,14 +62,20 @@
 
                 <div class="data__area__detail--reporterID">
                         <div class="data--name--label">Last logged in: </div>
-                        <div class="data--name--content">2023-02-12</div>
-                        <!-- <div class="data--name--content"><?php echo $data['userDetailObject']->lastLogged;?></div> -->
+                        <!-- <div class="data--name--content">2023-02-12</div> -->
+                        <div class="data--name--content"><?php 
+                            if($data['userDetailObject']->lastLoggedIn == null){
+                                echo "Not logged in yet";
+                            }else{
+                                echo $data['userDetailObject']->lastLoggedIn;
+                            }
+                        ?></div>
                 </div>
 
                 <div class="data__area__detail--reportID">
                         <div class="data--name--label">Registered date: </div>
-                        <div class="data--name--content">2023-02-12</div>
-                        <!-- <div class="data--name--content"><?php echo $data['userDetailObject']->regDate; ?></div> -->
+                        <!-- <div class="data--name--content">2023-02-12</div> -->
+                        <div class="data--name--content"><?php echo $data['userDetailObject']->registeredDate; ?></div>
                 </div>
 
                 <div class="data__area__detail--reporterID">

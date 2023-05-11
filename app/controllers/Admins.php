@@ -54,7 +54,9 @@
     // 50.	search_rides
     // 51.	search_reports
 
-
+    // dependencies for phpmailer
+    use PHPMailer\PHPMailer\PHPMailer;
+    
     class Admins extends Controller{
         // admin connect to the database
         private $adminModel;
