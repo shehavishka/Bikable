@@ -41,6 +41,7 @@
     // 38.	generatePassword
     // 39.	sendEmailToTheUser
     // 40.	error404
+
     // 41.	sendEmailToTheUserWhenPasswordChanged
     // 42.	changeImage
     // 43.	changePassword
@@ -345,7 +346,7 @@
                     'status' => trim($_POST['status']),
                     'nic' => trim($_POST['nic_number']),
                     'pNumber' => trim($_POST['contact_number']),
-                    'userRole' => strtolower(trim($_POST['user_role'])),
+                    'userRole' => ucfirst(strtolower(trim($_POST['user_role']))),
 
                     'userPassword' => '', // this generate after confirmed entered details are ready.
 
@@ -420,13 +421,13 @@
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
                     //every things up to ready 
 
-                    // hash password
-                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-                    $data['userPassword'] = $this->generatePassword();
                     
-                    //After authentication is done send new Password to the user to his/her email.
-                    //$this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
+                    $temp = $this->generatePassword();
+                    // hash password
+                    $data['userPassword'] = password_hash($temp, PASSWORD_DEFAULT);
+                    
+                    //email new user with password
+                    $this->sendEmailToTheUser($data['fName'], $data['email'], $temp);
 
                     // register user
                     if($this->adminModel->addUserIntoTheSystem($data)){
