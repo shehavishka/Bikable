@@ -26,10 +26,10 @@
             <div class="admin__data__area__top--title">User Profile</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/owners/ownerEditsHisNewDetails'">
+                    <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/admins/editProfile'">
                 </div>
                 <div class="delete_user_button">
-                    <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/owners/ownerChangesHisPassword'">
+                    <input type="button" class="btn btn_delete" value="Change Password" onclick="location.href='<?php echo URLROOT;?>/admins/changePassword'">
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
                             <label>Status</label>
                             <div class="user__data">
                                 <?php 
-                                    if($_SESSION['user_status'] == 1){
+                                    if($_SESSION['user_status'] == 0){
                                         echo "Active";
                                     }else{
                                         echo "Inactive";
