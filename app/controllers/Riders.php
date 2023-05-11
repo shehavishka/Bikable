@@ -19,7 +19,8 @@
     // 17.	withinRadius
     // 18.	distance
     // 19.	redirectIfActive
-    // 20.	class - Track
+    // 20.  landToErrorPage
+    // 21.	class - Track
 
     
     class Riders extends Controller{
@@ -256,14 +257,16 @@
                         if($this->riderModel->updateBikeStatus($data['bicycleID'], 0)){
                             $this->riderModel->updateDockingAreaBikeCount($data['endArea'], 1);
                         }else{
-                            //need to replace this with a 404 page
-                            die("something went wrong");
+                            // redirect to error page
+                            $this->landToErrorPage();
+                            die();
                         }
 
                         $this->view('riders/rideEnded', $data);
                     }else{
-                        //need to replace this with a 404 page
-                        die("something went wrong");
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     $this->view('riders/rideEnded', $data);
@@ -403,9 +406,9 @@
                         header('location: ' . URLROOT . '/riders/profilePage');
                         return;
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -560,9 +563,9 @@
                         header('location: ' . URLROOT . '/riders/viewReports');
                         return;
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -677,9 +680,9 @@
                         header('location: ' . URLROOT . '/riders/viewReports');
                         return;
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -720,9 +723,9 @@
                     header('location: ' . URLROOT . '/riders/viewReports');
                     return;
                 }else{
-                    //error page
-                    die("something went wrong");
-                    return;
+                    // redirect to error page
+                    $this->landToErrorPage();
+                    die();
                 }
             }else{
                 header('location: ' . URLROOT . '/riders/viewReports');
@@ -780,9 +783,9 @@
                         header('location: ' . URLROOT . '/riders/profilePage');
                         return;
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -802,9 +805,9 @@
                     header('location: ' . URLROOT . '/riders/logout');
                     return;
                 }else{
-                    //error page
-                    die("something went wrong");
-                    return;
+                    // redirect to error page
+                    $this->landToErrorPage();
+                    die();
                 }
             }else{
                 $this->view('riders/deleteAccount');
@@ -882,6 +885,11 @@
             }else{
                 header('location: ' . URLROOT . '/users/login');
             }
+        }
+
+        public function landToErrorPage(){
+            //load the error page only view
+            $this->view('users/error');
         }
 
     }

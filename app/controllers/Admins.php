@@ -40,7 +40,7 @@
     // 37.	unarchiveRepairLogs
     // 38.	generatePassword
     // 39.	sendEmailToTheUser
-    // 40.	error404
+    // 40.	landToErrorPage
 
     // 41.	sendEmailToTheUserWhenPasswordChanged
     // 42.	changeImage
@@ -213,8 +213,9 @@
                                 )
                             </script>";
                     }else{
-                        die('something went wrong');
                         //redirect to the error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -270,8 +271,9 @@
                         $data['currentPassword_err'] = "*invalid password";
                     }
                 }else{
-                    die("Something went wrong!!!");
-                    // $this->landToErrorPage();
+                    // redirect to error page
+                    $this->landToErrorPage();
+                    die();
                 }
         
                 if(strval($data["newPassword"]) == strval($data["confirmPassword"])){
@@ -296,8 +298,9 @@
                         //             )
                         //     </script>";
                     }else{
-                        die('something went wrong');
-                        // $this->landToErrorPage();
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
@@ -546,7 +549,9 @@
                     }
                 }
             }else{
-                die("some thing went wrong with the process"); //need a 404 page here
+                // redirect to error page
+                $this->landToErrorPage();
+                die();
             }   
         }
 
@@ -1443,9 +1448,9 @@
                         header('location: ' . URLROOT . '/admins/reportsControl');
                         return;
                     }else{
-                        //error page
-                        die("something went wrong");
-                        return;
+                        // redirect to error page
+                        $this->landToErrorPage();
+                        die();
                     }
                 }else{
                     //load the view with errors
