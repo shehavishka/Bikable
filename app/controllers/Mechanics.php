@@ -212,6 +212,68 @@ class Mechanics extends Controller
         $this->view('mechanics/reports', $data);
     }
 
+    public function archiveReports(){
+        if($_SERVER['REQUEST METHOD'] == "POST"){
+            $selectedRows = json_decode($_POST['selectedRows']);
+
+            foreach($selectedRows as $selectedRow){
+                $this->mechanicModel->removeReport($selectedRow);
+            }
+            header('Location:'.URLROOT.'/mechanics/reportsControl');
+            }else{
+                die("button didn't work correctly.");
+            }
+            $this->view('mechanics/reportsControl');            
+    }
+
+    public function unarchiveReports(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $selectedRows = json_decode($_POST['selectedRows']);
+            
+            foreach($selectedRows as $selectedRow){
+                // echo $selectedRow." ";
+                $this->mechanicModel->unarchiveReport($selectedRow);
+            }
+            header('Location:'.URLROOT.'/mechanics/archivedReportsControl');
+        }else{
+            die("button didn't work correctly.");
+        }
+        $this->view('mechanics/reportsControl');            
+
+    }
+
+    public function archiveRepairLogs(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $selectedRows = json_decode($_POST['selectedRows']);
+            
+            foreach($selectedRows as $selectedRow){
+                // echo $selectedRow." ";
+                $this->mechanicModel->removeRepairLog($selectedRow);
+            }
+            header('Location:'.URLROOT.'/mechanics/repairLogControl');
+        }else{
+            die("button didn't work correctly.");
+        }
+        $this->view('mechanics/repairLogsControl');            
+
+    }
+
+    public function unarchiveRepairLogs(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $selectedRows = json_decode($_POST['selectedRows']);
+            
+            foreach($selectedRows as $selectedRow){
+                // echo $selectedRow." ";
+                $this->mechanicModel->unarchiveRepairLog($selectedRow);
+            }
+            header('Location:'.URLROOT.'/mechanics/archivedRepairLogControl');
+        }else{
+            die("button didn't work correctly.");
+        }
+        $this->view('mechanics/repairLogsControl');            
+
+    }
+
 
 
     public function addReport()
@@ -334,8 +396,7 @@ class Mechanics extends Controller
                 return;
             }
         }
-
-        $this->view('mechanics/addReport', $data);            
+        $this->view('mechanics/reportsControl');            
     }
 
     // public function viewAssignedReport($data){
@@ -472,14 +533,9 @@ class Mechanics extends Controller
     //         }
     // }
 
-    public function viewAssignedReports(){
-
-        // $data['mechanicID'] = $_SESSION['mechanicID'];
-        
+    public function viewAssignedReports(){       
         $assignedReports = $this->mechanicModel->getReportByUserID($_SESSION['user_ID']);
-        // $data = [
-        //     'assigned_reports'=>$assignedReports
-        // ];
+
         $data = [
             'assigned_reports'=>$assignedReports,
             'mechanicID'=>$_SESSION['user_ID'],
@@ -488,8 +544,6 @@ class Mechanics extends Controller
         $this->view('mechanics/viewAssignedReports',$data);
     }
     
-    
-
     public function editReport(){
         $data = [
             'reportID' => '',

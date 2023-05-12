@@ -296,5 +296,59 @@
             }
         }
 
+        public function removeReport($reportID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
 
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function removeRepairLog($logID){
+            $status = 3;
+            $this->db->prepareQuery("UPDATE repairlog SET status='$status' WHERE logID = '$logID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function unarchiveReport($reportID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE reports SET status='$status' WHERE reportID = '$reportID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function unarchiveRepairLog($logID){
+            $status = 0;
+            $this->db->prepareQuery("UPDATE repairlog SET status='$status' WHERE logID = '$logID'");
+
+            $row = $this->db->single();
+
+            //check row
+            if($this->db->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }

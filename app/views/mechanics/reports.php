@@ -27,14 +27,14 @@
                     <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/mechanics/addReport'">
                 </div>
 
-                <!-- <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/archivedReports'">
-                </div> -->
+                <div class="add_user_button">
+                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/viewArchivedReports'">
+                </div>
                 
                 <form action="<?php echo URLROOT;?>/mechanics/archiveReports" method="POST" id="userInterface">
-                <!-- <div class="delete_user_button">
+                <div class="delete_user_button">
                     <input type="submit" class="btn btn_delete" value="Archive Selected">
-                </div> -->
+                </div>
             </div>
 
         </div>
