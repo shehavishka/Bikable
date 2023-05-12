@@ -964,9 +964,10 @@
             //code will implement here
             $DADetails = $this->adminModel->getDADetails();
             $data = [
-                'DA_details' => $DADetails
+                'DA_details' => $DADetails,
+                'mechanicName_details' => '',
             ];
-            
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //view details
             $this->view('admins/dockingareas', $data);
         }
@@ -1475,8 +1476,10 @@
             $data = [
                 'report_details' => $reportDetails,
                 'map_details' => '',
+                'mechanicName_details' => '',
             ];
             $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reports', $data);
         }
@@ -1486,8 +1489,10 @@
             $data = [
                 'report_details' => $reportDetails,
                 'map_details' => '',
+                'mechanicName_details' => '',
             ];
             $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/archivedReports', $data);
         }
@@ -1503,9 +1508,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsAccident', $data);
         }
@@ -1521,9 +1527,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsBike', $data);
         }
@@ -1541,8 +1548,10 @@
             $data = [
                 'report_details' => $reportDetails,
                 'map_details' => '',
+                'mechanicName_details' => '',
             ];
             $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsDA', $data);
         }
@@ -1648,9 +1657,10 @@
             //code will implement here
             $repairLogDetails = $this->adminModel->getRepairLogDetails();
             $data = [
-                'repairLog_details' => $repairLogDetails
+                'repairLog_details' => $repairLogDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/repairLog', $data);
         }
@@ -1671,9 +1681,10 @@
         public function archivedRepairLogControl(){
             $repairLogDetails = $this->adminModel->getArchivedRepairLogDetails();
             $data = [
-                'repairLog_details' => $repairLogDetails
+                'repairLog_details' => $repairLogDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/archivedRepairLog', $data);
         }

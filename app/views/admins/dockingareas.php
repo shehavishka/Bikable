@@ -44,9 +44,10 @@
                     <th style="width: 7%;">Area ID</th>
                     <th style="width: 12%;">Area Name</th>
                     <th style="width: 10%;">Status</th>
-                    <th style="width: 20%;">Address</th>
+                    <th style="width: 15%;">Address</th>
                     <th style="width: 7%;">Radius</th>
                     <th style="width: 7%;">Current Bikes</th>
+                    <th style="width: 7%;">Assigned Mechanic</th>
                     <th style="width: 5%;"></th>
 
                 </tr>
@@ -70,6 +71,11 @@
                         <td><?php echo $oneObject->traditionalAdd ?></td>
                         <td><?php echo $oneObject->locationRadius ?></td>
                         <td><?php echo $oneObject->currentNoOfBikes ?></td>
+                        <td><?php foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->assignedMechanic) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                } ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <a href="<?php echo URLROOT;?>/admins/editDADetails?areaID=<?php echo $oneObject->areaID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>

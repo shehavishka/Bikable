@@ -71,7 +71,13 @@
                         <td><?php echo printValue($oneObject, 'problemTitle')?></td>
                         <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
                         <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
-                        <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
+                        <td><?php if($oneObject->assignedMechanic){
+                                foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->assignedMechanic) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                }
+                            }else{echo "-";} ?></td>
                         <td><?php echo printValue($oneObject, 'accidentLat') ?><br><?php echo printValue($oneObject, 'accidentLong') ?></td>
                         <td><?php echo printValue($oneObject, 'accidentTimeApprox') ?></td>
                         <td><?php echo printValue($oneObject, 'bicycleID') ?></td>

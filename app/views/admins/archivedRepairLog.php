@@ -58,7 +58,11 @@
                     <tr>
                         <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->logID ?>"></td>
                         <td><?php echo $oneObject->logID ?></td>
-                        <td><?php echo $oneObject->mechanicID ?></td>
+                        <td><?php foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->mechanicID) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                }  ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
                         <td><?php echo $oneObject->problemTitle ?></td>
                         <td><?php 
