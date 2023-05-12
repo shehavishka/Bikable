@@ -396,7 +396,7 @@ class Mechanics extends Controller
                 return;
             }
         }
-        $this->view('mechanics/reportsControl');            
+        $this->view('mechanics/addReport', $data);            
     }
 
     // public function viewAssignedReport($data){
