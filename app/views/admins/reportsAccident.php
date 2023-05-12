@@ -26,7 +26,7 @@
             <div class="admin__data__area__top--title">Accident Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addReport'">
                 </div>
                 
                 <form action="<?php echo URLROOT;?>/admins/archiveReports" method="POST" id="userInterface">
