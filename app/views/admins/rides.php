@@ -51,7 +51,7 @@
                     <?php foreach($data['ride_details'] as $oneObject) : ?>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td><?php echo $oneObject->rideLogID ?></td>
+                        <td><?php echo $oneObject->riderID ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
                         <td>
                             <?php 

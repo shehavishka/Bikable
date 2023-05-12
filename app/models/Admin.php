@@ -175,7 +175,7 @@
 
         public function getDashboardRides(){
 
-            $this->db->prepareQuery("SELECT * FROM ridelog where status = 0 order by rideStartTimeStamp desc limit 6");
+            $this->db->prepareQuery("SELECT * FROM ridelog where status = 2 order by rideStartTimeStamp desc limit 6");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
