@@ -474,13 +474,19 @@ class Mechanics extends Controller
 
     public function viewAssignedReports(){
 
-        $data['mechanicID'] = $_SESSION['mechanicID'];
-
-        $assignedReports = $this->mechanicModel->getReportByUserID();
+        // $data['mechanicID'] = $_SESSION['mechanicID'];
+        
+        $assignedReports = $this->mechanicModel->getReportByUserID($_SESSION['user_ID']);
+        // $data = [
+        //     'assigned_reports'=>$assignedReports
+        // ];
         $data = [
-            'assigned_reports'=>$assignedReports
+            'assigned_reports'=>$assignedReports,
+            'mechanicID'=>$_SESSION['user_ID'],
         ];
     }
+    
+    
 
     public function editReport(){
         $data = [
