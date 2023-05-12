@@ -9,7 +9,9 @@
     define('DB_PASS', '');
     define('DB_NAME', 'bikable_db');
 
-    define('URLROOT', 'http://localhost/Bikable_23.1.1');
+
+    define('URLROOT', '/Bikable');
+
 
     define('APPEMAIL', 'Bikable2023@gmail.com');
     define('PASSWD', 'snqfzupkesohcmjr');
@@ -17,3 +19,5 @@
 
     //google API details
     define('API_KEY','AIzaSyAdJd3svFUpixnG_ebYv6_dDQQHI1QPvlM');
+
+    date_default_timezone_set('Asia/Calcutta');

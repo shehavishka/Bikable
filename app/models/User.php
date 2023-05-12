@@ -7,7 +7,7 @@
         }
 
         public function findUserByEmail($userEmail){
-            $this->db->prepareQuery("SELECT * FROM users where emailAdd = '$userEmail'");
+            $this->db->prepareQuery("SELECT * FROM users where emailAdd = '$userEmail' AND status = 0");
             // $this->db->bind(':email', $userEmail);
 
             $this->db->single();
@@ -30,20 +30,17 @@
             $passwd = $row->password;
 
             if(password_verify(strval($userPassword),($passwd))){
-                $this->updateLoggedInTime($userEmail);
+                // $this->updateLoggedInTime($userEmail);
                 return $row;
             }else{
                 return false;
             }
         }
 
-        public function updateLoggedInTime($userEmail){
-
-            $this->db->prepareQuery("UPDATE users SET lastLoggedIn = CURRENT_TIMESTAMP WHERE emailAdd = '$userEmail' ");
-
-            $row = $this->db->single();
-
-            if($this->db->rowCount() > 0){
+        public function updateLastLoggedIn($userID, $lastLoggedIn){
+            $this->db->prepareQuery("UPDATE users SET lastLoggedIn = '$lastLoggedIn' WHERE userID = '$userID'");
+            
+            if($this->db->executeStmt()){
                 return true;
             }else{
                 return false;

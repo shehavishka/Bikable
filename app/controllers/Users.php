@@ -110,7 +110,28 @@
                     'password_err' => '',
 
                 ];
-                $this->view('users/login', $data);
+
+                // if already logged in, redirect to the user's home
+                if(isset($_SESSION['user_ID'])){
+                    if(ucwords($_SESSION['user_role']) == 'Owner')
+                    {
+                        redirect('owners/ownerLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Administrator')
+                    {
+                        redirect('admins/adminLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Mechanic')
+                    {
+                        redirect('mechanics/mechanicLandPage');
+                    }
+                    else if(ucwords($_SESSION['user_role']) == 'Rider')
+                    {
+                        redirect('riders/riderLandPage');
+                    }
+                }else{
+                    $this->view('users/login', $data);
+                }
             }
         }
 
@@ -137,6 +158,14 @@
             $_SESSION['user_role'] = $user->role;
             $_SESSION['user_status'] = $user->status;
             $_SESSION['user_email'] = $user->emailAdd;
+            $_SESSION['user_registered_date'] = $user->registeredDate;
+
+            // get current timestamp
+            $lastLoggedIn = date('Y-m-d H:i:s');
+            $_SESSION['user_last_logged_in'] = $lastLoggedIn;
+
+            // update last logged in time
+            $this->userModel->updateLastLoggedIn($user->userID, $lastLoggedIn);
 
             //store last logged in and get registered date
             $_SESSION['user_last_logged_in'] = $user->lastLoggedIn;
@@ -145,7 +174,23 @@
             //redirect to the user's(owners) home
             // die("logged successfully");
             // $this->view('owners/ownerLandPage');
-            redirect('owners/ownerLandPage');
+            if(ucwords($user->role) == 'Owner')
+            {
+                redirect('owners/ownerLandPage');
+            }
+            else if(ucwords($user->role) == 'Administrator')
+            {
+                redirect('admins/adminLandPage');
+            }
+            else if(ucwords($user->role) == 'Mechanic')
+            {
+                redirect('mechanics/mechanicLandPage');
+            }
+            else if(ucwords($user->role) == 'Rider')
+            {
+                redirect('riders/riderLandPage');
+            }
+            //redirect('owners/ownerLandPage');
         }
 
         ///////////////////////////////////
@@ -162,6 +207,8 @@
             unset($_SESSION['user_role']);
             unset($_SESSION['user_status']);
             unset($_SESSION['user_email']);
+            unset($_SESSION['user_registered_date']);
+            unset($_SESSION['user_last_logged_in']);
 
             session_destroy();
             redirect('users/login');
