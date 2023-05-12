@@ -152,7 +152,7 @@
         }
 
         public function getReportByUserID($mechanicID){
-            $this->db->prepareQuery("SELECT * FROM reports WHERE assignedMechanic = '$mechanicID");
+            $this->db->prepareQuery("SELECT * FROM reports WHERE assignedMechanic = '$mechanicID'");
 
             //takes data from the database and sends them to the controller
             return $this->db->resultSet();

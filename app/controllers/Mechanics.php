@@ -484,6 +484,8 @@ class Mechanics extends Controller
             'assigned_reports'=>$assignedReports,
             'mechanicID'=>$_SESSION['user_ID'],
         ];
+
+        $this->view('mechanics/viewAssignedReports',$data);
     }
     
     
