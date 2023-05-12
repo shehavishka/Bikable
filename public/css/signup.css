@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-/* get local font to the webpage */
 @font-face {
     font-family: 'sfmy-regular';
     src:url('../fonts/SF-Pro-Rounded-Regular.otf');
@@ -25,11 +24,11 @@
     --ff-family :  'sfmy-regular',sans-serif;
 }
 
-@media (min-width : 800px){
+@media (min-width: 800px) {
     :root{
         --fs-h1 : 4rem;
         --fs-h2 : 3.75rem;
-        --fs-h3 : 1.5rem;
+        --fs-h3 : 2.5rem;
         --fs-body : 1.2rem;
     }
 }
@@ -42,56 +41,60 @@ body{
     line-height: 1.5;
 }
 
-/*control images*/
-img{
-    display: block;
-    max-width: 100%;
-}
-
-h1 { font-size: var(--fs-h1);}
+/* set h1,h2,h3 */
+h1 {font-size: var(--fs-h1);}
 h2 {font-size: var(--fs-h2);}
 h3 {font-size: var(--fs-h3);}
 
-/*login grid */
-.loginView{
-    margin-top: 8em;
+/* control imag behaviour */
+img{
+    display: block;
+    max-width: 50%;
+}
+
+/* devide area into two pieces */
+.signupView{
+    margin-top: 5em;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
-        "dataSide logoSide"
+        "logoside detailside"
     ;
 }
 
-.loginView__dataSide{
-    grid-area: dataSide;
-    margin-left: 20%;
-    /*margin-right: 10%; */
+.signupView__logoSide{
+    grid-area: logoside;
 }
 
-.loginView__logoSide{
-    grid-area: logoSide;
-    margin-right: 40%;
+.signupView__logoSide--imagecard{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
 }
 
-/*loginView title setup*/
-.loginView__title{
-    font-size: var(--fs-h2);
+.signupView__dataSide{
+    grid-area: detailside;
 }
 
-/*loginView subtitle setup*/
+/* dataside setup */
+.signupView__title{
+    font-size: var(--fs-h3);
+}
+
+/* signup View subtitle setup */
 @media (min-width : 800px){
-    .loginView__subtitle{
-        margin-top: -15px;
-        margin-left: 10px;
+    .signupView__subtitle{
+        margin-top: -18px;
     }
 }
 
-/*loginView Detail setup*/
-.loginView__Detail{
-    margin-top: 4%;
+/* signup View detail setup */
+.signupView__Detail{
+    margin-top: 3%;
 }
 
-.loginDetailbox{
+.signupDetailbox{
     border-color: black;
     outline: none;
     border-radius: 8px;
@@ -100,29 +103,33 @@ h3 {font-size: var(--fs-h3);}
     /* color: white; */
     /* background-color: #7c7c7c7c; */
     padding: 0.3em 1em 0.3em 1.5em;
-    width: 70%;
-    margin-bottom: 4%;
+    width: 50%;
+    margin-bottom: 2%;
 }
 
-/*active area framework setup*/
-@media (min-width : 800px){
+.signupButtoCondtionform{
+    margin-top: 3%;
+}
+
+@media (min-width : 800px) {
     .activeArea{
         display: grid;
         grid-template-columns: 1fr 6fr;
         grid-template-areas: 
-            "button signup"
+            "signupbutton aggrementText"
         ;
     }
 
-    .submitButton{
-        grid-area: button;
+    .submitbutton{
+        grid-area: signupbutton;
     }
+
     .signupText{
-        grid-area: signup;
+        grid-area: aggrementText;
     }
 }
 
-/*button decoration*/
+/* button decoration */
 .btn{
     border: none;
     /* margin-left: 0%; */
@@ -141,27 +148,10 @@ h3 {font-size: var(--fs-h3);}
     transform: scale(1.1);
 }
 
-/*forget text*/
-.forgetText{
-    margin-top: 2%;
-}
-
-
-/*image decoration*/
 .imglogo{
-    transition: 800ms;
+    transition: 500ms;
 }
+
 .imglogo:hover{
-    transform: scale(1.5);
+    transform: scale(1.1);
 }
-
-a{
-    text-decoration: none;
-    color: black;
-    /* font-weight: var(--fw-bold); */
-    /* underline */
-    text-decoration: underline;
-}
-
-/* If we get and invalid input then need to indicate error decoration
-*/

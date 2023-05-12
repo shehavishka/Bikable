@@ -12,6 +12,8 @@
      *  If Authentication is succesfull then need to send an email to the user
      *  to do that have to USE some files from the  helper/PHPMailer directory
     */
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
     class Users extends Controller{
         /////////////////
@@ -214,12 +216,217 @@
             redirect('users/login');
         }
 
-        ////////////////////////////
-        // SEND EMAIL TO THE USER
-        ////////////////////////////
-        public function sendEmailToUser($email){
-            //code will be implement heref
+        
+        
+        public function viewSignup(){$this->view('users/signup');}
+
+        public function signup(){
+            // $this->view('users/signup');
+            /**
+             *  REGISTER USER
+             */
+
+            //die("signup");
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // grab data from the requested form
+                
+                $data = [
+                    'first name' => trim($_POST['first_name']),
+                    'last name' => trim($_POST['last_name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'phone no' => trim($_POST['phone_number']),
+                    'nic no' => trim($_POST['nic_number']),
+        
+                    'first_name_err' => '',
+                    'second_name_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'phone_no_err' => '',
+                    'nic_no_err' => '',
+                ];
+        
+                ///////////////
+                //  VALIDATE NAME, EMAIL, PASSWORD AND CONFIRM PASSWORD
+                ///////////////
+                if(empty($data['first name'])){
+                    $data['first_name_err'] = ' *please enter first name';
+                }
+                if(empty($data['last name'])){
+                    $data['second_name_err'] = ' *please enter second name';
+                }
+
+                if(empty($data['email'])){
+                    $data['email_err'] = ' *please enter email';
+                }else{
+                    //check user/email
+                    if($this->userModel->findUserByEmail($data['email'])){
+                        $data['email_err'] = "*email already exists";
+                    }
+                }
+        
+                if(empty($data['password'])){
+                    $data['password_err'] = ' *please enter password';
+                }elseif(strlen($data['password']) < 6){
+                    $data['password_err'] = ' *password must be at least 6 characters';
+                }
+        
+                if(empty($data['phone no'])){
+                    $data['phone_no_err'] = ' *please enter phone number';
+                }
+
+                if(empty($data['nic no'])){
+                    $data['nic_no_err'] = ' *please enter nic number';
+                }
+        
+                // if no errors, then proceed to register the user
+                //show($data);
+                
+                //if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['nic_no_err'])){
+
+                if(true){
+                $timestamp = time(); // Get the current timestamp
+                $otp = substr(md5($timestamp), 0, 6); // Generate MD5 hash and extract the first 6 characters
+
+                //function to send otp to email
+                
+                $this->sendEmailToTheUser($data['email'], $otp);
+                
+                //function to send otp to database and then check it
+                
+                $this->userModel->otp($data['email'], $otp);
+                
+                
+
+                //redirect to otp page
+                //$this->userModel->signup($data);
+                $this->view('riders/enterOTP',$data);
+                
+
+                        
+                }else{
+                    $this->view('users/signup', $data);
+                }
+        
+            }else{
+                /**
+                 *     If request is not POST then this scope will be execute.
+                 */
+                //die("else executed");
+                $data = [
+                    'first_name_err' => '',
+                    'second_name_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'phone_no_err' => '',
+                    'nic_no_err' => '',
+        
+                    'first_name_err' => '',
+                    'second_name_err' => '',
+                    'email_err' => '',
+                    'password_err' => '',
+                    'phone_no_err' => '',
+                    'nic_no_err' => '',
+                ];
+
+            }
+        }
+
+
+        //////////////////////
+        // OTP GENERATOR
+        /////////////////////
+
+             //generate OTP and store in a variable
+             public function generateOTP() {
+                $timestamp = time(); // Get the current timestamp
+                $otp = substr(md5($timestamp), 0, 6); // Generate MD5 hash and extract the first 6 characters
+                
+                return $otp;
+            }
+
+            //function which sends otp to $this->userModel->checkOTP($data['email'], $otp);
+            public function sendOTPtoDb(){
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    $data = [
+                        'otp' => trim($_POST['otp']),
+                        'email' => trim($_POST['email']),
+                    ];
+                    $this->userModel->checkOTP($data['email'], $data['otp']);
+                }
+            }
+
+            public function otp(){
+                redirect('riders/enterOTPfunc');
 
         }
 
+        ////////////////////////////
+        // SEND EMAIL TO THE USER
+        ////////////////////////////
+        private function sendEmailToTheUser($email , $otp){
+
+            
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = 'true';
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+
+
+            $mail->Subject = 'Access to ' . APPLICATION_NAME;
+            $mail->Body = '
+            <html>
+            <head>
+              <title>Access to '. APPLICATION_NAME .'</title>
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  font-size: 14px;
+                }
+                h1 {
+                  font-size: 18px;
+                  color: #444;
+                  margin-bottom: 20px;
+                }
+                ul {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+                }
+                li {
+                  margin-bottom: 10px;
+                }
+              </style>
+            </head>
+            <body>
+              <h1>Access to '.APPLICATION_NAME.'</h1>
+              <p>Dear ' . $email . ',</p>
+              <p>Greetings!</p>
+              <p>We are pleased to inform you that you have been added to <b>'.APPLICATION_NAME.'</b>.</p>
+              <p>Your account has been created and you can now access our platform by logging in with the following credentials:</p>
+              <ul>
+                <li><b>Email:</b> ' . $email . '</li>
+                <li><b>OTP:</b> ' . $otp . '</li>
+              </ul>
+              <p>Please note that for security purposes, we strongly advise you to change your password after your first login.</p>
+              <p>Thank you for choosing <b>'.APPLICATION_NAME.'</b>. If you have any questions or need assistance, please don\'t hesitate to contact us.</p>
+              <p>Best regards,<br>
+              '.APPLICATION_NAME.'</p>
+            </body>
+            </html>
+            '
+            ;
+            
+            $mail->send();
+        }
     }
