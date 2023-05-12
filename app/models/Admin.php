@@ -278,8 +278,9 @@
             $locationLong = $data['locationLong']; //should be double
             $traditionalAdd = $data['traditionalAdd'];
             $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            $assignedMechanic = intval($data['assignedMechanic']); //should be int
 
-            $temp = "INSERT INTO dockingareas (areaName, locationRadius, status, locationLat, locationLong, traditionalAdd, currentNoOfBikes ) VALUES ('$areaName', '$locationRadius', '$status', '$locationLat', '$locationLong', '$traditionalAdd', '$currentNoOfBikes')";
+            $temp = "INSERT INTO dockingareas (areaName, locationRadius, status, locationLat, locationLong, traditionalAdd, currentNoOfBikes, assignedMechanic) VALUES ('$areaName', '$locationRadius', '$status', '$locationLat', '$locationLong', '$traditionalAdd', '$currentNoOfBikes', '$assignedMechanic' )";
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
@@ -300,8 +301,9 @@
             $locationLong = $data['locationLong']; //should be double
             $traditionalAdd = $data['traditionalAdd'];
             $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            $assignedMechanic = intval($data['assignedMechanic']); //should be int
             
-            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes' WHERE areaID = '$areaID'";
+            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes', assignedMechanic = '$assignedMechanic' WHERE areaID = '$areaID'";
             $this->db->prepareQuery($temp);
 
             $row = $this->db->single();

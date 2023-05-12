@@ -871,6 +871,7 @@
                     'traditionalAdd' => trim($_POST['traditionalAdd']),
                     'status' => trim($_POST['status']),
                     'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+                    'assignedMechanic' => trim($_POST['assignedMechanic']),
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -879,6 +880,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
                 ];
 
                 //validate submitted data
@@ -902,16 +904,21 @@
                     $data['traditionalAdd_err'] = '*enter traditional address';
                 }
 
-                if(empty($data['status'])){
-                    $data['status_err'] = '*enter status';
-                }
+                // if(empty($data['status'])){
+                //     $data['status_err'] = '*enter status';
+                // }
 
                 if(empty($data['currentNoOfBikes'])){
                     $data['currentNoOfBikes'] = 0;
                 }
 
+                // if(empty($data['assignedMechanic'])){
+                //     $data['assignedMechanic_err'] = '*enter a mechanic ID';
+                // }
+                // print_r($data);
+                // die("why god why");
                 //make sure there are no errors
-                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err'])){
+                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err']) && empty($data['assignedMechanic_err'])){
                     //every things up to ready 
 
                     // add docking area
@@ -925,7 +932,6 @@
                     }
                 }
                 else{
-
                     $this->view('admins/addDockingArea', $data);
                 }
             }else{
@@ -938,6 +944,7 @@
                     'traditionalAdd' => '',
                     'status' => '',
                     'currentNoOfBikes' => '',
+                    'assignedMechanic' => '',
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -946,6 +953,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
 
                 ];
                 $this->view('admins/addDockingArea', $data);
@@ -989,6 +997,7 @@
                     'traditionalAdd' => '',
                     'status' => '',
                     'currentNoOfBikes' => '',
+                    'assignedMechanic' => '',
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -997,6 +1006,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
 
                 ];
                 $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
@@ -1014,6 +1024,7 @@
                     'traditionalAdd' => trim($_POST['traditionalAdd']),
                     'status' => trim($_POST['status']),
                     'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+                    'assignedMechanic' => trim($_POST['assignedMechanic']),
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -1022,6 +1033,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
                 ];
                 $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
 
@@ -1068,6 +1080,14 @@
                         $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a number';
                     }else if($data['currentNoOfBikes'] < 0){
                         $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a positive number';
+                    }
+
+                    if(empty($data['assignedMechanic'])){
+                        // $data['assignedMechanic'] = 0;
+                    }else if(!is_numeric($data['assignedMechanic'])){
+                        $data['assignedMechanic_err'] = '*Assigned Mechanic should be a number';
+                    }else if($data['assignedMechanic'] < 0){
+                        $data['assignedMechanic_err'] = '*Assigned Mechanic should be a positive number';
                     }
                 //
                 
