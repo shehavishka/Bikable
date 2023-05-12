@@ -63,7 +63,7 @@
                                 if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
-                                    echo "Inactive";
+                                    echo "Resolved";
                                 }
                             
                             ?>

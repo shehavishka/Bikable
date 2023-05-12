@@ -1155,8 +1155,6 @@
 
                     // add bike
                     if($this->adminModel->addBicycleIntoTheSystem($data)){
-                        // next implementation should be land into the right position according to the role
-                        // $this->bicyclesControl();
                         header('Location:'.URLROOT.'/admins/bicyclesControl');
                     }else{
                         die('something went wrong');

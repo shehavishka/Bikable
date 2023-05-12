@@ -50,7 +50,12 @@
 
                 <div class="data__area__detail--status">
                         <div class="data--name--label">Status: </div>
-                        <div class="data--name--content"><?php if($data['reportDetailObject']->status){echo $data['reportDetailObject']->problemDescription;}else{echo "-";}?></div>
+                        <div class="data--name--content"><?php 
+                                if($data['reportDetailObject']->status == 0){
+                                        echo 'Active';
+                                }else if($data['reportDetailObject']->status == 1){
+                                        echo 'Resolved';
+                                }?></div>
                 </div>
                 
                 <div class="data__area__detail--problemTitle">

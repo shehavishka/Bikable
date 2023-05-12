@@ -344,6 +344,11 @@
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
+                // updating arae table
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes + 1 WHERE areaID = '$currentDA' ";
+                $this->db->prepareQuery($temp);
+                $this->db->executeStmt();
+
                 return true;
             }else{
                 return false;
@@ -360,7 +365,13 @@
             $datePutInUse = $data['datePutInUse'];
             $status = intval($data['status']); //should be int
             $currentDA = $data['currentDA'];
+
+            // get the bike's old docking area ID
+            $this->db->prepareQuery("SELECT currentDA FROM bicycles WHERE bicycleID = '$bicycleID'");
+            $r = $this->db->single();
+            $oldDA = $r->currentDA;
             
+            // updating bicycle table
             $temp = "UPDATE bicycles SET bikeOwnerID = '$bikeOwnerID', frameSize = '$frameSize', dateAcquired = '$dateAcquired', datePutInUse = '$datePutInUse', status = '$status', currentDA = '$currentDA' WHERE bicycleID = '$bicycleID'";
             $this->db->prepareQuery($temp);
 
@@ -368,6 +379,15 @@
 
             //check row
             if($this->db->rowCount() > 0){
+                // updating area table
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes - 1 WHERE areaID = '$oldDA' ";
+                $this->db->prepareQuery($temp);
+                if($this->db->executeStmt()){
+                    $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes + 1 WHERE areaID = '$currentDA' ";
+                    $this->db->prepareQuery($temp);
+                    $this->db->executeStmt();
+                }
+
                 return true;
             }else{
                 return false;
@@ -646,6 +666,18 @@
 
             //check row
             if($this->db->rowCount() > 0){
+                // get the areaID of the bike
+                $temp = "SELECT currentDA FROM bicycles WHERE bicycleID = '$bicycleID' ";
+                $this->db->prepareQuery($temp);
+                // if areaID is found, update the currentNoOfBikes in the docking area
+                if($this->db->executeStmt()){
+                    $row = $this->db->single();
+                    $areaID = $row->currentDA;
+                    $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes - 1 WHERE areaID = '$areaID' ";
+                    $this->db->prepareQuery($temp);
+                    $this->db->executeStmt();
+                }
+
                 return true;
             }else{
                 return false;

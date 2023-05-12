@@ -63,11 +63,11 @@
                     <div class="data--name--lebal">Status</div>
                     <div class="data__status">
                         <div class="data__status--active">
-                            <input type="radio" id="active" name="status" value="1" checked>
+                            <input type="radio" id="active" name="status" value="0" checked>
                             <label for="active">Active</label>
                         </div>
                         <div class="data__status--inactive">
-                            <input type="radio" id="inactive" name="status" value="0" >
+                            <input type="radio" id="inactive" name="status" value="1" >
                             <label for="inactive">Inactive</label>
                         </div>
                     </div>
