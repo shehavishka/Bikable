@@ -52,7 +52,7 @@
     <section class="upper__section">
         <!-- report card on the upper section of the display -->
         <div class = "upper_section">
-            <a href="<?php echo URLROOT ?>/mechanics/reportsControl" style="text-decoration:none;color:black" class="anchor--card">
+            <a href="<?php echo URLROOT ?>/mechanics/viewAssignedReports" style="text-decoration:none;color:black" class="anchor--card">
                 <div class="upper__section--reports cardd">
                         <div class="upper__section__card--title" style="text-decoration:none">
                             Reports
