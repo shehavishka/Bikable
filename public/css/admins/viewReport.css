@@ -69,7 +69,7 @@ img{
 
 .sidebar--logo{
     border-top-right-radius: 5%;
-    background-color: var(--clr-dark);
+    /* background-color: var(--clr-dark); */
 }
 
 /* sidebar--logo div has image and set that image property */
