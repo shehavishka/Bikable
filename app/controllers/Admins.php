@@ -1198,9 +1198,10 @@
             //code will implement here
             $bikeDetails = $this->adminModel->getBikeDetails();
             $data = [
-                'bike_details' => $bikeDetails
+                'bike_details' => $bikeDetails,
+                'map_details' => '',
             ];
-        
+            $data['map_details'] = $this->adminModel->getAllDADetails();
             //view details
             $this->view('admins/bicycles', $data);
         }
@@ -1472,9 +1473,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
             //this is not load data from the data
             $this->view('admins/reports', $data);
         }
@@ -1482,9 +1484,10 @@
         public function archivedReportsControl(){
             $reportDetails = $this->adminModel->getArchivedReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
             //this is not load data from the data
             $this->view('admins/archivedReports', $data);
         }
@@ -1536,9 +1539,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
             //this is not load data from the data
             $this->view('admins/reportsDA', $data);
         }

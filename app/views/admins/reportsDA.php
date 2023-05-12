@@ -70,7 +70,11 @@
                         <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
                         <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
                         <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
-                        <td><?php echo printValue($oneObject, 'areaID') ?></td>
+                        <td><?php foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->areaID) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                } ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
