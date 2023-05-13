@@ -244,7 +244,7 @@
                             track.duration = $present - $rideStartTimeStamp;
                             track.durationHTML.innerHTML = Math.floor(track.duration / 3600) + "h" + Math.floor((track.duration / 60) % 60) + "m" + track.duration % 60 + "s";
 
-                            track.fare = track.baseValue + (track.duration / 10) * 0.2;
+                            track.fare = track.baseValue + (track.duration / 10) * track.fareRate;
                             track.fareHTML.innerHTML = track.fare.toFixed(2) + "/=";
 
                             console.log("duration " + track.duration + " fare " + track.fare);
