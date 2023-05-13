@@ -1,0 +1,154 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --clr-dark : #303030;
+    --clr-light : #fff;
+
+    --fs-h1 : 3rem;
+    --fs-h2 : 2.25rem;
+    --fs-h3 : 1.25rem;
+    --fs-body : 1rem;
+
+    --fw-reg : 300;
+    --fw-bold : 900;
+
+    --ff-family : 'Poppins',sans-serif;
+}
+
+@media (min-width: 800px) {
+    :root{
+        --fs-h1 : 4rem;
+        --fs-h2 : 3.75rem;
+        --fs-h3 : 2.5rem;
+        --fs-body : 1.2rem;
+    }
+}
+
+body{
+    margin: 0;
+    background: var(--clr-light);
+    font-family: var(--ff-family);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+}
+
+/* set h1,h2,h3 */
+h1 {font-size: var(--fs-h1);}
+h2 {font-size: var(--fs-h2);}
+h3 {font-size: var(--fs-h3);}
+
+/* control imag behaviour */
+img{
+    display: block;
+    max-width: 50%;
+}
+
+/* devide area into two pieces */
+.signupView{
+    margin-top: 5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "logoside detailside"
+    ;
+}
+
+.signupView__logoSide{
+    grid-area: logoside;
+}
+
+.signupView__logoSide--imagecard{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.signupView__dataSide{
+    grid-area: detailside;
+}
+
+/* dataside setup */
+.signupView__title{
+    font-size: var(--fs-h3);
+}
+
+/* signup View subtitle setup */
+@media (min-width : 800px){
+    .signupView__subtitle{
+        margin-top: -18px;
+    }
+}
+
+/* signup View detail setup */
+.signupView__Detail{
+    margin-top: 3%;
+}
+
+.signupDetailbox{
+    border-color: black;
+    outline: none;
+    border-radius: 8px;
+    font-size: 100%;
+    /* font-family: inherit; */
+    /* color: white; */
+    /* background-color: #7c7c7c7c; */
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 50%;
+    margin-bottom: 2%;
+}
+
+.signupButtoCondtionform{
+    margin-top: 3%;
+}
+
+@media (min-width : 800px) {
+    .activeArea{
+        display: grid;
+        grid-template-columns: 1fr 6fr;
+        grid-template-areas: 
+            "signupbutton aggrementText"
+        ;
+    }
+
+    .submitbutton{
+        grid-area: signupbutton;
+    }
+
+    .signupText{
+        grid-area: aggrementText;
+    }
+}
+
+/* button decoration */
+.btn{
+    border: none;
+    /* margin-left: 0%; */
+    width: 90px;
+    height: 35px;
+    color: white;
+    background: black;
+    border-radius: 13px;
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+
+    transition: 500ms;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+.imglogo{
+    transition: 500ms;
+}
+
+.imglogo:hover{
+    transform: scale(1.1);
+}
