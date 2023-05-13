@@ -218,6 +218,14 @@
             return $this->db->resultSet();
         }
 
+        public function getAllDADetails(){
+
+            $this->db->prepareQuery("SELECT * FROM dockingareas where status = 3");
+
+            // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
         public function getArchivedRepairLogDetails(){
 
             $this->db->prepareQuery("SELECT * FROM repairLog WHERE status = 3");
@@ -230,6 +238,13 @@
 
             $this->db->prepareQuery("SELECT * FROM reports WHERE status = 3");
         // take data from the database as the objects and send them into the controller.
+            return $this->db->resultSet();
+        }
+
+        public function getMechanicDetails(){
+            $this->db->prepareQuery("SELECT * FROM users WHERE role = 'Mechanic' AND status != 3");
+
+            // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
         }
 

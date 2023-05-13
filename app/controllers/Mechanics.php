@@ -212,18 +212,45 @@ class Mechanics extends Controller
         $this->view('mechanics/reports', $data);
     }
 
-    public function archiveReports(){
-        if($_SERVER['REQUEST METHOD'] == "POST"){
-            $selectedRows = json_decode($_POST['selectedRows']);
+    public function archivedReportsControl(){
+        $reportDetails = $this->mechanicModel->getArchivedReportDetails();
+        $data = [
+            'report_details' => $reportDetails,
+            'map_details' => '',
+            'mechanicName_details' => '',
+        ];
+        $data['map_details'] = $this->mechanicModel->getAllDADetails();
+        $data['mechanicName_details'] = $this->mechanicModel->getMechanicDetails();
+        //this is not load data from the data
+        $this->view('mechanics/viewArchivedReports', $data);
+    }
 
+    public function archiveReports(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $selectedRows = json_decode($_POST['selectedRows']);
+            
             foreach($selectedRows as $selectedRow){
+                // echo $selectedRow." ";
                 $this->mechanicModel->removeReport($selectedRow);
             }
             header('Location:'.URLROOT.'/mechanics/reportsControl');
-            }else{
-                die("button didn't work correctly.");
+        }else{
+            die("button didn't work correctly.");
+        }
+    }
+
+    public function archiveAssignedReports(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $selectedRows = json_decode($_POST['selectedRows']);
+            
+            foreach($selectedRows as $selectedRow){
+                // echo $selectedRow." ";
+                $this->mechanicModel->removeReport($selectedRow);
             }
-            $this->view('mechanics/reportsControl');            
+            header('Location:'.URLROOT.'/mechanics/reportsControl');
+        }else{
+            die("button didn't work correctly.");
+        }
     }
 
     public function unarchiveReports(){
@@ -238,8 +265,19 @@ class Mechanics extends Controller
         }else{
             die("button didn't work correctly.");
         }
-        $this->view('mechanics/reportsControl');            
+        $this->view('mechanics/archivedReportsControl');            
 
+    }
+
+    public function archivedRepairLogControl(){
+        $repairLogDetails = $this->mechanicModel->getArchivedRepairLogDetails();
+        $data = [
+            'repairLog_details' => $repairLogDetails,
+            'mechanicName_details' => '',
+        ];
+        $data['mechanicName_details'] = $this->mechanicModel->getMechanicDetails();
+        //this is not load data from the data
+        $this->view('mechanics/archivedRepairLog', $data);
     }
 
     public function archiveRepairLogs(){
@@ -250,7 +288,7 @@ class Mechanics extends Controller
                 // echo $selectedRow." ";
                 $this->mechanicModel->removeRepairLog($selectedRow);
             }
-            header('Location:'.URLROOT.'/mechanics/repairLogControl');
+            header('Location:'.URLROOT.'/mechanics/repairLogsControl');
         }else{
             die("button didn't work correctly.");
         }
@@ -266,7 +304,7 @@ class Mechanics extends Controller
                 // echo $selectedRow." ";
                 $this->mechanicModel->unarchiveRepairLog($selectedRow);
             }
-            header('Location:'.URLROOT.'/mechanics/archivedRepairLogControl');
+            header('Location:'.URLROOT.'/mechanics/archivedRepairLogsControl');
         }else{
             die("button didn't work correctly.");
         }
