@@ -681,6 +681,113 @@ class Mechanics extends Controller
         }
     }
 
+    public function editRepairLog()
+    {
+        $data = [
+            'reportID' => '',
+            'repairLogID' => '',
+            'mechanicID' => '',
+            'problemTitle' => '',
+            'problemDescription' => '',
+            'bicycleID' => '',
+            'areaID' => '',
+            'estCost' => '',
+            'dateIn' => '',
+            'dateOut' => '',
+            'estCost' => '',
+            'FinCost' => '',
+            'repairNotes' => '',
+
+            'reportID_err' => '',
+            'repairLogID_err' => '',
+            'mechanicID_err' => '',
+            'problemTitle_err' => '',
+            'problemDescription_err' => '',
+            'bicycleID_err' => '',
+            'areaID_err' => '',
+            'estCost_err' => '',
+            'dateIn_err' => '',
+            'dateOut_err' => '',
+            'estCost_err' => '',
+            
+            'mapDetails' => '',
+        ];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //validate and update the report
+            //get the data from the form
+            $data['reportID'] = $_POST['reportID'];
+            
+            $data['reportID'] = $_POST['reportID'];
+            
+            $data['problemTitle'] = $_POST['problemTitle'];
+            $data['problemDescription'] = $_POST['problemDescription'];
+            if ($_POST['areaID']) {
+                $data['areaID'] = $_POST['areaID'];
+            }
+            $data['accidentLocation'] = $_POST['accidentLocation'];
+            $data['date'] = $_POST['date'];
+            $data['time'] = $_POST['time'];
+            $data['bicycleID'] = $_POST['bicycleID'];
+            // $data['image'] = $_POST['image'];
+
+            //validate the report description
+            if (empty($data['problemDescription'])) {
+                $data['problemDescription_Err'] = '*Please enter a description';
+            }
+
+                if (empty($data['date'])) {
+                    $data['date_Err'] = '*Please select a date';
+                    // else if date is after today
+                } else if ($data['date'] > date("Y-m-d")) {
+                    $data['date_Err'] = '*Please select a valid date';
+                }
+                // print_r($data['date']);
+                // print_r(date("Y-m-d"));
+                if (empty($data['time'])) {
+                    $data['time_Err'] = '*Please select a time';
+                }
+
+                // concatenate date and time to timestamp format
+                $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
+            } else {
+                $data['date'] = '';
+            }
+
+
+        //if there are no errors 
+        if (empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])) {
+            if ($this->mechanicModel->editRepairLog($data)) {
+                header('location: ' . URLROOT . '/mechanics/repairLogs');
+                return;
+            } else {
+                //error page
+                die("something went wrong");
+                return;
+            }
+            } else {
+                //load the view with errors
+                $this->view('mechanics/editRepairLog', $data);
+                return;
+            }
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $data['mapDetails'] = $this->mechanicModel->getAllMapDetails();
+            $data['repairLogID'] = $_GET['repairLogID'];
+
+            $repairLog = $this->mechanicModel->getRepairLogByID($data['repairLogID']);
+            $data['problemTitle'] = $repairLog->problemTitle;
+            $data['problemDescription'] = $repairLog->problemDescription;
+            $data['areaID'] = $repairLog->areaID;
+            $data['bicycleID'] = $repairLog->bicycleID;
+            $data['estCost'] = $repairLog->estCost;
+            $data['finalCost'] = $repairLog->finalCost;
+            $data['dateIn'] = $repairLog->dateIn;
+            $data['dateOut'] = $repairLog->dateOut;
+            $data['repairNotes'] = $repairLog -> repairNotes;
+            $this->view('mechanics/editRepairLog', $data);
+        }
+    }
+
     public function dockingAreas(){
             /**
              *     Tasks

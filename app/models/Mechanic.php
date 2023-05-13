@@ -44,29 +44,21 @@
                 
 
 
-        public function editReport($data){
+        public function editRepairLog($data){
+            $repairLogID = $data['repairLogID'];
             $reportID = $data['reportID'];
-            $reporterID = $_SESSION['reporterID'];
-            $type = $data['type'];
+            $estCost = $data['estCost'];
             $problemTitle = $data['problemTitle'];
             $problemDescription = $data['problemDescription'];
             $areaID = $data['areaID'];
-            $accidentLocation = $data['accidentLocation'];
-            $timeStamp = $data['accidentTimeStamp'];
+            $dateIn = $data['dateIn'];
+            $dateOut = $data['dateOut'];
+            $finalCost = $data['finalCost'];
             $bicycleID = $data['bicycleID'];
-            // $image = $data['image'];
-            $status = 0;
+            
 
-            // $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, accidentLocation, accidentTimeApprox, bicycleID, image, status) VALUES ($reporterID, $type, '$problemTitle', '$problemDescription', $areaID, '$accidentLocation', '$timeStamp', $bicycleID, '$image', $status)";
-            if($type == "Accident"){
-                $temp = "UPDATE reports SET reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', accidentLocation = '$accidentLocation', accidentTimeApprox = '$timeStamp', bicycleID = $bicycleID, status = $status WHERE reportID = $reportID";
-            }else if($type == "Bicycle"){
-                $temp = "UPDATE reports SET reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', bicycleID = $bicycleID, status = $status WHERE reportID = $reportID";
-            }else if($type == "Area"){
-                $temp = "UPDATE reports SET reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', areaID = $areaID, status = $status WHERE reportID = $reportID";
-            }else if($type == "Other"){
-                $temp = "UPDATE reports SET reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', status = $status WHERE reportID = $reportID";
-            }
+            $temp = "UPDATE repairLogs SET problemDescription = '$problemDescription', estCost = '$estCost', finalCost = '$finalCost', dateIn = '$dateIn', dateOut ='$dateOut' WHERE repairLogID = $repairLogID";
+            
 
             $this->db->prepareQuery($temp);
 
