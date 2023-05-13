@@ -65,7 +65,7 @@
                             
                             ?>
                         </td>
-                        <td><?php echo $oneObject->frameSize ?></td>
+                        <td><?php if($oneObject->frameSize < 20){echo "S";}else if($oneObject->frameSize > 26){echo "L";}else{echo "M";} ?></td>
                         <td><?php echo $oneObject->dateAcquired ?></td>
                         <td><?php echo $oneObject->	datePutInUse ?></td>
                         <td><?php foreach($data['map_details'] as $oneMapDetail) {
