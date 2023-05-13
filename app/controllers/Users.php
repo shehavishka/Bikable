@@ -21,7 +21,6 @@
         ////////////////
         private $userModel;
 
-
         ///////////////
         // assigned 'User' model file
         //////////////
@@ -53,24 +52,24 @@
                 //  VALIDATE EMAIL AND PASSWORD
                 ///////////////
                 if(empty($data['email'])){
-                    $data['email_err'] = ' *please enter email';
+                    $data['email_err'] = ' *Please enter email';
                 }else{
                     //check user/email
                     if($this->userModel->findUserByEmail($data['email'])){
                         //user found
                     }else{
-                        $data['email_err'] = "*user not found";
+                        $data['email_err'] = "*User not found";
                     }
                 }
 
                 // valid password
                 if(empty($data['password'])){
-                    $data['password_err'] = ' *please enter password';
+                    $data['password_err'] = ' *Please enter password';
                 }
 
                 
                 ///////////////
-                // IF ERRORS FREE, THEN ACCORDING TO USER ROLE NEED TO CREATE SEASSION AND
+                // IF ERRORS FREE, THEN ACCORDING TO USER ROLE NEED TO CREATE SESSION AND
                 // LAND IN TO HIS/HER OWNS PAGE
                 //////////////
                 if(empty($data['email_err']) && empty($data['password_err'])){

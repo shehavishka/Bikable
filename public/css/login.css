@@ -20,6 +20,7 @@
     --fs-body : 1rem;
 
     --fw-reg : 300;
+    --fw-med : 600;
     --fw-bold : 900;
 
     --ff-family :  'sfmy-regular',sans-serif;
@@ -48,7 +49,7 @@ img{
     max-width: 100%;
 }
 
-h1 { font-size: var(--fs-h1);}
+h1 {font-size: var(--fs-h1);}
 h2 {font-size: var(--fs-h2);}
 h3 {font-size: var(--fs-h3);}
 
@@ -108,7 +109,7 @@ h3 {font-size: var(--fs-h3);}
 @media (min-width : 800px){
     .activeArea{
         display: grid;
-        grid-template-columns: 1fr 6fr;
+        grid-template-columns: 1.5fr 6fr;
         grid-template-areas: 
             "button signup"
         ;
@@ -126,15 +127,16 @@ h3 {font-size: var(--fs-h3);}
 .btn{
     border: none;
     /* margin-left: 0%; */
-    width: 90px;
-    height: 35px;
+    width: 110px;
+    height: 45px;
     color: white;
     background: black;
     border-radius: 13px;
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-reg);
     letter-spacing: 1px;
-
     transition: 500ms;
+    border-radius: 60px;
+    font-family: 'sfmy-regular',sans-serif;
 }
 
 .btn:hover{
