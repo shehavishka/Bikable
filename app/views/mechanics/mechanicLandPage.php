@@ -157,7 +157,7 @@
                         {
                             foreach($DAResult as $k=>$v)
                             {   
-                    ?>  
+                    ?>  ,
                             {
                                 position: new google.maps.LatLng(<?php echo $DAResult[$k]["locationLat"]; ?>, <?php echo $DAResult[$k]["locationLong"]; ?>),
                                 icon: {url:"<?php echo URLROOT; ?>/public/images/admins/map_icon.png", labelOrigin: new google.maps.Point(43, 18)},

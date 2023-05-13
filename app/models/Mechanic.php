@@ -16,18 +16,19 @@
             $accidentLocation = $data['accidentLocation'];
             $timeStamp = $data['accidentTimeStamp'];
             $bicycleID = $data['bicycleID'];
+            $mechanicID = $_SESSION['user_ID'];
             // $image = $data['image'];
             $status = 0;
 
             // $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, accidentLocation, accidentTimeApprox, bicycleID, image, status) VALUES ($reporterID, $type, '$problemTitle', '$problemDescription', $areaID, '$accidentLocation', '$timeStamp', $bicycleID, '$image', $status)";
             if($type == "Accident"){
-                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, accidentLocation, accidentTimeApprox, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$accidentLocation', '$timeStamp', $bicycleID, $status)";
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, accidentLocation, accidentTimeApprox, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$mechanicID', '$accidentLocation', '$timeStamp', $bicycleID, $status)";
             }else if($type == "Bicycle"){
-                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $bicycleID, $status)";
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription','$mechanicID', $bicycleID, $status)";
             }else if($type == "Area"){
-                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $areaID, $status)";
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, areaID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription','$mechanicID', $areaID, $status)";
             }else if($type == "Other"){
-                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $status)";
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$mechanicID', $status)";
             }
                 
             print_r($temp);
@@ -41,7 +42,40 @@
             }
         }
 
+        // public function editReport($data){
+        //     // die('Inserted');
+        //     $reporterID = $_SESSION['user_ID'];
+        //     $type = $data['type'];
+        //     $problemTitle = $data['problemTitle'];
+        //     $problemDescription = $data['problemDescription'];
+        //     $areaID = $data['areaID'];
+        //     $accidentLocation = $data['accidentLocation'];
+        //     $timeStamp = $data['accidentTimeStamp'];
+        //     $bicycleID = $data['bicycleID'];
+        //     $mechanicID = $_SESSION['user_ID'];
+        //     // $image = $data['image'];
+        //     $status = 0;
+
+        //     // $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, accidentLocation, accidentTimeApprox, bicycleID, image, status) VALUES ($reporterID, $type, '$problemTitle', '$problemDescription', $areaID, '$accidentLocation', '$timeStamp', $bicycleID, '$image', $status)";
+        //     if($type == "Accident"){
+        //         $temp = "UPDATE reports SET reporterID = '$reporterID', reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', accidentLocation = '$accidentLocation', accidentTimeApprox = '$timeStamp', bicycleID = '$bicycleID', status = '$status' WHERE reportID = $reportID";
+        //     }else if($type == "Area"){
+        //         $temp = "UPDATE reports SET reporterID = '$reporterID', reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', bicycleID = '$bicycleID', status = '$status' WHERE reportID = $reportID";
+        //         // $temp = "UPDATE reports SET (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, areaID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription','$mechanicID', $areaID, $status)";
+        //     }else if($type == "Other"){
+        //         $temp = "UPDATE reports SET (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$mechanicID', $status)";
+        //     }
                 
+        //     print_r($temp);
+
+        //     $this->db->prepareQuery($temp);
+
+        //     if($this->db->executeStmt()){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // }       
 
 
         public function editRepairLog($data){

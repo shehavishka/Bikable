@@ -64,7 +64,7 @@
                         <td><?php echo printValue($oneObject, 'reporterID') ?></td>
                         <td>
                             <?php 
-                                if($oneObject->status == 1){
+                                if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
                                     echo "Inactive";
@@ -83,7 +83,7 @@
                         <td><?php echo printValue($oneObject, 'areaID') ?></td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/mechanics/editReport?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/editIcon1.png" alt="edit"></a>
+                        <!-- <a href="<?php echo URLROOT;?>/mechanics/editReport?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/mechanics/editIcon1.png" alt="edit"></a> -->
                     </tr>
                 <?php endforeach; 
                     function printValue($oneObject, $column_name){
