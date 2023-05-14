@@ -116,6 +116,11 @@
                     'rideDetailObject_err' => '',
                 ];
 
+                // get fare details from the database
+                $fareDetails = $this->riderModel->getFareDetails();
+                $data['fareBaseValue'] = $fareDetails->baseValue;
+                $data['fareRate'] = $fareDetails->ratePer10;
+
                 $current_timestamp = time();
                 $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
                 
@@ -190,6 +195,11 @@
                     'mapDetails' => '',
                     'rideDetailObject' => ''
                 ];
+
+                // get fare details from the database
+                $fareDetails = $this->riderModel->getFareDetails();
+                $data['fareBaseValue'] = $fareDetails->baseValue;
+                $data['fareRate'] = $fareDetails->ratePer10;
 
                 $data['mapDetails'] = $this->riderModel->riderLandPageMapDetails();
 

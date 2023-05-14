@@ -217,7 +217,7 @@
 
         
         
-        public function viewSignup(){$this->view('users/signup');}
+        
 
         public function signup(){
             // $this->view('users/signup');
@@ -234,6 +234,7 @@
                     'last name' => trim($_POST['last_name']),
                     'email' => trim($_POST['email']),
                     'password' => trim($_POST['password']),
+                    'confirm_password' => trim($_POST['confirm_password']),
                     'phone no' => trim($_POST['phone_number']),
                     'nic no' => trim($_POST['nic_number']),
         
@@ -241,41 +242,72 @@
                     'second_name_err' => '',
                     'email_err' => '',
                     'password_err' => '',
+                    'confirm_password_err' => '',
                     'phone_no_err' => '',
                     'nic_no_err' => '',
+                    'selected_err' => '',
+
+                    'otp_err' => '',
                 ];
+
+                
         
                 ///////////////
                 //  VALIDATE NAME, EMAIL, PASSWORD AND CONFIRM PASSWORD
                 ///////////////
                 if(empty($data['first name'])){
-                    $data['first_name_err'] = ' *please enter first name';
+                    $data['first_name_err'] = ' *Please enter first name';
                 }
                 if(empty($data['last name'])){
-                    $data['second_name_err'] = ' *please enter second name';
+                    $data['second_name_err'] = ' *Please enter last name';
                 }
 
                 if(empty($data['email'])){
-                    $data['email_err'] = ' *please enter email';
+                    $data['email_err'] = ' *Please enter email address';
+                }else if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+                    $data['email_err'] = '*Please enter a valid email';
                 }else{
-                    //check user/email
                     if($this->userModel->findUserByEmail($data['email'])){
-                        $data['email_err'] = "*email already exists";
+                        $data['email_err'] = "*This email is already registered";
                     }
                 }
         
                 if(empty($data['password'])){
-                    $data['password_err'] = ' *please enter password';
-                }elseif(strlen($data['password']) < 6){
-                    $data['password_err'] = ' *password must be at least 6 characters';
+                    $data['password_err'] = ' *Please enter password';
+                }elseif(strlen($data['password']) < 8){
+                    $data['password_err'] = ' *Password must be at least 8 characters';
+                }
+
+                if(empty($data['confirm_password'])){
+                    $data['confirm_password_err'] = ' *Please confirm password';
+                }else{
+                    if($data['password'] != $data['confirm_password']){
+                        $data['confirm_password_err'] = ' *Passwords do not match';
+                    }
                 }
         
                 if(empty($data['phone no'])){
-                    $data['phone_no_err'] = ' *please enter phone number';
+                    $data['phone_no_err'] = ' *Please enter phone number';
+                }else{
+                    if($this->userModel->findPhoneNumber($data['phone no'])){  
+                        $data['phone_no_err'] = "*This phone number is already registered";
+                    }
                 }
 
                 if(empty($data['nic no'])){
-                    $data['nic_no_err'] = ' *please enter nic number';
+                    $data['nic_no_err'] = '*Please enter NIC';
+                }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['nic no']) && !preg_match("/^[0-9]{12}$/", $data['nic no'])){
+                    $data['nic_no_err'] = '*Please enter a valid NIC';
+                }else{
+                    if($this->userModel->findNicNumber($data['nic no'])){
+                        $data['nic_no_err'] = "*This NIC is already registered";
+                    }
+                }
+
+                if(isset($_POST['selected'])){
+                    $data['selected'] = $_POST['selected'];
+                }else{  
+                    $data['selected_err'] = '*Please agree to the terms of service';
                 }
         
                 // if no errors, then proceed to register the user
@@ -283,26 +315,16 @@
                 
                 //if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['nic_no_err'])){
 
-                if(true){
-                $timestamp = time(); // Get the current timestamp
-                $otp = substr(md5($timestamp), 0, 6); // Generate MD5 hash and extract the first 6 characters
-
-                //function to send otp to email
-                
-                $this->sendEmailToTheUser($data['email'], $otp);
-                
-                //function to send otp to database and then check it
-                
-                $this->userModel->otp($data['email'], $otp);
-                
-                
-
-                //redirect to otp page
-                //$this->userModel->signup($data);
-                $this->view('riders/enterOTP',$data);
-                
-
-                        
+                if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['nic_no_err']) && empty($data['selected_err'])){
+                    // Get the current timestamp and generate MD5 hash and extract the first 6 characters
+                    $timestamp = time();
+                    $otp = substr(md5($timestamp), 0, 6);
+                    //function to send otp to database and then check it
+                    $this->userModel->otp($data['email'], $otp);
+                    //function to send otp to email                    
+                    $this->sendEmailToTheUser($data['email'], $otp);
+                    //redirect to otp page
+                    $this->view('users/enterOTP', $data);             
                 }else{
                     $this->view('users/signup', $data);
                 }
@@ -311,23 +333,26 @@
                 /**
                  *     If request is not POST then this scope will be execute.
                  */
-                //die("else executed");
                 $data = [
-                    'first_name_err' => '',
-                    'second_name_err' => '',
-                    'email_err' => '',
-                    'password_err' => '',
-                    'phone_no_err' => '',
-                    'nic_no_err' => '',
+                    'first name' => '',
+                    'last name' => '',
+                    'email' => '',
+                    'password' => '',
+                    'confirm_password' => '',
+                    'phone no' => '',
+                    'nic no' => '',
         
                     'first_name_err' => '',
                     'second_name_err' => '',
                     'email_err' => '',
                     'password_err' => '',
+                    'confirm_password_err' => '',
                     'phone_no_err' => '',
                     'nic_no_err' => '',
+                    'selected_err' => '',
                 ];
 
+                $this->view('users/signup', $data);
             }
         }
 
@@ -349,9 +374,30 @@
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $data = [
                         'otp' => trim($_POST['otp']),
+                        'otp_err' => '',
+
+                        'first name' => trim($_POST['first_name']),
+                        'last name' => trim($_POST['last_name']),
                         'email' => trim($_POST['email']),
+                        'password' => trim($_POST['password']),
+                        'phone no' => trim($_POST['phone_number']),
+                        'nic no' => trim($_POST['nic_number']),
                     ];
-                    $this->userModel->checkOTP($data['email'], $data['otp']);
+                    if($this->userModel->checkOTP($data['email'], $data['otp'])){
+                        //since otp is verified we add user to database
+                        if($this->userModel->signup($data)){
+                            //redirect to login page
+                            header('location: ' . URLROOT . '/users/signupSuccess');
+                            return;
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                    }
+                    else{
+                        $data['otp_err'] = ' *OTP is incorrect';
+                        $this->view('users/enterOTP', $data);
+                    }
                 }
             }
 
@@ -427,5 +473,9 @@
             ;
             
             $mail->send();
+        }
+
+        public function signupSuccess(){
+            $this->view('users/signupSuccess');
         }
     }

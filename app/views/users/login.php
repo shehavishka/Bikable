@@ -39,7 +39,7 @@
                         </div>
                         <div class="signupText">
                             <!-- sign up button should be add here -->
-                            <a href="<?php echo URLROOT;?>/users/viewSignup">Don't have an account? </a> 
+                            <a href="<?php echo URLROOT;?>/users/signup">Don't have an account? </a> 
                         </div>
                     </div>
                     <div class="forgetText">

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>OTP Entry</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/error.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
+    <title>Signup success</title>
+
     <style>
         *,
         *::before,
@@ -70,18 +74,21 @@
 
         /*button decoration*/
         .btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border: none;
             /* margin-left: 0%; */
-            width: 110px;
-            height: 45px;
+            text-decoration: none;
+            width: 90px;
+            height: 35px;
             color: white;
             background: black;
             border-radius: 13px;
-            font-weight: var(--fw-reg);
+            font-weight: var(--fw-bold);
             letter-spacing: 1px;
+
             transition: 500ms;
-            border-radius: 60px;
-            font-family: 'sfmy-regular',sans-serif;
         }
 
         .btn:hover{
@@ -116,8 +123,7 @@
 
         .box__title{
             font-size: var(--fs-h3);
-            /* margin: 2%; */
-            margin-bottom: 20px;
+            margin: 2%;
         }
 
         .box__image{
@@ -130,33 +136,21 @@
         .box__goBack_button{
             margin: 3%;
         }
-
-        .formStyle{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
     </style>
+    
 </head>
 <body>
     <div class="box">
         <div class="box__title">
-           Please check your email for the OTP
+            Thank you for joining BIKEABLE!
         </div>
-        <form action="<?php echo URLROOT;?>/users/sendOTPtoDb" method="POST" id="userInterface" class="formStyle">
-            <input type=hidden name="email" value="<?php echo $data['email'];?>">
-            <input type=hidden name="first_name" value="<?php echo $data['first name'];?>">
-            <input type=hidden name="last_name" value="<?php echo $data['last name'];?>">
-            <input type=hidden name="phone_number" value="<?php echo $data['phone no'];?>">
-            <input type=hidden name="nic_number" value="<?php echo $data['nic no'];?>">
-            <input type=hidden name="password" value="<?php echo $data['password'];?>">
-            <label for="otp">Enter OTP:</label>
-            <input type="text" id="otp" name="otp" required>
-            <br><span class="error_text"><?php echo $data['otp_err'];?></span>
-            <br>
-            <input type="submit" value="Submit" class="btn">
-        </form>
+        <div class="box__image">
+            <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.png" alt="BikableLogo" class="serverImage">
+        </div>
+        <div class="box__goBack_button">
+            <a href="<?php echo URLROOT;?>/users/login" class="btn">Login</a>
+        </div>
     </div>
+    
 </body>
 </html>
