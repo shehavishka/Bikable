@@ -318,19 +318,36 @@ img{
 /* //////////////////////////////   GRAPH DATA AREA //////////////////////////////////////////////////////////////// */
 
 .graphs-Area1{
-    margin-top:2%;
+    margin-top:3%;
     overflow: hidden; 
-    margin-right: 4%;
+    margin-right: 3%;
 }
 
 .top_left-g{
     float: left;
-    width: 20%; /* adjust width to your preference */
+    width: 30%; /* adjust width to your preference */
+}
+
+.cardd_custom{
+    margin: 9% 2%;
+    border-radius: 16px;
+    padding: 2rem 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    background-color: #9f9f9f;
+
+    text-align: center;
+    justify-content: center;
+
+    border: 2px solid black;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+    width: 75%;
+    margin-bottom: 5%;
 }
 
 .top_righ-g{
     float: right;
-    width: 80%; /* adjust width to your preference */
+    width: 70%; /* adjust width to your preference */
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
