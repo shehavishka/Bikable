@@ -79,6 +79,7 @@
             $password=$data['password'];
             $phone_no=$data['phone no'];
             $nic_no=$data['nic no'];
+            $stripeID = $data['stripe_customer_id'];
 
             // Hash the password
             $password = password_hash($password, PASSWORD_DEFAULT);
@@ -92,8 +93,8 @@
                 return false;
             } else {
                 // Insert new user into the database
-                $temp = "INSERT INTO users (NIC , firstName , lastName , phoneNumber , role , status , password , emailAdd ) 
-                VALUES ('$nic_no', '$first_name', '$last_name', '$phone_no', 'Rider', '0', '$password', '$email')";
+                $temp = "INSERT INTO users (NIC , firstName , lastName , phoneNumber , role , status , password , emailAdd, stripeID) 
+                VALUES ('$nic_no', '$first_name', '$last_name', '$phone_no', 'Rider', '0', '$password', '$email', '$stripeID')";
                 $this->db->prepareQuery($temp);
 
                 if($this->db->executeStmt()){
