@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/viewArchivedReports'">
+                    <input type="button" class="btn btn_add" value="View Archived" onclick="location.href='<?php echo URLROOT;?>/mechanics/archivedReportsControl'">
                 </div>
                 
                 <form action="<?php echo URLROOT;?>/mechanics/archiveReports" method="POST" id="userInterface">

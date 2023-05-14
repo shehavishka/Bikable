@@ -217,10 +217,10 @@ class Mechanics extends Controller
         $data = [
             'report_details' => $reportDetails,
             'map_details' => '',
-            'mechanicName_details' => '',
+            // 'mechanicName_details' => '',
         ];
         $data['map_details'] = $this->mechanicModel->getAllDADetails();
-        $data['mechanicName_details'] = $this->mechanicModel->getMechanicDetails();
+        // $data['mechanicName_details'] = $this->mechanicModel->getMechanicDetails();
         //this is not load data from the data
         $this->view('mechanics/viewArchivedReports', $data);
     }
