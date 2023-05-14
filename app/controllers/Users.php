@@ -15,6 +15,8 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
+    require_once 'vendor/autoload.php';
+
     class Users extends Controller{
         /////////////////
         // CREATE VARIABLE TO CONNECT TO THE DATABASE
@@ -160,6 +162,7 @@
             $_SESSION['user_status'] = $user->status;
             $_SESSION['user_email'] = $user->emailAdd;
             $_SESSION['user_registered_date'] = $user->registeredDate;
+            $_SESSION['stripe_customer_ID'] = $user->stripeID;
 
             // get current timestamp
             $lastLoggedIn = date('Y-m-d H:i:s');
@@ -210,6 +213,7 @@
             unset($_SESSION['user_email']);
             unset($_SESSION['user_registered_date']);
             unset($_SESSION['user_last_logged_in']);
+            unset($_SESSION['stripe_customer_ID']);
 
             session_destroy();
             redirect('users/login');
@@ -382,9 +386,21 @@
                         'password' => trim($_POST['password']),
                         'phone no' => trim($_POST['phone_number']),
                         'nic no' => trim($_POST['nic_number']),
+                        'stripe_customer_id' => '',
                     ];
                     if($this->userModel->checkOTP($data['email'], $data['otp'])){
-                        //since otp is verified we add user to database
+                        //since otp is verified we add user to database after creating a stripe customer
+                        
+                        //create stripe customer
+                        \Stripe\Stripe::setApiKey('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+                        $customer = \Stripe\Customer::create(array(
+                            'email' => $data['email'],
+                            'name' => $data['first_name'] . ' ' . $data['last_name'],
+                            'description' => 'Customer for ' . $data['email'],
+                        ));
+                        //add customer id to data array
+                        $data['stripe_customer_id'] = $customer->id;
+
                         if($this->userModel->signup($data)){
                             //redirect to login page
                             header('location: ' . URLROOT . '/users/signupSuccess');

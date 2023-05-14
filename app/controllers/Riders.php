@@ -19,9 +19,13 @@
     // 17.	withinRadius
     // 18.	distance
     // 19.	redirectIfActive
+    //      viewWallet
+    //      updatePayMethod
+    //      create_intent
     // 20.  landToErrorPage
     // 21.	class - Track
 
+    require_once 'vendor/autoload.php';
     
     class Riders extends Controller{
         // rider connect to the database
@@ -81,6 +85,19 @@
                 return;
             }
 
+            // check if a payment method is already set
+            $stripe = new \Stripe\StripeClient('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+            $response = $stripe->customers->allPaymentMethods($_SESSION['stripe_customer_ID'],['type' => 'card']);
+
+            $paymentMethods = $response->data;
+            $paymentMethodCount = count($paymentMethods);
+
+            if($paymentMethodCount == 0){
+                //if no payment method is set, redirect to the wallet page
+                $this->viewWallet();
+                return;
+            }
+
             $data = [
                 'rideDetailObject_err' => '',
             ];
@@ -120,6 +137,10 @@
                 $fareDetails = $this->riderModel->getFareDetails();
                 $data['fareBaseValue'] = $fareDetails->baseValue;
                 $data['fareRate'] = $fareDetails->ratePer10;
+                // round off to 2 decimal places
+                $data['fareRate'] = round($data['fareRate'], 2);
+                $data['fareBaseValue'] = round($data['fareBaseValue'], 2);  
+
 
                 $current_timestamp = time();
                 $data['timeStamp'] = date('Y-m-d H:i:s', $current_timestamp);
@@ -153,9 +174,30 @@
 
                         //fetch ride details just to make the rideDetailObject the right class
                         $data['rideDetailObject'] = $this->riderModel->getRideDetails($data['rideLogID']);
-                        //enter static fare value -> this should come from the super owner technically
-                        // $data['rideDetailObject']->fare = 149.80;
-                        // $data['rideDetailObject']->timeTravelled = -10;
+                        
+                        // pay the base value stripe
+                        $stripe = new \Stripe\StripeClient('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+                        $response = $stripe->customers->allPaymentMethods($_SESSION['stripe_customer_ID'],['type' => 'card']);
+                        $paymentMethod = $response->data[0]->id;
+
+                        \Stripe\Stripe::setApiKey('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+                        try{
+                            \Stripe\PaymentIntent::create([
+                              'amount' => $data['fareBaseValue'] * 100,
+                              'currency' => 'usd',
+                              'automatic_payment_methods' => ['enabled' => true],
+                              'customer' => $_SESSION['stripe_customer_ID'],
+                              'payment_method' => $paymentMethod,
+                              'off_session' => true,
+                              'confirm' => true,
+                              'return_url' => 'http://localhost/Bikable/riders/ongoingRide',
+                            ]);
+                        } catch (\Stripe\Exception\CardException $e) {
+                            // Error code will be authentication_required if authentication is needed
+                            echo 'Error code is:' . $e->getError()->code;
+                            $payment_intent_id = $e->getError()->payment_intent->id;
+                            $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+                        }
 
                         $this->view('riders/ongoingRide', $data);
                     }
@@ -267,6 +309,38 @@
                             $this->landToErrorPage();
                             die();
                         }
+
+                        // charge the user the remaining amount
+                        $fareDetails = $this->riderModel->getFareDetails();
+                        $fareBaseValue =  $fareDetails->baseValue;
+                        $remainingAmount = $data['fare'] - $fareBaseValue;
+                        // round off to 2 decimal places
+                        $remainingAmount = round($remainingAmount, 2);
+
+                        $stripe = new \Stripe\StripeClient('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+                        $response = $stripe->customers->allPaymentMethods($_SESSION['stripe_customer_ID'],['type' => 'card']);
+                        $paymentMethod = $response->data[0]->id;
+
+                        \Stripe\Stripe::setApiKey('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+                        try{
+                            \Stripe\PaymentIntent::create([
+                              'amount' => $remainingAmount * 100,
+                              'currency' => 'usd',
+                              'automatic_payment_methods' => ['enabled' => true],
+                              'customer' => $_SESSION['stripe_customer_ID'],
+                              'payment_method' => $paymentMethod,
+                              'off_session' => true,
+                              'confirm' => true,
+                              'return_url' => 'http://localhost/Bikable/riders/rideEnded',
+                            ]);
+                        } catch (\Stripe\Exception\CardException $e) {
+                            // Error code will be authentication_required if authentication is needed
+                            echo 'Error code is:' . $e->getError()->code;
+                            $payment_intent_id = $e->getError()->payment_intent->id;
+                            $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+                        }
+
+                        $data['payMethod'] = '**** **** **** ' . $response->data[0]['card']['last4'];
 
                         $this->view('riders/rideEnded', $data);
                     }else{
@@ -891,6 +965,54 @@
             }else{
                 header('location: ' . URLROOT . '/users/login');
             }
+        }
+
+        public function viewWallet(){
+            $data = [
+                // 'paymentMethod' => '',
+                'card' => '',
+                'card_no' => '',
+                'expiry' => '',
+                'paymentMethodCount' => '',
+            ];
+            // check if the customer has a stripe payment method
+            // check if a payment method is already set
+            $stripe = new \Stripe\StripeClient('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
+            $response = $stripe->customers->allPaymentMethods($_SESSION['stripe_customer_ID'],['type' => 'card']);
+
+            $paymentMethods = $response->data;
+            $data['paymentMethodCount'] = count($paymentMethods);
+
+            if($data['paymentMethodCount'] > 0){
+                $paymentMethod = $paymentMethods[0];
+                $data['card'] = $paymentMethod['card']['brand'];
+                $data['card_no'] = $paymentMethod['card']['last4'];
+                $month = $paymentMethod['card']['exp_month'];
+                $year = $paymentMethod['card']['exp_year'];  
+                $month = str_pad($month, 2, '0', STR_PAD_LEFT);
+                // get last two digits of year
+                $year = substr($year, -2);
+                $data['expiry'] = $month . '/' . $year;
+            }else{
+                $data['paymentMethod'] = null;
+            }
+
+            $this->view('riders/wallet', $data);
+        }
+
+        public function updatePayMethod(){
+            $this->view('riders/changePayMethod');
+        }
+
+        public function create_intent(){
+            $stripe = new \Stripe\StripeClient("sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd");
+            $intent = $stripe->setupIntents->create(
+            [
+                'customer' => $_SESSION['stripe_customer_ID'],
+                'automatic_payment_methods' => ['enabled' => true],
+            ]
+            );
+            echo json_encode(array('client_secret' => $intent->client_secret));
         }
 
         public function landToErrorPage(){
