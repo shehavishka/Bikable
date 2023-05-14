@@ -553,6 +553,20 @@
             return $row;
         }
 
+        public function getAdministratorCount(){
+            $this->db->prepareQuery("SELECT COUNT(*) as count FROM users WHERE role = 'Administrator' ");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function getMechanicsCount(){
+            $this->db->prepareQuery("SELECT COUNT(*) as count FROM users WHERE role = 'Mechanic' ");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
         public function setFareAndRate($data){
 
             $baseValue = $data['fareValue'];
@@ -650,9 +664,13 @@
             return $this->db->resultSet();
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        // stat page chart data
+
         public function getlatestSevenDays(){
             $this->db->prepareQuery("SELECT DISTINCT DATE(loggedTimestamp) AS date FROM reports
-            WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY date DESC
+            WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY date DESC
             ");
 
             return $this->db->resultSet();

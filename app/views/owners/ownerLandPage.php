@@ -283,11 +283,11 @@
             <script>
                 const data2 = {
                         labels: [
-                            "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+                            "5/14","5/13","5/12","5/11"
                         ],
                         datasets: [{
                                 label: "Vacant Bikes",
-                                data: [180,200,150,120,100,150,200],
+                                data: [6,4,5,7],
                                 borderColor: "rgba(255, 99, 132, 1)",
                                 backgroundColor: "rgba(255, 99, 132, 0.2)",
                                 fill: true,
@@ -295,7 +295,7 @@
                             },
                             {
                                 label: "Occupied Bikes",
-                                data: [100,80,120,150,200,150,100],
+                                data: [3,3,2,1],
                                 borderColor: "rgba(54, 162, 235, 1)",
                                 backgroundColor: "rgba(54, 162, 235, 0.2)",
                                 fill: true,

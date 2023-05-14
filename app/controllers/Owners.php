@@ -1974,10 +1974,10 @@
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////
-
-            // print_r($areaReport);
-
-            // die("fuc00");
+            // get adminstrators count
+            // these two values are object OKAY
+            $administratorCount = $this->ownerModel->getAdministratorCount();
+            $mechanicsCount = $this->ownerModel->getMechanicsCount();
 
             $data = [
                 'totalRiders' => $riderCount,
@@ -1989,7 +1989,9 @@
                 'xDate' => $dateTest,
                 'bikeReports' => $bikeReport,
                 'accidentReports' => $accidentReport,
-                'areaReports' => $areaReport
+                'areaReports' => $areaReport,
+                'administratorCount' => $administratorCount->count,
+                'mechanicsCount' => $mechanicsCount->count
             ];
             
             $this->view('owners/statistics', $data);
