@@ -111,7 +111,7 @@
                             <label>Status</label>
                             <div class="user__data">
                                 <?php
-                                    if($data['userDetailObject']->status == 1){
+                                    if($data['userDetailObject']->status == 0){
                                         echo "Active";
                                     }else{
                                         echo "Inactive";
@@ -137,9 +137,9 @@
                         <button type="submit" class="btn btnSuspendRelease">
                             <?php
                                 if($data['userDetailObject']->status == 1){
-                                    echo "Suspend";
-                                }else{
                                     echo "Release";
+                                }else{
+                                    echo "Suspend";
                                 }
                             ?>
                         </button>

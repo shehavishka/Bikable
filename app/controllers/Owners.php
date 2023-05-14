@@ -2033,4 +2033,122 @@
         }
 
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // (Inbuild) account suspention email
+        private function sendAccountSuspensionEmail($userName, $userEmail){
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Account Suspension Notification';
+            $mail->Body = '
+                <html>
+                <head>
+                    <title>Account Suspension Notification</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                        }
+                        h1 {
+                            font-size: 18px;
+                            color: #444;
+                            margin-bottom: 20px;
+                        }
+                        ul {
+                            list-style-type: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Account Suspension Notification</h1>
+                    <p>Dear ' . $userName . ',</p>
+                    <p>We regret to inform you that your account has been temporarily suspended on ' . APPLICATION_NAME . '.</p>
+                    <p>Please contact our support team for further assistance regarding the suspension.</p>
+                    <p>Thank you for your understanding and cooperation.</p>
+                    <p>Best regards,<br>
+                    ' . APPLICATION_NAME . '</p>
+                </body>
+                </html>
+            ';
+
+            $mail->send();
+        }
+
+        public function sendAccountReleaseEmail($userName, $userEmail){
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Account Release Notification';
+            $mail->Body = '
+                <html>
+                <head>
+                    <title>Account Release Notification</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                        }
+                        h1 {
+                            font-size: 18px;
+                            color: #444;
+                            margin-bottom: 20px;
+                        }
+                        ul {
+                            list-style-type: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Account Release Notification</h1>
+                    <p>Dear ' . $userName . ',</p>
+                    <p>We are pleased to inform you that your account on ' . APPLICATION_NAME . ' has been released.</p>
+                    <p>You can now access our platform using your previously provided credentials.</p>
+                    <p>If you have any questions or need further assistance, please don\'t hesitate to contact us.</p>
+                    <p>Thank you for using ' . APPLICATION_NAME . '.</p>
+                    <p>Best regards,<br>
+                    ' . APPLICATION_NAME . '</p>
+                </body>
+                </html>
+            ';
+
+            $mail->send();
+        }
+
+
+
+
 }
