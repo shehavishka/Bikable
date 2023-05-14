@@ -28,7 +28,7 @@
                 <hr>
                 <div class="detail detail__bicycles">
                     <div class="detail__bicycles--title">
-                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/mechanics/bicycleControl">Bicycles</a></div>
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/mechanics/bicyclesControl">Bicycles</a></div>
                     </div>
                 </div>
                 <hr>

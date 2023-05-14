@@ -16,8 +16,22 @@
                 <!-- header -->
                 <?php require 'header.php'; ?>
 
+                <div class="admin__data__area--top">
+                <div class="admin__data__area__top--title">Assigned Reports</div>
+                <div class="admin__data_area__top--twobuttons">
+                        <div class="add_user_button">
+                        <input type="button" class="btn btn_add" value="Back" onclick="location.href='<?php echo URLROOT; ?>/mechanics/mechanicLandPage'">
+                        </div>
+
+                        <div class="add_user_button">
+                        <input type="button" class="btn btn_delete" value="Archive" onclick="location.href='<?php echo URLROOT; ?>/mechanics/archiveReports'">
+                        </div>
+                </div>
+
+                </div>
+
                 <!-- REAL DATA AREA -->
-                <form action="<?php echo URLROOT; ?>/mechanics/editReport" method="POST" id="userInterface">
+                <!-- <form action="<?php echo URLROOT; ?>/mechanics/editReport" method="POST" id="userInterface">
                         <div class="data_area--top">
                                 <div class="data_area__top--title">Assigned Reports</div>
                                 <div class="data_area__top-twobuttons">
@@ -28,7 +42,7 @@
                                         <input type="button" class="btn btn_delete" value="Archive" onclick="location.href='<?php echo URLROOT; ?>/mechanics/archiveReport'">
                                         </div>
                                 </div>
-                        </div>
+                        </div> -->
                         <div class="admin__table__area">
                                 <table>
                                         <tr>
@@ -54,7 +68,7 @@
                                                 <td><?php echo printValue($oneObject, 'reporterID') ?></td>
                                                 <td>
                                                         <?php
-                                                        if ($oneObject->status == 1) {
+                                                        if ($oneObject->status == 0) {
                                                                 echo "Active";
                                                         } else {
                                                                 echo "Inactive";
@@ -73,7 +87,7 @@
                                                 <td><?php echo printValue($oneObject, 'areaID') ?></td>
                                                 <td>
                                                         <!-- update icon svg format -->
-                                                        <a href="<?php echo URLROOT; ?>/mechanics/editReport?reportID=<?php echo $oneObject->reportID; ?>"><img src="<?php echo URLROOT; ?>/public/images/mechanics/editIcon1.png" alt="edit"></a>
+                                                        <!-- <a href="<?php echo URLROOT; ?>/mechanics/editReport?reportID=<?php echo $oneObject->reportID; ?>"><img src="<?php echo URLROOT; ?>/public/images/mechanics/editIcon1.png" alt="edit"></a> -->
                                         </tr>
                                 <?php endforeach;
                                                 function printValue($oneObject, $column_name)

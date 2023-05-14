@@ -67,6 +67,7 @@
                         </select>
                         <span class="error_text"><?php echo $data['areaID_Err'];?></span>
                     </div>
+
                     <div class="info" id="info_location">
                         <div class="main_text">Accident Location</div>
                         <input type="text" name="accidentLocation" id="accidentLocation" class="sub_text" placeholder="Type here" value="<?php echo $data['accidentLocation'];?>">
