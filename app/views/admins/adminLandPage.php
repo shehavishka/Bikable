@@ -3,7 +3,7 @@ class DBController {
 	private $host = "localhost";
 	private $user = "root";
 	private $password = "";
-	private $database = "bikable_db";
+	private $database = "bikable_db1";
 	private $conn;
 	
 	function __construct() {

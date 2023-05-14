@@ -35,7 +35,7 @@
         }
 
         public function riderLandPageMapDetails(){
-            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status != 3");
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status = 0");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
