@@ -483,10 +483,7 @@
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
-                }elseif (!(strlen($input) == 12 && ctype_digit($input))) {
-                    $data['nic_err'] = '*invalid NIC number';
-                }
-                else{
+                }elseif ((strlen($data['nic']) == 12 && ctype_digit($data['nic']))) {
                     //check weather nic is availble in database
                     // true means that email is already taken.
                     if($this->ownerModel->findNicNumber($data['nic'])){
@@ -495,14 +492,14 @@
                         //pass
                     }
                 }
+                else{
+                    $data['nic_err'] = '*invalid NIC number';
+                }
 
                 //validate phone number
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
-                }elseif (preg_match('/^0[0-9]{0,9}$/', $data['pNumber'])) {
-                    $data['pNumber_err'] = '*invalid phone number';
-                }
-                else{
+                }elseif (strlen($data['pNumber']) == 10 && ctype_digit($data['pNumber'])) {
                     //check weather phone number is availble in database.
                     // true means that phone number is already taken.
                     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
@@ -511,28 +508,32 @@
                         //pass
                     }
                 }
+                else{
+                    $data['pNumber_err'] = '*invalid phone number';
+                }
 
                 // if there is no error then add the user to the system
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
 
                     // generate password -> calls generatePassword() function
                     $data['userPassword'] = $this->generatePassword();
-                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
                     
                     // send email to the user -> calls sendEmailToTheUser() function                    
-                    $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
+                    // $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
-                    //sweet alert
-                    echo "<script>
-                                Swal.fire(
-                                    'User added successfully',
-                                    'success'
-                                )
-                        </script>";
+                    
                     // add user to the system
                     if($this->ownerModel->addUserIntoTheSystem($data)){
+                        die("fuck");
                         // next implementation should be land into the right position according to the role
                         $this->view('owners/addUser');
+                        echo "<script>
+                        Swal.fire(
+                            'User added successfully',
+                            'success'
+                        )
+                        </script>";
                     }else{
                         // die('something went wrong');
                         $this->landToErrorPage();
