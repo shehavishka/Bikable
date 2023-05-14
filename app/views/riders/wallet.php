@@ -55,8 +55,26 @@
             border-radius: 20px;;
         }
 
+        #middle_section2{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            width: 309px;
+            height: 201px;
+            margin-top: 100px;
+        }
+        
         .method_img{
             padding-left: 220px;
+        }
+
+        .sub_text4{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
         }
 
         .card_details{
@@ -104,7 +122,7 @@
         </div>
         <div id="middle_section2">
             <div class="main_text">No payment method added</div>
-            <div class="sub_text">Add a payment method to pay for your orders</div>
+            <div class="sub_text4">To start using Bikable please create a payment method</div>
         </div>
         <div class="change_btn" id="change_btn"><a href="<?php echo URLROOT; ?>/riders/updatePayMethod">Replace Payment Method</a></div>
 
@@ -126,7 +144,12 @@
         }else{
             middle_section1.style.display = "none";
             middle_section2.style.display = "flex";
+            upper_section.style.display = "none";
             change_btn.innerHTML = "Add Payment Method";
+            // add onclick url to change_btn
+            change_btn.onclick = function(){
+                window.location.href = "<?php echo URLROOT; ?>/riders/updatePayMethod";
+            }
         }
     </script>
 </body>

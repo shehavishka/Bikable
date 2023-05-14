@@ -340,6 +340,8 @@
                             $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
                         }
 
+                        $data['payMethod'] = '**** **** **** ' . $response->data[0]['card']['last4'];
+
                         $this->view('riders/rideEnded', $data);
                     }else{
                         // redirect to error page
