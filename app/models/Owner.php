@@ -404,8 +404,9 @@
 
         public function activateUserByUserID($userID){
             $status = 0;
-            $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
-
+            $tmp = "UPDATE users SET status = '$status' WHERE userID = '$userID'";
+            
+            $this->db->prepareQuery($tmp);
             $row = $this->db->single();
 
             //check row

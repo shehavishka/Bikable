@@ -520,12 +520,11 @@
                     $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
                     
                     // send email to the user -> calls sendEmailToTheUser() function                    
-                    // $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
+                    $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
                     
                     // add user to the system
                     if($this->ownerModel->addUserIntoTheSystem($data)){
-                        die("fuck");
                         // next implementation should be land into the right position according to the role
                         $this->view('owners/addUser');
                         echo "<script>
@@ -1911,7 +1910,10 @@
                         $this->landToErrorPage();
                     }
                 }elseif ($data['userStatus'] == 1) {
+                    // print_r($data['userStatus']);
+                    // die("fuck");
                     $isUserRelease = $this->ownerModel->activateUserByUserID($data['userIdentity']);
+                    $userDetail = $this->ownerModel->findUserByUserID($data['userIdentity']);
 
                     if($isUserRelease){
                         //land to the administrator page

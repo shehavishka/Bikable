@@ -26,7 +26,7 @@
                 <!-- <div class="add_user_button">
                     <input type="button" class="btn btn_add" value="Edit" onclick="location.href='<?php echo URLROOT;?>/owners/ownerEditsHisOwnProfile'">
                 </div> -->
-                <div class="delete_user_button">
+                <div class="delete_user_button" style="margin-right: 33px;">
                     <input type="button" value="Go back" class="btn" onclick="goBack()">
                     <script>
                         function goBack(){
