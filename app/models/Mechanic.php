@@ -6,11 +6,11 @@
             $this->db = new Database;
         }
          
-        public function addLogToTheSystem(){
+        public function addLogIntoTheSystem(){
             $reportID = $_POST['reportID'];
             $estCost = $_POST['estCost'];
             $problemTitle = $_POST['problemTitle'];
-            $problemDescription = $_POST['problemDescription'];
+            // $problemDescription = $_POST['problemDescription'];
             $dateIn = $_POST['dateIn'];
             $dateOut = $_POST['dateOut'];
             $finalCost = $_POST['finalCost'];
@@ -19,7 +19,7 @@
             $status = 0;
             $repairNotes = $_POST['repairNotes'];
 
-            $temp = "INSERT INTO repairLogs (reportID, problemTitle, problemDescription, estCost, finalCost, dateIn, dateOut, bicycleID, mechanicID, status, repairNotes) VALUES ('$reportID', '$problemTitle', '$problemDescription', '$estCost', '$finalCost', '$dateIn', '$dateOut', '$bicycleID','$mechanicID', '$status', '$repairNotes')";
+            $temp = "INSERT INTO repairlog (reportID, problemTitle, estCost, finalCost, dateIn, dateOut, bicycleID, mechanicID, status, repairNotes) VALUES ('$reportID', '$problemTitle', '$estCost', '$finalCost', '$dateIn', '$dateOut', '$bicycleID','$mechanicID', '$status', '$repairNotes')";
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
@@ -65,9 +65,9 @@
             }
         }
 
-        // public function editReport($data){
+        // public function viewReport($data){
         //     // die('Inserted');
-        //     $reporterID = $_SESSION['user_ID'];
+        //     $reporterID = $data['reporterID'];
         //     $type = $data['type'];
         //     $problemTitle = $data['problemTitle'];
         //     $problemDescription = $data['problemDescription'];
@@ -79,16 +79,8 @@
         //     // $image = $data['image'];
         //     $status = 0;
 
-        //     // $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, accidentLocation, accidentTimeApprox, bicycleID, image, status) VALUES ($reporterID, $type, '$problemTitle', '$problemDescription', $areaID, '$accidentLocation', '$timeStamp', $bicycleID, '$image', $status)";
-        //     if($type == "Accident"){
-        //         $temp = "UPDATE reports SET reporterID = '$reporterID', reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', accidentLocation = '$accidentLocation', accidentTimeApprox = '$timeStamp', bicycleID = '$bicycleID', status = '$status' WHERE reportID = $reportID";
-        //     }else if($type == "Area"){
-        //         $temp = "UPDATE reports SET reporterID = '$reporterID', reportType = '$type', problemTitle = '$problemTitle', problemDescription = '$problemDescription', bicycleID = '$bicycleID', status = '$status' WHERE reportID = $reportID";
-        //         // $temp = "UPDATE reports SET (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, areaID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription','$mechanicID', $areaID, $status)";
-        //     }else if($type == "Other"){
-        //         $temp = "UPDATE reports SET (reporterID, reportType, problemTitle, problemDescription, assignedMechanic, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$mechanicID', $status)";
-        //     }
-                
+        //     $temp = "SELECT * reports 
+                           
         //     print_r($temp);
 
         //     $this->db->prepareQuery($temp);
@@ -112,9 +104,10 @@
             $dateOut = $data['dateOut'];
             $finalCost = $data['finalCost'];
             $bicycleID = $data['bicycleID'];
+            $repairNotes = $data['repairNotes'];
             
 
-            $temp = "UPDATE repairLogs SET problemDescription = '$problemDescription', estCost = '$estCost', finalCost = '$finalCost', dateIn = '$dateIn', dateOut ='$dateOut' WHERE repairLogID = $repairLogID";
+            $temp = "UPDATE repairLogs SET problemDescription = '$problemDescription', estCost = '$estCost', finalCost = '$finalCost', dateIn = '$dateIn', dateOut ='$dateOut', repairNotes ='$repairNotes' WHERE repairLogID = $repairLogID";
             
 
             $this->db->prepareQuery($temp);

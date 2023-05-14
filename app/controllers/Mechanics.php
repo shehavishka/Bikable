@@ -48,6 +48,10 @@ class Mechanics extends Controller
     
         // load mechanic's repairLog control
         //code will implement here
+
+        // $problemDescription = $this->mechanicModel->getReportByID();
+        // $data = ['problem_description' => $problemDescription];
+
         $repairLogDetails = $this->mechanicModel->getRepairLogDetails();
         $data = [
             'repairLog_details' => $repairLogDetails
@@ -120,7 +124,7 @@ class Mechanics extends Controller
 
     public function addLog(){
         $data = [
-            // 'reportID' => '',
+            'reportID' => '',
             'bicycleID' => '',
             'problemTitle' => '',
             'dateIn' => '',
@@ -129,55 +133,61 @@ class Mechanics extends Controller
             'problemDescription' => '',
             'finalCost' => '',
             'estCost' => '',
+            'repairNotes' => '',
 
-            // 'reportID_err' => '',
+            'reportID_err' => '',
             'bicycleID_err' => '',
             'problemTitle_err' => '',
             'dateIn_err' => '',
             'dateOut_err' => '',
             'mechanicID_err' => '',
-            'problemDescription_err' => '',
+            // 'problemDescription_err' => '',
             'finalCost_err' => '',
             'estCost_err' => '',
+            'repairNotes_err' => ''
         ];
         // $data['reportID'] = $this->mechanicModel->getReportByID();
+
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $data = [
-                // 'reportID' => trim($_POST['reportID']),
+                'reportID' => trim($_POST['reportID']),
                 'bicycleID' => trim($_POST['bicycleID']),
                 'problemTitle' => trim($_POST['problemTitle']),
                 'dateIn' => trim($_POST['dateIn']),
                 'dateOut' => trim($_POST['dateOut']),
                 'mechanicID' => trim($_POST['mechanicID']),
-                'problemDescription' => trim($_POST['problemDescription']),
+                // 'problemDescription' => trim($_POST['problemDescription']),
                 'finalCost' => trim($_POST['finalCost']),
                 'estCost' => trim($_POST['estCost']),
+                'repairNotes' => trim($_POST['repairNotes']),
 
-                // 'reportID_err' => '',
+                'reportID_err' => '',
                 'bicycleID_err' => '',
                 'problemTitle_err' => '',
                 'dateIn_err' => '',
                 'dateOut_err' => '',
                 'mechanicID_err' => '',
-                'problemDescription_err' => '',
+                // 'problemDescription_err' => '',
                 'finalCost_err' => '',
                 'estCost_err' => '',
+                'repairNotes_err' => ''
             ];
-            // if(empty($data['reportID'])){
-            //     $data['reportID_err'] = 'Please enter report ID';
-            // }
-            if (empty($data['dateIn'])) {
-                $data['date_Err'] = '*Please select a date';
-                // else if date is after today
-            } else if ($data['date'] > date("Y-m-d")) {
-                $data['dateIn_Err'] = '*Please select a valid date';
+            if(empty($data['reportID'])){
+                $data['reportID_err'] = 'Please enter report ID';
             }
+            // if (empty($data['dateIn'])) {
+            //     $data['dateIn_err'] = '*Please select a date';
+            //     // else if date is after today
+            // } else if ($data['dateIn'] > date('dateOut')) {
+            //     $data['dateOut_err'] = '*Please select a valid date';
+            // }
 
             // if (empty($data['dateOut'])) {
-            //     $data['date_Err'] = '*Please select a date';
+            //     $data['date_err'] = '*Please select a date';
             //     // else if date is after today
             // } else if ($data['date'] > date("Y-m-d")) {
-            //     $data['dateOut_Err'] = '*Please select a valid date';
+            //     $data['dateOut_err'] = '*Please select a valid date';
             // }
 
             if(empty($data['bicycleID'])){
@@ -195,9 +205,9 @@ class Mechanics extends Controller
             if(empty($data['mechanicID'])){
                 $data['mechanicID_err'] = 'Please enter mechanic ID';
             }
-            if(empty($data['problemDescription'])){
-                $data['problemDescription_err'] = 'Please enter problem description';
-            }
+            // // if(empty($data['problemDescription'])){
+            // //     $data['problemDescription_err'] = 'Please enter problem description';
+            // }
             if(empty($data['finalCost'])){
                 $data['finalCost_err'] = 'Please enter final cost';
             }
@@ -205,8 +215,8 @@ class Mechanics extends Controller
                 $data['estCost_err'] = 'Please enter estimated cost';
             }
 
-            if(empty($data['reportID_err']) && empty($data['bicycleID_err']) && empty($data['problemTitle']) && empty($data['dateIn_err']) && empty($data['dateOut_err']) && empty($data['mechanicID_err']) && empty($data['problemDescription_err']) && empty($data['finalCost_err']) && empty($data['estCost_err'])){
-                
+            if(empty($data['reportID_err']) && empty($data['bicycleID_err']) && empty($data['problemTitle_err']) && empty($data['mechanicID_err']) && empty($data['finalCost_err']) && empty($data['estCost_err'])){
+                // empty($data['problemDescription_err']) && empty($data['dateIn_err']) && empty($data['dateOut_err']) && 
                 if($this->mechanicModel->addLogIntoTheSystem($data)){
                 header('location: ' . URLROOT . '/mechanics/repairLogsControl');
                 return;
@@ -471,8 +481,9 @@ class Mechanics extends Controller
         $this->view('mechanics/viewAssignedReports',$data);
     }
     
-    public function editReport(){
+    public function viewReport(){
         $data = [
+            'reporterID' => '',
             'reportID' => '',
             'type' => '',
             'problemTitle' => '',
@@ -483,7 +494,7 @@ class Mechanics extends Controller
             'time' => '',
             'bicycleID' => '',
             'image' => '',
-
+            'assignedMechanic' => '',
             'accidentTimeStamp' => '',
 
             'type_Err' => '',
@@ -499,103 +510,22 @@ class Mechanics extends Controller
             'mapDetails' => '',
         ];
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            //validate and update the report
-            //get the data from the form
-            $data['reportID'] = $_POST['reportID'];
-            if($_POST['type']){$data['type'] = $_POST['type'];}
-            $data['problemTitle'] = $_POST['problemTitle'];
-            $data['problemDescription'] = $_POST['problemDescription'];
-            if($_POST['areaID']){$data['areaID'] = $_POST['areaID'];}
-            $data['accidentLocation'] = $_POST['accidentLocation'];
-            $data['date'] = $_POST['date'];
-            $data['time'] = $_POST['time'];
-            $data['bicycleID'] = $_POST['bicycleID'];
-            // $data['image'] = $_POST['image'];
-
-            //validate the report type
-            if(empty($data['type'])){
-                $data['type_Err'] = '*Please select a report type';
-            }
-
-            //validate the report title
-            if(empty($data['problemTitle'])){
-                $data['problemTitle_Err'] = '*Please enter a title';
-            }
-
-            //validate the report description
-            if(empty($data['problemDescription'])){
-                $data['problemDescription_Err'] = '*Please enter a description';
-            }
-
-            //if type = docking area issue, validate the area ID    
-            if($data['type'] == 'Area'){
-                if(empty($data['areaID'])){
-                    $data['areaID_Err'] = '*Please select an area';
-                }
-            }
-
-            //if type = accident, validate the accident location, date, time and bike
-            if($data['type'] == 'Accident'){
-                if(empty($data['accidentLocation'])){
-                    $data['accidentLocation_Err'] = '*Please enter an accident location';
-                }
-                if(empty($data['date'])){
-                    $data['date_Err'] = '*Please select a date';
-                    // else if date is after today
-                }else if($data['date'] > date("Y-m-d")){
-                    $data['date_Err'] = '*Please select a valid date';
-                }
-                // print_r($data['date']);
-                // print_r(date("Y-m-d"));
-                if(empty($data['time'])){
-                    $data['time_Err'] = '*Please select a time';
-                }
-                if(empty($data['bicycleID'])){
-                    $data['bicycleID_Err'] = '*Please scan the bicycle';
-                }
-
-                // concatenate date and time to timestamp format
-                $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
-            }else{
-                $data['date'] = '';
-            }
-
-            //if type = bicycle, validate the bikeID
-            if($data['type'] == 'Bicycle'){
-                if(empty($data['bicycleID'])){
-                    $data['bicycleID_Err'] = '*Please scan the bicycle';
-                }
-            }
-
-            //if there are no errors 
-            if(empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])){
-                if($this->mechanicModel->updateReport($data)){
-                    header('location: ' . URLROOT . '/mechanics/reports');
-                    return;
-                }else{
-                    //error page
-                    die("something went wrong");
-                    return;
-                }
-            }else{
-                //load the view with errors
-                $this->view('mechanics/editReport', $data);
-                return;
-            }
-            
-        }else if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $data['mapDetails'] = $this->mechanicModel->getAllMapDetails();
             $data['reportID'] = $_GET['reportID'];
 
             $report = $this->mechanicModel->getReportByID($data['reportID']);
+            $data['reporterID'] = $report->reporterID;
             $data['type'] = $report->reportType;
             $data['problemTitle'] = $report->problemTitle;
             $data['problemDescription'] = $report->problemDescription;
             $data['areaID'] = $report->areaID;
             $data['accidentLocation'] = $report->accidentLocation;
             $data['bicycleID'] = $report->bicycleID;    
+            $data['assignedMechanic'] = $report->assignedMechanic;
             $data['accidentTimeStamp'] = $report->accidentTimeApprox;
+            $data['areaID'] = $report->areaID;
             
             // split the timestamp into date and time
             $data['date'] = substr($data['accidentTimeStamp'], 0, 10);
@@ -604,7 +534,7 @@ class Mechanics extends Controller
             // print_r($data['date'] . " " . $data['time'] . " " . $data['accidentTimeStamp'] . " " . $report->accidentTimeApprox . " test");
             // die("hello?");
 
-            $this->view('mechanics/editReport', $data);
+            $this->view('mechanics/viewReport', $data);
         }
     }
 
