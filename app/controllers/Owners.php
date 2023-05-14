@@ -1894,7 +1894,6 @@
                     $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
 
                     $userDetail = $this->ownerModel->findUserByUserID($data['userIdentity']);
-                    
                     if($isUserSuspend){
                         //land to the administrator page
                         $this->sendAccountSuspensionEmail($userDetail->firstName, $userDetail->emailAdd);
