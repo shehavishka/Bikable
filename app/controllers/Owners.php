@@ -1948,13 +1948,48 @@
             $fare = $fareAndRate->{'baseValue'};
             $rate = $fareAndRate->{'ratePer10'};
 
+            //////////////////////////////////////////////////////////////////////////////////////////
+            //get seven days latest
+            $xDate = $this->ownerModel->getlatestSevenDays();
+
+            $dateTest = array();
+            foreach ($xDate as $y) {
+                $dateTest[] = $y->date;
+            }
+            // print_r($dateTest);
+            // print"<br>";
+            // die("fuck");
+
+            // print_r($this->ownerModel->bikeReportsCount($x[0]->date)->bicycle_count);
+            // die("fuck2");
+
+            $bikeReport = array();
+            $accidentReport = array();
+            $areaReport = array();
+
+            foreach ($xDate as $y) {
+                $bikeReport[] = $this->ownerModel->bikeReportsCount($y->date)->bicycle_count;
+                $accidentReport[] = $this->ownerModel->accidentReport($y->date)->accident_count;
+                $areaReport[] = $this->ownerModel->areaReportsCount($y->date)->area_count;
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////////
+
+            // print_r($areaReport);
+
+            // die("fuc00");
+
             $data = [
                 'totalRiders' => $riderCount,
                 'totalBikes' => $bikeCount,
                 'totalDockingAreas' => $dockingAreaCount,
                 'activeReports' => $activeReportCount,
                 'fare' => $fare,
-                'rate' => $rate
+                'rate' => $rate,
+                'xDate' => $dateTest,
+                'bikeReports' => $bikeReport,
+                'accidentReports' => $accidentReport,
+                'areaReports' => $areaReport
             ];
             
             $this->view('owners/statistics', $data);

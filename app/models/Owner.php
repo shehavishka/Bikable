@@ -649,5 +649,33 @@
 
             return $this->db->resultSet();
         }
+
+
+
+        public function getlatestSevenDays(){
+            $this->db->prepareQuery("SELECT DISTINCT DATE(loggedTimestamp) AS date FROM reports
+            WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY date DESC
+            ");
+
+            return $this->db->resultSet();
+        }
+
+        public function bikeReportsCount($date){
+            $this->db->prepareQuery("SELECT COUNT(*) AS bicycle_count FROM reports WHERE DATE(loggedTimestamp) = '$date' AND reportType = 'Bicycle' ");
+
+            return $this->db->single();
+        }
+
+        public function areaReportsCount($date){
+            $this->db->prepareQuery("SELECT COUNT(*) AS area_count FROM reports WHERE DATE(loggedTimestamp) = '$date' AND reportType = 'Area' ");
+
+            return $this->db->single();
+        }
+
+        public function accidentReport($date){
+            $this->db->prepareQuery("SELECT COUNT(*) AS accident_count FROM reports WHERE DATE(loggedTimestamp) = '$date' AND reportType = 'Accident' ");
+
+            return $this->db->single();
+        }
     
     }

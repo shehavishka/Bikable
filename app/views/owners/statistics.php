@@ -136,107 +136,58 @@
 
         <section class="graphs-Area1">
             <div class="top_left-g">
-                <div class="lower__section__card--title" styles="margin-bottom: -10px;">
-                    Bike Inventory Status
+                <div class="data__count__area--totalDockingAreas cardd cardd_custom">
+                    <div class="data__count__area--totalDockingAreas--value">
+                        <?php echo $data['totalDockingAreas']; ?>
+                    </div>
+                    <div class="data__count__area--totalDockingAreas--title">
+                        Total Docking Areas
+                    </div>
                 </div>
-                <!-- DOUGHNUT CHART -->
-                <div class="lower__section__card--doughnuts">
-                    <canvas id="myChart" width="20" height="20"></canvas>
-                </div>
-                <script>
-                        const data1 = {
-                            labels: [
-                                'Occupied Bikes',
-                                'Vacant Bikes',
-                                'Bikes in Repair'
-                            ],
-                            datasets: [{
-                                label: 'Bikes',
-                                data: [300, 50, 100],
-                                backgroundColor: [
-                                    'rgb(28, 28, 28)',
-                                    'rgb(158, 158, 157)',
-                                    'rgb(222, 222, 222)'
-                                ],
-                                hoverOffset: 4
-                            }]
-                        };
 
-                        const config = {
-                            type: 'doughnut',
-                            data: data1,
-                            options: {
-                                cutout: '70%',
-                                fontSize: 12,
-                                plugins: {
-                                    legend: {
-                                        display: true,
-                                        position: 'top',
-                                        align: 'center',
-                                        labels: {
-                                            font: {
-                                                family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-                                                size: 10,
-                                            },
-                                            padding: 10,
-                                            boxWidth: 80,
-                                            usePointStyle: true
-                                        }
-                                    },
-                                    // datalabels: {
-                                    //     color: '#fff',
-                                    //     font: {
-                                    //         size: 12,
-                                    //     },
-                                    //     formatter: (value, context) => {
-                                    //         const total = context.chart.data.datasets[0].data.reduce((acc, val) => acc + val, 0);
-                                    //         const percentage = Math.round((value / total) * 100);
-                                    //         return `${value} (${percentage}%)`;
-                                    //     },
-                                    // },
-                                    
-                                },
-                                // scales: {
-                                //     y: {
-                                //         beginAtZero: true,
-                                //     },
-                                // },
-                            },
-                        };
-                        var myChart = new Chart(
-                            document.getElementById('myChart'),
-                            config
-                        );
-                </script>
+                <div class="data__count__area--totalDockingAreas cardd cardd_custom">
+                    <div class="data__count__area--totalDockingAreas--value">
+                        <?php echo $data['totalDockingAreas']; ?>
+                    </div>
+                    <div class="data__count__area--totalDockingAreas--title">
+                        Total Docking Areas
+                    </div>
+                </div>
             </div>
 
             <div class="top_righ-g">
                 <div class="lower__section__card--title" style="margin-top: 5px; margin-left: 7%">
-                    Bike Availability Trend
+                    Reports Trend
                 </div>
                 <div class="lower__section__card--bars" style="margin-top: 5px;">
                     <canvas id="myLine" width="50" height="20"></canvas>
                 </div>  
                 <script>
                     const data2 = {
-                            labels: [
-                                "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
-                            ],
+                            labels: <?php echo json_encode($data["xDate"]); ?>,
                             datasets: [{
-                                    label: "Vacant Bikes",
-                                    data: [180,200,150,120,100,150,200],
+                                    label: "Bike Reports",
+                                    data: <?php echo json_encode($data["bikeReports"]); ?>,
                                     borderColor: "rgba(255, 99, 132, 1)",
                                     backgroundColor: "rgba(255, 99, 132, 0.2)",
                                     fill: true,
                                     tension: 0.1,
                                 },
                                 {
-                                    label: "Occupied Bikes",
-                                    data: [100,80,120,150,200,150,100],
+                                    label: "Area Reports",
+                                    data: <?php echo json_encode($data["areaReports"]); ?>,
                                     borderColor: "rgba(54, 162, 235, 1)",
                                     backgroundColor: "rgba(54, 162, 235, 0.2)",
                                     fill: true,
-                                    tension: 0.4,
+                                    tension: 0.1,
+                                },
+                                {
+                                    label: "Accident Reports",
+                                    data: <?php echo json_encode($data["accidentReports"]); ?>,
+                                    borderColor: "rgba(153, 102, 255, 1)",
+                                    backgroundColor: "rgba(153, 102, 255, 0.2)",
+                                    fill: true,
+                                    tension: 0.1,
                                 },
                             ]
                     };
