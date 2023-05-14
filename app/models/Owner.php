@@ -547,7 +547,7 @@
         }
 
         public function getFareAndRate(){
-            $this->db->prepareQuery("SELECT baseValue, ratePer10 FROM fareRate ORDER BY timeStamp DESC LIMIT 1");
+            $this->db->prepareQuery("SELECT baseValue, ratePer10 FROM farerate ORDER BY timeStamp DESC LIMIT 1");
 
             $row = $this->db->single();
             return $row;
