@@ -1890,20 +1890,38 @@
                 ];
                 
                 //suspend the user and release the user
-                if($data['userStatus'] == 1){
+                if($data['userStatus'] == 0){
                     $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
+
+                    $userDetail = $this->ownerModel->findUserByUserID($data['userIdentity']);
+                    
                     if($isUserSuspend){
                         //land to the administrator page
+                        $this->sendAccountSuspensionEmail($userDetail->firstName, $userDetail->emailAdd);
                         $this->administrator();
+                        echo "<script>
+                            Swal.fire(
+                                'Suspended!',
+                                'Sent an email to the user about the suspension.',
+                            )
+                        </script>";
+                        
                     }else{
                         // die("some thing went wrong at the suspend process");
                         $this->landToErrorPage();
                     }
-                }elseif ($data['userStatus'] == 0) {
+                }elseif ($data['userStatus'] == 1) {
                     $isUserRelease = $this->ownerModel->activateUserByUserID($data['userIdentity']);
+
                     if($isUserRelease){
                         //land to the administrator page
+                        $this->sendAccountReleaseEmail($userDetail->firstName, $userDetail->emailAdd);
                         $this->administrator();
+                        echo "<script>
+                            Swal.fire(
+                                'Released!',
+                                'Sent an email to the user about the release.',
+                            )</script>";
                     }else{
                         // die("some thing went wrong at the suspend process");
                         $this->landToErrorPage();
