@@ -106,6 +106,7 @@
             }
         }
 
+        //insert otp to database
         public function otp($email,$otp){
            
             $temp = "INSERT INTO emailOTP (email , OTP) VALUES ('$email' , '$otp')";
@@ -114,6 +115,7 @@
 
         }
 
+        //checks if the otp is correct
         public function checkOTP($email,$otp){
             //die('checkOTP called');
             //get values from database where email is the same as the user input
@@ -132,5 +134,14 @@
                 return false;
                 
             }
+        }
+
+        //delete otp from database
+        public function deleteOTP($email){
+            //get values from database where email is the same as the user input
+            
+            $this->db->prepareQuery("DELETE FROM emailotp WHERE email='$email'");
+            return $this->db->executeStmt();
+
         }
     }

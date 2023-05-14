@@ -384,6 +384,8 @@
                         'nic no' => trim($_POST['nic_number']),
                     ];
                     if($this->userModel->checkOTP($data['email'], $data['otp'])){
+                        //delete otp from database
+                        $this->userModel->deleteOTP($data['email']);
                         //since otp is verified we add user to database
                         if($this->userModel->signup($data)){
                             //redirect to login page
