@@ -70,134 +70,158 @@ class Mechanics extends Controller
         }            
     }
 
-    public function addLog()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // public function addLog()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         $data = [
+    //             'RLid' => trim($_POST['Repair_Log_ID']),
+    //             'Bid' => trim($_POST['BicycleID']),
+    //             'Ptitle' => trim($_POST['Problem_Title']),
+    //             'Din' => trim($_POST['Date_In']),
+    //             'Tin' => trim($_POST['Time_In']),
+    //             'Mid' => trim($_POST['Mechanic_ID']),
+    //             'ProbDesc' => trim($_POST['Problem_Description']),
+    //             'RepDesc' => trim($_POST['Repair_Description']),
+    //             'EstCost' => trim($_POST['Estimated_cost']),
+    //             'Dout' => trim($_POST['Date_Out']),
+    //             'FinCost' => trim($_POST['Final_Cost']),
+
+    //             'RLid_err' => '',
+    //             'Bid_err' => '',
+    //             'Ptitle_err' => '',
+    //             'Din_err' => '',
+    //             'Tin_err' => '',
+    //             'Mid_err' => '',
+    //             'ProbDesc_err' => '',
+    //             'RepDecs_err' => '',
+    //             'EstCost_err' => '',
+    //             'Dout_err' => '',
+    //             'FinCost' => '',
+    //         ];
+
+    //         $this->mechanicModel->addLog($data);
+    //         redirect('mechanics/mechanicLandPage');
+
+    //     } else
+    //         $this->view('mechanics/addLog',[
+    //             'RLid_err' => '',
+    //             'Bid_err' => '',
+    //             'Ptitle_err' => '',
+    //             'Din_err' => '',
+    //             'Tin_err' => '',
+    //             'Mid_err' => '',
+    //             'ProbDesc_err' => '',
+    //             'RepDesc_err' => '',
+    //             'EstCost_err' => '',
+    //             'Dout_err' => '',
+    //             'FinCost' => '',
+    //     ]);
+    // }
+
+    public function addLog(){
+        $data = [
+            // 'reportID' => '',
+            'bicycleID' => '',
+            'problemTitle' => '',
+            'dateIn' => '',
+            'dateOut' => '',
+            'mechanicID' => '',
+            'problemDescription' => '',
+            'finalCost' => '',
+            'estCost' => '',
+
+            // 'reportID_err' => '',
+            'bicycleID_err' => '',
+            'problemTitle_err' => '',
+            'dateIn_err' => '',
+            'dateOut_err' => '',
+            'mechanicID_err' => '',
+            'problemDescription_err' => '',
+            'finalCost_err' => '',
+            'estCost_err' => '',
+        ];
+        // $data['reportID'] = $this->mechanicModel->getReportByID();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $data = [
-                'RLid' => trim($_POST['Repair_Log_ID']),
-                'Bid' => trim($_POST['BicycleID']),
-                'Ptitle' => trim($_POST['Problem_Title']),
-                'Din' => trim($_POST['Date_In']),
-                'Tin' => trim($_POST['Time_In']),
-                'Mid' => trim($_POST['Mechanic_ID']),
-                'ProbDesc' => trim($_POST['Problem_Description']),
-                'RepDesc' => trim($_POST['Repair_Description']),
-                'EstCost' => trim($_POST['Estimated_cost']),
-                'Dout' => trim($_POST['Date_Out']),
-                'FinCost' => trim($_POST['Final_Cost']),
+                // 'reportID' => trim($_POST['reportID']),
+                'bicycleID' => trim($_POST['bicycleID']),
+                'problemTitle' => trim($_POST['problemTitle']),
+                'dateIn' => trim($_POST['dateIn']),
+                'dateOut' => trim($_POST['dateOut']),
+                'mechanicID' => trim($_POST['mechanicID']),
+                'problemDescription' => trim($_POST['problemDescription']),
+                'finalCost' => trim($_POST['finalCost']),
+                'estCost' => trim($_POST['estCost']),
 
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
-                'Mid_err' => '',
-                'ProbDesc_err' => '',
-                'RepDecs_err' => '',
-                'EstCost_err' => '',
-                'Dout_err' => '',
-                'FinCost' => '',
+                // 'reportID_err' => '',
+                'bicycleID_err' => '',
+                'problemTitle_err' => '',
+                'dateIn_err' => '',
+                'dateOut_err' => '',
+                'mechanicID_err' => '',
+                'problemDescription_err' => '',
+                'finalCost_err' => '',
+                'estCost_err' => '',
             ];
-
-            $this->mechanicModel->addLog($data);
-            redirect('mechanics/mechanicLandPage');
-
-        } else
-            $this->view('mechanics/addLog',[
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
-                'Mid_err' => '',
-                'ProbDesc_err' => '',
-                'RepDesc_err' => '',
-                'EstCost_err' => '',
-                'Dout_err' => '',
-                'FinCost' => '',
-        ]);
-    }
-
-    public function addLogToTheSystem()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = [
-                'RLid' => trim($_POST['Repair_Log_ID']),
-                'Bid' => trim($_POST['BicycleID']),
-                'Ptitle' => trim($_POST['Problem_Title']),
-                'Din' => trim($_POST['Date_In']),
-                'Tin' => trim($_POST['Time_In']),
-                'Mid' => trim($_POST['Mechanic_ID']),
-                'ProbDesc' => trim($_POST['Problem_Description']),
-                'RepDesc' => trim($_POST['Repair_Description']),
-                'EstCost' => trim($_POST['Estimated_cost']),
-                'Dout' => trim($_POST['Date_Out']),
-                'FinCost' => trim($_POST['Final_Cost']),
-
-                'RLid_err' => '',
-                'Bid_err' => '',
-                'Ptitle_err' => '',
-                'Din_err' => '',
-                'Tin_err' => '',
-                'Mid_err' => '',
-                'ProbDesc_err' => '',
-                'RepDesc_err' => '',
-                'EstCost_err' => '',
-                'Dout_err' => '',
-                'FinCost' => '',
-            ];
-
-            if (empty($data['RLid'])) {
-                $data['RLid_err'] = 'Enter Solution Description';
+            // if(empty($data['reportID'])){
+            //     $data['reportID_err'] = 'Please enter report ID';
+            // }
+            if (empty($data['dateIn'])) {
+                $data['date_Err'] = '*Please select a date';
+                // else if date is after today
+            } else if ($data['date'] > date("Y-m-d")) {
+                $data['dateIn_Err'] = '*Please select a valid date';
             }
 
-            if (empty($data['Bid'])) {
-                $data['Bid_err'] = 'Enter Bicycle ID';
+            // if (empty($data['dateOut'])) {
+            //     $data['date_Err'] = '*Please select a date';
+            //     // else if date is after today
+            // } else if ($data['date'] > date("Y-m-d")) {
+            //     $data['dateOut_Err'] = '*Please select a valid date';
+            // }
+
+            if(empty($data['bicycleID'])){
+                $data['bicycleID_err'] = 'Please enter bicycle ID';
+            }
+            if(empty($data['problemTitle'])){
+                $data['problemTitle_err'] = 'Please enter problem title';
+            }
+            if(empty($data['dateIn'])){
+                $data['dateIn_err'] = 'Please enter date in';
+            }
+            if(empty($data['dateOut'])){
+                $data['dateOut_err'] = 'Please enter date out';
+            }
+            if(empty($data['mechanicID'])){
+                $data['mechanicID_err'] = 'Please enter mechanic ID';
+            }
+            if(empty($data['problemDescription'])){
+                $data['problemDescription_err'] = 'Please enter problem description';
+            }
+            if(empty($data['finalCost'])){
+                $data['finalCost_err'] = 'Please enter final cost';
+            }
+            if(empty($data['estCost'])){
+                $data['estCost_err'] = 'Please enter estimated cost';
             }
 
-            if (empty($data['Ptitle'])) {
-                $data['Ptitle_err'] = 'Enter Problem Title';
-            }
-
-            if (empty($data['Din'])) {
-                $data['Din_err'] = 'Enter Date in';
-            }
-
-            if (empty($data['Tin'])) {
-                $data['Tin_err'] = 'Enter Time in';
-            }
-
-            if (empty($data['Mid'])) {
-                $data['Mid_err'] = 'Enter Mechanic ID';
-            }
-
-            if (empty($data['ProbDesc'])) {
-                $data['ProbDesc_err'] = 'Enter Problem Description';
-            }
-
-            if (empty($data['RepDesc'])) {
-                $data['RepDesc_err'] = 'Enter Repair Description';
-            }
-
-            if (empty($data['EstCost'])) {
-                $data['EstCost_err'] = 'Enter Estimated Cost';
-            }
-
-            if (empty($data['Dout'])) {
-                $data['Dout_err'] = 'Enter Date out';
-            }
-
-            if (empty($data['FinCost'])) {
-                $data['FinCost'] = 'Enter Final Cost';
-            }
-
-            if ($this->mechanicModel->addLog($data)) {
-                redirect('mechanics/addLogSuccess');
+            if(empty($data['reportID_err']) && empty($data['bicycleID_err']) && empty($data['problemTitle']) && empty($data['dateIn_err']) && empty($data['dateOut_err']) && empty($data['mechanicID_err']) && empty($data['problemDescription_err']) && empty($data['finalCost_err']) && empty($data['estCost_err'])){
+                
+                if($this->mechanicModel->addLogIntoTheSystem($data)){
+                header('location: ' . URLROOT . '/mechanics/repairLogsControl');
+                return;
             } else {
-                redirect('mechanics/addLogerror');
-                die('something went wrong');
+                //error page
+                die("something went wrong");
+                return;
+            }
+            } else {
+                //load the view with errors        
+                $this->view('mechanics/addRepairLog', $data);
+                return;
             }
         }
+        $this->view('mechanics/addRepairLog', $data);
     }
 
     public function reportsControl(){
@@ -583,6 +607,95 @@ class Mechanics extends Controller
             $this->view('mechanics/editReport', $data);
         }
     }
+
+    // public function addRepairLog()
+    // {
+    //     $data = [
+    //         'reportID' => '',
+    //         'repairLogID' => '',
+    //         'mechanicID' => '',
+    //         'problemTitle' => '',
+    //         'problemDescription' => '',
+    //         'bicycleID' => '',
+    //         'areaID' => '',
+    //         'estCost' => '',
+    //         'dateIn' => '',
+    //         'dateOut' => '',
+    //         'estCost' => '',
+    //         'FinCost' => '',
+    //         'repairNotes' => '',
+
+    //         'reportID_err' => '',
+    //         'repairLogID_err' => '',
+    //         'mechanicID_err' => '',
+    //         'problemTitle_err' => '',
+    //         'problemDescription_err' => '',
+    //         'bicycleID_err' => '',
+    //         'areaID_err' => '',
+    //         'estCost_err' => '',
+    //         'dateIn_err' => '',
+    //         'dateOut_err' => '',
+    //         'estCost_err' => '',
+            
+    //         'mapDetails' => '',
+    //     ];
+
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         //validate and update the report
+    //         //get the data from the form
+    //         $data['reportID'] = $_POST['reportID'];
+                        
+    //         $data['problemTitle'] = $_POST['problemTitle'];
+    //         $data['problemDescription'] = $_POST['problemDescription'];
+    //         if ($_POST['areaID']) {
+    //             $data['areaID'] = $_POST['areaID'];
+    //         }
+    //         $data['accidentLocation'] = $_POST['accidentLocation'];
+    //         $data['date'] = $_POST['date'];
+    //         $data['time'] = $_POST['time'];
+    //         $data['bicycleID'] = $_POST['bicycleID'];
+    //         // $data['image'] = $_POST['image'];
+
+    //         //validate the report description
+    //         if (empty($data['problemDescription'])) {
+    //             $data['problemDescription_Err'] = '*Please enter a description';
+    //         }
+
+    //             if (empty($data['date'])) {
+    //                 $data['date_Err'] = '*Please select a date';
+    //                 // else if date is after today
+    //             } else if ($data['date'] > date("Y-m-d")) {
+    //                 $data['date_Err'] = '*Please select a valid date';
+    //             }
+    //             // print_r($data['date']);
+    //             // print_r(date("Y-m-d"));
+    //             if (empty($data['time'])) {
+    //                 $data['time_Err'] = '*Please select a time';
+    //             }
+
+    //             // concatenate date and time to timestamp format
+    //             $data['accidentTimeStamp'] = $data['date'] . ' ' . $data['time'];
+    //         } else {
+    //             $data['date'] = '';
+    //         }
+
+
+    //     //if there are no errors 
+    //     if (empty($data['type_Err']) && empty($data['problemTitle_Err']) && empty($data['problemDescription_Err']) && empty($data['areaID_Err']) && empty($data['accidentLocation_Err']) && empty($data['date_Err']) && empty($data['time_Err']) && empty($data['bicycleID_Err']) && empty($data['image_Err'])) {
+    //         if ($this->mechanicModel->editRepairLog($data)) {
+    //             header('location: ' . URLROOT . '/mechanics/repairLogs');
+    //             return;
+    //         } else {
+    //             //error page
+    //             die("something went wrong");
+    //             return;
+    //         }
+    //         } else {
+    //             //load the view with errors
+    //             $this->view('mechanics/editRepairLog', $data);
+    //             return;
+    //         }
+    // }
 
     public function editRepairLog()
     {

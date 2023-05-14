@@ -6,6 +6,29 @@
             $this->db = new Database;
         }
          
+        public function addLogToTheSystem(){
+            $reportID = $_POST['reportID'];
+            $estCost = $_POST['estCost'];
+            $problemTitle = $_POST['problemTitle'];
+            $problemDescription = $_POST['problemDescription'];
+            $dateIn = $_POST['dateIn'];
+            $dateOut = $_POST['dateOut'];
+            $finalCost = $_POST['finalCost'];
+            $bicycleID = $_POST['bicycleID'];
+            $mechanicID = $_SESSION['user_ID'];
+            $status = 0;
+            $repairNotes = $_POST['repairNotes'];
+
+            $temp = "INSERT INTO repairLogs (reportID, problemTitle, problemDescription, estCost, finalCost, dateIn, dateOut, bicycleID, mechanicID, status, repairNotes) VALUES ('$reportID', '$problemTitle', '$problemDescription', '$estCost', '$finalCost', '$dateIn', '$dateOut', '$bicycleID','$mechanicID', '$status', '$repairNotes')";
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function addReportIntoTheSystem($data){
             // die('Inserted');
             $reporterID = $_SESSION['user_ID'];
@@ -255,7 +278,7 @@
         }
         
         public function getDashboardDA(){
-            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status !=3");
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status = 0");
             return $this->db->resultSet();
         }
 

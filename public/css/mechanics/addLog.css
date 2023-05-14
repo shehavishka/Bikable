@@ -297,6 +297,8 @@ textarea,
     /* margin-bottom: 2%; */
 }
 
+
+
 /* text area box property */
 
 /* ***************************************************************************************************************** */
@@ -308,7 +310,7 @@ textarea,
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
-        "reportid repairid bicycleid"
+        "reportid bicycleid xxx"
         "probtitle probtitle probtitle"
         "datein dateout mechanicid"
         "repairdis repairdis repairdis"
@@ -360,4 +362,20 @@ textarea,
 
 .data--finalCost{
     grid-area: finalcost;
+}
+
+.sub_text1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: var(--ff-family);
+    font-size: 19px;
+    font-weight: var(--fw-lightBold);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    height: 60px;
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 300px;
+    height: 38px;
+    margin-right: 60px;
 }

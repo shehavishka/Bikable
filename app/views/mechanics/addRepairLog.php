@@ -25,7 +25,7 @@
             <div class="data__area__top--title">New Log</div>
             <div class="data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/addLog'">
+                    <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/repairLogsControl'">
                 </div>
                 <div class="delete_user_button">
                     <input type="button" class="btn btn_delete" value="Submit" onclick="location.href='<?php echo URLROOT;?>/mechanics/addLog'">
@@ -41,10 +41,10 @@
                 <input type="text" class="detailbox" placeholder="Report ID" id="fName">
             </div>
 
-            <div class="data__area__div data--repairLogID">
+            <!-- <div class="data__area__div data--repairLogID">
                 <div class="data--name--lebal">Repair Log ID</div>
                 <input type="text" class="detailbox"  placeholder="Repair Log ID" id="fName">
-            </div>
+            </div> -->
 
             <div class="data__area__div data--bicycleID">
                 <div class="data--name--lebal">Bicycle ID</div>
@@ -57,10 +57,26 @@
                 <!-- <textarea name="" id="fName" class="detailbox" cols="30" rows="5" placeholder="Problem Title"></textarea> -->
             </div>
 
-            <div class="data__area__div data--dateIn">
+            <!-- <div class="data__area__div data--dateIn">
                 <div class="data--name--lebal">Date In</div>
                 <input type="text" class="detailbox" placeholder="Date In" id="fName">
-            </div>
+            </div> -->
+
+            <div class="date_time" id="info_dateTime">
+                <div class="info">
+                    <div class="sub_text1">Date In</div>
+                        <input type="date" name="date" id="date" class="sub_text1" value="<?php 
+                            if(!$data['date']):
+                                    $month = date('m');
+                                    $day = date('d');
+                                    $year = date('Y');
+                                    $today = $year . '-' . $month . '-' . $day;
+                                    echo $today;
+                            else: echo $data['dateIn'];
+                            endif?>">
+                        <span class="error_text"><?php echo $data['dateOut_err'];?></span>
+                        </div>
+                    </div>
 
             <div class="data__area__div data--dateOut">
                 <div class="data--name--lebal">Date Out</div>
