@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="data__area--top--button">
-                        <button id="open-form-btn">Edit</button>
+                        <button id="open-form-btn"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></button>
 
                         <div id="form-popup" style="display:none;">
                             <form id="rental-form" action="<?php echo URLROOT;?>/owners/setFareAndRate" method="post">
