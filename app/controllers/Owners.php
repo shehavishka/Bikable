@@ -483,10 +483,7 @@
                 //validate NIC
                 if(empty($data['nic'])){
                     $data['nic_err'] = '*enter NIC number';
-                }elseif (!(strlen($input) == 12 && ctype_digit($input))) {
-                    $data['nic_err'] = '*invalid NIC number';
-                }
-                else{
+                }elseif ((strlen($data['nic']) == 12 && ctype_digit($data['nic']))) {
                     //check weather nic is availble in database
                     // true means that email is already taken.
                     if($this->ownerModel->findNicNumber($data['nic'])){
@@ -495,14 +492,14 @@
                         //pass
                     }
                 }
+                else{
+                    $data['nic_err'] = '*invalid NIC number';
+                }
 
                 //validate phone number
                 if(empty($data['pNumber'])){
                     $data['pNumber_err'] = '*enter phone Number';
-                }elseif (preg_match('/^0[0-9]{0,9}$/', $data['pNumber'])) {
-                    $data['pNumber_err'] = '*invalid phone number';
-                }
-                else{
+                }elseif (strlen($data['pNumber']) == 10 && ctype_digit($data['pNumber'])) {
                     //check weather phone number is availble in database.
                     // true means that phone number is already taken.
                     if($this->ownerModel->findPhoneNumber($data['pNumber'])){
@@ -511,28 +508,31 @@
                         //pass
                     }
                 }
+                else{
+                    $data['pNumber_err'] = '*invalid phone number';
+                }
 
                 // if there is no error then add the user to the system
                 if(empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['status_err'])  && empty($data['nic_err']) && empty($data['pNumber_err']) && empty($data['userRole_err'])){
 
                     // generate password -> calls generatePassword() function
                     $data['userPassword'] = $this->generatePassword();
-                    // $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    $data['userPassword'] = password_hash($data['password'], PASSWORD_DEFAULT);
                     
                     // send email to the user -> calls sendEmailToTheUser() function                    
                     $this->sendEmailToTheUser($data['fName'] ,$data['email'], $data['userPassword']);
 
-                    //sweet alert
-                    echo "<script>
-                                Swal.fire(
-                                    'User added successfully',
-                                    'success'
-                                )
-                        </script>";
+                    
                     // add user to the system
                     if($this->ownerModel->addUserIntoTheSystem($data)){
                         // next implementation should be land into the right position according to the role
                         $this->view('owners/addUser');
+                        echo "<script>
+                        Swal.fire(
+                            'User added successfully',
+                            'success'
+                        )
+                        </script>";
                     }else{
                         // die('something went wrong');
                         $this->landToErrorPage();
@@ -1890,20 +1890,40 @@
                 ];
                 
                 //suspend the user and release the user
-                if($data['userStatus'] == 1){
+                if($data['userStatus'] == 0){
                     $isUserSuspend = $this->ownerModel->suspendUserByUserID($data['userIdentity']);
+
+                    $userDetail = $this->ownerModel->findUserByUserID($data['userIdentity']);
                     if($isUserSuspend){
                         //land to the administrator page
+                        $this->sendAccountSuspensionEmail($userDetail->firstName, $userDetail->emailAdd);
                         $this->administrator();
+                        echo "<script>
+                            Swal.fire(
+                                'Suspended!',
+                                'Sent an email to the user about the suspension.',
+                            )
+                        </script>";
+                        
                     }else{
                         // die("some thing went wrong at the suspend process");
                         $this->landToErrorPage();
                     }
-                }elseif ($data['userStatus'] == 0) {
+                }elseif ($data['userStatus'] == 1) {
+                    // print_r($data['userStatus']);
+                    // die("fuck");
                     $isUserRelease = $this->ownerModel->activateUserByUserID($data['userIdentity']);
+                    $userDetail = $this->ownerModel->findUserByUserID($data['userIdentity']);
+
                     if($isUserRelease){
                         //land to the administrator page
+                        $this->sendAccountReleaseEmail($userDetail->firstName, $userDetail->emailAdd);
                         $this->administrator();
+                        echo "<script>
+                            Swal.fire(
+                                'Released!',
+                                'Sent an email to the user about the release.',
+                            )</script>";
                     }else{
                         // die("some thing went wrong at the suspend process");
                         $this->landToErrorPage();
@@ -1974,10 +1994,10 @@
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////
-
-            // print_r($areaReport);
-
-            // die("fuc00");
+            // get adminstrators count
+            // these two values are object OKAY
+            $administratorCount = $this->ownerModel->getAdministratorCount();
+            $mechanicsCount = $this->ownerModel->getMechanicsCount();
 
             $data = [
                 'totalRiders' => $riderCount,
@@ -1989,7 +2009,9 @@
                 'xDate' => $dateTest,
                 'bikeReports' => $bikeReport,
                 'accidentReports' => $accidentReport,
-                'areaReports' => $areaReport
+                'areaReports' => $areaReport,
+                'administratorCount' => $administratorCount->count,
+                'mechanicsCount' => $mechanicsCount->count
             ];
             
             $this->view('owners/statistics', $data);
@@ -2029,6 +2051,124 @@
                 $this->landToErrorPage();
             }  
         }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // (Inbuild) account suspention email
+        private function sendAccountSuspensionEmail($userName, $userEmail){
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Account Suspension Notification';
+            $mail->Body = '
+                <html>
+                <head>
+                    <title>Account Suspension Notification</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                        }
+                        h1 {
+                            font-size: 18px;
+                            color: #444;
+                            margin-bottom: 20px;
+                        }
+                        ul {
+                            list-style-type: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Account Suspension Notification</h1>
+                    <p>Dear ' . $userName . ',</p>
+                    <p>We regret to inform you that your account has been temporarily suspended on ' . APPLICATION_NAME . '.</p>
+                    <p>Please contact our support team for further assistance regarding the suspension.</p>
+                    <p>Thank you for your understanding and cooperation.</p>
+                    <p>Best regards,<br>
+                    ' . APPLICATION_NAME . '</p>
+                </body>
+                </html>
+            ';
+
+            $mail->send();
+        }
+
+        public function sendAccountReleaseEmail($userName, $userEmail){
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = APPEMAIL;
+            $mail->Password = PASSWD;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+
+            $mail->setFrom(APPEMAIL);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Account Release Notification';
+            $mail->Body = '
+                <html>
+                <head>
+                    <title>Account Release Notification</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                        }
+                        h1 {
+                            font-size: 18px;
+                            color: #444;
+                            margin-bottom: 20px;
+                        }
+                        ul {
+                            list-style-type: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+                        li {
+                            margin-bottom: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Account Release Notification</h1>
+                    <p>Dear ' . $userName . ',</p>
+                    <p>We are pleased to inform you that your account on ' . APPLICATION_NAME . ' has been released.</p>
+                    <p>You can now access our platform using your previously provided credentials.</p>
+                    <p>If you have any questions or need further assistance, please don\'t hesitate to contact us.</p>
+                    <p>Thank you for using ' . APPLICATION_NAME . '.</p>
+                    <p>Best regards,<br>
+                    ' . APPLICATION_NAME . '</p>
+                </body>
+                </html>
+            ';
+
+            $mail->send();
+        }
+
+
 
 
 }

@@ -37,12 +37,12 @@
                     </div>
                 </div>
                 <hr>
-                <div class="detail detail__repairLog">
+                <!-- <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
                     <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/repairLog">Repair Log</a></div>
                     </div>
-                </div>
-                <hr>
+                </div> -->
+                <!-- <hr> -->
                 <div class="detail detail__dockingAreas">
                     <div class="detail__dockingAreas--title">
                         <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/dockingAreas">Docking Areas</a></div>

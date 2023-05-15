@@ -389,7 +389,7 @@
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public function suspendUserByUserID($userID){
-            $status = 0;
+            $status = 1;
             $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
 
             $row = $this->db->single();
@@ -403,9 +403,10 @@
         }
 
         public function activateUserByUserID($userID){
-            $status = 1;
-            $this->db->prepareQuery("UPDATE users SET status = '$status' WHERE userID = '$userID'");
-
+            $status = 0;
+            $tmp = "UPDATE users SET status = '$status' WHERE userID = '$userID'";
+            
+            $this->db->prepareQuery($tmp);
             $row = $this->db->single();
 
             //check row
@@ -547,7 +548,21 @@
         }
 
         public function getFareAndRate(){
-            $this->db->prepareQuery("SELECT baseValue, ratePer10 FROM fareRate ORDER BY timeStamp DESC LIMIT 1");
+            $this->db->prepareQuery("SELECT baseValue, ratePer10 FROM farerate ORDER BY timeStamp DESC LIMIT 1");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function getAdministratorCount(){
+            $this->db->prepareQuery("SELECT COUNT(*) as count FROM users WHERE role = 'Administrator' ");
+
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function getMechanicsCount(){
+            $this->db->prepareQuery("SELECT COUNT(*) as count FROM users WHERE role = 'Mechanic' ");
 
             $row = $this->db->single();
             return $row;
@@ -651,10 +666,12 @@
         }
 
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        // stat page chart data
 
         public function getlatestSevenDays(){
             $this->db->prepareQuery("SELECT DISTINCT DATE(loggedTimestamp) AS date FROM reports
-            WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY date DESC
+            WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY date DESC
             ");
 
             return $this->db->resultSet();

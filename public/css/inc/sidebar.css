@@ -17,6 +17,7 @@
 .sidebar--logo{
     border-top-right-radius: 5%;
     background-color: var(--clr-dark);
+    margin-left: 9%;
 }
 
 /* sidebar--logo div has image and set that image property */

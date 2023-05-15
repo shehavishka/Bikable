@@ -87,7 +87,14 @@
                             <td><input type="checkbox" name="selected[]" value="<?php echo $oneReport->reportID ?>"></td>
                             <td><?php echo $oneReport->reportID ?></td>
                             <td><?php echo $oneReport->reporterID ?></td>
-                            <td><?php echo $oneReport->status ?></td>
+                            <td><?php
+                                    if ($oneReport->status == 0) {
+                                        echo "Active";
+                                    } elseif ($oneReport->status == 1) {
+                                        echo "Inactive";
+                                    }
+                                ?>
+                            </td>
                             <td><?php echo $oneReport->problemTitle ?></td>
                             <td><?php echo $oneReport->assignedMechanic != null ? $oneReport->assignedMechanic : "Null" ?></td>
                             <td><?php echo $oneReport->loggedTimestamp ?></td>

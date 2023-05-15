@@ -84,9 +84,9 @@
                                 <td>' . $oneObject->userID . '</td>
                                 <td>';
 
-                                if ($oneObject->status == 1) {
+                                if ($oneObject->status == 0) {
                                     echo "Active";
-                                } elseif ($oneObject->status == 0) {
+                                } elseif ($oneObject->status == 1) {
                                     echo "Inactive";
                                 } else {
                                     echo "Deleted";

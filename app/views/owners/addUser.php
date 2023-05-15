@@ -19,7 +19,7 @@
         <?php require APPROOT . '/views/inc/header.php'; ?>
 
         <!-- REAL DATA AREA -->
-        <form action="<?php echo URLROOT;?>/owners/addUserToTheSystemFormSubmitButton" method="POST" id="userInterface">
+        <form action="<?php echo URLROOT;?>/owners/addUserToTheSystem" method="POST" id="userInterface">
             <!-- admin real data top -->
             <div class="data__area--top">
                 <div class="data__area__top--title">Add User</div>
@@ -67,11 +67,11 @@
                     <div class="data--name--lebal">Status</div>
                     <div class="data__status">
                         <div class="data__status--active">
-                            <input type="radio" id="active" name="status" value="1" checked>
+                            <input type="radio" id="active" name="status" value="0" checked>
                             <label for="active">Active</label>
                         </div>
                         <div class="data__status--inactive">
-                            <input type="radio" id="inactive" name="status" value="0" >
+                            <input type="radio" id="inactive" name="status" value="1" >
                             <label for="inactive">Inactive</label>
                         </div>
                     </div>

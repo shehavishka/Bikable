@@ -138,19 +138,19 @@
             <div class="top_left-g">
                 <div class="data__count__area--totalDockingAreas cardd cardd_custom">
                     <div class="data__count__area--totalDockingAreas--value">
-                        <?php echo $data['totalDockingAreas']; ?>
+                        <?php echo $data['administratorCount']; ?>
                     </div>
                     <div class="data__count__area--totalDockingAreas--title">
-                        Total Docking Areas
+                        Total Administrators
                     </div>
                 </div>
 
                 <div class="data__count__area--totalDockingAreas cardd cardd_custom">
                     <div class="data__count__area--totalDockingAreas--value">
-                        <?php echo $data['totalDockingAreas']; ?>
+                        <?php echo $data['mechanicsCount']; ?>
                     </div>
                     <div class="data__count__area--totalDockingAreas--title">
-                        Total Docking Areas
+                        Total Mechanics
                     </div>
                 </div>
             </div>
