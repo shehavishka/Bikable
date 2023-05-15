@@ -14,6 +14,12 @@
     //this url_helper file helps to redirect through the application.
     require_once('helper/url_helper.php');
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    require 'helper/phpmailer/src/Exception.php';
+    require 'helper/phpmailer/src/PHPMailer.php';
+    require 'helper/phpmailer/src/SMTP.php';
+
     /**
      *  In the MVC stands for,
      *      M -> Model

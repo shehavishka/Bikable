@@ -1,0 +1,27 @@
+    // this class is for owner's controller
+    /**
+     * 
+     * 4.2) Owner updates his profile picture (ownerUpdatesHisProfilePicture)
+     * 5.) Owner views his password change page (ownerViewsHisPasswordChange)
+     * 6.) Owner submits his new password (ownerSubmitsHisNewPassword)
+     * 7.) Owner adds a new user to the system button (addUserToTheSystemButton)
+     * 8.) Owner adds a new user to the system form submit button (addUserToTheSystemFormSubmitButton)
+     * 9.) Owner handle administrator page (administrator)
+     * 10.) Owner handle mechanic page (mechanic)
+     * 11.) Owner handle rider page (riders)
+     * 12.) Owner handle bicycle owner page (bicycleOwner)
+     * 13.) Owner handle repair log page (repairLog)
+     * 14.1) Owner handle docking areas page (dockingAreas)
+     * 14.2) Add docking area to the system (addDockingAreaToSystem)
+     * 15.) Owner handle bicycle control page (bicyclesControl)
+     * 16.) Owner handle rides control page (ridesControl)
+     * 17.) Owner handle reports control page (reportsControl)
+     * 18.) (inbuilt) Generate password length 8
+     * 19.1) (inbuilt) Send email to the user
+     * 19.2) (inbuilt) Send email to the user when current password is changed
+     * 20.) (inbuilt) land to the error page
+     * 21.) user profile view button (userProfileViewButton)
+     * 22.) suspend and release user (suspendReleaseUser)
+     * 23.) Statistics page (statisticsPageView)
+     * 24.) Set fare and rate
+     * 25.) Search Administrators through the search bar

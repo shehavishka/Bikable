@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/login.css">
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Login</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
             <div class="loginView__dataSide">
                 <!-- Header and subtitle -->
                 <div class="loginView__title">Welcome to Bikable</div>
-                <div class="loginView__subtitle">please login to use the platform</div>
+                <div class="loginView__subtitle">Please login to use the platform</div>
 
                 <!-- email and password form -->
                 <div class="loginView__Detail">
@@ -38,7 +39,7 @@
                         </div>
                         <div class="signupText">
                             <!-- sign up button should be add here -->
-                            Don't have an account? <a href="<?php echo URLROOT;?>/users/register" style="color: blue;"></a> 
+                            <a href="<?php echo URLROOT;?>/users/signup">Don't have an account? </a> 
                         </div>
                     </div>
                     <div class="forgetText">
