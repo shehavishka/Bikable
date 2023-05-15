@@ -4,36 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/addReport.css">
-    <link rel="icon" href="<?php echo URLROOT;?>/public/images/mechanics/favicon.png">
-    <title>Edit Report</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/riders/createReport.css">
+    <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
+    <title>Create Report</title>
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 </head>
 <body>
-<?php require 'sidebar-mechanic.php'; ?>
+<?php require APPROOT . '/views/inc/header-mechanic.php'; ?>
 
-<section class="data_area">
-    <?php require 'header.php'; ?>
-
-            <div id="upper_section">
-            </div>         
-            
-            <form action="<?php echo URLROOT;?>/mechanics/addReport" method="POST" id="create_form">
-
-            <div class="data__area--top">
-                    <div class="data__area__top--title">Add Report</div>
-                    <div class="data_area__top--twobuttons">
-                        <div class="add_user_button">
-                            <input type="button" class="btn btn_add" value="Cancel" onclick="location.href='<?php echo URLROOT;?>/mechanics/reportsControl'">
-                        </div>
-                        <div class="delete_user_button">
-                            <input type="submit" class="btn btn_delete" value="Submit" onclick="location.href='<?php echo URLROOT;?>/mechanics/editReport'">
-                        </div>
-                    </div>
-
-            </div> 
-
-            <div class="data__area--detail">
+    <div id="container">
+        <div id="upper_section">
+            <div class="title" id="title">Make a Report</div>
+        </div>         
+        
+        <form action="<?php echo URLROOT;?>/mechanics/createReport" method="POST" id="create_form">
+            <div class="middle_section">
                     <div class="info" id="info_type">
                         <div class="main_text">What's your issue?</div>
                         <!-- a drop down field with Accident Report, Bicycle Issue, Docking Area Issue and Other as the options -->
@@ -91,7 +76,32 @@
                             <input type="time" name="time" id="time" class="sub_text1" value="<?php echo $data['time'];?>">
                             <span class="error_text"><?php echo $data['time_Err'];?></span>
                         </div>
-                    </div>        
+                    </div>
+                    <div class="info" id="info_bicycleID">
+                        <div class="main_text">Bicycle</div>
+                        <!-- qr code scanning camera view -->
+                        <div id="a"><canvas hidden="" id="qr-canvas"></canvas></div>
+
+                        <input type="hidden" name="bicycleID" id="bicycleID" value="<?php if(empty($data['bicycleID'])) echo 0; else echo $data['bicycleID']; ?>">
+                        <div class="sub_text" id="scan_btn"><div id="message"><?php if(empty($data['bicycleID'])) echo 'Scan'; else echo 'Scan completed'; ?></div><img src="<?php echo URLROOT;?>/public/images/general/scanIconB.png" alt="scan"></div>
+                        <span class="error_text"><?php echo $data['bicycleID_Err'];?></span>
+                        
+                    </div>
+                    <!-- <div class="info">
+                        <div class="main_text">Upload an Image</div>
+                        <input type="file" name="image" id="image" class="sub_text" value="test">
+                        <span class="error_text"><?php echo $data['image_Err'];?></span>
+                    </div> -->
+            </div>
+        
+
+        <div id="lower_section">
+            <input type="submit" class="create_btn" value="Create" >
+            
+            </form>
+            <a href="<?php echo URLROOT;?>/mechanics/viewReports"><div class="cancel_btn">Cancel</div></a>
+        </div> 
+
     </div>
 
     <script>
@@ -132,6 +142,70 @@
         
         const bicycle_ID = document.getElementById("bicycleID");
         const video = document.createElement("video");
+        const canvasElement = document.getElementById("qr-canvas");
+        const canvas = canvasElement.getContext("2d");
+
+        const message = document.getElementById("message");
+        //const outputData = document.getElementById("outputData");
+        const btnScanQR = document.getElementById("scan_btn");
+
+        let scanning = false;
+
+        qrcode.callback = res => {
+        if (res) {
+            //outputData.innerText = res;
+            //outputData2.href = res;
+            // start_form.action = start_form.action+'/'+res;
+            bicycle_ID.value = res;
+            message.innerText = "Scan completed";
+
+            scanning = false;
+
+            video.srcObject.getTracks().forEach(track => {
+            track.stop();
+            });
+
+            // qrResult.hidden = false;
+            canvasElement.hidden = true;
+            btnScanQR.hidden = false;
+            a.style.visibility = "hidden";
+            // b.style.visibility = "visible";
+            
+        }
+        };
+
+        btnScanQR.onclick = () => {
+        navigator.mediaDevices
+            .getUserMedia({ video: { facingMode: "environment" } })
+            .then(function(stream) {
+            scanning = true;
+            // qrResult.hidden = true;
+            // btnScanQR.hidden = true;
+            canvasElement.hidden = false;
+            a.style.visibility = "visible";
+            video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+            video.srcObject = stream;
+            video.play();
+            tick();
+            scan();
+            });
+        };
+
+        function tick() {
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+
+            scanning && requestAnimationFrame(tick);
+        }
+
+        function scan() {
+            try {
+                qrcode.decode();
+            } catch (e) {
+                setTimeout(scan, 300);
+            }
+        }
     </script>
 </body>
 </html>
