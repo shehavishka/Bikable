@@ -65,10 +65,14 @@
                             
                             ?>
                         </td>
-                        <td><?php echo $oneObject->frameSize ?></td>
+                        <td><?php if($oneObject->frameSize < 20){echo "S";}else if($oneObject->frameSize > 26){echo "L";}else{echo "M";} ?></td>
                         <td><?php echo $oneObject->dateAcquired ?></td>
                         <td><?php echo $oneObject->	datePutInUse ?></td>
-                        <td><?php echo $oneObject->	currentDA ?></td>
+                        <td><?php foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->currentDA) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                } ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <a href="<?php echo URLROOT;?>/admins/editBicycleDetails?bicycleID=<?php echo $oneObject->bicycleID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>

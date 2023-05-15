@@ -63,11 +63,11 @@
                     <div class="data--name--lebal">Status</div>
                     <div class="data__status">
                         <div class="data__status--active">
-                            <input type="radio" id="active" name="status" value="1" checked>
+                            <input type="radio" id="active" name="status" value="0" checked>
                             <label for="active">Active</label>
                         </div>
                         <div class="data__status--inactive">
-                            <input type="radio" id="inactive" name="status" value="0" >
+                            <input type="radio" id="inactive" name="status" value="1" >
                             <label for="inactive">Inactive</label>
                         </div>
                     </div>
@@ -86,10 +86,18 @@
                     </div>
                 </div>
 
-                <div class="data__area__detail--role">
-                    <div class="data--name--lebal">Current Number Of Bikes</div>
-                    <input type="text" class="detailbox_userrole detailbox" name="currentNoOfBikes" placeholder="Current Number Of Bikes" id="currentNoOfBikes">
-                    <br><span class="error_text"><?php echo $data['currentNoOfBikes_err'];?></span>
+                <div class="data__area__detail--number">
+                    <div class="data__area__detail--role">
+                        <div class="data--name--lebal">Current Number Of Bikes</div>
+                        <input type="text" class="detailbox" name="currentNoOfBikes" placeholder="Current Number of Bikes" id="currentNoOfBikes">
+                        <br><span class="error_text"><?php echo $data['currentNoOfBikes_err'];?></span>
+                    </div>
+
+                    <div class="data__area__detail--role">
+                        <div class="data--name--lebal">Assigned Mechanic</div>
+                        <input type="text" class="detailbox" name="assignedMechanic" placeholder="Assigned Mechanic ID" id="assignedMechanic">
+                        <br><span class="error_text"><?php echo $data['assignedMechanic_err'];?></span>
+                    </div>
                 </div>
 
             </div>

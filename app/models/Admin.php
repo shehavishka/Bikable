@@ -175,7 +175,7 @@
 
         public function getDashboardRides(){
 
-            $this->db->prepareQuery("SELECT * FROM ridelog where status = 0 order by rideStartTimeStamp desc limit 6");
+            $this->db->prepareQuery("SELECT * FROM ridelog where status = 2 order by rideStartTimeStamp desc limit 6");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -278,8 +278,9 @@
             $locationLong = $data['locationLong']; //should be double
             $traditionalAdd = $data['traditionalAdd'];
             $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            $assignedMechanic = intval($data['assignedMechanic']); //should be int
 
-            $temp = "INSERT INTO dockingareas (areaName, locationRadius, status, locationLat, locationLong, traditionalAdd, currentNoOfBikes ) VALUES ('$areaName', '$locationRadius', '$status', '$locationLat', '$locationLong', '$traditionalAdd', '$currentNoOfBikes')";
+            $temp = "INSERT INTO dockingareas (areaName, locationRadius, status, locationLat, locationLong, traditionalAdd, currentNoOfBikes, assignedMechanic) VALUES ('$areaName', '$locationRadius', '$status', '$locationLat', '$locationLong', '$traditionalAdd', '$currentNoOfBikes', '$assignedMechanic' )";
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
@@ -300,8 +301,9 @@
             $locationLong = $data['locationLong']; //should be double
             $traditionalAdd = $data['traditionalAdd'];
             $currentNoOfBikes = intval($data['currentNoOfBikes']); //should be int
+            $assignedMechanic = intval($data['assignedMechanic']); //should be int
             
-            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes' WHERE areaID = '$areaID'";
+            $temp = "UPDATE dockingareas SET areaName = '$areaName', locationRadius = '$locationRadius', status = '$status', locationLat = '$locationLat', locationLong = '$locationLong', traditionalAdd = '$traditionalAdd', currentNoOfBikes = '$currentNoOfBikes', assignedMechanic = '$assignedMechanic' WHERE areaID = '$areaID'";
             $this->db->prepareQuery($temp);
 
             $row = $this->db->single();
@@ -344,6 +346,11 @@
             $this->db->prepareQuery($temp);
 
             if($this->db->executeStmt()){
+                // updating arae table
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes + 1 WHERE areaID = '$currentDA' ";
+                $this->db->prepareQuery($temp);
+                $this->db->executeStmt();
+
                 return true;
             }else{
                 return false;
@@ -360,7 +367,13 @@
             $datePutInUse = $data['datePutInUse'];
             $status = intval($data['status']); //should be int
             $currentDA = $data['currentDA'];
+
+            // get the bike's old docking area ID
+            $this->db->prepareQuery("SELECT currentDA FROM bicycles WHERE bicycleID = '$bicycleID'");
+            $r = $this->db->single();
+            $oldDA = $r->currentDA;
             
+            // updating bicycle table
             $temp = "UPDATE bicycles SET bikeOwnerID = '$bikeOwnerID', frameSize = '$frameSize', dateAcquired = '$dateAcquired', datePutInUse = '$datePutInUse', status = '$status', currentDA = '$currentDA' WHERE bicycleID = '$bicycleID'";
             $this->db->prepareQuery($temp);
 
@@ -368,6 +381,15 @@
 
             //check row
             if($this->db->rowCount() > 0){
+                // updating area table
+                $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes - 1 WHERE areaID = '$oldDA' ";
+                $this->db->prepareQuery($temp);
+                if($this->db->executeStmt()){
+                    $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes + 1 WHERE areaID = '$currentDA' ";
+                    $this->db->prepareQuery($temp);
+                    $this->db->executeStmt();
+                }
+
                 return true;
             }else{
                 return false;
@@ -646,6 +668,18 @@
 
             //check row
             if($this->db->rowCount() > 0){
+                // get the areaID of the bike
+                $temp = "SELECT currentDA FROM bicycles WHERE bicycleID = '$bicycleID' ";
+                $this->db->prepareQuery($temp);
+                // if areaID is found, update the currentNoOfBikes in the docking area
+                if($this->db->executeStmt()){
+                    $row = $this->db->single();
+                    $areaID = $row->currentDA;
+                    $temp = "UPDATE dockingareas SET currentNoOfBikes = currentNoOfBikes - 1 WHERE areaID = '$areaID' ";
+                    $this->db->prepareQuery($temp);
+                    $this->db->executeStmt();
+                }
+
                 return true;
             }else{
                 return false;

@@ -89,11 +89,18 @@
                         <br><span class="error_text"><?php echo $data['locationLong_err'];?></span>
                     </div>
                 </div>
+                <div class="data__area__detail--number">
+                    <div class="data__area__detail--role">
+                        <div class="data--name--lebal">Current Number Of Bikes</div>
+                        <input type="text" class="detailbox" name="currentNoOfBikes" value="<?php echo $data['areaDetailObject']->currentNoOfBikes;?>" id="currentNoOfBikes">
+                        <br><span class="error_text"><?php echo $data['currentNoOfBikes_err'];?></span>
+                    </div>
 
-                <div class="data__area__detail--role">
-                    <div class="data--name--lebal">Current Number Of Bikes</div>
-                    <input type="text" class="detailbox_userrole detailbox" name="currentNoOfBikes" value="<?php echo $data['areaDetailObject']->currentNoOfBikes;?>" id="currentNoOfBikes">
-                    <br><span class="error_text"><?php echo $data['currentNoOfBikes_err'];?></span>
+                    <div class="data__area__detail--role">
+                        <div class="data--name--lebal">Assigned Mechanic</div>
+                        <input type="text" class="detailbox" name="assignedMechanic" value="<?php echo $data['areaDetailObject']->assignedMechanic;?>" id="assignedMechanic">
+                        <br><span class="error_text"><?php echo $data['assignedMechanic_err'];?></span>
+                    </div>
                 </div>
 
             </div>

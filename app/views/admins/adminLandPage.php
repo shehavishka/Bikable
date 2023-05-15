@@ -3,7 +3,7 @@ class DBController {
 	private $host = "localhost";
 	private $user = "root";
 	private $password = "";
-	private $database = "bikable_db";
+	private $database = "bikable_db1";
 	private $conn;
 	
 	function __construct() {
@@ -372,21 +372,23 @@ $DAResult = $dbController->runQuery($query);
 
         <div class="lower_section--statistics">
             <div class="lower__section__card--title">
-                <a class = "title" href="<?php echo URLROOT ?>/admins/ridesControl">Active Rides</a>
+                <a class = "title" href="<?php echo URLROOT ?>/admins/ridesControl">Completed Rides</a>
             </div>
 
             <div class="upper_section__reports--body">
                 <!-- take reports data from the database and display on this table -->
                 <table>
                     <tr>
+                    <th style="width: 5%;">Rider ID</th>
                     <th style="width: 5%;">Bicycle ID</th>
-                    <th style="width: 6%;">Date Put Into Use</th>
+                    <th style="width: 8%;">Start Timestamp</th>
                     </tr>
 
-                    <?php foreach($data['dashboard_bicycles'] as $oneObject) : ?>
+                    <?php foreach($data['dashboard_rides'] as $oneObject) : ?>
                     <tr>
+                        <td><?php echo $oneObject->riderID ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
-                        <td><?php echo $oneObject->datePutInUse ?></td>
+                        <td><?php echo $oneObject->rideStartTimeStamp ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>

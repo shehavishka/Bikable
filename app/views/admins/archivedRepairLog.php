@@ -58,7 +58,11 @@
                     <tr>
                         <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->logID ?>"></td>
                         <td><?php echo $oneObject->logID ?></td>
-                        <td><?php echo $oneObject->mechanicID ?></td>
+                        <td><?php foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->mechanicID) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                }  ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
                         <td><?php echo $oneObject->problemTitle ?></td>
                         <td><?php 
@@ -106,7 +110,7 @@
                         </td>
                         <td>
                         <!-- update icon svg format -->
-                        <a href="<?php echo URLROOT;?>/admins/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>
+                        <a href="<?php echo URLROOT;?>/admins/viewRepairLog?logID=<?php echo $oneObject->logID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/viewIcon1.png" alt="edit"></a>
                     </tr>
                 <?php endforeach; ?>
 

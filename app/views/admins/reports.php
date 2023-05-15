@@ -68,7 +68,7 @@
                                 if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
-                                    echo "Inactive";
+                                    echo "Resolved";
                                 }
                             
                             ?>
@@ -76,12 +76,24 @@
                         <td><?php echo printValue($oneObject, 'problemTitle')?></td>
                         <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
                         <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
-                        <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
+                        <td><?php if($oneObject->assignedMechanic){
+                                foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->assignedMechanic) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                }
+                            }else{echo "-";} ?></td>
                         <td><?php echo printValue($oneObject, 'reportType') ?></td>
                         <td><?php echo printValue($oneObject, 'accidentLat') ?><br><?php echo printValue($oneObject, 'accidentLong') ?></td>
                         <td><?php echo printValue($oneObject, 'accidentTimeApprox') ?></td>
                         <td><?php echo printValue($oneObject, 'bicycleID') ?></td>
-                        <td><?php echo printValue($oneObject, 'areaID') ?></td>
+                        <td><?php if($oneObject->areaID){
+                                foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->areaID) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                }
+                            }else{echo "-";} ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>

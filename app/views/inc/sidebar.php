@@ -1,6 +1,9 @@
     <!-- finalized side bar -->
     <head>
         <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/inc/sidebar.css"> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     </head>
     <section class="sidebar">
         <div class="viewData">
@@ -36,7 +39,7 @@
                 <hr>
                 <div class="detail detail__repairLog">
                     <div class="detail__repairlog--title">
-                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/addNewRepairLog">Repair Log</a></div>
+                    <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/repairLog">Repair Log</a></div>
                     </div>
                 </div>
                 <hr>
@@ -63,15 +66,23 @@
                         <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/reportsControl">Reports</a></div>
                     </div>
                     <div class="detail__reports--submenu">
+                    <div class="detail__reports--submenu">
                         <div class="submenu reports__submenu--accidentReport">
-                            Accident Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/AccidentReportsControl">Accident Reports</a></div>
                         </div>
                         <div class="submenu users__submenu--bikeComplaintReport">
-                            Bike Complaint Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/BicycleReportsControl">Bike Reports</a></div>
                         </div>
                         <div class="submenu users__submenu--dockingAreaReport">
-                            Docking Area Reports
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/DAReportsControl">Docking Area Reports</a></div>
                         </div>
+                    </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="detail detail__statics">
+                    <div class="detail__static--title">
+                        <div class="detail__dashboard--name" ><a href="<?php echo URLROOT ?>/owners/statisticsPageView">Statistics</a></div>
                     </div>
                 </div>
             </div>

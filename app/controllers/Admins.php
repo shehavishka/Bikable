@@ -871,6 +871,7 @@
                     'traditionalAdd' => trim($_POST['traditionalAdd']),
                     'status' => trim($_POST['status']),
                     'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+                    'assignedMechanic' => trim($_POST['assignedMechanic']),
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -879,6 +880,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
                 ];
 
                 //validate submitted data
@@ -902,16 +904,21 @@
                     $data['traditionalAdd_err'] = '*enter traditional address';
                 }
 
-                if(empty($data['status'])){
-                    $data['status_err'] = '*enter status';
-                }
+                // if(empty($data['status'])){
+                //     $data['status_err'] = '*enter status';
+                // }
 
                 if(empty($data['currentNoOfBikes'])){
                     $data['currentNoOfBikes'] = 0;
                 }
 
+                // if(empty($data['assignedMechanic'])){
+                //     $data['assignedMechanic_err'] = '*enter a mechanic ID';
+                // }
+                // print_r($data);
+                // die("why god why");
                 //make sure there are no errors
-                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err'])){
+                if(empty($data['areaName_err']) && empty($data['locationLat_err']) && empty($data['locationLong_err']) && empty($data['locationRadius_err']) && empty($data['traditionalAdd_err']) && empty($data['status_err']) && empty($data['currentNoOfBikes_err']) && empty($data['assignedMechanic_err'])){
                     //every things up to ready 
 
                     // add docking area
@@ -925,7 +932,6 @@
                     }
                 }
                 else{
-
                     $this->view('admins/addDockingArea', $data);
                 }
             }else{
@@ -938,6 +944,7 @@
                     'traditionalAdd' => '',
                     'status' => '',
                     'currentNoOfBikes' => '',
+                    'assignedMechanic' => '',
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -946,6 +953,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
 
                 ];
                 $this->view('admins/addDockingArea', $data);
@@ -964,9 +972,10 @@
             //code will implement here
             $DADetails = $this->adminModel->getDADetails();
             $data = [
-                'DA_details' => $DADetails
+                'DA_details' => $DADetails,
+                'mechanicName_details' => '',
             ];
-            
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //view details
             $this->view('admins/dockingareas', $data);
         }
@@ -988,6 +997,7 @@
                     'traditionalAdd' => '',
                     'status' => '',
                     'currentNoOfBikes' => '',
+                    'assignedMechanic' => '',
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -996,6 +1006,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
 
                 ];
                 $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
@@ -1013,6 +1024,7 @@
                     'traditionalAdd' => trim($_POST['traditionalAdd']),
                     'status' => trim($_POST['status']),
                     'currentNoOfBikes' => trim($_POST['currentNoOfBikes']),
+                    'assignedMechanic' => trim($_POST['assignedMechanic']),
 
                     'areaName_err' => '',
                     'locationLat_err' => '',
@@ -1021,6 +1033,7 @@
                     'traditionalAdd_err' => '',
                     'status_err' => '',
                     'currentNoOfBikes_err' => '',
+                    'assignedMechanic_err' => '',
                 ];
                 $data['areaDetailObject'] = $prespectiveUserDetail = $this->adminModel->findAreaByID($data['areaID']);
 
@@ -1067,6 +1080,14 @@
                         $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a number';
                     }else if($data['currentNoOfBikes'] < 0){
                         $data['currentNoOfBikes_err'] = '*Current Number of Bikes should be a positive number';
+                    }
+
+                    if(empty($data['assignedMechanic'])){
+                        // $data['assignedMechanic'] = 0;
+                    }else if(!is_numeric($data['assignedMechanic'])){
+                        $data['assignedMechanic_err'] = '*Assigned Mechanic should be a number';
+                    }else if($data['assignedMechanic'] < 0){
+                        $data['assignedMechanic_err'] = '*Assigned Mechanic should be a positive number';
                     }
                 //
                 
@@ -1155,8 +1176,6 @@
 
                     // add bike
                     if($this->adminModel->addBicycleIntoTheSystem($data)){
-                        // next implementation should be land into the right position according to the role
-                        // $this->bicyclesControl();
                         header('Location:'.URLROOT.'/admins/bicyclesControl');
                     }else{
                         die('something went wrong');
@@ -1200,9 +1219,10 @@
             //code will implement here
             $bikeDetails = $this->adminModel->getBikeDetails();
             $data = [
-                'bike_details' => $bikeDetails
+                'bike_details' => $bikeDetails,
+                'map_details' => '',
             ];
-        
+            $data['map_details'] = $this->adminModel->getAllDADetails();
             //view details
             $this->view('admins/bicycles', $data);
         }
@@ -1474,9 +1494,12 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
+                'mechanicName_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reports', $data);
         }
@@ -1484,9 +1507,12 @@
         public function archivedReportsControl(){
             $reportDetails = $this->adminModel->getArchivedReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
+                'mechanicName_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/archivedReports', $data);
         }
@@ -1502,9 +1528,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsAccident', $data);
         }
@@ -1520,9 +1547,10 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsBike', $data);
         }
@@ -1538,9 +1566,12 @@
             //code will implement here
             $reportDetails = $this->adminModel->getReportDetails();
             $data = [
-                'report_details' => $reportDetails
+                'report_details' => $reportDetails,
+                'map_details' => '',
+                'mechanicName_details' => '',
             ];
-
+            $data['map_details'] = $this->adminModel->getAllDADetails();
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/reportsDA', $data);
         }
@@ -1646,9 +1677,10 @@
             //code will implement here
             $repairLogDetails = $this->adminModel->getRepairLogDetails();
             $data = [
-                'repairLog_details' => $repairLogDetails
+                'repairLog_details' => $repairLogDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/repairLog', $data);
         }
@@ -1669,9 +1701,10 @@
         public function archivedRepairLogControl(){
             $repairLogDetails = $this->adminModel->getArchivedRepairLogDetails();
             $data = [
-                'repairLog_details' => $repairLogDetails
+                'repairLog_details' => $repairLogDetails,
+                'mechanicName_details' => '',
             ];
-
+            $data['mechanicName_details'] = $this->adminModel->getMechanicDetails();
             //this is not load data from the data
             $this->view('admins/archivedRepairLog', $data);
         }

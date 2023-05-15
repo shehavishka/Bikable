@@ -35,23 +35,23 @@
         <div class="admin__table__area">
             <table>
                 <tr>
-                    <th style="width: 2%;"></th>
+                    <!-- <th style="width: 2%;"></th> -->
                     <th style="width: 5%;">Rider ID</th>
                     <th style="width: 5%;">Bicycle ID</th>
                     <th style="width: 6%;">Status</th>
-                    <th style="width: 8%;">Started At</th>
-                    <th style="width: 8%;">Ended At</th>
+                    <th style="width: 7%;">Started At</th>
+                    <th style="width: 7%;">Ended At</th>
                     <th style="width: 5%;">Fare</th>
                     <th style="width: 6%;">Travelled Time</th>
                     <th style="width: 5%;">Start Area</th>
                     <th style="width: 5%;">End Area</th>
-                    <th style="width: 6%;">Payment Method</th>
+                    <!-- <th style="width: 6%;">Payment Method</th> -->
                     <th style="width: 10%;">Current Location</th>
 
                     <?php foreach($data['ride_details'] as $oneObject) : ?>
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td><?php echo $oneObject->rideLogID ?></td>
+                        <!-- <td><input type="checkbox"></td> -->
+                        <td><?php echo $oneObject->riderID ?></td>
                         <td><?php echo $oneObject->bicycleID ?></td>
                         <td>
                             <?php 
@@ -87,7 +87,7 @@
                                     }
                                 }
                         ?></td>
-                        <td><?php echo $oneObject->payMethod ?></td>
+                        <!-- <td><?php echo $oneObject->payMethod ?></td> -->
                         <td><?php echo $oneObject->currentLat  . " " . $oneObject->currentLong ?></td>
                     </tr>
                 <?php endforeach; ?>

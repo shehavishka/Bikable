@@ -25,6 +25,7 @@
     // 23. findUserByEmail()
     // 24. findNicNumber()
     // 25. findPhoneNumber()
+    // 26. getFareDetails()
 
     class Rider {
         private $db;
@@ -34,7 +35,7 @@
         }
 
         public function riderLandPageMapDetails(){
-            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status != 3");
+            $this->db->prepareQuery("SELECT * FROM dockingareas WHERE status = 0");
 
             // take data from the database as the objects and send them into the controller.
             return $this->db->resultSet();
@@ -398,5 +399,12 @@
             }else{
                 return false;
             }          
+        }
+
+        public function getFareDetails(){
+            // get latest record from the farerate table
+            $this->db->prepareQuery("SELECT * FROM farerate ORDER BY timeStamp DESC LIMIT 1");
+
+            return $this->db->single();
         }
     }

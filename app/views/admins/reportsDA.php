@@ -26,7 +26,7 @@
             <div class="admin__data__area__top--title">Docking Area Reports</div>
             <div class="admin__data_area__top--twobuttons">
                 <div class="add_user_button">
-                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addAdministrator'">
+                    <input type="button" class="btn btn_add" value="Add Report" onclick="location.href='<?php echo URLROOT;?>/admins/addReport'">
                 </div>
 
                 <form action="<?php echo URLROOT;?>/admins/archiveReports" method="POST" id="userInterface">
@@ -61,7 +61,7 @@
                                 if($oneObject->status == 0){
                                     echo "Active";
                                 }else{
-                                    echo "Inactive";
+                                    echo "Resolved";
                                 }
                             
                             ?>
@@ -69,8 +69,18 @@
                         <td><?php echo printValue($oneObject, 'problemTitle')?></td>
                         <td><?php echo printValue($oneObject, 'problemDescription') ?></td>
                         <td><?php echo printValue($oneObject, 'loggedTimestamp') ?></td>
-                        <td><?php echo printValue($oneObject, 'assignedMechanic') ?></td>
-                        <td><?php echo printValue($oneObject, 'areaID') ?></td>
+                        <td><?php if($oneObject->assignedMechanic){
+                                foreach($data['mechanicName_details'] as $oneUserDetail) {
+                                    if($oneUserDetail->userID == $oneObject->assignedMechanic) {
+                                        echo $oneUserDetail->firstName;
+                                    }
+                                }
+                            }else{echo "-";} ?></td>
+                        <td><?php foreach($data['map_details'] as $oneMapDetail) {
+                                    if($oneMapDetail->areaID == $oneObject->areaID) {
+                                        echo $oneMapDetail->areaName;
+                                    }
+                                } ?></td>
                         <td>
                         <!-- update icon svg format -->
                         <a href="<?php echo URLROOT;?>/admins/editReportDetails?reportID=<?php echo $oneObject->reportID;?>"><img src="<?php echo URLROOT;?>/public/images/admins/editIcon1.png" alt="edit"></a>

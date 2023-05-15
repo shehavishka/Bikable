@@ -1,7 +1,7 @@
 /* image logo handle */
-img{
+.img-logo{
     display: block;
-    max-width: 100%;
+    max-width: 173%;
 }
 
 /* side bar column property */
@@ -22,7 +22,9 @@ img{
 /* sidebar--logo div has image and set that image property */
 .sidebar--logo--img{
     width: 110px;
-    margin-left: 18%;
+    margin-left: 9%;
+    margin-top: 9%;
+    margin-bottom: 9%;
 }
 
 .detail{

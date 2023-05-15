@@ -1,3 +1,11 @@
+.admin_data_area{
+    margin-left: 250px;
+}
+
+.data_area{
+    margin-left: 250px;
+}
+
 /* image logo handle */
 .img-logo{
     display: block;
@@ -6,9 +14,11 @@
 
 /* side bar column property */
 .sidebar{
+    position: fixed;
     background-color: var(--clr-dark);
     width: 250px;
     height: 100vh;
+    /* height:auto; */
     border-top-right-radius: 4%;
     border-bottom-right-radius: 4%;
 
@@ -16,7 +26,7 @@
 
 .sidebar--logo{
     border-top-right-radius: 5%;
-    background-color: var(--clr-dark);
+    /* background-color: var(--clr-dark); */
 }
 
 /* sidebar--logo div has image and set that image property */
