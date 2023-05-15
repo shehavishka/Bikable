@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="reportDetails">
-                            <div class="sub_text">Report ID: <?php echo $oneObject->repairLogID; ?></div>
+                            <div class="sub_text">Repair Log ID: <?php echo $oneObject->logID; ?></div>
                             <div class="attribute_text">   
                                 <!-- if the title is over 20 characters, stop and put ... -->
                                 <?php if(strlen($oneObject->problemTitle) > 25) : 

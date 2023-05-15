@@ -395,7 +395,7 @@
                         \Stripe\Stripe::setApiKey('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
                         $customer = \Stripe\Customer::create(array(
                             'email' => $data['email'],
-                            'name' => $data['first_name'] . ' ' . $data['last_name'],
+                            'name' => $data['first name'] . ' ' . $data['last name'],
                             'description' => 'Customer for ' . $data['email'],
                         ));
                         //add customer id to data array

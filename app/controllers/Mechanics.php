@@ -584,7 +584,7 @@ class Mechanics extends Controller
             if(empty($data['reportID_err']) && empty($data['bicycleID_err']) && empty($data['problemTitle_err']) && empty($data['mechanicID_err']) && empty($data['finalCost_err']) && empty($data['estCost_err'])){
                 // empty($data['problemDescription_err']) && empty($data['dateIn_err']) && empty($data['dateOut_err']) && 
                 if($this->mechanicModel->addLogIntoTheSystem($data)){
-                header('location: ' . URLROOT . '/mechanics/repairLogsControl');
+                header('location: ' . URLROOT . '/mechanics/viewRepairLogs');
                 return;
             } else {
                 //error page
@@ -593,7 +593,7 @@ class Mechanics extends Controller
             }
             } else {
                 //load the view with errors        
-                $this->view('mechanics/addRepairLog', $data);
+                $this->view('mechanics/createRepairLog', $data);
                 return;
             }
         }

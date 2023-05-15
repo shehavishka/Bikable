@@ -7,6 +7,75 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/signup.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Signup</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            width: 390px; /* Adjusted width for iPhone 12 Pro */
+            margin: 0 auto; /* Center the page horizontally */
+        }
+
+        .signupView {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signupView__logoSide {
+            margin-top: 5em;
+        }
+
+        .signupView__logoSide--imagecard img {
+            max-width: 80%; /* Increased size for the logo */
+        }
+
+        .signupView___dataSide {
+            width: 100%;
+            padding: 0 1em;
+            box-sizing: border-box;
+            margin-top: 2em;
+        }
+
+        .signupView__title {
+            font-size: 1.5rem; /* Adjusted font size */
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        .signupView__subtitle {
+            font-size: 1.1rem; /* Adjusted font size */
+            text-align: center;
+        }
+
+        .signupView__Detail {
+            margin-top: 1.5em;
+        }
+
+        .signupDetailbox {
+            width: 100%;
+            padding: 0.3em 0.5em;
+            margin-bottom: 1em;
+        }
+
+        .signupButtoCondtionform {
+            margin-top: 2em;
+        }
+
+        .signupText {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .submitbutton {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 250px; /* Adjusted button width */
+            height: 45px;
+        }
+    </style>
 </head>
 <body>
     <section class="signupView">
