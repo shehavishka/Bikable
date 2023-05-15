@@ -21,7 +21,7 @@
         }
 
         .signupView__logoSide {
-            margin-top: 5em;
+            margin-top: 1em;
         }
 
         .signupView__logoSide--imagecard img {
@@ -91,7 +91,7 @@
             <div class="signupView__subtitle">You're almost all set to ride.</div>
         
             <!-- user entered details-->
-            <form action="<?php echo URLROOT; ?>/users/signup" method="POST">
+            <form action="<?php echo URLROOT; ?>/users/signup" method="POST" style='padding-bottom: 35px;'>
                 <div class="signupView__Detail">
                     <div class="signupView__Detail--data">
                         <div class="label">First Name</div>

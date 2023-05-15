@@ -7,6 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/mechanics/reports.css">
         <title>Assigned Reports</title>
+        <style>
+                .data_area{
+                        width:100%;
+                }
+        </style>
 </head>
 
 <body>

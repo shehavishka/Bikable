@@ -29,6 +29,41 @@
             }
         }
 
+        public function createReport($data){
+            $reporterID = $_SESSION['user_ID'];
+            $type = $data['type'];
+            $problemTitle = $data['problemTitle'];
+            $problemDescription = $data['problemDescription'];
+            $areaID = $data['areaID'];
+            $accidentLocation = $data['accidentLocation'];
+            $timeStamp = $data['accidentTimeStamp'];
+            $bicycleID = $data['bicycleID'];
+            // $image = $data['image'];
+            $status = 0;
+
+            // $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, accidentLocation, accidentTimeApprox, bicycleID, image, status) VALUES ($reporterID, $type, '$problemTitle', '$problemDescription', $areaID, '$accidentLocation', '$timeStamp', $bicycleID, '$image', $status)";
+            if($type == "Accident"){
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, accidentLocation, accidentTimeApprox, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', '$accidentLocation', '$timeStamp', $bicycleID, $status)";
+            }else if($type == "Bicycle"){
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, bicycleID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $bicycleID, $status)";
+            }else if($type == "Area"){
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, areaID, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $areaID, $status)";
+            }else if($type == "Other"){
+                $temp = "INSERT INTO reports (reporterID, reportType, problemTitle, problemDescription, status) VALUES ($reporterID, '$type', '$problemTitle', '$problemDescription', $status)";
+            }
+                
+            print_r($temp);
+
+            $this->db->prepareQuery($temp);
+
+            if($this->db->executeStmt()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        
         public function addReportIntoTheSystem($data){
             // die('Inserted');
             $reporterID = $_SESSION['user_ID'];

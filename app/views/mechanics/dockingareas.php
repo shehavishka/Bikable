@@ -53,7 +53,7 @@
 
                 <?php foreach($data['DA_Details'] as $oneObject) : ?>
                     <tr>
-                    <td><input type="checkbox" name="selected[]" value="<?php echo $oneObject->areaID;?>"></td>
+                    <td><input type="hidden" name="selected[]" value="<?php echo $oneObject->areaID;?>"></td>
                         <td><?php echo $oneObject->areaID ?></td>
                         <td><?php echo $oneObject->areaName ?></td>
                         <td>
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <script>
+    <!-- <script>
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault(); // prevent the form from submitting
 
@@ -105,7 +105,7 @@
         // submit the form
         this.submit();
     });
-    </script>
+    </script> -->
 
 </body>
 </html>

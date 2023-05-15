@@ -27,10 +27,10 @@
                     <input type="button" class="btn btn_add" value="Add Bicycle" onclick="location.href='<?php echo URLROOT;?>/mechanics/addBicycle'">
                 </div>
 
-                <form action="<?php echo URLROOT;?>/mechanics/deleteBicycles" method="POST" id="userInterface">
+                <!-- <form action="<?php echo URLROOT;?>/mechanics/deleteBicycles" method="POST" id="userInterface">
                 <div class="delete_user_button">
                     <input type="submit" class="btn btn_delete" value="Delete Selected">
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -64,7 +64,7 @@
                             
                             ?>
                         </td>
-                        <td><?php echo $oneObject-> frameSize ?></td>
+                        <td><?php if($oneObject->frameSize < 20){echo "S";}else if($oneObject->frameSize > 26){echo "L";}else{echo "M";} ?></td>
                         <td><?php echo $oneObject-> dateAcquired ?></td>
                         <td><?php echo $oneObject->	datePutInUse ?></td>
                         <td><?php echo $oneObject->	currentDA ?></td>

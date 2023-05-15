@@ -79,6 +79,25 @@ class Mechanics extends Controller
         $this->view('mechanics/repairLogs', $data);
     }
 
+    public function AccidentReportsControl(){
+        /**
+         * Task 
+         *      1.) handle repair in the system
+         *      2.) View the data
+        *  */ 
+    
+        // load admin's repairlog control
+        //code will implement here
+        $reportDetails = $this->mechanicModel->getReportDetails();
+        $data = [
+            'report_details' => $reportDetails,
+            'mechanicName_details' => '',
+        ];
+        $data['mechanicName_details'] = $this->mechanicModel->getMechanicDetails();
+        //this is not load data from the data
+        $this->view('mechanics/reportsAccident', $data);
+    }
+
     public function viewRepairLog(){
         if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $data = [
