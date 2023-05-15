@@ -1,3 +1,35 @@
+<?php 
+class DBController {
+	private $host = "localhost";
+	private $user = "root";
+	private $password = "";
+	private $database = "bikable_db1";
+	private $conn;
+	
+	function __construct() {
+		$this->conn = $this->connectDB();
+	}
+	
+	function connectDB() {
+		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+		return $conn;
+	}
+	
+	function runQuery($query) {
+		$result = mysqli_query($this->conn,$query);
+		while($row=mysqli_fetch_array($result)) {
+			$resultset[] = $row;
+		}
+		if(!empty($resultset))
+			return $resultset;
+	}
+}
+
+$dbController = new DBController();
+$query = "SELECT * FROM dockingareas WHERE status != 3";
+$DAResult = $dbController->runQuery($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
