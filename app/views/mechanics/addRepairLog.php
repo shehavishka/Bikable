@@ -46,17 +46,20 @@
                 <div class ="info" id="info_bicycleID">
                     <div class="main_text">Bicycle ID</div>
                     <input type="text" name="bicycleID" class="sub_text2" placeholder="Bicycle ID" value="<?php echo $data['bicycleID'];?>">
+                    <span class="error_text"><?php echo $data['bicycleID_err'];?></span>
                 </div>
 
                 <div class="info" id="info_mechanicID">
                     <div class="main_text">Mechanic ID</div>
                     <input type="text" name="mechanicID" class="sub_text2" placeholder="Mechanic ID" value="<?php echo $data['mechanicID'];?>">
+                    <span class="error_text"><?php echo $data['mechanicID_err'];?></span>
                 </div>
             </div>
 
             <div class="info" id="info_problemTitle">
                 <div class="main_text">Problem Title</div>
                 <input type="text" name="problemTitle" class="sub_text" placeholder="Problem Title" value="<?php echo $data['problemTitle'];?>">
+                <span class="error_text"><?php echo $data['problemTitle_err'];?></span>
             </div>
 
             <div class="data__area__detail--month">
@@ -96,19 +99,24 @@
             </div>
             
             <div class="data__area__detail--bottom">
-                <div class="info" id="info_estCost">
-                    <div class="main_text">Estimated Cost</div>
-                    <input type="text" name="estCost" class="sub_text" placeholder="Estimated Cost" value="<?php echo $data['estCost'];?>">
-                </div>
+                <div class="data__area__detail--cost">
+                    <div class="info" id="info_estCost">
+                        <div class="main_text">Estimated Cost</div>
+                        <input type="text" name="estCost" class="sub_text3" placeholder="Estimated Cost" value="<?php echo $data['estCost'];?>">
+                        <span class="error_text"><?php echo $data['estCost_err'];?></span>
+                    </div>
 
-                <div class="info" id="info_finalCost">
-                    <div class="main_text">Final Cost</div>
-                    <input type="text" name="finalCost" class="sub_text" placeholder="Final Cost" value="<?php echo $data['finalCost'];?>">
+                    <div class="info" id="info_finalCost">
+                        <div class="main_text">Final Cost</div>
+                        <input type="text" name="finalCost" class="sub_text3" placeholder="Final Cost" value="<?php echo $data['finalCost'];?>">
+                        <span class="error_text"><?php echo $data['finalCost_err'];?></span>
+                    </div>
                 </div>
 
                 <div class="info" id="info_repairNotes">
                             <div class="main_text">Repair Notes</div>
                             <textarea name="repairNotes" id="repairNotes" cols="30" rows="10" class="para_text" placeholder="Type here"><?php echo $data['repairNotes'];?></textarea>
+                            <span class="error_text"><?php echo $data['repairNotes_err'];?></span>
                 </div>
             </div>
         </div>

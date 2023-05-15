@@ -337,7 +337,7 @@ textarea,
     border-radius: 8px;
     height: 60px;
     padding: 0.3em 1em 0.3em 1.5em;
-    width: 40%;
+    width: 49%;
     height: 38px;
 }
 
@@ -423,3 +423,27 @@ textarea,
     margin-left: 2%;
 }
 
+.data__area__detail--cost
+{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: left;
+    margin-bottom: 2%;
+}
+
+.sub_text3
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    font-size: 19px;
+    font-weight: var(--fw-lightBold);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    height: 60px;
+    padding: 0.3em 1em 0.3em 1.5em;
+    width: 70%;
+    height: 38px;
+}
