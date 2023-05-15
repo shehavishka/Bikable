@@ -650,6 +650,8 @@
             return $this->db->resultSet();
         }
 
+
+
         public function getlatestSevenDays(){
             $this->db->prepareQuery("SELECT DISTINCT DATE(loggedTimestamp) AS date FROM reports
             WHERE loggedTimestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) ORDER BY date DESC

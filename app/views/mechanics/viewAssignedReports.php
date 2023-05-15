@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="add_user_button">
-                        <input type="button" class="btn btn_delete" value="Archive" onclick="location.href='<?php echo URLROOT; ?>/mechanics/archiveReports'">
+                        <input type="button" class="btn btn_delete" value="Archive" onclick="location.href='<?php echo URLROOT; ?>/mechanics/archivedReportsControl'">
                         </div>
                 </div>
 
