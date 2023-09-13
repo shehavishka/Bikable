@@ -20,8 +20,8 @@
             }
         }
 
-        public function findNicNumber($userNIC){
-            $this->db->prepareQuery("SELECT * FROM users where NIC = '$userNIC'");
+        public function findyears($years){
+            $this->db->prepareQuery("SELECT * FROM users where years = '$years'");
 
             $this->db->single();
 
@@ -78,7 +78,7 @@
             $email=$data['email'];
             $password=$data['password'];
             $phone_no=$data['phone no'];
-            $nic_no=$data['nic no'];
+            $years=$data['years'];
             $stripeID = $data['stripe_customer_id'];
 
             // Hash the password
@@ -93,8 +93,9 @@
                 return false;
             } else {
                 // Insert new user into the database
-                $temp = "INSERT INTO users (NIC , firstName , lastName , phoneNumber , role , status , password , emailAdd, stripeID) 
-                VALUES ('$nic_no', '$first_name', '$last_name', '$phone_no', 'Rider', '0', '$password', '$email', '$stripeID')";
+                $temp = "INSERT INTO users (years , firstName , lastName , phoneNumber , role , status , password , emailAdd, stripeID) 
+                VALUES ('$years', '$first_name', '$last_name', '$phone_no', 'Rider', '0', '$password', '$email', '$stripeID')";
+                //echo $temp;
                 $this->db->prepareQuery($temp);
 
                 if($this->db->executeStmt()){
@@ -112,6 +113,28 @@
             $temp = "INSERT INTO emailOTP (email , OTP) VALUES ('$email' , '$otp')";
             $this->db->prepareQuery($temp);
             return $this->db->executeStmt();
+
+        }
+
+        //we prepare a new function to get riding years from the database
+        public function Ridingyears($email){
+            //die($email);
+            $this->db->prepareQuery("SELECT * FROM users WHERE email = '$email'");
+            $row = $this->db->single();
+            $Dbyears = $row->years;
+            
+            
+
+            if($Dbyears > '5'){
+                console.log('exp');
+                return true;
+
+            }else{
+                return false;
+                
+            }
+
+
 
         }
 

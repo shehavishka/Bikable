@@ -154,7 +154,7 @@
             //store session data
             $_SESSION['user_ID'] = $user->userID;
             $_SESSION['user_picture'] = $user->userPicture;
-            $_SESSION['user_NIC'] = $user->NIC;
+            $_SESSION['years'] = $user->years;
             $_SESSION['user_fName'] = $user->firstName;
             $_SESSION['user_lName'] = $user->lastName;
             $_SESSION['user_pNumber'] = $user->phoneNumber;
@@ -204,7 +204,7 @@
             // DESTROY USER DETAILS
             unset($_SESSION['user_ID']);
             unset($_SESSION['user_picture']);
-            unset($_SESSION['user_NIC']);
+            unset($_SESSION['years']);
             unset($_SESSION['user_fName']);
             unset($_SESSION['user_lName']);
             unset($_SESSION['user_pNumber']);
@@ -240,7 +240,8 @@
                     'password' => trim($_POST['password']),
                     'confirm_password' => trim($_POST['confirm_password']),
                     'phone no' => trim($_POST['phone_number']),
-                    'nic no' => trim($_POST['nic_number']),
+                    //new field has been added to show experience
+                    'years' => trim($_POST['years']),
         
                     'first_name_err' => '',
                     'second_name_err' => '',
@@ -248,7 +249,7 @@
                     'password_err' => '',
                     'confirm_password_err' => '',
                     'phone_no_err' => '',
-                    'nic_no_err' => '',
+                    'years_err' => '',
                     'selected_err' => '',
 
                     'otp_err' => '',
@@ -298,15 +299,6 @@
                     }
                 }
 
-                if(empty($data['nic no'])){
-                    $data['nic_no_err'] = '*Please enter NIC';
-                }else if(!preg_match("/^[0-9]{9}[vVxX]$/", $data['nic no']) && !preg_match("/^[0-9]{12}$/", $data['nic no'])){
-                    $data['nic_no_err'] = '*Please enter a valid NIC';
-                }else{
-                    if($this->userModel->findNicNumber($data['nic no'])){
-                        $data['nic_no_err'] = "*This NIC is already registered";
-                    }
-                }
 
                 if(isset($_POST['selected'])){
                     $data['selected'] = $_POST['selected'];
@@ -317,9 +309,9 @@
                 // if no errors, then proceed to register the user
                 //show($data);
                 
-                //if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['nic_no_err'])){
+                
 
-                if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['nic_no_err']) && empty($data['selected_err'])){
+                if(empty($data['first_name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_no_err']) && empty($data['years_err']) && empty($data['selected_err'])){
                     // Get the current timestamp and generate MD5 hash and extract the first 6 characters
                     $timestamp = time();
                     $otp = substr(md5($timestamp), 0, 6);
@@ -344,7 +336,7 @@
                     'password' => '',
                     'confirm_password' => '',
                     'phone no' => '',
-                    'nic no' => '',
+                    'years' => '',
         
                     'first_name_err' => '',
                     'second_name_err' => '',
@@ -352,7 +344,7 @@
                     'password_err' => '',
                     'confirm_password_err' => '',
                     'phone_no_err' => '',
-                    'nic_no_err' => '',
+                    'years_err' => '',
                     'selected_err' => '',
                 ];
 
@@ -385,12 +377,11 @@
                         'email' => trim($_POST['email']),
                         'password' => trim($_POST['password']),
                         'phone no' => trim($_POST['phone_number']),
-                        'nic no' => trim($_POST['nic_number']),
+                        'years' => trim($_POST['years']),
                         'stripe_customer_id' => '',
                     ];
                     if($this->userModel->checkOTP($data['email'], $data['otp'])){
                         //since otp is verified we add user to database after creating a stripe customer
-                        
                         //create stripe customer
                         \Stripe\Stripe::setApiKey('sk_test_51N7cKTBadLRZpiwUvs4goHRHZ01AZ0w44ee1GRN5KETxI5ftWGtqEp38jUXq4ChDCqcIKgd2SNK4xabPqVS7pfa100tjfsQxQd');
                         $customer = \Stripe\Customer::create(array(
@@ -402,12 +393,13 @@
                         $data['stripe_customer_id'] = $customer->id;
 
                         if($this->userModel->signup($data)){
+                            die('Something went');
                             //redirect to login page
                             header('location: ' . URLROOT . '/users/signupSuccess');
                             return;
                         }
                         else{
-                            die('Something went wrong');
+                            header('location: ' . URLROOT . '/users/signupSuccess');
                         }
                     }
                     else{
@@ -422,6 +414,18 @@
 
         }
 
+        //this is the function which chooses if user is pro or not
+        public function signupSuccess($years){
+            die("years");
+            if($years>'5'){
+                $this->view('users/signupExperienced');
+            }
+            else{
+                $this->view('users/signupSuccess');
+            }
+
+            
+        }
         ////////////////////////////
         // SEND EMAIL TO THE USER
         ////////////////////////////
@@ -491,7 +495,5 @@
             $mail->send();
         }
 
-        public function signupSuccess(){
-            $this->view('users/signupSuccess');
-        }
+
     }

@@ -7,6 +7,75 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/signup.css">
     <link rel="icon" href="<?php echo URLROOT;?>/public/images/general/favicon.png">
     <title>Signup</title>
+    <style>
+        body {
+            width: 390px; /* Adjusted width for iPhone 12 Pro */
+            margin: 0 auto; /* Center the page horizontally */
+        }
+
+        .signupView {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signupView__logoSide {
+            margin-top: 1em;
+        }
+
+        .signupView__logoSide--imagecard img {
+            max-width: 80%; /* Increased size for the logo */
+        }
+
+        .signupView___dataSide {
+            width: 100%;
+            padding: 0 1em;
+            box-sizing: border-box;
+            margin-top: 2em;
+        }
+
+        .signupView__title {
+            font-size: 1.5rem; /* Adjusted font size */
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        .signupView__subtitle {
+            font-size: 1.1rem; /* Adjusted font size */
+            text-align: center;
+        }
+
+        .signupView__Detail {
+            margin-top: 1.5em;
+        }
+
+        .signupDetailbox {
+            width: 100%;
+            padding: 0.3em 0.5em;
+            margin-bottom: 1em;
+        }
+
+        .signupButtoCondtionform {
+            margin-top: 2em;
+        }
+
+        .signupText {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .submitbutton {
+            display: flex;
+            justify-content: center;
+            /*margin-top: -4.5em;*/
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 250px; /* Adjusted button width */
+            height: 45px;
+        }
+    </style>
 </head>
 <body>
     <section class="signupView">
@@ -22,7 +91,7 @@
             <div class="signupView__subtitle">You're almost all set to ride.</div>
         
             <!-- user entered details-->
-            <form action="<?php echo URLROOT; ?>/users/signup" method="POST">
+            <form action="<?php echo URLROOT; ?>/users/signup" method="POST" style='padding-bottom: 35px;'>
                 <div class="signupView__Detail">
                     <div class="signupView__Detail--data">
                         <div class="label">First Name</div>
@@ -49,9 +118,9 @@
                     </div>
 
                     <div class="signupView__Detail--data">
-                        <div class="label">NIC</div>
-                        <input type="text" class="signupDetailbox" name="nic_number" placeholder="NIC" value="<?php echo $data['nic no'];?>">
-                        <br><span class="error_text"><?php echo $data['nic_no_err'];?></span>
+                        <div class="label">Riding Experience</div>
+                        <input type="text" class="signupDetailbox" name="years" placeholder="Number of years" value="<?php echo $data['years'];?>">
+                        <br><span class="error_text"><?php echo $data['years_err'];?></span>
                     </div>
 
                     <div class="signupView__Detail--data">

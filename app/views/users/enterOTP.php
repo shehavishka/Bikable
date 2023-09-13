@@ -149,7 +149,7 @@
             <input type=hidden name="first_name" value="<?php echo $data['first name'];?>">
             <input type=hidden name="last_name" value="<?php echo $data['last name'];?>">
             <input type=hidden name="phone_number" value="<?php echo $data['phone no'];?>">
-            <input type=hidden name="nic_number" value="<?php echo $data['nic no'];?>">
+            <input type=hidden name="years" value="<?php echo $data['years'];?>">
             <input type=hidden name="password" value="<?php echo $data['password'];?>">
             <label for="otp">Enter OTP:</label>
             <input type="text" id="otp" name="otp" required>

@@ -1,0 +1,33 @@
+2023.05.15 11:38:19 INFO  Started: Metals version 0.11.12 in workspace '/Applications/MAMP/htdocs/Bikable' for client Visual Studio Code 1.78.0.
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.16.3 by Redgate
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+INFO: Database: jdbc:h2:file:/Applications/MAMP/htdocs/Bikable/.metals/metals (H2 2.1)
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.021s)
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+May 15, 2023 11:38:19 AM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": << Empty Schema >>
+May 15, 2023 11:38:20 AM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "1 - Create tables"
+May 15, 2023 11:38:20 AM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "2 - Server discovery"
+May 15, 2023 11:38:20 AM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+May 15, 2023 11:38:20 AM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+May 15, 2023 11:38:20 AM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.106s)
+2023.05.15 11:38:20 INFO  time: initialize in 0.75s
+2023.05.15 11:38:24 WARN  Build server is not auto-connectable.
+2023.05.15 11:38:24 WARN  no build tool detected in workspace '/Applications/MAMP/htdocs/Bikable'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2023.05.15 11:41:29 INFO  Shutting down server
+2023.05.15 11:41:29 INFO  shutting down Metals
+2023.05.15 11:41:29 INFO  Exiting server

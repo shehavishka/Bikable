@@ -142,7 +142,7 @@
 <body>
     <div class="box">
         <div class="box__title">
-            You'll be a PRO in no time!
+            Congratulations Pro Cyclist, you have joined the Bikable family!
         </div>
         <div class="box__image">
             <img src="<?php echo URLROOT;?>/public/images/z_bikableLogo/logo.png" alt="BikableLogo" class="serverImage">
